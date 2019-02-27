@@ -4,7 +4,7 @@ Autonomous Laser Tracking & Firing 4-Camera Turret
 ## Goals
 **Image Processor** 
 1. Convert image to multidimension array of hexadecimal values for each color
-2. Create onochrome image by subtracking unneccessary color
+2. Create monochrome image by subtracting unnecessary color
 3. Find center of mass
 
 ## Collaborators
