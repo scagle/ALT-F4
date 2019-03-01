@@ -1,8 +1,11 @@
 // Webcam Tests
 //  Testing how to get input from a webcam using OpenCV
 
-#include <opencv2/opencv.hpp>
 #include <iostream>
+//#include <opencv2/opencv.hpp>  // Includes EVERYTHING
+#include <opencv2/videoio.hpp>
+#include <opencv2/imgproc.hpp>
+#include <opencv2/highgui.hpp>
 
 using namespace cv;
 using namespace std;

@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/webcam.dir/main.cpp.o  -o webcam /usr/lib/libopencv_highgui.so.4.0.1 /usr/lib/libopencv_videoio.so.4.0.1 /usr/lib/libopencv_imgcodecs.so.4.0.1 /usr/lib/libopencv_imgproc.so.4.0.1 /usr/lib/libopencv_core.so.4.0.1 

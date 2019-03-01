@@ -1,3 +1,0 @@
-/home/steven/Development/school/alt-f4/webcam_test/build/CMakeFiles/rebuild_cache.dir
-/home/steven/Development/school/alt-f4/webcam_test/build/CMakeFiles/webcam.dir
-/home/steven/Development/school/alt-f4/webcam_test/build/CMakeFiles/edit_cache.dir
