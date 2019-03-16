@@ -14,8 +14,7 @@ sudo modprobe bcm2835-v4l2
 ### Compilation
 ```bash
 git clone https://github.com/scagle/alt-f4.git
-cd alt-f4
-cd camera/build
+cd alt-f4/camera/build
 cmake ../
 make
 sudo ./camera
