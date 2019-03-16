@@ -16,8 +16,8 @@ sudo modprobe bcm2835-v4l2
 git clone https://github.com/scagle/alt-f4.git
 cd alt-f4
 git checkout testing
-cd webcam_tests/build
+cd camera/build
 cmake ../
 make
-sudo ./webcam
+sudo ./camera
 ```
