@@ -15,7 +15,6 @@ sudo modprobe bcm2835-v4l2
 ```bash
 git clone https://github.com/scagle/alt-f4.git
 cd alt-f4
-git checkout testing
 cd camera/build
 cmake ../
 make
