@@ -42,76 +42,81 @@ int main(int, char**)
         namedWindow("test", 1);
         // Get Image
         Mat frame;
-        cap >> frame; // get a new frame from camera
-        unsigned int width = frame.cols;
-        unsigned int height = frame.rows;
-
-        // Grabbing pixel data from image (formatted as B, G, R)
-        unsigned char blues [width][height];
-        unsigned char greens[width][height];
-        unsigned char reds  [width][height];
-        for (int x = 0; x < width; x++)
+        while (1)
         {
-            for (int y = 0; y < height; y++)
+            cap >> frame; // get a new frame from camera
+            unsigned int width = frame.cols;
+            unsigned int height = frame.rows;
+
+            // Grabbing pixel data from image (formatted as B, G, R)
+            unsigned char blues [width][height];
+            unsigned char greens[width][height];
+            unsigned char reds  [width][height];
+            for (int x = 0; x < width; x++)
             {
-                // Blue
-                blues[x][y] = frame.data[frame.channels()*(width*y + x) + 0];    
-                
-                // Green
-                greens[x][y] = frame.data[frame.channels()*(width*y + x) + 1];
-
-                // Red
-                reds[x][y] = frame.data[frame.channels()*(width*y + x) + 2];
-            }
-        }
-
-        // Applying convolution
-        int conv_image[width-2][height-2]; // We will lose border pixels
-        const char kernel[3][3] = 
-        {
-//            {  0, -1,  0 },      
-//            { -1,  4, -1 },
-//            {  0, -1,  0 },
-            {  1,  0, -1 },
-            {  0,  0,  0 },
-            { -1,  0,  1 },
-        };
-        int max = 0, min = 0;
-        for (int x = 1; x < width-1; x++)
-        {
-            for (int y = 1; y < height-1; y++)
-            {
-                int val = 0;
-                for (int kx = -1; kx <= 1; kx++)
+                for (int y = 0; y < height; y++)
                 {
-                    for (int ky = -1; ky <= 1; ky++)
-                    {
-                        val = val + (kernel[kx+1][ky+1] * reds[x-kx][y-ky]);
-                    }
-                }
-                conv_image[x-1][y-1] = val;
-                if (val > max)
-                    max = val;
-                else if (val < min)
-                    min = val;
-            }
-        }
-        // Normalizing Convolution Matrix
-        unsigned char final_image[width-2][height-2]; // We will lose border pixels
-        for (int x = 0; x < width-2; x++)
-        {
-            for (int y = 0; y < height-2; y++)
-            {
-                final_image[x][y] = (unsigned char)((double)(conv_image[x][y] - min) * (255 / double((max - min))));
-            }
-        }
-        
-        // Get image from arrays 
-        const Mat img(width-2, height-2, CV_8UC1, final_image);
+                    // Blue
+                    blues[x][y] = frame.data[frame.channels()*(width*y + x) + 0];    
+                    
+                    // Green
+                    greens[x][y] = frame.data[frame.channels()*(width*y + x) + 1];
 
-        // Show Image
-        imshow("test", img);
-        waitKey(0);
+                    // Red
+                    reds[x][y] = frame.data[frame.channels()*(width*y + x) + 2];
+                }
+            }
+
+            // Applying convolution
+            int conv_image[width-2][height-2]; // We will lose border pixels
+            const char kernel[3][3] = 
+            {
+                {  0, -1,  0 },      
+                { -1,  4, -1 },
+                {  0, -1,  0 },
+    //            {  1,  0, -1 },
+    //            {  0,  0,  0 },
+    //            { -1,  0,  1 },
+            };
+            int max = 0, min = 0;
+            for (int x = 1; x < width-1; x++)
+            {
+                for (int y = 1; y < height-1; y++)
+                {
+                    int val = 0;
+                    for (int kx = -1; kx <= 1; kx++)
+                    {
+                        for (int ky = -1; ky <= 1; ky++)
+                        {
+                            val = val + (kernel[kx+1][ky+1] * reds[x-kx][y-ky]);
+                        }
+                    }
+                    conv_image[x-1][y-1] = val;
+                    if (val > max)
+                        max = val;
+                    else if (val < min)
+                        min = val;
+                }
+            }
+            // Normalizing Convolution Matrix 
+            unsigned char final_image[height-2][width-2]; // We will lose border pixels
+            for (int x = 0; x < width-2; x++)
+            {
+                for (int y = 0; y < height-2; y++)
+                {
+                    final_image[y][x] = (unsigned char)((double)(conv_image[x][y] - min) * (255 / double((max - min))));
+                }
+            }
+
+            // Get image from arrays 
+            const Mat img(height-2, width-2, CV_8UC1, final_image);
+
+            // Show Image
+            imshow("test", img);
+            unsigned char key = waitKey(100);
+            if (key == 'q')
+                break;
+        }
     }
     catch (int e){
         cout << "An Exception occurred. Exception #" << e << "\n";
