@@ -40,11 +40,13 @@ int main(int, char**)
 //    cap.set(CAP_PROP_FRAME_HEIGHT, 240);
     try {
         namedWindow("test", 1);
+        namedWindow("test2", 2);
         // Get Image
         Mat frame;
         while (1)
         {
             cap >> frame; // get a new frame from camera
+            imshow("test2", frame);
             unsigned int width = frame.cols;
             unsigned int height = frame.rows;
 
@@ -99,17 +101,17 @@ int main(int, char**)
                 }
             }
             // Normalizing Convolution Matrix 
-            unsigned char final_image[height-2][width-2]; // We will lose border pixels
+            unsigned char final_image[width-2][height-2]; // We will lose border pixels
             for (int x = 0; x < width-2; x++)
             {
                 for (int y = 0; y < height-2; y++)
                 {
-                    final_image[y][x] = (unsigned char)((double)(conv_image[x][y] - min) * (255 / double((max - min))));
+                    final_image[x][y] = (unsigned char)((double)(conv_image[x][y] - min) * (255 / double((max - min))));
                 }
             }
 
             // Get image from arrays 
-            const Mat img(height-2, width-2, CV_8UC1, final_image);
+            const Mat img(width-2, height-2,  CV_8UC1, final_image);
 
             // Show Image
             imshow("test", img);
