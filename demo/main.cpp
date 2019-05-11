@@ -7,23 +7,27 @@
     #include <opencv2/imgproc/imgproc.hpp>
     #include <opencv2/highgui/highgui.hpp>
     #include <opencv2/core/core.hpp>
+    #include <opencv2/features2d.hpp>
 #elif CV_MAJOR_VERISON <= 3   // Tested using OpenCV 3.2.0 (through apt-get)
     #include <opencv2/videoio.hpp>
     #include <opencv2/imgproc.hpp>
     #include <opencv2/highgui.hpp>
     #include <opencv2/core.hpp>
+    #include <opencv2/features2d.hpp>
 #else                      // For newer versions
 //  #include <opencv2/opencv.hpp>  // Includes EVERYTHING
     #include <opencv2/videoio.hpp>
     #include <opencv2/imgproc.hpp>
     #include <opencv2/highgui.hpp>
     #include <opencv2/core.hpp>
+    #include <opencv2/features2d.hpp>
 #endif
 
 using namespace cv;
 using namespace std;
 
 typedef Vec<uchar, 3> Vec3b;
+const string capture_name = "capture.png";
 
 int main(int, char**)
 {
@@ -36,28 +40,54 @@ int main(int, char**)
 //    cap.set(CAP_PROP_FRAME_WIDTH,  320);
 //    cap.set(CAP_PROP_FRAME_HEIGHT, 240);
     try {
-        namedWindow("test", 1);
+        namedWindow("original", WINDOW_AUTOSIZE);
+        namedWindow("red", WINDOW_AUTOSIZE);
+        namedWindow("green", WINDOW_AUTOSIZE);
+        namedWindow("saved", WINDOW_AUTOSIZE);
         // Get Image
         Mat orig, mono, hsv; // Original, monochrome (grayscale), and hue/sat/val matrixes
+        Mat red_thres;  // for red laser
+        Mat green_thres; // for green laser
         // HSV is good for eliminating shadows/light effects
         while (1)
         {
             cap >> orig; // get a new frame from camera
-            cvtColor(orig, mono, COLOR_BGR2GRAY);
-            cvtColor(orig, hsv, COLOR_BGR2HSV);
-            uchar* mono_ptr = mono.data;
-            uchar* hsv_ptr = hsv.data;
-            for (int i = 0; i < orig.rows; i++)
+            // For segmenting the image in RGB format.
+            inRange(orig, cv::Scalar(0xc0, 0x00, 0x00), cv::Scalar(0xff, 0xff, 0xff), red_thres);
+            inRange(orig, cv::Scalar(0x00, 0xc0, 0x00), cv::Scalar(0xff, 0xff, 0xff), green_thres);
+             
+            // find moments of the images
+            Moments m_r = moments(red_thres, true);
+            Point p_r(m_r.m10 / m_r.m00, m_r.m01 / m_r.m00);
+            Moments m_g = moments(green_thres, true);
+            Point p_g(m_g.m10 / m_g.m00, m_g.m01 / m_g.m00);
+             
+            // coordinates of centroid
+            cout<< Mat(p_r)<< endl;
+            cout<< Mat(p_g)<< endl;
+             
+            // show the image with a point mark at the centroid
+            circle(orig, p_r, 5, Scalar(128,0,0), -1);
+            circle(orig, p_g, 5, Scalar(128,0,0), -1);
+
+            imshow("original", orig);
+            imshow("red", red_thres);
+            imshow("green", green_thres);
+
+            unsigned char key = waitKey(100);
+            switch (key)
             {
-                for (int j = 0; j < orig.cols; j++)
-                {
-                    const int hi = i*orig.cols*3 + j*3,
-                              gi = i*orig.cols + j;
-                    mono_ptr[gi] = hsv_ptr[hi + 2];
-                }
+                case 'y':  // Capture a still image, save it to file, and display it on another window
+                    Mat captured_image; // Original, monochrome (grayscale), and hue/sat/val matrixes
+                    imwrite(capture_name, orig);
+                    captured_image = imread(capture_name, 1);
+                    imshow("saved", orig);
+                    break;
             }
-            imshow("test", hsv);
-            waitKey(50);
+
+            if (key == 'q')
+                break;
+
         }
     }
     catch (int e){
