@@ -26,6 +26,8 @@
 using namespace cv;
 using namespace std;
 
+void on_adjust(int, void* );
+
 typedef Vec<uchar, 3> Vec3b;
 const string capture_name = "capture.png";
 
@@ -37,8 +39,6 @@ int main(int, char**)
         cout << "Camera can't be opened, exiting!\n";
         return -1;
     }
-//    cap.set(CAP_PROP_FRAME_WIDTH,  320);
-//    cap.set(CAP_PROP_FRAME_HEIGHT, 240);
     try {
         namedWindow("original", WINDOW_AUTOSIZE);
         namedWindow("red", WINDOW_AUTOSIZE);
@@ -46,15 +46,29 @@ int main(int, char**)
         namedWindow("saved", WINDOW_AUTOSIZE);
         // Get Image
         Mat orig, mono, hsv; // Original, monochrome (grayscale), and hue/sat/val matrixes
-        Mat red_thres;  // for red laser
-        Mat green_thres; // for green laser
+        Mat red_thres;   // Image for red laser
+        Mat green_thres; // Image for green laser
+        int h_l = 153;   // hue low
+        int s_l = 38;    // saturation low
+        int v_l = 151;    // value low
+        int h_h = 255;   // hue high
+        int s_h = 255;   // saturation high
+        int v_h = 255;   // value high
+
         // HSV is good for eliminating shadows/light effects
         while (1)
         {
             cap >> orig; // get a new frame from camera
+            cvtColor(orig, hsv, CV_BGR2HSV);
             // For segmenting the image in RGB format.
-            inRange(orig, cv::Scalar(0xc0, 0x00, 0x00), cv::Scalar(0xff, 0xff, 0xff), red_thres);
-            inRange(orig, cv::Scalar(0x00, 0xc0, 0x00), cv::Scalar(0xff, 0xff, 0xff), green_thres);
+            inRange(hsv, cv::Scalar(h_l, s_l, v_l), cv::Scalar(h_h, s_h, v_h), red_thres);
+            inRange(hsv, cv::Scalar(h_l, s_l, v_l), cv::Scalar(h_h, s_h, v_h), green_thres);
+            createTrackbar( "h_l:", "original", &h_l, 255, on_adjust );
+            createTrackbar( "s_l:", "original", &s_l, 255, on_adjust );
+            createTrackbar( "v_l:", "original", &v_l, 255, on_adjust );
+            createTrackbar( "h_h:", "original", &h_h, 255, on_adjust );
+            createTrackbar( "s_h:", "original", &s_h, 255, on_adjust );
+            createTrackbar( "v_h:", "original", &v_h, 255, on_adjust );
              
             // find moments of the images
             Moments m_r = moments(red_thres, true);
@@ -62,9 +76,9 @@ int main(int, char**)
             Moments m_g = moments(green_thres, true);
             Point p_g(m_g.m10 / m_g.m00, m_g.m01 / m_g.m00);
              
-            // coordinates of centroid
-            cout<< Mat(p_r)<< endl;
-            cout<< Mat(p_g)<< endl;
+            //// coordinates of centroid
+            // cout<< Mat(p_r)<< endl;
+            // cout<< Mat(p_g)<< endl;
              
             // show the image with a point mark at the centroid
             circle(orig, p_r, 5, Scalar(128,0,0), -1);
@@ -77,17 +91,26 @@ int main(int, char**)
             unsigned char key = waitKey(100);
             switch (key)
             {
-                case 'y':  // Capture a still image, save it to file, and display it on another window
-                    Mat captured_image; // Original, monochrome (grayscale), and hue/sat/val matrixes
-                    imwrite(capture_name, orig);
-                    captured_image = imread(capture_name, 1);
-                    imshow("saved", orig);
-                    break;
+                case 'y':  // (Yank) Capture a still of original frame, save it to file, and display it on another window
+                    {
+                        Mat captured_image; // Original, monochrome (grayscale), and hue/sat/val matrixes
+                        imwrite(capture_name, hsv);
+                        captured_image = imread(capture_name, 1);
+                        imshow("saved", hsv);
+                        break;
+                    }
+                case 's':  // Capture a screenshot image, and save it to screenshots/ directory   
+                    {
+                        int error = system("scrot -e 'mv $f ../screenshots/'"); // Capture screenshot
+                        if (error)
+                            cout << "ERROR: Screen Shot failed! (do you have 'scrot' installed?)" << "\n";
+                        else
+                            cout << "Screen Shot saved!" << "\n";
+                        break;
+                    }
             }
-
             if (key == 'q')
                 break;
-
         }
     }
     catch (int e){
@@ -99,6 +122,8 @@ int main(int, char**)
     return 0;
 }
 
+void on_adjust(int, void* ) 
+{ }
 
 //            unsigned int width = frame.cols;
 //            unsigned int height = frame.rows;
