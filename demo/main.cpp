@@ -28,67 +28,122 @@ using namespace std;
 
 void on_adjust(int, void* );
 
-typedef Vec<uchar, 3> Vec3b;
-const string capture_name = "capture.png";
+const string capture_name = "capture.png"; // Name of yanked original image
 
 int main(int, char**)
 {
-    VideoCapture cap(1); // open the default camera
-    if (!cap.isOpened())  // check if we succeeded
+    VideoCapture cap(1);    // open the camera located at /dev/videoX
+    if (!cap.isOpened())    // check if we succeeded
     {
         cout << "Camera can't be opened, exiting!\n";
         return -1;
     }
-    try {
-        namedWindow("original", WINDOW_AUTOSIZE);
-        namedWindow("red", WINDOW_AUTOSIZE);
-        namedWindow("green", WINDOW_AUTOSIZE);
-        namedWindow("saved", WINDOW_AUTOSIZE);
-        // Get Image
-        Mat orig, mono, hsv; // Original, monochrome (grayscale), and hue/sat/val matrixes
-        Mat red_thres;   // Image for red laser
-        Mat green_thres; // Image for green laser
-        int h_l = 153;   // hue low
-        int s_l = 38;    // saturation low
-        int v_l = 151;    // value low
-        int h_h = 255;   // hue high
-        int s_h = 255;   // saturation high
-        int v_h = 255;   // value high
+
+    // WE GOT A CAMERA!!!
+    try { 
+        // Declare some variables we'll need
+        namedWindow("original", WINDOW_AUTOSIZE); // Declare window to draw into
+        namedWindow("red",      WINDOW_AUTOSIZE); // Declare window to draw into
+        namedWindow("green",    WINDOW_AUTOSIZE); // Declare window to draw into
+        namedWindow("saved",    WINDOW_AUTOSIZE); // Declare window to draw into
+        Mat orig, hsv;       // Original and hue/sat/val matrixes
+        Mat red_thres, green_thres;  // Threshold Image for red/green lasers
+        int hsv_r[2][3] = { {153, 38, 151}, {255, 255, 255} };  // Red_Laser   {lows{h, s, v} , highs{h, s, v}}
+        int hsv_g[2][3] = { {33, 91, 191}, {103, 255, 255} };  // Green_Laser {lows{h, s, v} , highs{h, s, v}}
 
         // HSV is good for eliminating shadows/light effects
         while (1)
         {
+            // Capture Video
             cap >> orig; // get a new frame from camera
-            cvtColor(orig, hsv, CV_BGR2HSV);
-            // For segmenting the image in RGB format.
-            inRange(hsv, cv::Scalar(h_l, s_l, v_l), cv::Scalar(h_h, s_h, v_h), red_thres);
-            inRange(hsv, cv::Scalar(h_l, s_l, v_l), cv::Scalar(h_h, s_h, v_h), green_thres);
-            createTrackbar( "h_l:", "original", &h_l, 255, on_adjust );
-            createTrackbar( "s_l:", "original", &s_l, 255, on_adjust );
-            createTrackbar( "v_l:", "original", &v_l, 255, on_adjust );
-            createTrackbar( "h_h:", "original", &h_h, 255, on_adjust );
-            createTrackbar( "s_h:", "original", &s_h, 255, on_adjust );
-            createTrackbar( "v_h:", "original", &v_h, 255, on_adjust );
-             
-            // find moments of the images
-            Moments m_r = moments(red_thres, true);
-            Point p_r(m_r.m10 / m_r.m00, m_r.m01 / m_r.m00);
-            Moments m_g = moments(green_thres, true);
-            Point p_g(m_g.m10 / m_g.m00, m_g.m01 / m_g.m00);
-             
-            //// coordinates of centroid
-            // cout<< Mat(p_r)<< endl;
-            // cout<< Mat(p_g)<< endl;
-             
-            // show the image with a point mark at the centroid
-            circle(orig, p_r, 5, Scalar(128,0,0), -1);
-            circle(orig, p_g, 5, Scalar(128,0,0), -1);
 
+            // Convert BGR to HSV format
+            cvtColor(orig, hsv, CV_BGR2HSV);
+
+            // Create Trackbars for tweaking variables
+            /*! TODO: Include Green Laser, or just change the tables as needed
+             *  \todo Include Green Laser, or just change the tables as needed
+             *  */
+            createTrackbar( "h_l:", "original", &hsv_g[0][0], 255, on_adjust );
+            createTrackbar( "s_l:", "original", &hsv_g[0][1], 255, on_adjust );
+            createTrackbar( "v_l:", "original", &hsv_g[0][2], 255, on_adjust );
+            createTrackbar( "h_h:", "original", &hsv_g[1][0], 255, on_adjust );
+            createTrackbar( "s_h:", "original", &hsv_g[1][1], 255, on_adjust );
+            createTrackbar( "v_h:", "original", &hsv_g[1][2], 255, on_adjust );
+             
+            // For segmenting the image in RGB format.
+            inRange(hsv, cv::Scalar(hsv_r[0][0], hsv_r[0][1], hsv_r[0][2]), cv::Scalar(hsv_r[1][0], hsv_r[1][1], hsv_r[1][2]), red_thres);
+            inRange(hsv, cv::Scalar(hsv_g[0][0], hsv_g[0][1], hsv_g[0][2]), cv::Scalar(hsv_g[1][0], hsv_g[1][1], hsv_g[1][2]), green_thres);
+
+            // Find contours of the Images
+            vector<vector<Point> > contours_r, contours_g;
+            vector<Vec4i> hierarchy_r, hierarchy_g;
+            findContours(red_thres,   contours_r, hierarchy_r, RETR_TREE, CHAIN_APPROX_SIMPLE);
+            findContours(green_thres, contours_g, hierarchy_g, RETR_TREE, CHAIN_APPROX_SIMPLE);
+
+            // Filter by Expected Area (if contours exist, otherwise ignore)
+            /*! TODO: PUT INTO FUNCTION TO CLEAN UP MAIN
+             *  \todo PUT INTO FUNCTION TO CLEAN UP MAIN
+             */
+            if (contours_r.size() != 0)
+            {
+                double expected_area = 10;        // Set our expected area of the laser (varies by distance, but w/e)
+                double closest_area_r = 10000;    // Start at some ridiculously high number (and work our way down)
+                vector<Point> closest_contour_r;  // Will be our location of red dot
+
+                // Filter Red Laser contours
+                for (int i = 0; i < contours_r.size(); i++)
+                {
+                    double area = contourArea(contours_r[i]);       // Get Area of Contour
+                    if (abs(area - expected_area) < closest_area_r) // If the Magnitude is less than previous smallest contour ...
+                    {
+                        closest_area_r = area;              // We've found our new closest area!
+                        closest_contour_r = contours_r[i];  // We've found our new closest contour!
+                    }
+
+                }
+                // Find momemts of red and green lasers
+                Moments m_r = moments(closest_contour_r, false);
+                Point p_r(m_r.m10 / m_r.m00, m_r.m01 / m_r.m00);
+                circle(orig, p_r, 10, Scalar(0, 0, 128),  3);
+            }
+            // Filter by Expected Area of Green Laser (if contours exist, otherwise ignore)
+            /*! TODO: PUT INTO FUNCTION TO CLEAN UP MAIN
+             *  \todo PUT INTO FUNCTION TO CLEAN UP MAIN
+             */
+            if (contours_g.size() != 0)
+            {
+                double expected_area = 10;        // Set our expected area of the laser (varies by distance, but w/e)
+                double closest_area_g = 10000;    // Start at some ridiculously high number (and work our way down)
+                vector<Point> closest_contour_g;  // Will be our location of green dot
+
+                // Filter Green Laser contours
+                for (int i = 0; i < contours_g.size(); i++)
+                {
+                    double area = contourArea(contours_g[i]);       // Get Area of Contour
+                    if (abs(area - expected_area) < closest_area_g) // If the Magnitude is less than previous smallest contour ...
+                    {
+                        closest_area_g = area;              // We've found our new closest area!
+                        closest_contour_g = contours_g[i];  // We've found our new closest contour!
+                    }
+
+                }
+                // Find momemts of red and green lasers
+                Moments m_g = moments(closest_contour_g, false);
+                Point p_g(m_g.m10 / m_g.m00, m_g.m01 / m_g.m00);
+                circle(orig, p_g, 10, Scalar(0, 128, 0),  3);
+            }
+
+            // Show the images
             imshow("original", orig);
             imshow("red", red_thres);
             imshow("green", green_thres);
 
-            unsigned char key = waitKey(100);
+            // Delay, and Handle character inputs
+            /*! TODO: PUT INTO FUNCTION TO CLEAN UP MAIN
+             *  \todo PUT INTO FUNCTION TO CLEAN UP MAIN
+             */
+            unsigned char key = waitKey(500);
             switch (key)
             {
                 case 'y':  // (Yank) Capture a still of original frame, save it to file, and display it on another window
@@ -123,80 +178,6 @@ int main(int, char**)
 }
 
 void on_adjust(int, void* ) 
-{ }
-
-//            unsigned int width = frame.cols;
-//            unsigned int height = frame.rows;
-//
-//            // Grabbing pixel data from image (formatted as B, G, R)
-//            unsigned char blues [width][height];
-//            unsigned char greens[width][height];
-//            unsigned char reds  [width][height];
-//            for (int x = 0; x < width; x++)
-//            {
-//                for (int y = 0; y < height; y++)
-//                {
-//                    // Blue
-//                    blues[x][y] = frame.data[frame.channels()*(width*y + x) + 0];    
-//                    
-//                    // Green
-//                    greens[x][y] = frame.data[frame.channels()*(width*y + x) + 1];
-//
-//                    // Red
-//                    reds[x][y] = frame.data[frame.channels()*(width*y + x) + 2];
-//                }
-//            }
-//
-//            // Applying convolution
-//            int conv_image[width-2][height-2]; // We will lose border pixels
-//            const int kernel[3][3] = 
-//            {
-//    //          { -1, -1, -1 },      
-//    //          { -1,  8, -1 },
-//    //          { -1, -1, -1 },
-//                {  0, -1,  0 },      
-//                { -1,  4, -1 },
-//                {  0, -1,  0 },
-//    //            {  1,  0, -1 },
-//    //            {  0,  0,  0 },
-//    //            { -1,  0,  1 },
-//            };
-//            int max = 0, min = 0;
-//            for (int x = 1; x < width-1; x++)
-//            {
-//                for (int y = 1; y < height-1; y++)
-//                {
-//                    int val = 0;
-//                    for (int kx = -1; kx <= 1; kx++)
-//                    {
-//                        for (int ky = -1; ky <= 1; ky++)
-//                        {
-//                            val = val + (kernel[kx+1][ky+1] * greens[x-kx][y-ky]);
-//                        }
-//                    }
-//                    conv_image[x-1][y-1] = val;
-//                    if (val > max)
-//                        max = val;
-//                    else if (val < min)
-//                        min = val;
-//                }
-//            }
-//            // TODO: Figure out transposition 
-//            // Normalizing Convolution Matrix 
-//            unsigned char final_image[height-2][width-2]; // We will lose border pixels
-//            for (int x = 0; x < width-2; x++)
-//            {
-//                for (int y = 0; y < height-2; y++)
-//                {
-//                    final_image[y][x] = (unsigned char)((double)(conv_image[x][y] - min) * (255 / double((max - min))));
-//                }
-//            }
-//
-//            // Get image from arrays 
-//            const Mat img(height-2, width-2, CV_8UC1, final_image);
-//
-//            // Show Image
-//            imshow("test", img);
-//            unsigned char key = waitKey(500);
-//            if (key == 'q')
-//                break;
+{ 
+    // Gets called everytime bars update
+}
