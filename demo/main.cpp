@@ -143,7 +143,7 @@ int main(int, char**)
             /*! TODO: PUT INTO FUNCTION TO CLEAN UP MAIN
              *  \todo PUT INTO FUNCTION TO CLEAN UP MAIN
              */
-            unsigned char key = waitKey(500);
+            unsigned char key = waitKey(100);
             switch (key)
             {
                 case 'y':  // (Yank) Capture a still of original frame, save it to file, and display it on another window
