@@ -32,7 +32,7 @@ const string capture_name = "capture.png"; // Name of yanked original image
 
 int main(int, char**)
 {
-    VideoCapture cap(1);    // open the camera located at /dev/videoX
+    VideoCapture cap(0);    // open the camera located at /dev/videoX
     if (!cap.isOpened())    // check if we succeeded
     {
         cout << "Camera can't be opened, exiting!\n";
@@ -58,7 +58,10 @@ int main(int, char**)
             cap >> orig; // get a new frame from camera
 
             // Convert BGR to HSV format
-            cvtColor(orig, hsv, CV_BGR2HSV);
+            // OpenCV Version >= 3.0 
+            cvtColor(orig, hsv, COLOR_BGR2GRAY);
+            // OpenCV Version < 3.0 
+            // cvtColor(orig, hsv, CV_BGR2HSV);
 
             // Create Trackbars for tweaking variables
             /*! TODO: Include Green Laser, or just change the tables as needed
