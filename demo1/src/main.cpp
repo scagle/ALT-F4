@@ -46,31 +46,77 @@ int main(int, char**)
         return -1;
     }
 
-    // Declare some variables we'll need
+    // Variable Declaration
     Mat orig, hsv;       // Original and hue/sat/val matrixes
     namedWindow("original", WINDOW_AUTOSIZE); // Declare window to draw into
-    deque<Frame> frames(FRAME_FIFO_SIZE);
+    deque<Frame> frames(FRAME_FIFO_SIZE); // FIFO queue to store frames in
 
     try { 
-        // Getting Dimensions of camera
-        cap >> orig;    // get a new frame from camera
-        vector<int> values(orig.rows * orig.cols);
+        // Frame-Size Dependant Variables
+        cap >> orig; // get a frame from camera, so we can grab size
+        unsigned int width = orig.cols;
+        unsigned int height = orig.rows;  
+        unsigned int step = orig.step;    // Full row width in bytes (so width * 8?)
+        unsigned int channels = orig.channels(); // How many channels does the images have (rgb = 3)
+        cout << "width: " << width << "\n";
+        cout << "height: " << height << "\n";
+        cout << "step: " << step << "\n";
+        cout << "step/8: " << step/8 << "\n";
+        cout << "channels: " << channels << "\n";
+        vector<unsigned char> values(width * height);  // initialize 'values' to correct size
 
         while (1)
         {
-            // Capture Video
-            cap >> orig; // get a new frame from camera
-            cvtColor(orig, hsv, COLOR_BGR2HSV);
-            values.assign(hsv.data, hsv.data + hsv.total());
-            vector<int> test = values;
+            //// Capture Video
+            cap >> orig;                        // get a frame from camera
+            //cvtColor(orig, hsv, COLOR_BGR2HSV); // convert to hsv
+            values.assign(orig.data, orig.data + orig.total()); // copy opencv 'Mat' as single vector
+
+            //// Manipulate FIFO queue
+            vector<unsigned int> sums = {0, 0, 0};
+            frames.pop_back();
+            frames.push_front(Frame(values, width, height));
+
+            //// Perform statistics
+            // Average
+            int valid_frames = 0;
+            for (int i = 0; i < FRAME_FIFO_SIZE; i++)
+            {
+                if (frames[i].isInitialized())
+                {
+                    for (int row = 0; row < height; row++)
+                    {
+                        cout << row << " row\n";
+                        for (int col = 0; col < width; col++)
+                        {
+                            for (int ch = 0; ch < channels; ch++)
+                            {
+                                unsigned int index = (channels * step * row) + (channels * ch) + ch;
+                                sums[ch] += frames[i].getValues()[index];
+                                //unsigned char b = frames[i].getValues()[step * row + col    ];
+                                //unsigned char g = frames[i].getValues()[step * row + col + 1];
+                                //unsigned char r = frames[i].getValues()[step * row + col + 2];
+                            }
+                        }
+                    }
+                    //cout << "(" << +frames[i].getValues()[0] << ", ";
+                    //cout << +frames[i].getValues()[1] << ", ";
+                    //cout << +frames[i].getValues()[2] << ")\n";
+                    cout << i << " frame finished\n";
+                    valid_frames += 1;
+                }
+                else 
+                {
+                    cout << "frames[" << i << "] is uninitialized!\n";
+                    break;
+                }
+                cout << "(" << +sums[0] / valid_frames << ", ";
+                cout <<        +sums[1] / valid_frames << ", ";
+                cout <<        +sums[2] / valid_frames << ")\n";
+            }
+            cout << "\n";
+
             //cout << values[0] << ", " << values[1] << ", " << values[2] << ", " << "\n";
-
-            /* Convert BGR to HSV format
-               HSV is good for eliminating shadows/light effects
-               OpenCV Version >= 3.0 
-            */
-
-            // Manual from here
             
             imshow("original", hsv);
 
