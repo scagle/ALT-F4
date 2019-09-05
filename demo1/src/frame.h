@@ -11,7 +11,7 @@ public:
     Frame();
     Frame(std::vector<unsigned char>, unsigned int, unsigned int);
     Frame(const Frame&);
-    std::vector<unsigned char> getValues();
+    std::vector<unsigned char>& getValues();
     void setValues(std::vector<unsigned char>, unsigned int, unsigned int);
     unsigned char isInitialized();
 };

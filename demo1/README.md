@@ -15,8 +15,18 @@ sudo modprobe bcm2835-v4l2
 ### Compilation
 ```bash
 git clone https://github.com/scagle/alt-f4.git
-cd alt-f4/camera/build
+cd alt-f4/<desired project>/build
 cmake ../
 make
-sudo ./camera
+
+# May need to run in sudo depending on whether you are apart of the right groups
+./camera 
 ```
+
+### Things to do
+- [x] Figure out exactly how opencv stores Mat.data
+- [x] Figure out how to lower camera's resolution
+- [ ] Figure out how to operator overload Frame class []
+- [ ] Figure out how to incorporate exponential moving average to find flashies
+- [ ] Figure out if we need to cluster groups together (to optimize)
+- [ ] Figure out how to multithread the frame gathering to seperate it from processing (maybe cores?)

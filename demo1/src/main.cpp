@@ -1,6 +1,16 @@
+/*! TODO:
+ *  - Figure out exactly how opencv stores Mat.data
+ *  - Figure out how to lower camera's resolution
+ *  - Figure out how to operator overload Frame class []
+ *  - Figure out how to incorporate exponential moving average to find flashies
+ *  - Figure out if we need to cluster groups together (to optimize)
+ *  - Figure out how to multithread the frame gathering to seperate it from processing (maybe cores?)
+ */
 // Webcam Tests
 //  Testing how to get input from a webcam using OpenCV
 
+#define DEBUG            1     // Choose whether to display certain messages (might need to make a log class in future)
+#define CAMERA_INDEX     2     // What camera you want to use. Identify with: "v4l2-ctl --list-devices"
 #define FRAME_FIFO_SIZE 10     // How many frames do we want in our buffer? (frequency analysis)
 
 #include <iostream>
@@ -33,19 +43,27 @@
 using namespace cv;
 using namespace std;
 
-void on_adjust(int, void* );
+void printStats(VideoCapture, Mat);
 
 const string capture_name = "capture.png"; // Name of yanked original image
 
 int main(int, char**)
 {
-    VideoCapture cap(0);    // open the camera located at /dev/videoX
+    VideoCapture cap(2);    // open the camera located at /dev/videoX
     if (!cap.isOpened())    // check if we succeeded
     {
         cout << "Camera can't be opened, exiting!\n";
         return -1;
     }
 
+    // Setup VideoCapture settings (if not supported)
+    cout << "Setting up Camera settings..." << "\r";
+    cout.flush(); // actually print out (output is normally buffered)
+    cap.set(CAP_PROP_FPS, 30)           ; // 30 seems to be maximum. (may hang program depending on cam)
+    cap.set(CAP_PROP_FRAME_WIDTH, 320)  ; // Lowest possible 4:3 aspect ratio
+    cap.set(CAP_PROP_FRAME_HEIGHT, 240) ; // Lowest possible 4:3 aspect ratio
+    cap.set(CAP_PROP_BUFFERSIZE, 1)     ; // Reduce internal frame buffer size (we have our own)
+    cout << "Camera Settings Successfully Initialized!" << "\n";
     // Variable Declaration
     Mat orig, hsv;       // Original and hue/sat/val matrixes
     namedWindow("original", WINDOW_AUTOSIZE); // Declare window to draw into
@@ -54,71 +72,57 @@ int main(int, char**)
     try { 
         // Frame-Size Dependant Variables
         cap >> orig; // get a frame from camera, so we can grab size
-        unsigned int width = orig.cols;
-        unsigned int height = orig.rows;  
-        unsigned int step = orig.step;    // Full row width in bytes (so width * 8?)
-        unsigned int channels = orig.channels(); // How many channels does the images have (rgb = 3)
-        cout << "width: " << width << "\n";
-        cout << "height: " << height << "\n";
-        cout << "step: " << step << "\n";
-        cout << "step/8: " << step/8 << "\n";
-        cout << "channels: " << channels << "\n";
-        vector<unsigned char> values(width * height);  // initialize 'values' to correct size
+        printStats(cap, orig);
+        int channels = orig.channels();
+        int cols = orig.cols;
+        int width = orig.cols;
+        int rows = orig.rows;
+        int height = orig.rows;
+        vector<unsigned char> values(width * height * channels);  // initialize 'values' to correct size
 
         while (1)
         {
             //// Capture Video
-            cap >> orig;                        // get a frame from camera
+            cap >> orig; // get a frame from camera
             //cvtColor(orig, hsv, COLOR_BGR2HSV); // convert to hsv
-            values.assign(orig.data, orig.data + orig.total()); // copy opencv 'Mat' as single vector
+            values.assign(orig.data, orig.data + orig.total() * channels); // copy opencv 'Mat' as single vector
 
             //// Manipulate FIFO queue
             vector<unsigned int> sums = {0, 0, 0};
             frames.pop_back();
             frames.push_front(Frame(values, width, height));
+            unsigned int num = 0;
 
             //// Perform statistics
-            // Average
-            int valid_frames = 0;
+            // Test
             for (int i = 0; i < FRAME_FIFO_SIZE; i++)
             {
-                if (frames[i].isInitialized())
-                {
-                    for (int row = 0; row < height; row++)
-                    {
-                        cout << row << " row\n";
-                        for (int col = 0; col < width; col++)
-                        {
-                            for (int ch = 0; ch < channels; ch++)
-                            {
-                                unsigned int index = (channels * step * row) + (channels * ch) + ch;
-                                sums[ch] += frames[i].getValues()[index];
-                                //unsigned char b = frames[i].getValues()[step * row + col    ];
-                                //unsigned char g = frames[i].getValues()[step * row + col + 1];
-                                //unsigned char r = frames[i].getValues()[step * row + col + 2];
-                            }
-                        }
-                    }
-                    //cout << "(" << +frames[i].getValues()[0] << ", ";
-                    //cout << +frames[i].getValues()[1] << ", ";
-                    //cout << +frames[i].getValues()[2] << ")\n";
-                    cout << i << " frame finished\n";
-                    valid_frames += 1;
-                }
-                else 
+                if (!frames[i].isInitialized())
                 {
                     cout << "frames[" << i << "] is uninitialized!\n";
                     break;
                 }
-                cout << "(" << +sums[0] / valid_frames << ", ";
-                cout <<        +sums[1] / valid_frames << ", ";
-                cout <<        +sums[2] / valid_frames << ")\n";
+                vector<unsigned char> data = frames[i].getValues();
+                for (int row = 0; row < orig.rows; row++)
+                {
+                    for (int column = 0; column < orig.cols; column++)
+                    {
+                        float b = data[(channels * orig.cols) * row + (column * channels) + 0];
+                        float g = data[(channels * orig.cols) * row + (column * channels) + 1];
+                        float r = data[(channels * orig.cols) * row + (column * channels) + 2];
+                        sums[0] += b;
+                        sums[1] += g;
+                        sums[2] += r;
+                        num += 1;
+                    }
+                }
+                cout << "frame[" << i << "] average bgr is: (" << sums[0] / num << ", " << sums[1] / num << ", " << sums[2] / num << ")\n";
+                sums = {0, 0, 0};
+                num = 0;
             }
-            cout << "\n";
-
-            //cout << values[0] << ", " << values[1] << ", " << values[2] << ", " << "\n";
+            cout << "*****************************************************************\n";
             
-            imshow("original", hsv);
+            imshow("original", orig);
 
             /************************************************************************************
             
@@ -220,9 +224,23 @@ int main(int, char**)
     return 0;
 }
 
-
-
-void on_adjust(int, void* ) 
-{ 
-    // Gets called everytime bars update
+void printStats(VideoCapture cap, Mat img)
+{
+    if (DEBUG)
+    {
+        unsigned int width = img.cols;
+        unsigned int height = img.rows;  
+        unsigned int step = img.step;    // Full row width in bytes (so width * 8?)
+        unsigned int channels = img.channels(); // How many channels does the images have (rgb = 3)
+        cout << "width: "       << width                          << "\n";
+        cout << "height: "      << height                         << "\n";
+        cout << "step: "        << step                           << "\n";
+        cout << "step/8: "      << step/8                         << "\n";
+        cout << "channels: "    << channels                       << "\n";
+        cout << "framerate: "   << cap.get(CAP_PROP_FPS)          << "\n";
+        cout << "framewidth: "  << cap.get(CAP_PROP_FRAME_WIDTH)  << "\n";
+        cout << "frameheight: " << cap.get(CAP_PROP_FRAME_HEIGHT) << "\n";
+        cout << "buffersize: "  << cap.get(CAP_PROP_BUFFERSIZE)   << "\n";
+    }
 }
+

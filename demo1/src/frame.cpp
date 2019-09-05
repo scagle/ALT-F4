@@ -32,18 +32,14 @@ Frame::Frame(const Frame& frame)
 /**********************************************************************************/
 /****                                Methods                                   ****/
 /**********************************************************************************/
-std::vector<unsigned char> Frame::getValues()
+std::vector<unsigned char>& Frame::getValues()
 { 
     // Don't return garbage if not initialized
     if (this->initialized == 0)
     {
         std::cout << "*** Warning: trying to return uninitialized values (frame.cpp -> getValues())\n";
-        return std::vector<unsigned char>();
     }
-    else
-    {
-        return this->values; 
-    }
+    return values; 
 }
 
 void Frame::setValues(std::vector<unsigned char> values, unsigned int width, unsigned int height)
