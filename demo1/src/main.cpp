@@ -1,6 +1,4 @@
 /*! TODO:
- *  - Figure out exactly how opencv stores Mat.data
- *  - Figure out how to lower camera's resolution
  *  - Figure out how to operator overload Frame class []
  *  - Figure out how to incorporate exponential moving average to find flashies
  *  - Figure out if we need to cluster groups together (to optimize)
@@ -17,6 +15,7 @@
 #include <deque>
 #include <vector>
 #include "frame.h"
+#include "pixel.h"
 
 #if CV_MAJOR_VERISON <= 2   // Tested using OpenCV 2.4.9 (through apt-get)
     #include <opencv2/video/video.hpp>
@@ -67,6 +66,7 @@ int main(int, char**)
     // Variable Declaration
     Mat orig, hsv;       // Original and hue/sat/val matrixes
     namedWindow("original", WINDOW_AUTOSIZE); // Declare window to draw into
+    namedWindow("modified", WINDOW_AUTOSIZE); // Declare window to draw into
     deque<Frame> frames(FRAME_FIFO_SIZE); // FIFO queue to store frames in
 
     try { 
@@ -88,107 +88,59 @@ int main(int, char**)
             values.assign(orig.data, orig.data + orig.total() * channels); // copy opencv 'Mat' as single vector
 
             //// Manipulate FIFO queue
-            vector<unsigned int> sums = {0, 0, 0};
             frames.pop_back();
-            frames.push_front(Frame(values, width, height));
-            unsigned int num = 0;
-
-            //// Perform statistics
-            // Test
-            for (int i = 0; i < FRAME_FIFO_SIZE; i++)
+            frames.push_front(Frame(values, width, height, channels));
+            
+            vector< unsigned char > pixels1D = frames.front().getPixels1D();
+            Mat frame_mat = Mat(pixels1D);
+            frame_mat.reshape(320, 240);
+            frame_mat.convertTo(frame_mat, CV_8UC3);
+            unsigned char *one = orig.data;
+            unsigned char *two = frame_mat.data;
+            for (int i = 0; i < 230400; i++)
             {
-                if (!frames[i].isInitialized())
-                {
-                    cout << "frames[" << i << "] is uninitialized!\n";
-                    break;
-                }
-                vector<unsigned char> data = frames[i].getValues();
-                for (int row = 0; row < orig.rows; row++)
-                {
-                    for (int column = 0; column < orig.cols; column++)
-                    {
-                        float b = data[(channels * orig.cols) * row + (column * channels) + 0];
-                        float g = data[(channels * orig.cols) * row + (column * channels) + 1];
-                        float r = data[(channels * orig.cols) * row + (column * channels) + 2];
-                        sums[0] += b;
-                        sums[1] += g;
-                        sums[2] += r;
-                        num += 1;
-                    }
-                }
-                cout << "frame[" << i << "] average bgr is: (" << sums[0] / num << ", " << sums[1] / num << ", " << sums[2] / num << ")\n";
-                sums = {0, 0, 0};
-                num = 0;
+                if (one[i] != two[i])
+                    cout << "@@@ DEBUG: " << i << ": " << +one[i] << " doesn't equal " << +two[i] << "(pixels1D = " << pixels1D[i] << ")\n";
             }
-            cout << "*****************************************************************\n";
+                
+            /*! TODO: Getting X Window Crashes everytime I view this file
+             *  \todo Getting X Window Crashes everytime I view this file
+             */
+            //imshow("modified", frame_mat);
+
+            ////// Perform statistics
+            //// Test
+            //vector<unsigned int> sums = {0, 0, 0};
+            //unsigned int num = 0;
+            //for (int i = 0; i < FRAME_FIFO_SIZE; i++)
+            //{
+            //    if (!frames[i].isInitialized())
+            //    {
+            //        cout << "frames[" << i << ":] is uninitialized!\n";
+            //        break;
+            //    }
+            //    vector<unsigned char> data = frames[i].getValues();
+            //    for (int row = 0; row < orig.rows; row++)
+            //    {
+            //        for (int column = 0; column < orig.cols; column++)
+            //        {
+            //            float b = data[(channels * orig.cols) * row + (column * channels) + 0];
+            //            float g = data[(channels * orig.cols) * row + (column * channels) + 1];
+            //            float r = data[(channels * orig.cols) * row + (column * channels) + 2];
+            //            sums[0] += b;
+            //            sums[1] += g;
+            //            sums[2] += r;
+            //            num += 1;
+            //        }
+            //    }
+            //    //cout << "frame[" << i << "] average bgr is: (" << sums[0] / num << ", " << sums[1] / num << ", " << sums[2] / num << ")\n";
+            //    sums = {0, 0, 0};
+            //    num = 0;
+            //}
+            //cout << "*****************************************************************\n";
             
             imshow("original", orig);
 
-            /************************************************************************************
-            
-            // For segmenting the image in RGB format.
-            inRange(hsv, cv::Scalar(hsv_r[0][0], hsv_r[0][1], hsv_r[0][2]), cv::Scalar(hsv_r[1][0], hsv_r[1][1], hsv_r[1][2]), red_thres);
-            inRange(hsv, cv::Scalar(hsv_g[0][0], hsv_g[0][1], hsv_g[0][2]), cv::Scalar(hsv_g[1][0], hsv_g[1][1], hsv_g[1][2]), green_thres);
-
-            // Find contours of the Images
-            vector<vector<Point> > contours_r, contours_g;
-            vector<Vec4i> hierarchy_r, hierarchy_g;
-            findContours(red_thres,   contours_r, hierarchy_r, RETR_TREE, CHAIN_APPROX_SIMPLE);
-            findContours(green_thres, contours_g, hierarchy_g, RETR_TREE, CHAIN_APPROX_SIMPLE);
-
-            // Filter by Expected Area (if contours exist, otherwise ignore)
-            if (contours_r.size() != 0)
-            {
-                double expected_area = 10;        // Set our expected area of the laser (varies by distance, but w/e)
-                double closest_area_r = 10000;    // Start at some ridiculously high number (and work our way down)
-                vector<Point> closest_contour_r;  // Will be our location of red dot
-
-                // Filter Red Laser contours
-                for (int i = 0; i < contours_r.size(); i++)
-                {
-                    double area = contourArea(contours_r[i]);       // Get Area of Contour
-                    if (abs(area - expected_area) < closest_area_r) // If the Magnitude is less than previous smallest contour ...
-                    {
-                        closest_area_r = area;              // We've found our new closest area!
-                        closest_contour_r = contours_r[i];  // We've found our new closest contour!
-                    }
-
-                }
-                // Find momemts of red and green lasers
-                Moments m_r = moments(closest_contour_r, false);
-                Point p_r(m_r.m10 / m_r.m00, m_r.m01 / m_r.m00);
-                circle(orig, p_r, 10, Scalar(0, 0, 128),  3);
-            }
-            // Filter by Expected Area of Green Laser (if contours exist, otherwise ignore)
-            if (contours_g.size() != 0)
-            {
-                double expected_area = 10;        // Set our expected area of the laser (varies by distance, but w/e)
-                double closest_area_g = 10000;    // Start at some ridiculously high number (and work our way down)
-                vector<Point> closest_contour_g;  // Will be our location of green dot
-
-                // Filter Green Laser contours
-                for (int i = 0; i < contours_g.size(); i++)
-                {
-                    double area = contourArea(contours_g[i]);       // Get Area of Contour
-                    if (abs(area - expected_area) < closest_area_g) // If the Magnitude is less than previous smallest contour ...
-                    {
-                        closest_area_g = area;              // We've found our new closest area!
-                        closest_contour_g = contours_g[i];  // We've found our new closest contour!
-                    }
-
-                }
-                // Find momemts of red and green lasers
-                Moments m_g = moments(closest_contour_g, false);
-                Point p_g(m_g.m10 / m_g.m00, m_g.m01 / m_g.m00);
-                circle(orig, p_g, 10, Scalar(0, 128, 0),  3);
-            }
-
-            // Show the images
-            imshow("original", orig);
-            imshow("red", red_thres);
-            imshow("green", green_thres);
-
-            ************************************************************************************/
             // Delay, and Handle character inputs
             unsigned char key = waitKey(1);
             switch (key)
