@@ -2,9 +2,10 @@
 
 #include <iostream>
 #include <vector>
-#include <array>
+#include <stack>
 
 #include "frame.h"
+#include "blob.h"
 
 /**********************************************************************************/
 /****                             Constructors                                 ****/
@@ -39,16 +40,52 @@ void Frame::init(std::vector< unsigned char > values, unsigned int width, unsign
 
 void Frame::convertValues()
 {
-    this->pixels.resize(rows);
-    for (unsigned int row = 0; row < rows; row++)
+    this->pixels.resize(this->rows);
+    for (unsigned int row = 0; row < this->rows; row++)
     {
-        this->pixels[row].resize(cols);
-        for (unsigned int col = 0; col < cols; col++)
+        this->pixels[row].resize(this->cols);
+        for (unsigned int col = 0; col < this->cols; col++)
         {
             unsigned char b = this->values[(channels * cols) * row + (col * channels) + 0];
             unsigned char g = this->values[(channels * cols) * row + (col * channels) + 1];
             unsigned char r = this->values[(channels * cols) * row + (col * channels) + 2];
             this->pixels[row][col] = Pixel(row, col, b, g, r);
+        }
+    }
+}
+
+void Frame::inRange(unsigned char l_b, unsigned char h_b,  // low / high blue 
+                    unsigned char l_g, unsigned char h_g,  // low / high green
+                    unsigned char l_r, unsigned char h_r)  // low / high red
+{
+    /*! TODO: 
+     *  - Finish blob class
+     *  - Find edges as you go along
+     */
+    std::stack < Pixel > blob_stack;
+    
+    // Pseudo code
+    // NOTE: If this is bottleneck, combine it with the 'convertValues()' function.
+    //       this is separated for readability      
+    this->binary_matrix.resize(this->rows);
+    for (int row = 0; row < this->rows; row++)
+    {
+        binary_matrix[row].resize(this->cols);
+        for (int col = 0; col < this->cols; col++)
+        {
+            unsigned char b = this->values[(channels * cols) * row + (col * channels) + 0];
+            unsigned char g = this->values[(channels * cols) * row + (col * channels) + 1];
+            unsigned char r = this->values[(channels * cols) * row + (col * channels) + 2];
+            if (this->initialized)
+            {
+                /*! TODO: THRESHOLDING
+                 *  \todo THRESHOLDING
+                 */
+            }
+            else
+            {
+                binary_matrix[row][col] = 0;
+            }
         }
     }
 }
