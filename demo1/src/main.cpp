@@ -91,22 +91,10 @@ int main(int, char**)
             frames.pop_back();
             frames.push_front(Frame(values, width, height, channels));
             
-            vector< unsigned char > pixels1D = frames.front().getPixels1D();
-            Mat frame_mat = Mat(pixels1D);
-            frame_mat.reshape(320, 240);
-            frame_mat.convertTo(frame_mat, CV_8UC3);
-            unsigned char *one = orig.data;
-            unsigned char *two = frame_mat.data;
-            for (int i = 0; i < 230400; i++)
-            {
-                if (one[i] != two[i])
-                    cout << "@@@ DEBUG: " << i << ": " << +one[i] << " doesn't equal " << +two[i] << "(pixels1D = " << pixels1D[i] << ")\n";
-            }
+            
+            Mat frame_mat = frames.back().getMat();
                 
-            /*! TODO: Getting X Window Crashes everytime I view this file
-             *  \todo Getting X Window Crashes everytime I view this file
-             */
-            //imshow("modified", frame_mat);
+            imshow("modified", frame_mat);
 
             ////// Perform statistics
             //// Test
@@ -184,15 +172,15 @@ void printStats(VideoCapture cap, Mat img)
         unsigned int height = img.rows;  
         unsigned int step = img.step;    // Full row width in bytes (so width * 8?)
         unsigned int channels = img.channels(); // How many channels does the images have (rgb = 3)
-        cout << "width: "       << width                          << "\n";
-        cout << "height: "      << height                         << "\n";
-        cout << "step: "        << step                           << "\n";
-        cout << "step/8: "      << step/8                         << "\n";
-        cout << "channels: "    << channels                       << "\n";
-        cout << "framerate: "   << cap.get(CAP_PROP_FPS)          << "\n";
-        cout << "framewidth: "  << cap.get(CAP_PROP_FRAME_WIDTH)  << "\n";
-        cout << "frameheight: " << cap.get(CAP_PROP_FRAME_HEIGHT) << "\n";
-        cout << "buffersize: "  << cap.get(CAP_PROP_BUFFERSIZE)   << "\n";
+        cout << "Camera Settings:" << "\n";
+        cout << "\tcamera width  / rows: " << cap.get(CAP_PROP_FRAME_WIDTH)  << "\n";
+        cout << "\tcamera height / cols: " << cap.get(CAP_PROP_FRAME_HEIGHT) << "\n";
+        cout << "\tcamera framerate    : " << cap.get(CAP_PROP_FPS)          << "\n";
+        cout << "\tvideo buffer size   : " << cap.get(CAP_PROP_BUFFERSIZE)   << "\n";
+        cout << "\tvideo width  / cols : " << width                          << "\n";
+        cout << "\tvideo height / rows : " << height                         << "\n";
+        cout << "\tvideo channels      : " << channels                       << "\n";
+        cout << "\tFIFO buffer size    : " << FRAME_FIFO_SIZE                << "\n";
     }
 }
 

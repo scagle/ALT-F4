@@ -1,3 +1,5 @@
+#include <opencv2/core.hpp>
+
 #include <iostream>
 #include <vector>
 #include <array>
@@ -56,7 +58,7 @@ std::vector< unsigned char >& Frame::getValues()
     // Don't return garbage if not initialized
     if (this->initialized == 0)
     {
-        std::cout << "*** Warning: trying to return uninitialized values (frame.cpp -> getValues())\n";
+        std::cout << "*** Warning: trying to return uninitialized 'values' 1D array (frame.cpp -> getValues())\n";
     }
     return values; 
 }
@@ -65,19 +67,17 @@ std::vector< std::vector< Pixel > >& Frame::getPixels()
 { 
     // Don't return garbage if not initialized
     if (this->initialized == 0)
-        std::cout << "*** Warning: trying to return uninitialized pixels (frame.cpp -> getPixels())\n";
+        std::cout << "*** Warning: trying to return uninitialized 'pixels' 2D array (frame.cpp -> getPixels())\n";
     return pixels; 
 }
 
-std::vector< unsigned char > Frame::getPixels1D()
+cv::Mat& Frame::getMat()
 { 
     // Don't return garbage if not initialized
     if (this->initialized == 0)
-        std::cout << "*** Warning: trying to return uninitialized pixels (frame.cpp -> getPixels())\n";
-    if (this->rows * this->cols * this->channels != 230400)
-        std::cout << "*** Warning: Camera has Aspect Ratio " << this->cols << "x" << this-rows << " (expecting 320x240) (Frame -> getPixels1D())\n";
-    std::vector< unsigned char > pixels1D(230400, 0); 
-    unsigned long count = 0;
+        std::cout << "*** Warning: trying to return an image of uninitialized frame (frame.cpp -> getMat())\n";
+    else if (this->rows * this->cols * this->channels != 230400)
+        std::cout << "*** Warning: Camera has Aspect Ratio " << this->cols << "x" << this-rows << " (expecting 320x240) (Frame -> getMat())\n";
     for (int row = 0; row < this->rows; row++)
     {
         for (int col = 0; col < this->cols; col++)
@@ -85,17 +85,15 @@ std::vector< unsigned char > Frame::getPixels1D()
             for (int ch = 0; ch < this->channels; ch++)
             {
                 unsigned long index = (this->channels * this->cols) * row + (col * this->channels) + ch;
-                pixels1D[index] = this->pixels[row][col][ch];
-                if (count != index)
-                    std::cout << "@@@ DEBUG: misaligned index (" << count << " != " << index << ")\n";
-                //if (count <= 31)
-                //    std::cout << "@@@ DEBUG: " << index << ": " << +this->pixels[row][col][ch] << "\n";
-                count++;
-
+                if (this->initialized)
+                    pixels1D[index] = this->pixels[row][col][ch];
+                else
+                    pixels1D[index] = 0;
             }
         }
     }
-    return pixels1D; 
+    output_frame = cv::Mat(240, 320, CV_8UC3, pixels1D);
+    return output_frame; 
 }
 
 unsigned char Frame::isInitialized()

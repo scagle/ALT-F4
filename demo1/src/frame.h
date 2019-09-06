@@ -1,6 +1,8 @@
 #ifndef __FRAME_H_INCLUDED__
 #define __FRAME_H_INCLUDED__
 
+#include <opencv2/core.hpp>
+
 #include <vector>
 #include "pixel.h"
 
@@ -13,6 +15,9 @@ class Frame
     unsigned int channels;                      // channels
     unsigned int time;                          // timestamp of when frame was taken
     unsigned char initialized = 0;              // boolean to check if initialized
+
+    unsigned char pixels1D[230400];             // Array used to generate Frame
+    cv::Mat output_frame;                       // Frame to be returned to main for display
 public:
     // Constructors
     Frame();
@@ -23,7 +28,7 @@ public:
     void convertValues();
     std::vector< unsigned char >& getValues();
     std::vector< std::vector< Pixel > >& getPixels();
-    std::vector< unsigned char > getPixels1D();
+    cv::Mat& getMat();
     void setValues(std::vector< unsigned char >, unsigned int, unsigned int);
     unsigned char isInitialized();
 };
