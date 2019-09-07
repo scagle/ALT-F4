@@ -99,9 +99,12 @@ int main(int, char**)
             if (new_frame.hasBlobs())
             {
                 unsigned char red_laser_bgr[] = {0, 0, 255};
-                Blob best_blob = new_frame.bestBlob(0b01, red_laser_bgr);
+                Blob best_blob = new_frame.bestBlob(0b100, red_laser_bgr);
                 Rect brect = best_blob.getRect();
                 rectangle(orig, Rect(brect.x - 10, brect.y - 10, brect.width + 20, brect.height + 20), Scalar(0, 0, 255), 2);
+                /*! TODO: Make more accurate by changing bgr in bestBlob() to JUST look at red, and not blue/green
+                 *  \todo Make more accurate by changing bgr in bestBlob() to JUST look at red, and not blue/green
+                 */
             }
 
             imshow("modified", frame_mat);

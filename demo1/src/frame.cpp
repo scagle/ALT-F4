@@ -192,14 +192,24 @@ Blob Frame::bestBlob(unsigned int filters, unsigned char bgr[3])
         return Blob();
     }
 
-    bool edge_filter = filters & 1;
-    bool size_filter = filters & 2;
+    // Filter extraction
+    bool edge_filter_blue  = filters & 1;
+    bool edge_filter_green = filters & 2;
+    bool edge_filter_red   = filters & 4;
+    bool size_filter       = filters & 8;
+
+    // Weights
+    const int BLUE_WEIGHT  = -1;
+    const int GREEN_WEIGHT = -1;
+    const int RED_WEIGHT   = 1;
+    const int SIZE_WEIGHT  = 0;
+
     std::vector< unsigned int > scores(blobs.size(), 0);
     for (int i = 0; i < this->blobs.size(); i++)
     {
         std::vector< Pixel > blob_pixels = this->blobs[i].getBlobPixels();
         std::vector< Pixel > edge_pixels = this->blobs[i].getEdgePixels();
-        if (edge_filter)
+        if (edge_filter_blue || edge_filter_green || edge_filter_red)
         {
             unsigned int bgr_sums[3] = {0, 0, 0};
             for (int pi = 0; pi < blob_pixels.size(); pi++) // pixel index
@@ -215,13 +225,16 @@ Blob Frame::bestBlob(unsigned int filters, unsigned char bgr[3])
             /*! TODO: Probably want to just score based on red / green, not blue.
              *  \todo Probably want to just score based on red / green, not blue.
              */
-            scores[i] += ((255 - diff_b) + (255 - diff_g) + (255 - diff_r));
+            if (edge_filter_blue)
+                scores[i] += (255 - diff_b) * BLUE_WEIGHT;
+            if (edge_filter_green)
+                scores[i] += (255 - diff_g) * GREEN_WEIGHT;
+            if (edge_filter_red)
+                scores[i] += (255 - diff_r) * RED_WEIGHT;
         }
         if (size_filter)
         {
-            /*! TODO: 
-             *  \todo 
-             */
+            scores[i] += blob_pixels.size() * SIZE_WEIGHT;
         }
     }
     unsigned int best_score = 0;
