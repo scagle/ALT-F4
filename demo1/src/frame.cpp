@@ -1,6 +1,7 @@
 #include <opencv2/core.hpp>
 
 #include <iostream>
+#include <cstdlib>
 #include <vector>
 #include <stack>
 
@@ -54,20 +55,19 @@ void Frame::convertValues()
     }
 }
 
-void Frame::inRange(unsigned char l_b, unsigned char h_b,  // low / high blue 
-                    unsigned char l_g, unsigned char h_g,  // low / high green
-                    unsigned char l_r, unsigned char h_r)  // low / high red
+void Frame::inRange(unsigned char b_l, unsigned char b_h,  // low / high blue 
+                    unsigned char g_l, unsigned char g_h,  // low / high green
+                    unsigned char r_l, unsigned char r_h)  // low / high red
 {
     /*! TODO: 
      *  - Finish blob class
      *  - Find edges as you go along
      */
-    std::stack < Pixel > blob_stack;
     
     // Pseudo code
     // NOTE: If this is bottleneck, combine it with the 'convertValues()' function.
     //       this is separated for readability      
-    this->binary_matrix.resize(this->rows);
+    binary_matrix.resize(this->rows);
     for (int row = 0; row < this->rows; row++)
     {
         binary_matrix[row].resize(this->cols);
@@ -76,11 +76,17 @@ void Frame::inRange(unsigned char l_b, unsigned char h_b,  // low / high blue
             unsigned char b = this->values[(channels * cols) * row + (col * channels) + 0];
             unsigned char g = this->values[(channels * cols) * row + (col * channels) + 1];
             unsigned char r = this->values[(channels * cols) * row + (col * channels) + 2];
-            if (this->initialized)
+
+            binary_matrix[row][col] = 0;     // Start out as 0 
+            if (this->initialized)           // If this frame is initialized
             {
-                /*! TODO: THRESHOLDING
-                 *  \todo THRESHOLDING
-                 */
+                if ((b < b_l) || (b > b_h))  // If out of bounds of blue
+                    continue;                // Skip
+                if ((g < g_l) || (g > g_h))  // If out of bounds of green
+                    continue;                // Skip
+                if ((r < r_l) || (r > r_h))  // If out of bounds of red
+                    continue;                // Skip
+                binary_matrix[row][col] = 1; // Otherwise success!
             }
             else
             {
@@ -88,6 +94,148 @@ void Frame::inRange(unsigned char l_b, unsigned char h_b,  // low / high blue
             }
         }
     }
+}
+
+void Frame::findBlobs()
+{
+    std::vector< std::vector < unsigned char > > edited_matrix(this->binary_matrix);
+    // "edited_matrix": 
+    // 0 -> nothing (skip it)
+    // 1 -> juicy_pixel (blob it)
+    // 2 -> eaten_pixel (dont blob it)
+    
+    std::stack < Pixel > blob_stack;
+    unsigned int blob_count = 0;
+    for (int row = 0; row < this->rows; row++)
+    {
+        for (int col = 0; col < this->cols; col++)
+        {
+            if (edited_matrix[row][col] == 1)
+            {
+
+                std::vector< Pixel > blob_pixels;
+                std::vector< Pixel > edge_pixels;
+                // BLOB IT!
+                blob_stack.push(this->pixels[row][col]); // start the blob stack 
+                blob_pixels.push_back(this->pixels[row][col]); // keep track of pixels in blob
+                edited_matrix[row][col] = 2;             // eat the pixel
+                unsigned int blob_min_row = row;         // keep track of boundaries of blob
+                unsigned int blob_min_col = col;         // keep track of boundaries of blob
+                unsigned int blob_max_row = row;         // keep track of boundaries of blob 
+                unsigned int blob_max_col = col;         // keep track of boundaries of blob
+                while (!blob_stack.empty())              // while there's still pixels to eat...
+                {
+                    // Grab next pixel
+                    Pixel next_pixel = blob_stack.top();
+                    int p_row = next_pixel.getRow();
+                    int p_col = next_pixel.getCol();
+                    blob_stack.pop();                    // swallow pixel
+
+                    // Define some constants
+                    const unsigned int MIN_ROW =   0;
+                    const unsigned int MIN_COL =   0;
+                    const unsigned int MAX_ROW = 240;
+                    const unsigned int MAX_COL = 320;
+
+                    // Check all 8 neighbors
+                    unsigned int neighbor_count = 0;
+                    for (int ro = -1; ro <= 1; ro++) // row offset
+                    {
+                        for (int co = -1; co <= 1; co++) // col offset
+                        {
+                            if ( !( ro == 0    && co == 0 ) && // if not in center
+                                  ( p_row + ro <  MAX_ROW ) &&
+                                  ( p_row + ro >= MIN_ROW ) &&
+                                  ( p_col + co <  MAX_COL ) &&
+                                  ( p_col + co >= MIN_COL ) )
+                            {
+                                if (edited_matrix[p_row + ro][p_col + co] == 1)
+                                {
+                                    blob_stack.push(this->pixels[p_row + ro][p_col + co]);
+                                    blob_pixels.push_back(this->pixels[p_row + ro][p_col + co]); 
+                                    edited_matrix[p_row + ro][p_col + co] = 2;
+                                    if ( row + ro > blob_max_row )
+                                        blob_max_row = row + ro;
+                                    if ( row + ro < blob_min_row )
+                                        blob_min_row = row + ro;
+                                    if ( col + co > blob_max_col )
+                                        blob_max_col = col + co;
+                                    if ( col + co < blob_min_col )
+                                        blob_min_col = col + co;
+                                }
+                                if (edited_matrix[p_row + ro][p_col + co] != 0)
+                                    neighbor_count++;
+                            }
+                        }
+                    }
+                    if ( neighbor_count != 8 )
+                        edge_pixels.push_back(this->pixels[p_row][p_col]); // start the blob stack 
+                }
+                Blob new_blob = Blob(blob_pixels, edge_pixels, blob_min_row, blob_min_col, blob_max_row, blob_max_col);
+                this->blobs.push_back(new_blob);
+                blob_count++;
+            }
+        }
+    }
+}
+
+Blob Frame::bestBlob(unsigned int filters, unsigned char bgr[3])
+{
+    /* filters: 
+     *  bit 0 = Edge: Score based on closest bgr value of ONLY edge pixels (targetted at 'laser iris effect')
+     *  bit 1 = Size: Score based on amount of pixels
+     */ 
+
+    if (blobs.size() == 0)
+    {
+        std::cout << "*** Warning: No blobs at all. Returning empty blob (frame.cpp -> bestBlob())\n";
+        return Blob();
+    }
+
+    bool edge_filter = filters & 1;
+    bool size_filter = filters & 2;
+    std::vector< unsigned int > scores(blobs.size(), 0);
+    for (int i = 0; i < this->blobs.size(); i++)
+    {
+        std::vector< Pixel > blob_pixels = this->blobs[i].getBlobPixels();
+        std::vector< Pixel > edge_pixels = this->blobs[i].getEdgePixels();
+        if (edge_filter)
+        {
+            unsigned int bgr_sums[3] = {0, 0, 0};
+            for (int pi = 0; pi < blob_pixels.size(); pi++) // pixel index
+            {
+                bgr_sums[0] += blob_pixels[pi][0];
+                bgr_sums[1] += blob_pixels[pi][1];
+                bgr_sums[2] += blob_pixels[pi][2];
+            }
+            unsigned char diff_b = std::abs((int)(bgr_sums[0] / blob_pixels.size()) - (int)(bgr[0]));
+            unsigned char diff_g = std::abs((int)(bgr_sums[1] / blob_pixels.size()) - (int)(bgr[1]));
+            unsigned char diff_r = std::abs((int)(bgr_sums[2] / blob_pixels.size()) - (int)(bgr[2]));
+
+            /*! TODO: Probably want to just score based on red / green, not blue.
+             *  \todo Probably want to just score based on red / green, not blue.
+             */
+            scores[i] += ((255 - diff_b) + (255 - diff_g) + (255 - diff_r));
+        }
+        if (size_filter)
+        {
+            /*! TODO: 
+             *  \todo 
+             */
+        }
+    }
+    unsigned int best_score = 0;
+    Blob best_blob;
+    for (int i = 0; i < this->blobs.size(); i++)
+    {
+        if (scores[i] > best_score)
+        {
+            best_score = scores[i];
+            best_blob = blobs[i];
+        }
+    }
+
+    return best_blob;
 }
 
 std::vector< unsigned char >& Frame::getValues()
@@ -108,32 +256,70 @@ std::vector< std::vector< Pixel > >& Frame::getPixels()
     return pixels; 
 }
 
-cv::Mat& Frame::getMat()
+cv::Mat& Frame::getMat(int channels = 3, int type = 0)
 { 
+    /*! TODO: Generalize this (clean up)
+     *  \todo Generalize this (clean up)
+     */
+    // Channels: However many channels you want
+    // Type: 0 = this->pixels
+    // Type: 1 = this->binary_matrix
+    
     // Don't return garbage if not initialized
     if (this->initialized == 0)
         std::cout << "*** Warning: trying to return an image of uninitialized frame (frame.cpp -> getMat())\n";
     else if (this->rows * this->cols * this->channels != 230400)
         std::cout << "*** Warning: Camera has Aspect Ratio " << this->cols << "x" << this-rows << " (expecting 320x240) (Frame -> getMat())\n";
-    for (int row = 0; row < this->rows; row++)
+    if (type == 0)
     {
-        for (int col = 0; col < this->cols; col++)
+        for (int row = 0; row < this->rows; row++)
         {
-            for (int ch = 0; ch < this->channels; ch++)
+            for (int col = 0; col < this->cols; col++)
             {
-                unsigned long index = (this->channels * this->cols) * row + (col * this->channels) + ch;
-                if (this->initialized)
-                    pixels1D[index] = this->pixels[row][col][ch];
-                else
-                    pixels1D[index] = 0;
+                for (int ch = 0; ch < this->channels; ch++)
+                {
+                    unsigned long index = (this->channels * this->cols) * row + (col * this->channels) + ch;
+                    if (this->initialized)
+                        pixels1D[index] = this->pixels[row][col][ch];
+                    else
+                        pixels1D[index] = 0;
+                }
             }
         }
+        output_frame = cv::Mat(240, 320, CV_8UC3, pixels1D);
     }
-    output_frame = cv::Mat(240, 320, CV_8UC3, pixels1D);
+    else if (type == 1)
+    {
+        for (int row = 0; row < this->rows; row++)
+        {
+            for (int col = 0; col < this->cols; col++)
+            {
+                unsigned long index = this->cols * row + col;
+                if (this->initialized)
+                {
+                    binary1D[index] = this->binary_matrix[row][col]*255;
+                }
+                else
+                {
+                    binary1D[index] = 0;
+                }
+            }
+        }
+        output_frame = cv::Mat(240, 320, CV_8UC1, binary1D);
+    }
+    else
+    {
+        std::cout << "*** Warning: Invalid type (frame.cpp -> getMat())\n";
+    }
     return output_frame; 
 }
 
 unsigned char Frame::isInitialized()
 { 
     return this->initialized; 
+}
+
+bool Frame::hasBlobs()
+{ 
+    return (this->blobs.size() > 0); 
 }

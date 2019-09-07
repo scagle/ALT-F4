@@ -17,6 +17,8 @@ public:
     // Methods
     void init(unsigned int, unsigned int, unsigned char, unsigned char, unsigned char, unsigned char);
     unsigned char isInitialized();
+    unsigned int getRow();
+    unsigned int getCol();
     unsigned char   operator [](unsigned char i) const { return bgr[i]; }
     unsigned char & operator [](unsigned char i)       { return bgr[i]; }
 };

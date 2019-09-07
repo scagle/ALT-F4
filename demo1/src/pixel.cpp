@@ -28,6 +28,16 @@ void Pixel::init(unsigned int row, unsigned int col, unsigned char b, unsigned c
     this->initialized = initialized;  // Verify that we are indeed initialized
 }
 
+unsigned int Pixel::getRow()
+{ 
+    return this->row; 
+}
+
+unsigned int Pixel::getCol()
+{ 
+    return this->col; 
+}
+
 unsigned char Pixel::isInitialized()
 { 
     return this->initialized; 

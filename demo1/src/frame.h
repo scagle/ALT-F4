@@ -20,6 +20,7 @@ class Frame
     unsigned char initialized = 0;              // boolean to check if initialized
 
     unsigned char pixels1D[230400];             // Array used to generate Frame
+    unsigned char binary1D[76800];              // Array used to generate Frame
     cv::Mat output_frame;                       // Frame to be returned to main for display
 public:
     // Constructors
@@ -30,11 +31,14 @@ public:
     void init(std::vector<unsigned char>, unsigned int, unsigned int, unsigned int, unsigned char);
     void convertValues();
     void inRange(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);  
+    void findBlobs();
+    Blob bestBlob(unsigned int, unsigned char*);
     std::vector< unsigned char >& getValues();
     std::vector< std::vector< Pixel > >& getPixels();
-    cv::Mat& getMat();
+    cv::Mat& getMat(int, int);
     void setValues(std::vector< unsigned char >, unsigned int, unsigned int);
     unsigned char isInitialized();
+    bool hasBlobs();
 };
 
 #endif

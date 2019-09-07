@@ -1,5 +1,4 @@
 /*! TODO:
- *  - Figure out how to operator overload Frame class []
  *  - Figure out how to incorporate exponential moving average to find flashies
  *  - Figure out if we need to cluster groups together (to optimize)
  *  - Figure out how to multithread the frame gathering to seperate it from processing (maybe cores?)
@@ -15,7 +14,6 @@
 #include <deque>
 #include <vector>
 #include "frame.h"
-#include "pixel.h"
 
 #if CV_MAJOR_VERISON <= 2   // Tested using OpenCV 2.4.9 (through apt-get)
     #include <opencv2/video/video.hpp>
@@ -44,6 +42,7 @@ using namespace std;
 VideoCapture initializeVideo();
 void printStats(VideoCapture, Mat);
 int processInputs(Mat);
+void on_adjust(int, void*);
 
 const string capture_name = "capture.png"; // 'yanked' photo's name in filesystem
 deque<Frame>            frames(FRAME_FIFO_SIZE); // FIFO queue to store frames in
@@ -68,6 +67,16 @@ int main(int, char**)
         int height   = orig.rows;
         vector< unsigned char > frame_data(width * height * channels);  // initialize 'frame_data' to correct size
 
+        int bgr_r[2][3] = { {0, 0 , 205}, {182, 182, 255} };  // Red_Laser   {low{b, g, r} , high{b, g, r}}
+        int bgr_g[2][3] = { {33 , 91 , 191}, {103, 255, 255} };  // Green_Laser {low{b, g, r} , high{b, g, r}}
+
+        createTrackbar( "b_l:", "original", &bgr_r[0][0], 255, on_adjust );
+        createTrackbar( "g_l:", "original", &bgr_r[0][1], 255, on_adjust );
+        createTrackbar( "r_l:", "original", &bgr_r[0][2], 255, on_adjust );
+        createTrackbar( "b_h:", "original", &bgr_r[1][0], 255, on_adjust );
+        createTrackbar( "g_h:", "original", &bgr_r[1][1], 255, on_adjust );
+        createTrackbar( "r_h:", "original", &bgr_r[1][2], 255, on_adjust );
+
         int cont = 1; // continue variable 
         while (cont == 1)
         {
@@ -78,11 +87,23 @@ int main(int, char**)
 
             //// Manipulate FIFO queue
             frames.pop_back();
-            frames.push_front(Frame(frame_data, width, height, channels));
-            
-            
-            Mat frame_mat = frames.front().getMat();
-                
+            Frame new_frame = Frame(frame_data, width, height, channels);
+            frames.push_front(new_frame);
+
+            //// Blob Detection
+            new_frame.inRange(bgr_r[0][0], bgr_r[1][0], bgr_r[0][1], bgr_r[1][1], bgr_r[0][2], bgr_r[1][2]);
+            new_frame.findBlobs();
+
+            Mat frame_mat = new_frame.getMat(1, 1);
+            //// Blob Selection
+            if (new_frame.hasBlobs())
+            {
+                unsigned char red_laser_bgr[] = {0, 0, 255};
+                Blob best_blob = new_frame.bestBlob(0b01, red_laser_bgr);
+                Rect brect = best_blob.getRect();
+                rectangle(orig, Rect(brect.x - 10, brect.y - 10, brect.width + 20, brect.height + 20), Scalar(0, 0, 255), 2);
+            }
+
             imshow("modified", frame_mat);
             imshow("original", orig);
 
@@ -167,3 +188,5 @@ int processInputs(Mat yank_mat)
     }
     return 1;
 }
+
+void on_adjust(int, void* ) {}
