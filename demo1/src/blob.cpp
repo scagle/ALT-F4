@@ -31,6 +31,15 @@ void Blob::init(std::vector< Pixel > blob_pixels, std::vector< Pixel > edge_pixe
      this->initialized = initialized;
 }
 
+unsigned char Blob::isInitialized()
+{
+    return this->initialized;
+}
+
+/**********************************************************************************/
+/****                         Accessors / Mutators                             ****/
+/**********************************************************************************/
+
 std::vector< Pixel > Blob::getBlobPixels()
 {
     return this->blob_pixels;
@@ -46,3 +55,28 @@ cv::Rect Blob::getRect()
     return this->rect;
 }
 
+int Blob::getScore()
+{
+    return this->score;
+}
+
+cv::Scalar Blob::getAverageBGR(int type = 0)
+{
+    if (type == 0) // if asking for blob_pixels
+        return this->average_bgr;
+    else
+        return this->average_bgr_edge;
+}
+
+void Blob::setScore(int score)
+{
+    this->score = score;
+}
+
+void Blob::setAverageBGR(cv::Scalar bgr, int type = 0)
+{
+    if (type == 0)
+        this->average_bgr = bgr;
+    else
+        this->average_bgr_edge = bgr;
+}

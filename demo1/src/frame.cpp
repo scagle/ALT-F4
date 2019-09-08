@@ -182,8 +182,10 @@ void Frame::findBlobs()
 Blob Frame::bestBlob(unsigned int filters, unsigned char bgr[3])
 {
     /* filters: 
-     *  bit 0 = Edge: Score based on closest bgr value of ONLY edge pixels (targetted at 'laser iris effect')
-     *  bit 1 = Size: Score based on amount of pixels
+     *  bit 0 = Blue Edge:  Score based on closest bgr value of ONLY edge pixels (targetted at 'laser iris effect')
+     *  bit 1 = Green Edge: Score based on closest bgr value of ONLY edge pixels (targetted at 'laser iris effect')
+     *  bit 2 = Red Edge:   Score based on closest bgr value of ONLY edge pixels (targetted at 'laser iris effect')
+     *  bit 3 = Size: Score based on amount of pixels
      */ 
 
     if (blobs.size() == 0)
@@ -199,12 +201,13 @@ Blob Frame::bestBlob(unsigned int filters, unsigned char bgr[3])
     bool size_filter       = filters & 8;
 
     // Weights
-    const int BLUE_WEIGHT  = -1;
-    const int GREEN_WEIGHT = -1;
-    const int RED_WEIGHT   = 1;
-    const int SIZE_WEIGHT  = 0;
+    const int BLUE_WEIGHT  = 1;
+    const int GREEN_WEIGHT = 1;
+    const int RED_WEIGHT   = 2;
+    const int SIZE_WEIGHT  = -2;
+    const int SCORE_CUTOFF = 180;
 
-    std::vector< unsigned int > scores(blobs.size(), 0);
+    std::vector< int > scores(blobs.size(), 0);
     for (int i = 0; i < this->blobs.size(); i++)
     {
         std::vector< Pixel > blob_pixels = this->blobs[i].getBlobPixels();
@@ -212,15 +215,20 @@ Blob Frame::bestBlob(unsigned int filters, unsigned char bgr[3])
         if (edge_filter_blue || edge_filter_green || edge_filter_red)
         {
             unsigned int bgr_sums[3] = {0, 0, 0};
-            for (int pi = 0; pi < blob_pixels.size(); pi++) // pixel index
+            for (int pi = 0; pi < edge_pixels.size(); pi++) // pixel index
             {
-                bgr_sums[0] += blob_pixels[pi][0];
-                bgr_sums[1] += blob_pixels[pi][1];
-                bgr_sums[2] += blob_pixels[pi][2];
+                bgr_sums[0] += edge_pixels[pi][0];
+                bgr_sums[1] += edge_pixels[pi][1];
+                bgr_sums[2] += edge_pixels[pi][2];
             }
-            unsigned char diff_b = std::abs((int)(bgr_sums[0] / blob_pixels.size()) - (int)(bgr[0]));
-            unsigned char diff_g = std::abs((int)(bgr_sums[1] / blob_pixels.size()) - (int)(bgr[1]));
-            unsigned char diff_r = std::abs((int)(bgr_sums[2] / blob_pixels.size()) - (int)(bgr[2]));
+            unsigned char avg_b = bgr_sums[0] / edge_pixels.size();
+            unsigned char avg_g = bgr_sums[1] / edge_pixels.size();
+            unsigned char avg_r = bgr_sums[2] / edge_pixels.size();
+            blobs[i].setAverageBGR(cv::Scalar(avg_b, avg_g, avg_r), 1);
+
+            unsigned char diff_b = std::abs((int)(avg_b) - (int)(bgr[0]));
+            unsigned char diff_g = std::abs((int)(avg_g) - (int)(bgr[1]));
+            unsigned char diff_r = std::abs((int)(avg_r) - (int)(bgr[2]));
 
             /*! TODO: Probably want to just score based on red / green, not blue.
              *  \todo Probably want to just score based on red / green, not blue.
@@ -234,19 +242,22 @@ Blob Frame::bestBlob(unsigned int filters, unsigned char bgr[3])
         }
         if (size_filter)
         {
-            scores[i] += blob_pixels.size() * SIZE_WEIGHT;
+            scores[i] += edge_pixels.size() * SIZE_WEIGHT;
         }
     }
-    unsigned int best_score = 0;
+    int best_score = 0;
     Blob best_blob;
     for (int i = 0; i < this->blobs.size(); i++)
     {
-        if (scores[i] > best_score)
+        blobs[i].setScore(scores[i]);
+        if (scores[i] > best_score && scores[i] >= SCORE_CUTOFF)
         {
             best_score = scores[i];
             best_blob = blobs[i];
         }
     }
+    if (best_blob.isInitialized())
+        std::cout << "Best score: " << best_score << "\n";
 
     return best_blob;
 }

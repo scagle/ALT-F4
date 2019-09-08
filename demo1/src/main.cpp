@@ -13,6 +13,7 @@
 #include <iostream>
 #include <deque>
 #include <vector>
+#include <string>
 #include "frame.h"
 
 #if CV_MAJOR_VERISON <= 2   // Tested using OpenCV 2.4.9 (through apt-get)
@@ -98,13 +99,21 @@ int main(int, char**)
             //// Blob Selection
             if (new_frame.hasBlobs())
             {
-                unsigned char red_laser_bgr[] = {0, 0, 255};
-                Blob best_blob = new_frame.bestBlob(0b100, red_laser_bgr);
-                Rect brect = best_blob.getRect();
-                rectangle(orig, Rect(brect.x - 10, brect.y - 10, brect.width + 20, brect.height + 20), Scalar(0, 0, 255), 2);
-                /*! TODO: Make more accurate by changing bgr in bestBlob() to JUST look at red, and not blue/green
-                 *  \todo Make more accurate by changing bgr in bestBlob() to JUST look at red, and not blue/green
-                 */
+                unsigned char red_laser_bgr[] = {180, 180, 255};
+                Blob best_blob = new_frame.bestBlob(0b1111, red_laser_bgr);
+                if (best_blob.isInitialized())
+                {
+                    Rect brect = best_blob.getRect();
+                    rectangle(orig, Rect(brect.x - 10, brect.y - 10, brect.width + 20, brect.height + 20), Scalar(0, 0, 255), 2);
+                    putText(orig, to_string(best_blob.getScore()), Point(brect.x, brect.y - 20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255), 2);
+
+                    Scalar average_bgr = best_blob.getAverageBGR(1);
+                    string average_bgr_str = "(" + to_string((int)average_bgr[0]) + ", " + to_string((int)average_bgr[1]) + ", " + to_string((int)average_bgr[2]) + ")\n";
+                    putText(orig, average_bgr_str, Point(10, 230), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255), 2);
+                    /*! TODO: Make more accurate by changing bgr in bestBlob() to JUST look at red, and not blue/green
+                     *  \todo Make more accurate by changing bgr in bestBlob() to JUST look at red, and not blue/green
+                     */
+                }
             }
 
             imshow("modified", frame_mat);
