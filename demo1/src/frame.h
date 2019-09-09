@@ -19,8 +19,8 @@ class Frame
     unsigned int time;                          // timestamp of when frame was taken
     unsigned char initialized = 0;              // boolean to check if initialized
 
-    unsigned char pixels1D[230400];             // Array used to generate Frame
-    unsigned char binary1D[76800];              // Array used to generate Frame
+    unsigned char pixels1D[MAX_ROW * MAX_COL * 3];  // Array used to generate Frame
+    unsigned char binary1D[MAX_ROW * MAX_COL];      // Array used to generate Frame
     cv::Mat output_frame;                       // Frame to be returned to main for display
 public:
     // Constructors
@@ -32,7 +32,7 @@ public:
     void convertValues();
     void inRange(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);  
     void findBlobs();
-    Blob bestBlob(unsigned int, unsigned char*, unsigned char*, unsigned char*);
+    Blob bestBlob(const unsigned int, const unsigned char*, const unsigned char*, const unsigned char*);
     std::vector< unsigned char >& getValues();
     std::vector< std::vector< Pixel > >& getPixels();
     cv::Mat& getMat(int, int);

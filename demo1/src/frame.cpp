@@ -6,6 +6,7 @@
 #include <vector>
 #include <stack>
 
+#include "global.h"
 #include "frame.h"
 #include "blob.h"
 
@@ -127,17 +128,11 @@ void Frame::findBlobs()
                     int p_col = next_pixel.getCol();
                     blob_stack.pop();                    // swallow pixel
 
-                    // Define some constants
-                    const unsigned int MIN_ROW =   0;
-                    const unsigned int MIN_COL =   0;
-                    const unsigned int MAX_ROW = 240;
-                    const unsigned int MAX_COL = 320;
-
                     // Check all 8 neighbors
                     unsigned int neighbor_count = 0;
-                    for (int ro = -1; ro <= 1; ro++) // row offset
+                    for (int ro = -MAX_MINESWEEP_OFFSET; ro <= MAX_MINESWEEP_OFFSET; ro++) // row offset
                     {
-                        for (int co = -1; co <= 1; co++) // col offset
+                        for (int co = -MAX_MINESWEEP_OFFSET; co <= MAX_MINESWEEP_OFFSET; co++) // col offset
                         {
                             if ( !( ro == 0    && co == 0 ) && // if not in center
                                   ( p_row + ro <  MAX_ROW ) &&
@@ -160,12 +155,19 @@ void Frame::findBlobs()
                                         blob_min_col = col + co;
                                 }
                                 if (edited_matrix[p_row + ro][p_col + co] != 0)
-                                    neighbor_count++;
+                                {
+                                    if ((std::abs(ro) <= 1) && (std::abs(co) <= 1)) // make sure they're IMMEDIATE neighbors (Max of 8)
+                                    {
+                                        neighbor_count++;
+                                    }
+                                }
                             }
                         }
                     }
-                    if ( neighbor_count != 8 )
+                    if ( neighbor_count < NEIGHBOR_COUNT )
+                    {
                         edge_pixels.push_back(this->pixels[p_row][p_col]); // start the blob stack 
+                    }
                 }
                 // Get core pixels (all pixels in blob but not in edges)
                 for (int i = 0; i < blob_pixels.size(); i++)
@@ -185,8 +187,8 @@ void Frame::findBlobs()
     }
 }
 
-Blob Frame::bestBlob(unsigned int filters, 
-                     unsigned char bgr_blob[3], unsigned char bgr_edge[3], unsigned char bgr_core[3])
+Blob Frame::bestBlob(const unsigned int filters, 
+                     const unsigned char bgr_blob[3], const unsigned char bgr_edge[3], const unsigned char bgr_core[3])
 {
     /* filters: 
      *  bit 0 = Blob Blue:   Score based on closest bgr value of ONLY edge pixels (targetted at 'laser iris effect')
@@ -218,19 +220,6 @@ Blob Frame::bestBlob(unsigned int filters,
     bool core_filter_green = filters & (1 << 7);
     bool core_filter_red   = filters & (1 << 8);
     bool size_filter       = filters & (1 << 9);
-
-    // Weights
-    const int BLOB_BLUE_WEIGHT  = 1 ;
-    const int BLOB_GREEN_WEIGHT = 1 ;
-    const int BLOB_RED_WEIGHT   = 2 ;
-    const int EDGE_BLUE_WEIGHT  = 1 ;
-    const int EDGE_GREEN_WEIGHT = 1 ;
-    const int EDGE_RED_WEIGHT   = 4 ;
-    const int CORE_BLUE_WEIGHT  = 1 ;
-    const int CORE_GREEN_WEIGHT = 1 ;
-    const int CORE_RED_WEIGHT   = 1 ;
-    const int SIZE_WEIGHT       = -2;
-    const int SCORE_CUTOFF      = 1000;
 
     std::vector< int > scores(blobs.size(), 0);
     for (int i = 0; i < this->blobs.size(); i++)
@@ -342,7 +331,7 @@ Blob Frame::bestBlob(unsigned int filters,
         }
         if (size_filter)
         {
-            scores[i] += blob_pixels.size() * SIZE_WEIGHT;
+            scores[i] += (SIZE_IDEAL - blob_pixels.size()) * -SIZE_WEIGHT;
         }
     }
     int best_score = 0;
@@ -392,8 +381,8 @@ cv::Mat& Frame::getMat(int channels = 3, int type = 0)
     // Don't return garbage if not initialized
     if (this->initialized == 0)
         std::cout << "*** Warning: trying to return an image of uninitialized frame (frame.cpp -> getMat())\n";
-    else if (this->rows * this->cols * this->channels != 230400)
-        std::cout << "*** Warning: Camera has Aspect Ratio " << this->cols << "x" << this-rows << " (expecting 320x240) (Frame -> getMat())\n";
+    else if (this->rows * this->cols * this->channels != MAX_COL * MAX_ROW * this->channels)
+        std::cout << "*** Warning: Camera has Aspect Ratio " << this->cols << "x" << this-rows << " (expecting " << MAX_COL << "x" << MAX_ROW << ") (Frame -> getMat())\n";
     if (type == 0)
     {
         for (int row = 0; row < this->rows; row++)
@@ -410,7 +399,7 @@ cv::Mat& Frame::getMat(int channels = 3, int type = 0)
                 }
             }
         }
-        output_frame = cv::Mat(240, 320, CV_8UC3, pixels1D);
+        output_frame = cv::Mat(MAX_ROW, MAX_COL, CV_8UC3, pixels1D);
     }
     else if (type == 1)
     {
@@ -429,7 +418,7 @@ cv::Mat& Frame::getMat(int channels = 3, int type = 0)
                 }
             }
         }
-        output_frame = cv::Mat(240, 320, CV_8UC1, binary1D);
+        output_frame = cv::Mat(MAX_ROW, MAX_COL, CV_8UC1, binary1D);
     }
     else
     {

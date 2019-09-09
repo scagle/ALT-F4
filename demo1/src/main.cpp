@@ -6,14 +6,12 @@
 // Webcam Tests
 //  Testing how to get input from a webcam using OpenCV
 
-#define DEBUG            1     // Choose whether to display certain messages (might need to make a log class in future)
-#define CAMERA_INDEX     2     // What camera you want to use. Identify with: "v4l2-ctl --list-devices"
-#define FRAME_FIFO_SIZE 10     // How many frames do we want in our buffer? (frequency analysis)
-
 #include <iostream>
 #include <deque>
 #include <vector>
 #include <string>
+
+#include "global.h"
 #include "frame.h"
 #include "pong/pong.h"
 
@@ -38,6 +36,29 @@
     #include <opencv2/features2d.hpp>
 #endif
 
+#ifdef HSV
+    const unsigned char blob_bgr[] = {BLOB_HSV_HUE, BLOB_HSV_SAT, BLOB_HSV_VAL}; // 
+    const unsigned char edge_bgr[] = {EDGE_HSV_HUE, EDGE_HSV_SAT, EDGE_HSV_VAL}; // 
+    const unsigned char core_bgr[] = {CORE_HSV_HUE, CORE_HSV_SAT, CORE_HSV_VAL}; // 
+    const unsigned int filters = (FILTER_BLOB_HSV_HUE << 0) + (FILTER_BLOB_HSV_SAT << 1) + (FILTER_BLOB_HSV_VAL << 2) + // blob H S V
+                                 (FILTER_EDGE_HSV_HUE << 3) + (FILTER_EDGE_HSV_SAT << 4) + (FILTER_EDGE_HSV_VAL << 5) + // edge H S V
+                                 (FILTER_CORE_HSV_HUE << 6) + (FILTER_CORE_HSV_SAT << 7) + (FILTER_CORE_HSV_VAL << 8) + // core H S V
+                                 (FILTER_SIZE << 9)                                                                      ; // size
+
+    int threshold_values[2][3] = { {HSV_HUE_LOW, HSV_SAT_LOW , HSV_VAL_LOW}, {HSV_HUE_HIGH, HSV_SAT_HIGH, HSV_VAL_HIGH} };  
+
+#else
+    const unsigned char blob_bgr[] = {BLOB_BGR_BLUE, BLOB_BGR_GREEN, BLOB_BGR_RED}; // red-white
+    const unsigned char edge_bgr[] = {EDGE_BGR_BLUE, EDGE_BGR_GREEN, EDGE_BGR_RED}; // red
+    const unsigned char core_bgr[] = {CORE_BGR_BLUE, CORE_BGR_GREEN, CORE_BGR_RED}; // white
+    const unsigned int filters = (FILTER_BLOB_BGR_BLUE << 0) + (FILTER_BLOB_BGR_GREEN << 1) + (FILTER_BLOB_BGR_RED << 2) + // blob B G R
+                                 (FILTER_EDGE_BGR_BLUE << 3) + (FILTER_EDGE_BGR_GREEN << 4) + (FILTER_EDGE_BGR_RED << 5) + // edge B G R
+                                 (FILTER_CORE_BGR_BLUE << 6) + (FILTER_CORE_BGR_GREEN << 7) + (FILTER_CORE_BGR_RED << 8) + // core B G R
+                                 (FILTER_SIZE << 9)                                                                      ; // size
+    int threshold_values[2][3] = { {BGR_BLUE_LOW, BGR_GREEN_LOW , BGR_RED_LOW}, {BGR_BLUE_HIGH, BGR_GREEN_HIGH, BGR_RED_HIGH} };  
+#endif
+
+
 using namespace cv;
 using namespace std;
 
@@ -56,39 +77,41 @@ int main(int, char**)
 {
     VideoCapture cap = initializeVideo();
     // Variable Declaration
-    Mat orig, hsv;       // Original and hue/sat/val matrixes
-    namedWindow("original", WINDOW_AUTOSIZE); // Window to show original images
-    namedWindow("modified", WINDOW_AUTOSIZE); // Window to show modified images
+    Mat orig_mat, edited_mat, output_mat; // Original Image, Modified Image, Output Image
+    namedWindow("output", WINDOW_AUTOSIZE); // Window to show output images
+    namedWindow("tuning", WINDOW_AUTOSIZE); // Window to show tuning images
 
     try { 
         // Frame-Size Dependant Variables
-        cap >> orig; // get a frame from camera, so we can grab size
-        printStats(cap, orig);
+        cap >> orig_mat; // get a frame from camera, so we can grab size
+        printStats(cap, orig_mat);
 
-        int channels = orig.channels();
-        int cols     = orig.cols;
-        int width    = orig.cols;
-        int rows     = orig.rows;
-        int height   = orig.rows;
+        int channels = orig_mat.channels();
+        int cols     = orig_mat.cols;
+        int width    = orig_mat.cols;
+        int rows     = orig_mat.rows;
+        int height   = orig_mat.rows;
         vector< unsigned char > frame_data(width * height * channels);  // initialize 'frame_data' to correct size
 
-        int bgr_r[2][3] = { {0, 0 , 180}, {182, 182, 255} };  // Red_Laser   {low{b, g, r} , high{b, g, r}}
-        int bgr_g[2][3] = { {33 , 91 , 191}, {103, 255, 255} };  // Green_Laser {low{b, g, r} , high{b, g, r}}
-
-        createTrackbar( "b_l:", "modified", &bgr_r[0][0], 255, on_adjust );
-        createTrackbar( "g_l:", "modified", &bgr_r[0][1], 255, on_adjust );
-        createTrackbar( "r_l:", "modified", &bgr_r[0][2], 255, on_adjust );
-        createTrackbar( "b_h:", "modified", &bgr_r[1][0], 255, on_adjust );
-        createTrackbar( "g_h:", "modified", &bgr_r[1][1], 255, on_adjust );
-        createTrackbar( "r_h:", "modified", &bgr_r[1][2], 255, on_adjust );
+        createTrackbar( "b_l:", "tuning", &threshold_values[0][0], 255, on_adjust );
+        createTrackbar( "g_l:", "tuning", &threshold_values[0][1], 255, on_adjust );
+        createTrackbar( "r_l:", "tuning", &threshold_values[0][2], 255, on_adjust );
+        createTrackbar( "b_h:", "tuning", &threshold_values[1][0], 255, on_adjust );
+        createTrackbar( "g_h:", "tuning", &threshold_values[1][1], 255, on_adjust );
+        createTrackbar( "r_h:", "tuning", &threshold_values[1][2], 255, on_adjust );
 
         int cont = 1; // continue variable 
         while (cont == 1)
         {
             //// Capture Video
-            cap >> orig; // get a frame from camera
-            //cvtColor(orig, hsv, COLOR_BGR2HSV); // convert to hsv
-            frame_data.assign(orig.data, orig.data + orig.total() * channels); // copy opencv 'Mat' as single vector
+            cap >> orig_mat; // get a frame from camera
+            edited_mat = orig_mat.clone(); // preserve original
+            output_mat = orig_mat.clone(); // preserve original
+            if (HSV) // If using HSV instead of BGR
+            {
+                cvtColor(edited_mat, edited_mat, COLOR_BGR2HSV); // convert to hsv
+            }
+            frame_data.assign(edited_mat.data, edited_mat.data + edited_mat.total() * channels); // copy opencv 'Mat' as single vector
 
             //// Manipulate FIFO queue
             frames.pop_back();
@@ -96,39 +119,34 @@ int main(int, char**)
             frames.push_front(new_frame);
 
             //// Blob Detection
-            new_frame.inRange(bgr_r[0][0], bgr_r[1][0], bgr_r[0][1], bgr_r[1][1], bgr_r[0][2], bgr_r[1][2]);
+            new_frame.inRange(threshold_values[0][0], threshold_values[1][0], threshold_values[0][1], threshold_values[1][1], threshold_values[0][2], threshold_values[1][2]);
             new_frame.findBlobs();
 
             Mat frame_mat = new_frame.getMat(1, 1);
+
             //// Blob Selection
             if (new_frame.hasBlobs())
             {
-                unsigned int filters = (0 << 0) + (0 << 1) + (1 << 2) + // blob B G R
-                                       (0 << 3) + (0 << 4) + (1 << 5) + // edge B G R
-                                       (1 << 6) + (1 << 7) + (1 << 8) + // core B G R
-                                       (0 << 9)                       ; // size
-
-                unsigned char blob_bgr[] = {174, 162, 223}; // red-white
-                unsigned char edge_bgr[] = {180, 180, 255}; // red
-                unsigned char core_bgr[] = {255, 255, 255}; // white
                 Blob best_blob = new_frame.bestBlob(filters, blob_bgr, edge_bgr, core_bgr);
                 if (best_blob.isInitialized())
                 {
                     Rect brect = best_blob.getRect();
-                    rectangle(orig, Rect(brect.x - 10, brect.y - 10, brect.width + 20, brect.height + 20), Scalar(0, 0, 255), 2);
-                    putText(orig, to_string(best_blob.getScore()), Point(brect.x, brect.y - 20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255), 2);
+                    rectangle(output_mat, Rect(brect.x - 10, brect.y - 10, brect.width + 20, brect.height + 20), Scalar(0, 0, 255), 2);
+                    putText(output_mat, "#: " + to_string(best_blob.getBlobPixels().size()) + " S:" + to_string(best_blob.getScore()), Point(brect.x, brect.y - 20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255), 2);
 
                     Scalar average_bgr = best_blob.getAverageBGR(0);
-                    string average_bgr_str = to_string(new_frame.getBlobs().size()) + " (" + to_string((int)average_bgr[0]) + ", " + to_string((int)average_bgr[1]) + ", " + to_string((int)average_bgr[2]) + ")";
-                    //cout << average_bgr_str << "\n";
+                    string average_bgr_str = to_string((int)average_bgr[0]) + "\n" + to_string((int)average_bgr[1]) + "\n" + to_string((int)average_bgr[2]) + "\n";
+                    //cout << average_bgr_str << "";
                     //average_bgr = best_blob.getAverageBGR(1);
-                    //average_bgr_str = "(" + to_string((int)average_bgr[0]) + ", " + to_string((int)average_bgr[1]) + ", " + to_string((int)average_bgr[2]) + ")";
-                    //cout << average_bgr_str << "\n";
+                    //average_bgr_str = to_string((int)average_bgr[0]) + "\n" + to_string((int)average_bgr[1]) + "\n" + to_string((int)average_bgr[2]) + "\n";
+                    //cout << average_bgr_str << "";
                     //average_bgr = best_blob.getAverageBGR(2);
-                    //average_bgr_str = "(" + to_string((int)average_bgr[0]) + ", " + to_string((int)average_bgr[1]) + ", " + to_string((int)average_bgr[2]) + ")";
-                    //cout << average_bgr_str << "\n\n";
+                    //average_bgr_str = to_string((int)average_bgr[0]) + "\n" + to_string((int)average_bgr[1]) + "\n" + to_string((int)average_bgr[2]) + "\n";
+                    //cout << average_bgr_str << "\n";
+
+                    average_bgr_str = "#Blobs: " + to_string(new_frame.getBlobs().size()) + " BGR: (" + to_string((int)average_bgr[0]) + ", " + to_string((int)average_bgr[1]) + ", " + to_string((int)average_bgr[2]) + ")";
                     
-                    putText(orig, average_bgr_str, Point(10, 230), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255), 2);
+                    putText(output_mat, average_bgr_str, Point(10, MAX_ROW - 10), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255), 2);
                     // Update Pong Paddle
                     pong.updatePaddle(brect.y);
                 }
@@ -138,20 +156,20 @@ int main(int, char**)
             if (pong.isRunning())
             {
                 pong.update();
-                rectangle(orig, pong.getBall(), Scalar(50, 200, 50), 2);
-                rectangle(orig, pong.getPaddle(), Scalar(0, 200, 200), 2);
+                rectangle(output_mat, pong.getBall(), Scalar(BALL_BLUE, BALL_GREEN, BALL_RED), 2);
+                rectangle(output_mat, pong.getPaddle(), Scalar(PADDLE_BLUE, PADDLE_GREEN, PADDLE_RED), 2);
                 if (pong.isLost())
                 {
-                    putText(orig, "You Lost!", Point(50, 80), FONT_HERSHEY_SIMPLEX, 1, Scalar(50, 50, 255), 2);
+                    putText(output_mat, "You Lost!", Point(MAX_COL / 2 - 50, MAX_ROW / 2 - 10), FONT_HERSHEY_SIMPLEX, 1, Scalar(50, 50, 255), 2);
                 }
             }
 
             Mat resized_orig;
-            resize(orig, resized_orig, Size(1040, 780));
-            imshow("modified", frame_mat);
-            imshow("original", resized_orig);
+            resize(output_mat, resized_orig, Size(1040, 780));
+            imshow("tuning", frame_mat);
+            imshow("output", resized_orig);
 
-            cont = processInputs(orig);
+            cont = processInputs(output_mat);
         }
     }
     catch (int e){
@@ -165,7 +183,7 @@ int main(int, char**)
 
 VideoCapture initializeVideo()
 {
-    VideoCapture cap(2);    // open the camera located at /dev/videoX
+    VideoCapture cap(CAMERA_NUMBER);    // open the camera located at /dev/videoX
     if (!cap.isOpened())    // check if we succeeded
     {
         cout << "Camera can't be opened, exiting!\n";
@@ -174,10 +192,10 @@ VideoCapture initializeVideo()
     // Setup VideoCapture settings (if not supported)
     cout << "Setting up Camera settings..." << "\r";
     cout.flush(); // actually print out (output is normally buffered)
-    cap.set(CAP_PROP_FPS, 30)           ; // 30 seems to be maximum. (may hang program depending on cam)
-    cap.set(CAP_PROP_FRAME_WIDTH, 320)  ; // Lowest possible 4:3 aspect ratio
-    cap.set(CAP_PROP_FRAME_HEIGHT, 240) ; // Lowest possible 4:3 aspect ratio
-    cap.set(CAP_PROP_BUFFERSIZE, 1)     ; // Reduce internal frame buffer size (we have our own)
+    cap.set(CAP_PROP_FPS, FPS)              ; // 30 seems to be maximum. (may hang program depending on cam)
+    cap.set(CAP_PROP_FRAME_WIDTH, MAX_COL)  ; // Lowest possible 4:3 aspect ratio
+    cap.set(CAP_PROP_FRAME_HEIGHT, MAX_ROW) ; // Lowest possible 4:3 aspect ratio
+    cap.set(CAP_PROP_BUFFERSIZE, BUFFERSIZE); // Reduce internal frame buffer size (we have our own)
     cout << "Camera Settings Successfully Initialized!" << "\n";
     return cap;
 }
@@ -191,8 +209,8 @@ void printStats(VideoCapture cap, Mat img)
         unsigned int step = img.step;    // Full row width in bytes (so width * 8?)
         unsigned int channels = img.channels(); // How many channels does the images have (rgb = 3)
         cout << "Camera Settings:" << "\n";
-        cout << "\tcamera width  / rows: " << cap.get(CAP_PROP_FRAME_WIDTH)  << "\n";
-        cout << "\tcamera height / cols: " << cap.get(CAP_PROP_FRAME_HEIGHT) << "\n";
+        cout << "\tcamera width  / cols: " << cap.get(CAP_PROP_FRAME_WIDTH)  << "\n";
+        cout << "\tcamera height / rows: " << cap.get(CAP_PROP_FRAME_HEIGHT) << "\n";
         cout << "\tcamera framerate    : " << cap.get(CAP_PROP_FPS)          << "\n";
         cout << "\tvideo buffer size   : " << cap.get(CAP_PROP_BUFFERSIZE)   << "\n";
         cout << "\tvideo width  / cols : " << width                          << "\n";

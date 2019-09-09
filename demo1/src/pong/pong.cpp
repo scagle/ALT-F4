@@ -1,4 +1,6 @@
 #include <iostream>
+
+#include "../global.h"
 #include "pong.h"
 
 Pong::Pong()

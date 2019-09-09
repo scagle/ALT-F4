@@ -2,6 +2,7 @@
 #define __PONG_H_INCLUDED__
 
 #include <opencv2/core.hpp>
+#include "../global.h" 
 
 class Pong
 {
@@ -10,9 +11,9 @@ private:
     cv::Rect start_paddle = cv::Rect(5, 10, 2, 40);
     cv::Rect ball   = cv::Rect(start_ball.x, start_ball.y, start_ball.width, start_ball.height);
     cv::Rect paddle = cv::Rect(start_paddle.x, start_paddle.y, start_paddle.width, start_paddle.height);
-    cv::Rect bounds = cv::Rect(0, 0, 320, 240);
-    int start_ball_velocity_x = 10;
-    int start_ball_velocity_y = 10;
+    cv::Rect bounds = cv::Rect(0, 0, MAX_COL, MAX_ROW);
+    int start_ball_velocity_x = BALL_VELOCITY;
+    int start_ball_velocity_y = BALL_VELOCITY;
     int ball_velocity_x = start_ball_velocity_x;
     int ball_velocity_y = start_ball_velocity_y;
     bool running = false;
