@@ -15,6 +15,7 @@
 #include <vector>
 #include <string>
 #include "frame.h"
+#include "pong/pong.h"
 
 #if CV_MAJOR_VERISON <= 2   // Tested using OpenCV 2.4.9 (through apt-get)
     #include <opencv2/video/video.hpp>
@@ -48,6 +49,9 @@ void on_adjust(int, void*);
 const string capture_name = "capture.png"; // 'yanked' photo's name in filesystem
 deque<Frame>            frames(FRAME_FIFO_SIZE); // FIFO queue to store frames in
 
+// Pong initializations
+Pong pong;
+
 int main(int, char**)
 {
     VideoCapture cap = initializeVideo();
@@ -68,15 +72,15 @@ int main(int, char**)
         int height   = orig.rows;
         vector< unsigned char > frame_data(width * height * channels);  // initialize 'frame_data' to correct size
 
-        int bgr_r[2][3] = { {0, 0 , 205}, {182, 182, 255} };  // Red_Laser   {low{b, g, r} , high{b, g, r}}
+        int bgr_r[2][3] = { {0, 0 , 180}, {182, 182, 255} };  // Red_Laser   {low{b, g, r} , high{b, g, r}}
         int bgr_g[2][3] = { {33 , 91 , 191}, {103, 255, 255} };  // Green_Laser {low{b, g, r} , high{b, g, r}}
 
-        createTrackbar( "b_l:", "original", &bgr_r[0][0], 255, on_adjust );
-        createTrackbar( "g_l:", "original", &bgr_r[0][1], 255, on_adjust );
-        createTrackbar( "r_l:", "original", &bgr_r[0][2], 255, on_adjust );
-        createTrackbar( "b_h:", "original", &bgr_r[1][0], 255, on_adjust );
-        createTrackbar( "g_h:", "original", &bgr_r[1][1], 255, on_adjust );
-        createTrackbar( "r_h:", "original", &bgr_r[1][2], 255, on_adjust );
+        createTrackbar( "b_l:", "modified", &bgr_r[0][0], 255, on_adjust );
+        createTrackbar( "g_l:", "modified", &bgr_r[0][1], 255, on_adjust );
+        createTrackbar( "r_l:", "modified", &bgr_r[0][2], 255, on_adjust );
+        createTrackbar( "b_h:", "modified", &bgr_r[1][0], 255, on_adjust );
+        createTrackbar( "g_h:", "modified", &bgr_r[1][1], 255, on_adjust );
+        createTrackbar( "r_h:", "modified", &bgr_r[1][2], 255, on_adjust );
 
         int cont = 1; // continue variable 
         while (cont == 1)
@@ -125,14 +129,27 @@ int main(int, char**)
                     //cout << average_bgr_str << "\n\n";
                     
                     putText(orig, average_bgr_str, Point(10, 230), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255), 2);
-                    /*! TODO: Make more accurate by changing bgr in bestBlob() to JUST look at red, and not blue/green
-                     *  \todo Make more accurate by changing bgr in bestBlob() to JUST look at red, and not blue/green
-                     */
+                    // Update Pong Paddle
+                    pong.updatePaddle(brect.y);
                 }
             }
 
+            // Display Pong
+            if (pong.isRunning())
+            {
+                pong.update();
+                rectangle(orig, pong.getBall(), Scalar(50, 200, 50), 2);
+                rectangle(orig, pong.getPaddle(), Scalar(0, 200, 200), 2);
+                if (pong.isLost())
+                {
+                    putText(orig, "You Lost!", Point(50, 80), FONT_HERSHEY_SIMPLEX, 1, Scalar(50, 50, 255), 2);
+                }
+            }
+
+            Mat resized_orig;
+            resize(orig, resized_orig, Size(1040, 780));
             imshow("modified", frame_mat);
-            imshow("original", orig);
+            imshow("original", resized_orig);
 
             cont = processInputs(orig);
         }
@@ -206,6 +223,16 @@ int processInputs(Mat yank_mat)
                     cout << "ERROR: Screen Shot failed! (do you have the 'scrot' package installed?)" << "\n";
                 else
                     cout << "Screen Shot saved!" << "\n";
+                break;
+            }
+        case 'p':  // Play Pong!
+            {
+                cout << "Lets goooo!\n";
+                pong.restart();
+                if (pong.isRunning())
+                    pong.stop();
+                else
+                    pong.start();
                 break;
             }
     }

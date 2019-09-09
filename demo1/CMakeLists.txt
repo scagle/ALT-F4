@@ -5,8 +5,10 @@ project(camera)
 
 # Source files
 file(   GLOB SOURCES
-        "${PROJECT_SOURCE_DIR}/src/*.h"
         "${PROJECT_SOURCE_DIR}/src/*.cpp"
+        "${PROJECT_SOURCE_DIR}/src/*.h"
+        "${PROJECT_SOURCE_DIR}/src/pong/*.cpp"
+        "${PROJECT_SOURCE_DIR}/src/pong/*.h"
     )
 
 

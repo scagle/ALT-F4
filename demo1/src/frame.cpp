@@ -230,7 +230,7 @@ Blob Frame::bestBlob(unsigned int filters,
     const int CORE_GREEN_WEIGHT = 1 ;
     const int CORE_RED_WEIGHT   = 1 ;
     const int SIZE_WEIGHT       = -2;
-    const int SCORE_CUTOFF      = 1230;
+    const int SCORE_CUTOFF      = 1000;
 
     std::vector< int > scores(blobs.size(), 0);
     for (int i = 0; i < this->blobs.size(); i++)
