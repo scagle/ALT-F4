@@ -32,11 +32,12 @@ public:
     void convertValues();
     void inRange(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);  
     void findBlobs();
-    Blob bestBlob(unsigned int, unsigned char*);
+    Blob bestBlob(unsigned int, unsigned char*, unsigned char*, unsigned char*);
     std::vector< unsigned char >& getValues();
     std::vector< std::vector< Pixel > >& getPixels();
     cv::Mat& getMat(int, int);
     void setValues(std::vector< unsigned char >, unsigned int, unsigned int);
+    std::vector< Blob > getBlobs();
     unsigned char isInitialized();
     bool hasBlobs();
 };

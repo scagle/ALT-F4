@@ -1,6 +1,7 @@
 #include <opencv2/core.hpp>
 
 #include <iostream>
+#include <algorithm>
 #include <cstdlib>
 #include <vector>
 #include <stack>
@@ -59,12 +60,6 @@ void Frame::inRange(unsigned char b_l, unsigned char b_h,  // low / high blue
                     unsigned char g_l, unsigned char g_h,  // low / high green
                     unsigned char r_l, unsigned char r_h)  // low / high red
 {
-    /*! TODO: 
-     *  - Finish blob class
-     *  - Find edges as you go along
-     */
-    
-    // Pseudo code
     // NOTE: If this is bottleneck, combine it with the 'convertValues()' function.
     //       this is separated for readability      
     binary_matrix.resize(this->rows);
@@ -115,6 +110,7 @@ void Frame::findBlobs()
 
                 std::vector< Pixel > blob_pixels;
                 std::vector< Pixel > edge_pixels;
+                std::vector< Pixel > core_pixels;
                 // BLOB IT!
                 blob_stack.push(this->pixels[row][col]); // start the blob stack 
                 blob_pixels.push_back(this->pixels[row][col]); // keep track of pixels in blob
@@ -171,7 +167,17 @@ void Frame::findBlobs()
                     if ( neighbor_count != 8 )
                         edge_pixels.push_back(this->pixels[p_row][p_col]); // start the blob stack 
                 }
-                Blob new_blob = Blob(blob_pixels, edge_pixels, blob_min_row, blob_min_col, blob_max_row, blob_max_col);
+                // Get core pixels (all pixels in blob but not in edges)
+                for (int i = 0; i < blob_pixels.size(); i++)
+                {
+                    // If pixel is in blob, but NOT in edges then ...
+                    if (std::find(edge_pixels.begin(), edge_pixels.end(), blob_pixels[i]) == edge_pixels.end())
+                    {
+                        core_pixels.push_back(blob_pixels[i]);
+                    }
+                }
+                
+                Blob new_blob = Blob(blob_pixels, edge_pixels, core_pixels, blob_min_row, blob_min_col, blob_max_row, blob_max_col);
                 this->blobs.push_back(new_blob);
                 blob_count++;
             }
@@ -179,13 +185,20 @@ void Frame::findBlobs()
     }
 }
 
-Blob Frame::bestBlob(unsigned int filters, unsigned char bgr[3])
+Blob Frame::bestBlob(unsigned int filters, 
+                     unsigned char bgr_blob[3], unsigned char bgr_edge[3], unsigned char bgr_core[3])
 {
     /* filters: 
-     *  bit 0 = Blue Edge:  Score based on closest bgr value of ONLY edge pixels (targetted at 'laser iris effect')
-     *  bit 1 = Green Edge: Score based on closest bgr value of ONLY edge pixels (targetted at 'laser iris effect')
-     *  bit 2 = Red Edge:   Score based on closest bgr value of ONLY edge pixels (targetted at 'laser iris effect')
-     *  bit 3 = Size: Score based on amount of pixels
+     *  bit 0 = Blob Blue:   Score based on closest bgr value of ONLY edge pixels (targetted at 'laser iris effect')
+     *  bit 1 = Blob Green:  Score based on closest bgr value of ONLY edge pixels (targetted at 'laser iris effect')
+     *  bit 2 = Blob Red:    Score based on closest bgr value of ONLY edge pixels (targetted at 'laser iris effect')
+     *  bit 3 = Edge Blue:   Score based on closest bgr value of ONLY edge pixels (targetted at 'laser iris effect')
+     *  bit 4 = Edge Green:  Score based on closest bgr value of ONLY edge pixels (targetted at 'laser iris effect')
+     *  bit 5 = Edge Red:    Score based on closest bgr value of ONLY edge pixels (targetted at 'laser iris effect')
+     *  bit 6 = Core Blue:   Score based on closest bgr value of ONLY edge pixels (targetted at 'laser iris effect')
+     *  bit 7 = Core Green:  Score based on closest bgr value of ONLY edge pixels (targetted at 'laser iris effect')
+     *  bit 8 = Core Red:    Score based on closest bgr value of ONLY edge pixels (targetted at 'laser iris effect')
+     *  bit 9 = Size:        Score based on amount of pixels
      */ 
 
     if (blobs.size() == 0)
@@ -195,54 +208,141 @@ Blob Frame::bestBlob(unsigned int filters, unsigned char bgr[3])
     }
 
     // Filter extraction
-    bool edge_filter_blue  = filters & 1;
-    bool edge_filter_green = filters & 2;
-    bool edge_filter_red   = filters & 4;
-    bool size_filter       = filters & 8;
+    bool blob_filter_blue  = filters & (1 << 0);
+    bool blob_filter_green = filters & (1 << 1);
+    bool blob_filter_red   = filters & (1 << 2);
+    bool edge_filter_blue  = filters & (1 << 3);
+    bool edge_filter_green = filters & (1 << 4);
+    bool edge_filter_red   = filters & (1 << 5);
+    bool core_filter_blue  = filters & (1 << 6);
+    bool core_filter_green = filters & (1 << 7);
+    bool core_filter_red   = filters & (1 << 8);
+    bool size_filter       = filters & (1 << 9);
 
     // Weights
-    const int BLUE_WEIGHT  = 1;
-    const int GREEN_WEIGHT = 1;
-    const int RED_WEIGHT   = 2;
-    const int SIZE_WEIGHT  = -2;
-    const int SCORE_CUTOFF = 180;
+    const int BLOB_BLUE_WEIGHT  = 1 ;
+    const int BLOB_GREEN_WEIGHT = 1 ;
+    const int BLOB_RED_WEIGHT   = 2 ;
+    const int EDGE_BLUE_WEIGHT  = 1 ;
+    const int EDGE_GREEN_WEIGHT = 1 ;
+    const int EDGE_RED_WEIGHT   = 4 ;
+    const int CORE_BLUE_WEIGHT  = 1 ;
+    const int CORE_GREEN_WEIGHT = 1 ;
+    const int CORE_RED_WEIGHT   = 1 ;
+    const int SIZE_WEIGHT       = -2;
+    const int SCORE_CUTOFF      = 1230;
 
     std::vector< int > scores(blobs.size(), 0);
     for (int i = 0; i < this->blobs.size(); i++)
     {
         std::vector< Pixel > blob_pixels = this->blobs[i].getBlobPixels();
         std::vector< Pixel > edge_pixels = this->blobs[i].getEdgePixels();
-        if (edge_filter_blue || edge_filter_green || edge_filter_red)
+        std::vector< Pixel > core_pixels = this->blobs[i].getCorePixels();
+        cv::Scalar bgr_blob_avg = {0, 0, 0};
+        cv::Scalar bgr_edge_avg = {0, 0, 0};
+        cv::Scalar bgr_core_avg = {0, 0, 0};
+        cv::Scalar bgr_blob_diffs = {0, 0, 0};
+        cv::Scalar bgr_edge_diffs = {0, 0, 0};
+        cv::Scalar bgr_core_diffs = {0, 0, 0};
+
+        if ((blob_filter_blue || blob_filter_green || blob_filter_red) && blob_pixels.size() > 0)
         {
-            unsigned int bgr_sums[3] = {0, 0, 0};
+            unsigned int bgr_blob_sums[3] = {0, 0, 0};
+            for (int pi = 0; pi < blob_pixels.size(); pi++) // pixel index
+            {
+                for (int ch = 0; ch < this->channels; ch++)
+                {
+                    bgr_blob_sums[ch] += blob_pixels[pi][ch];
+                }
+            }
+            for (int ch = 0; ch < this->channels; ch++)
+            {
+                bgr_blob_avg[ch] = bgr_blob_sums[ch] / blob_pixels.size();
+                bgr_blob_diffs[ch] = std::abs((int)(bgr_blob_avg[ch]) - (int)(bgr_blob[ch]));
+            }
+            blobs[i].setAverageBGR(bgr_blob_avg, 0);
+
+            if (blob_filter_blue)
+            {
+                scores[i] += (255 - bgr_blob_diffs[0]) * BLOB_BLUE_WEIGHT;
+            }
+            if (blob_filter_green)
+            {
+                scores[i] += (255 - bgr_blob_diffs[1]) * BLOB_GREEN_WEIGHT;
+            }
+            if (blob_filter_red)
+            {
+                scores[i] += (255 - bgr_blob_diffs[2]) * BLOB_RED_WEIGHT;
+            }
+
+        }
+        if ((edge_filter_blue || edge_filter_green || edge_filter_red) && edge_pixels.size() > 0)
+        {
+            unsigned int bgr_edge_sums[3] = {0, 0, 0};
             for (int pi = 0; pi < edge_pixels.size(); pi++) // pixel index
             {
-                bgr_sums[0] += edge_pixels[pi][0];
-                bgr_sums[1] += edge_pixels[pi][1];
-                bgr_sums[2] += edge_pixels[pi][2];
+                for (int ch = 0; ch < this->channels; ch++)
+                {
+                    bgr_edge_sums[ch] += edge_pixels[pi][ch];
+                }
             }
-            unsigned char avg_b = bgr_sums[0] / edge_pixels.size();
-            unsigned char avg_g = bgr_sums[1] / edge_pixels.size();
-            unsigned char avg_r = bgr_sums[2] / edge_pixels.size();
-            blobs[i].setAverageBGR(cv::Scalar(avg_b, avg_g, avg_r), 1);
+            for (int ch = 0; ch < this->channels; ch++)
+            {
+                bgr_edge_avg[ch] = bgr_edge_sums[ch] / edge_pixels.size();
+                bgr_edge_diffs[ch] = std::abs((int)(bgr_edge_avg[ch]) - (int)(bgr_edge[ch]));
+            }
+            blobs[i].setAverageBGR(bgr_edge_avg, 1);
 
-            unsigned char diff_b = std::abs((int)(avg_b) - (int)(bgr[0]));
-            unsigned char diff_g = std::abs((int)(avg_g) - (int)(bgr[1]));
-            unsigned char diff_r = std::abs((int)(avg_r) - (int)(bgr[2]));
-
-            /*! TODO: Probably want to just score based on red / green, not blue.
-             *  \todo Probably want to just score based on red / green, not blue.
-             */
             if (edge_filter_blue)
-                scores[i] += (255 - diff_b) * BLUE_WEIGHT;
+            {
+                scores[i] += (255 - bgr_edge_diffs[0]) * EDGE_BLUE_WEIGHT;
+            }
             if (edge_filter_green)
-                scores[i] += (255 - diff_g) * GREEN_WEIGHT;
+            {
+                scores[i] += (255 - bgr_edge_diffs[1]) * EDGE_GREEN_WEIGHT;
+            }
             if (edge_filter_red)
-                scores[i] += (255 - diff_r) * RED_WEIGHT;
+            {
+                scores[i] += (255 - bgr_edge_diffs[2]) * EDGE_RED_WEIGHT;
+            }
+
+        }
+
+        if ((core_filter_blue || core_filter_green || core_filter_red) && core_pixels.size() > 0)
+        {
+             
+            unsigned int bgr_core_sums[3] = {0, 0, 0};
+            for (int pi = 0; pi < core_pixels.size(); pi++) // pixel index
+            {
+                for (int ch = 0; ch < this->channels; ch++)
+                {
+                    bgr_core_sums[ch] += core_pixels[pi][ch];
+                }
+            }
+            for (int ch = 0; ch < this->channels; ch++)
+            {
+                bgr_core_avg[ch] = bgr_core_sums[ch] / core_pixels.size();
+                bgr_core_diffs[ch] = std::abs((int)(bgr_core_avg[ch]) - (int)(bgr_core[ch]));
+            }
+            blobs[i].setAverageBGR(bgr_core_avg, 2);
+
+            if (core_filter_blue)
+            {
+                scores[i] += (255 - bgr_core_diffs[0]) * CORE_BLUE_WEIGHT;
+            }
+            if (core_filter_green)
+            {
+                scores[i] += (255 - bgr_core_diffs[1]) * CORE_GREEN_WEIGHT;
+            }
+            if (core_filter_red)
+            {
+                scores[i] += (255 - bgr_core_diffs[2]) * CORE_RED_WEIGHT;
+            }
+
         }
         if (size_filter)
         {
-            scores[i] += edge_pixels.size() * SIZE_WEIGHT;
+            scores[i] += blob_pixels.size() * SIZE_WEIGHT;
         }
     }
     int best_score = 0;
@@ -256,8 +356,8 @@ Blob Frame::bestBlob(unsigned int filters, unsigned char bgr[3])
             best_blob = blobs[i];
         }
     }
-    if (best_blob.isInitialized())
-        std::cout << "Best score: " << best_score << "\n";
+//    if (best_blob.isInitialized())
+//        std::cout << "Best score: " << best_score << "\n";
 
     return best_blob;
 }
@@ -341,6 +441,11 @@ cv::Mat& Frame::getMat(int channels = 3, int type = 0)
 unsigned char Frame::isInitialized()
 { 
     return this->initialized; 
+}
+
+std::vector< Blob > Frame::getBlobs()
+{
+    return this->blobs;
 }
 
 bool Frame::hasBlobs()

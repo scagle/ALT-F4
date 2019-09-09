@@ -99,16 +99,31 @@ int main(int, char**)
             //// Blob Selection
             if (new_frame.hasBlobs())
             {
-                unsigned char red_laser_bgr[] = {180, 180, 255};
-                Blob best_blob = new_frame.bestBlob(0b1111, red_laser_bgr);
+                unsigned int filters = (0 << 0) + (0 << 1) + (1 << 2) + // blob B G R
+                                       (0 << 3) + (0 << 4) + (1 << 5) + // edge B G R
+                                       (1 << 6) + (1 << 7) + (1 << 8) + // core B G R
+                                       (0 << 9)                       ; // size
+
+                unsigned char blob_bgr[] = {174, 162, 223}; // red-white
+                unsigned char edge_bgr[] = {180, 180, 255}; // red
+                unsigned char core_bgr[] = {255, 255, 255}; // white
+                Blob best_blob = new_frame.bestBlob(filters, blob_bgr, edge_bgr, core_bgr);
                 if (best_blob.isInitialized())
                 {
                     Rect brect = best_blob.getRect();
                     rectangle(orig, Rect(brect.x - 10, brect.y - 10, brect.width + 20, brect.height + 20), Scalar(0, 0, 255), 2);
                     putText(orig, to_string(best_blob.getScore()), Point(brect.x, brect.y - 20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255), 2);
 
-                    Scalar average_bgr = best_blob.getAverageBGR(1);
-                    string average_bgr_str = "(" + to_string((int)average_bgr[0]) + ", " + to_string((int)average_bgr[1]) + ", " + to_string((int)average_bgr[2]) + ")\n";
+                    Scalar average_bgr = best_blob.getAverageBGR(0);
+                    string average_bgr_str = to_string(new_frame.getBlobs().size()) + " (" + to_string((int)average_bgr[0]) + ", " + to_string((int)average_bgr[1]) + ", " + to_string((int)average_bgr[2]) + ")";
+                    //cout << average_bgr_str << "\n";
+                    //average_bgr = best_blob.getAverageBGR(1);
+                    //average_bgr_str = "(" + to_string((int)average_bgr[0]) + ", " + to_string((int)average_bgr[1]) + ", " + to_string((int)average_bgr[2]) + ")";
+                    //cout << average_bgr_str << "\n";
+                    //average_bgr = best_blob.getAverageBGR(2);
+                    //average_bgr_str = "(" + to_string((int)average_bgr[0]) + ", " + to_string((int)average_bgr[1]) + ", " + to_string((int)average_bgr[2]) + ")";
+                    //cout << average_bgr_str << "\n\n";
+                    
                     putText(orig, average_bgr_str, Point(10, 230), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255), 2);
                     /*! TODO: Make more accurate by changing bgr in bestBlob() to JUST look at red, and not blue/green
                      *  \todo Make more accurate by changing bgr in bestBlob() to JUST look at red, and not blue/green
@@ -119,7 +134,7 @@ int main(int, char**)
             imshow("modified", frame_mat);
             imshow("original", orig);
 
-            cont = processInputs(frame_mat);
+            cont = processInputs(orig);
         }
     }
     catch (int e){

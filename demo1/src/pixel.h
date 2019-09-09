@@ -17,10 +17,13 @@ public:
     // Methods
     void init(unsigned int, unsigned int, unsigned char, unsigned char, unsigned char, unsigned char);
     unsigned char isInitialized();
-    unsigned int getRow();
-    unsigned int getCol();
+    unsigned int getRow() const;
+    unsigned int getCol() const;
     unsigned char   operator [](unsigned char i) const { return bgr[i]; }
     unsigned char & operator [](unsigned char i)       { return bgr[i]; }
+
+    // vectors copy by value, so address matching will not work
+    bool operator ==(const Pixel &p) { return (this->row == p.getRow() && this->col == p.getCol()); } 
 };
 
 #endif
