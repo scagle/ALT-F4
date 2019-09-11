@@ -36,28 +36,27 @@
     #include <opencv2/features2d.hpp>
 #endif
 
+// Constants
 #ifdef HSV
     const unsigned char blob_bgr[] = {BLOB_HSV_HUE, BLOB_HSV_SAT, BLOB_HSV_VAL}; // 
     const unsigned char edge_bgr[] = {EDGE_HSV_HUE, EDGE_HSV_SAT, EDGE_HSV_VAL}; // 
     const unsigned char core_bgr[] = {CORE_HSV_HUE, CORE_HSV_SAT, CORE_HSV_VAL}; // 
-    const unsigned int filters = (FILTER_BLOB_HSV_HUE << 0) + (FILTER_BLOB_HSV_SAT << 1) + (FILTER_BLOB_HSV_VAL << 2) + // blob H S V
-                                 (FILTER_EDGE_HSV_HUE << 3) + (FILTER_EDGE_HSV_SAT << 4) + (FILTER_EDGE_HSV_VAL << 5) + // edge H S V
-                                 (FILTER_CORE_HSV_HUE << 6) + (FILTER_CORE_HSV_SAT << 7) + (FILTER_CORE_HSV_VAL << 8) + // core H S V
-                                 (FILTER_SIZE << 9)                                                                      ; // size
-
-    int threshold_values[2][3] = { {HSV_HUE_LOW, HSV_SAT_LOW , HSV_VAL_LOW}, {HSV_HUE_HIGH, HSV_SAT_HIGH, HSV_VAL_HIGH} };  
+    const unsigned int  filters    = (FILTER_BLOB_HSV_HUE << 0) + (FILTER_BLOB_HSV_SAT << 1) + (FILTER_BLOB_HSV_VAL << 2) +    // blob H S V
+                                     (FILTER_EDGE_HSV_HUE << 3) + (FILTER_EDGE_HSV_SAT << 4) + (FILTER_EDGE_HSV_VAL << 5) +    // edge H S V
+                                     (FILTER_CORE_HSV_HUE << 6) + (FILTER_CORE_HSV_SAT << 7) + (FILTER_CORE_HSV_VAL << 8) +    // core H S V
+                                     (FILTER_SIZE << 9);                                                                       // size
+    int threshold_values[2][3]     = { {HSV_HUE_LOW, HSV_SAT_LOW , HSV_VAL_LOW}, {HSV_HUE_HIGH, HSV_SAT_HIGH, HSV_VAL_HIGH} }; // low/high threshold 
 
 #else
     const unsigned char blob_bgr[] = {BLOB_BGR_BLUE, BLOB_BGR_GREEN, BLOB_BGR_RED}; // red-white
     const unsigned char edge_bgr[] = {EDGE_BGR_BLUE, EDGE_BGR_GREEN, EDGE_BGR_RED}; // red
     const unsigned char core_bgr[] = {CORE_BGR_BLUE, CORE_BGR_GREEN, CORE_BGR_RED}; // white
-    const unsigned int filters = (FILTER_BLOB_BGR_BLUE << 0) + (FILTER_BLOB_BGR_GREEN << 1) + (FILTER_BLOB_BGR_RED << 2) + // blob B G R
-                                 (FILTER_EDGE_BGR_BLUE << 3) + (FILTER_EDGE_BGR_GREEN << 4) + (FILTER_EDGE_BGR_RED << 5) + // edge B G R
-                                 (FILTER_CORE_BGR_BLUE << 6) + (FILTER_CORE_BGR_GREEN << 7) + (FILTER_CORE_BGR_RED << 8) + // core B G R
-                                 (FILTER_SIZE << 9)                                                                      ; // size
-    int threshold_values[2][3] = { {BGR_BLUE_LOW, BGR_GREEN_LOW , BGR_RED_LOW}, {BGR_BLUE_HIGH, BGR_GREEN_HIGH, BGR_RED_HIGH} };  
+    const unsigned int filters     = (FILTER_BLOB_BGR_BLUE << 0) + (FILTER_BLOB_BGR_GREEN << 1) + (FILTER_BLOB_BGR_RED << 2) +       // blob B G R
+                                     (FILTER_EDGE_BGR_BLUE << 3) + (FILTER_EDGE_BGR_GREEN << 4) + (FILTER_EDGE_BGR_RED << 5) +       // edge B G R
+                                     (FILTER_CORE_BGR_BLUE << 6) + (FILTER_CORE_BGR_GREEN << 7) + (FILTER_CORE_BGR_RED << 8) +       // core B G R
+                                     (FILTER_SIZE << 9);                                                                             // size
+    int threshold_values[2][3]     = { {BGR_BLUE_LOW, BGR_GREEN_LOW , BGR_RED_LOW}, {BGR_BLUE_HIGH, BGR_GREEN_HIGH, BGR_RED_HIGH} }; // low/high threshold 
 #endif
-
 
 using namespace cv;
 using namespace std;
@@ -108,34 +107,40 @@ int main(int, char**)
             edited_mat = orig_mat.clone(); // preserve original
             output_mat = orig_mat.clone(); // preserve original
             if (HSV) // If using HSV instead of BGR
-            {
                 cvtColor(edited_mat, edited_mat, COLOR_BGR2HSV); // convert to hsv
-            }
-            frame_data.assign(edited_mat.data, edited_mat.data + edited_mat.total() * channels); // copy opencv 'Mat' as single vector
 
-            //// Manipulate FIFO queue
-            frames.pop_back();
-            Frame new_frame = Frame(frame_data, width, height, channels);
-            frames.push_front(new_frame);
+            // Convert OpenCV "Mat" to a 1D vector
+            frame_data.assign(edited_mat.data, edited_mat.data + edited_mat.total() * channels); 
+
+            //// Manipulate FIFO Queue
+            frames.pop_back();                                            // Remove last Frame from queue
+            Frame new_frame = Frame(frame_data, width, height, channels); // Create a new Frame based on frame_data
+            frames.push_front(new_frame);                                 // Add the new Frame to the front of queue
 
             //// Blob Detection
-            new_frame.inRange(threshold_values[0][0], threshold_values[1][0], threshold_values[0][1], threshold_values[1][1], threshold_values[0][2], threshold_values[1][2]);
-            new_frame.findBlobs();
-
-            Mat frame_mat = new_frame.getMat(1, 1);
+            // Frame looks at pixels, applyings min/max threshold, and creates binary matrix
+            new_frame.inRange(threshold_values[0][0],  // threshold B/H low
+                              threshold_values[1][0],  // threshold B/H high
+                              threshold_values[0][1],  // threshold G/S low
+                              threshold_values[1][1],  // threshold G/S high
+                              threshold_values[0][2],  // threshold R/V low
+                              threshold_values[1][2]); // threshold R/V high
+            new_frame.findBlobs();  // Find Blobs based on binary matrix results
 
             //// Blob Selection
             if (new_frame.hasBlobs())
             {
+                // Identify the blob with the highest score
                 Blob best_blob = new_frame.bestBlob(filters, blob_bgr, edge_bgr, core_bgr);
                 if (best_blob.isInitialized())
                 {
+                    // Draw Best Blob's Boundary
                     Rect brect = best_blob.getRect();
                     rectangle(output_mat, Rect(brect.x - 10, brect.y - 10, brect.width + 20, brect.height + 20), Scalar(0, 0, 255), 2);
                     putText(output_mat, "#: " + to_string(best_blob.getBlobPixels().size()) + " S:" + to_string(best_blob.getScore()), Point(brect.x, brect.y - 20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255), 2);
 
-                    Scalar average_bgr = best_blob.getAverageBGR(0);
-                    string average_bgr_str = to_string((int)average_bgr[0]) + "\n" + to_string((int)average_bgr[1]) + "\n" + to_string((int)average_bgr[2]) + "\n";
+                    //Scalar average_bgr = best_blob.getAverageBGR(0);
+                    //string average_bgr_str = to_string((int)average_bgr[0]) + "\n" + to_string((int)average_bgr[1]) + "\n" + to_string((int)average_bgr[2]) + "\n";
                     //cout << average_bgr_str << "";
                     //average_bgr = best_blob.getAverageBGR(1);
                     //average_bgr_str = to_string((int)average_bgr[0]) + "\n" + to_string((int)average_bgr[1]) + "\n" + to_string((int)average_bgr[2]) + "\n";
@@ -144,9 +149,14 @@ int main(int, char**)
                     //average_bgr_str = to_string((int)average_bgr[0]) + "\n" + to_string((int)average_bgr[1]) + "\n" + to_string((int)average_bgr[2]) + "\n";
                     //cout << average_bgr_str << "\n";
 
-                    average_bgr_str = "#Blobs: " + to_string(new_frame.getBlobs().size()) + " BGR: (" + to_string((int)average_bgr[0]) + ", " + to_string((int)average_bgr[1]) + ", " + to_string((int)average_bgr[2]) + ")";
-                    
+                    // Display info at bottom of screen
+                    Scalar average_bgr = best_blob.getAverageBGR(0);
+                    string average_bgr_str = "#Blobs: " + to_string(new_frame.getBlobs().size()) + 
+                                             " BGR: ("  + to_string((int)average_bgr[0])         + 
+                                                   ", " + to_string((int)average_bgr[1])         + 
+                                                   ", " + to_string((int)average_bgr[2])         + ")";
                     putText(output_mat, average_bgr_str, Point(10, MAX_ROW - 10), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255), 2);
+
                     // Update Pong Paddle
                     pong.updatePaddle(brect.y);
                 }
@@ -164,8 +174,10 @@ int main(int, char**)
                 }
             }
 
-            Mat resized_orig;
-            resize(output_mat, resized_orig, Size(1040, 780));
+            Mat frame_mat = new_frame.getMat(1, 1);            // Get OpenCV binary image 
+            Mat resized_orig;                                  // Image to write resized output_image
+            resize(output_mat, resized_orig, Size(1040, 780)); // Actually resize output_image
+
             imshow("tuning", frame_mat);
             imshow("output", resized_orig);
 

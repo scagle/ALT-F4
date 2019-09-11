@@ -14,7 +14,7 @@
 #define HSV_HUE_LOW     140
 #define HSV_SAT_LOW     30
 #define HSV_VAL_LOW     190
-#define HSV_HUE_HIGH    170
+#define HSV_HUE_HIGH    195
 #define HSV_SAT_HIGH    163
 #define HSV_VAL_HIGH    240
 
@@ -48,7 +48,7 @@
 
 //// Blob Detection
 #define MAX_MINESWEEP_OFFSET 10 // will check (x +/- offset, y +/- offset) for neighbor pixels
-#define NEIGHBOR_COUNT        6 // # of neighbor pixels required to constitute as a "core" pixel (any less will be edge)
+#define NEIGHBOR_COUNT        8 // # of neighbor pixels required to constitute as a "core" pixel (any less will be edge)
 
 
 //// Blob Selection
@@ -86,7 +86,7 @@
 #define CORE_BLUE_WEIGHT      1 // HSV not BGR (TODO: make this less confusing)
 #define CORE_GREEN_WEIGHT     1 // HSV not BGR (TODO: make this less confusing)
 #define CORE_RED_WEIGHT       1 // HSV not BGR (TODO: make this less confusing)
-#define SCORE_CUTOFF        500
+#define SCORE_CUTOFF       1000
 #else
 #define BLOB_BLUE_WEIGHT      1 
 #define BLOB_GREEN_WEIGHT     1 
@@ -105,12 +105,12 @@
 
 
 //// Pong
-#define BALL_RED      50
-#define BALL_GREEN   200
+#define BALL_RED     150
+#define BALL_GREEN     0
 #define BALL_BLUE     50
-#define PADDLE_RED   200 
-#define PADDLE_GREEN 200 
-#define PADDLE_BLUE   50
+#define PADDLE_RED   100 
+#define PADDLE_GREEN   0 
+#define PADDLE_BLUE    0 
 #define BALL_VELOCITY 10
 
 
