@@ -59,21 +59,31 @@ void Frame::convertValues()
 
 void Frame::inRange(unsigned char b_l, unsigned char b_h,  // low / high blue 
                     unsigned char g_l, unsigned char g_h,  // low / high green
-                    unsigned char r_l, unsigned char r_h)  // low / high red
+                    unsigned char r_l, unsigned char r_h,  // low / high red
+                    unsigned char type = 0)
 {
     // NOTE: If this is bottleneck, combine it with the 'convertValues()' function.
     //       this is separated for readability      
-    binary_matrix.resize(this->rows);
+    std::vector< std::vector< unsigned char > > *matrix;
+    switch (type)
+    {
+        case 0:  matrix = &binary_matrix_red;
+                 break;
+        case 1:  matrix = &binary_matrix_green;
+                 break;
+        default: break;
+    }
+    (*matrix).resize(this->rows);
     for (int row = 0; row < this->rows; row++)
     {
-        binary_matrix[row].resize(this->cols);
+        (*matrix)[row].resize(this->cols);
         for (int col = 0; col < this->cols; col++)
         {
             unsigned char b = this->values[(channels * cols) * row + (col * channels) + 0];
             unsigned char g = this->values[(channels * cols) * row + (col * channels) + 1];
             unsigned char r = this->values[(channels * cols) * row + (col * channels) + 2];
 
-            binary_matrix[row][col] = 0;     // Start out as 0 
+            (*matrix)[row][col] = 0;     // Start out as 0 
             if (this->initialized)           // If this frame is initialized
             {
                 if ((b < b_l) || (b > b_h))  // If out of bounds of blue
@@ -82,24 +92,39 @@ void Frame::inRange(unsigned char b_l, unsigned char b_h,  // low / high blue
                     continue;                // Skip
                 if ((r < r_l) || (r > r_h))  // If out of bounds of red
                     continue;                // Skip
-                binary_matrix[row][col] = 1; // Otherwise success!
+                (*matrix)[row][col] = 1; // Otherwise success!
             }
             else
             {
-                binary_matrix[row][col] = 0;
+                (*matrix)[row][col] = 0;
             }
         }
     }
 }
 
-void Frame::findBlobs()
+void Frame::findBlobs(unsigned char type = 0)
 {
-    std::vector< std::vector < unsigned char > > edited_matrix(this->binary_matrix);
+    // "type":
+    // 0 -> binary_matrix_red
+    // 1 -> binary_matrix_green
     // "edited_matrix": 
     // 0 -> nothing (skip it)
     // 1 -> juicy_pixel (blob it)
     // 2 -> eaten_pixel (dont blob it)
     
+    std::vector< std::vector< unsigned char > > *matrix;
+    std::vector< Blob > *blobs;
+    switch (type)
+    {
+        case 0:  matrix = &binary_matrix_red;
+                 blobs = &blobs_red;
+                 break;
+        case 1:  matrix = &binary_matrix_green;
+                 blobs = &blobs_green;
+                 break;
+        default: break;
+    }
+    std::vector< std::vector < unsigned char > > edited_matrix( (*matrix) );
     std::stack < Pixel > blob_stack;
     unsigned int blob_count = 0;
     for (int row = 0; row < this->rows; row++)
@@ -145,14 +170,14 @@ void Frame::findBlobs()
                                     blob_stack.push(this->pixels[p_row + ro][p_col + co]);
                                     blob_pixels.push_back(this->pixels[p_row + ro][p_col + co]); 
                                     edited_matrix[p_row + ro][p_col + co] = 2;
-                                    if ( row + ro > blob_max_row )
-                                        blob_max_row = row + ro;
-                                    if ( row + ro < blob_min_row )
-                                        blob_min_row = row + ro;
-                                    if ( col + co > blob_max_col )
-                                        blob_max_col = col + co;
-                                    if ( col + co < blob_min_col )
-                                        blob_min_col = col + co;
+                                    if ( p_row + ro > blob_max_row )
+                                        blob_max_row = p_row + ro;
+                                    if ( p_row + ro < blob_min_row )
+                                        blob_min_row = p_row + ro;
+                                    if ( p_col + co > blob_max_col )
+                                        blob_max_col = p_col + co;
+                                    if ( p_col + co < blob_min_col )
+                                        blob_min_col = p_col + co;
                                 }
                                 if (edited_matrix[p_row + ro][p_col + co] != 0)
                                 {
@@ -180,7 +205,7 @@ void Frame::findBlobs()
                 }
                 
                 Blob new_blob = Blob(blob_pixels, edge_pixels, core_pixels, blob_min_row, blob_min_col, blob_max_row, blob_max_col);
-                this->blobs.push_back(new_blob);
+                (*blobs).push_back(new_blob);
                 blob_count++;
             }
         }
@@ -188,7 +213,8 @@ void Frame::findBlobs()
 }
 
 Blob Frame::bestBlob(const unsigned int filters, 
-                     const unsigned char bgr_blob[3], const unsigned char bgr_edge[3], const unsigned char bgr_core[3])
+                     const unsigned char bgr_blob[3], const unsigned char bgr_edge[3], const unsigned char bgr_core[3],
+                     unsigned char type = 0)
 {
     /* filters: 
      *  bit 0 = Blob Blue:   Score based on closest bgr value of ONLY edge pixels (targetted at 'laser iris effect')
@@ -202,8 +228,17 @@ Blob Frame::bestBlob(const unsigned int filters,
      *  bit 8 = Core Red:    Score based on closest bgr value of ONLY edge pixels (targetted at 'laser iris effect')
      *  bit 9 = Size:        Score based on amount of pixels
      */ 
+    std::vector< Blob > *blobs;
+    switch (type)
+    {
+        case 0:  blobs = &blobs_red;
+                 break;
+        case 1:  blobs = &blobs_green;
+                 break;
+        default: break;
+    }
 
-    if (blobs.size() == 0)
+    if ((*blobs).size() == 0)
     {
         std::cout << "*** Warning: No blobs at all. Returning empty blob (frame.cpp -> bestBlob())\n";
         return Blob();
@@ -221,12 +256,12 @@ Blob Frame::bestBlob(const unsigned int filters,
     bool core_filter_red   = filters & (1 << 8);
     bool size_filter       = filters & (1 << 9);
 
-    std::vector< int > scores(blobs.size(), 0);
-    for (int i = 0; i < this->blobs.size(); i++)
+    std::vector< int > scores((*blobs).size(), 0);
+    for (int i = 0; i < (*blobs).size(); i++)
     {
-        std::vector< Pixel > blob_pixels = this->blobs[i].getBlobPixels();
-        std::vector< Pixel > edge_pixels = this->blobs[i].getEdgePixels();
-        std::vector< Pixel > core_pixels = this->blobs[i].getCorePixels();
+        std::vector< Pixel > blob_pixels = (*blobs)[i].getBlobPixels();
+        std::vector< Pixel > edge_pixels = (*blobs)[i].getEdgePixels();
+        std::vector< Pixel > core_pixels = (*blobs)[i].getCorePixels();
         cv::Scalar bgr_blob_avg = {0, 0, 0};
         cv::Scalar bgr_edge_avg = {0, 0, 0};
         cv::Scalar bgr_core_avg = {0, 0, 0};
@@ -249,7 +284,7 @@ Blob Frame::bestBlob(const unsigned int filters,
                 bgr_blob_avg[ch] = bgr_blob_sums[ch] / blob_pixels.size();
                 bgr_blob_diffs[ch] = std::abs((int)(bgr_blob_avg[ch]) - (int)(bgr_blob[ch]));
             }
-            blobs[i].setAverageBGR(bgr_blob_avg, 0);
+            (*blobs)[i].setAverageBGR(bgr_blob_avg, 0);
 
             if (blob_filter_blue)
             {
@@ -280,7 +315,7 @@ Blob Frame::bestBlob(const unsigned int filters,
                 bgr_edge_avg[ch] = bgr_edge_sums[ch] / edge_pixels.size();
                 bgr_edge_diffs[ch] = std::abs((int)(bgr_edge_avg[ch]) - (int)(bgr_edge[ch]));
             }
-            blobs[i].setAverageBGR(bgr_edge_avg, 1);
+            (*blobs)[i].setAverageBGR(bgr_edge_avg, 1);
 
             if (edge_filter_blue)
             {
@@ -313,7 +348,7 @@ Blob Frame::bestBlob(const unsigned int filters,
                 bgr_core_avg[ch] = bgr_core_sums[ch] / core_pixels.size();
                 bgr_core_diffs[ch] = std::abs((int)(bgr_core_avg[ch]) - (int)(bgr_core[ch]));
             }
-            blobs[i].setAverageBGR(bgr_core_avg, 2);
+            (*blobs)[i].setAverageBGR(bgr_core_avg, 2);
 
             if (core_filter_blue)
             {
@@ -336,13 +371,13 @@ Blob Frame::bestBlob(const unsigned int filters,
     }
     int best_score = 0;
     Blob best_blob;
-    for (int i = 0; i < this->blobs.size(); i++)
+    for (int i = 0; i < (*blobs).size(); i++)
     {
-        blobs[i].setScore(scores[i]);
+        (*blobs)[i].setScore(scores[i]);
         if (scores[i] > best_score && scores[i] >= SCORE_CUTOFF)
         {
             best_score = scores[i];
-            best_blob = blobs[i];
+            best_blob = (*blobs)[i];
         }
     }
 //    if (best_blob.isInitialized())
@@ -401,7 +436,7 @@ cv::Mat& Frame::getMat(int channels = 3, int type = 0)
         }
         output_frame = cv::Mat(MAX_ROW, MAX_COL, CV_8UC3, pixels1D);
     }
-    else if (type == 1)
+    else if (type == 1 || type == 2)
     {
         for (int row = 0; row < this->rows; row++)
         {
@@ -410,7 +445,10 @@ cv::Mat& Frame::getMat(int channels = 3, int type = 0)
                 unsigned long index = this->cols * row + col;
                 if (this->initialized)
                 {
-                    binary1D[index] = this->binary_matrix[row][col]*255;
+                    if (type == 1)
+                        binary1D[index] = this->binary_matrix_red[row][col]*255;
+                    if (type == 2)
+                        binary1D[index] = this->binary_matrix_green[row][col]*255;
                 }
                 else
                 {
@@ -432,12 +470,24 @@ unsigned char Frame::isInitialized()
     return this->initialized; 
 }
 
-std::vector< Blob > Frame::getBlobs()
+std::vector< Blob > Frame::getBlobs(unsigned char type = 0)
 {
-    return this->blobs;
+    switch (type)
+    {
+        case 0:  return (this->blobs_red);
+        case 1:  return (this->blobs_green);
+        default: std::cout << "*** Warning: invalid type! (frame.cpp -> getBlobs(type))\n";
+                 return (std::vector< Blob >());
+    }
 }
 
-bool Frame::hasBlobs()
+bool Frame::hasBlobs(unsigned char type = 0)
 { 
-    return (this->blobs.size() > 0); 
+    switch (type)
+    {
+        case 0:  return (this->blobs_red.size() > 0);
+        case 1:  return (this->blobs_green.size() > 0);
+        default: std::cout << "*** Warning: invalid type! (frame.cpp -> hasBlobs(type))\n";
+                 return (false);
+    }
 }

@@ -11,8 +11,10 @@ class Frame
 {
     std::vector< unsigned char > values;        // 1D Array of values (b, g, r, b, g, r, etc...) 
     std::vector< std::vector< Pixel > > pixels; // 2D Array of pixels 
-    std::vector< std::vector < unsigned char > > binary_matrix; // Binary threshold image
-    std::vector< Blob > blobs;
+    std::vector< std::vector < unsigned char > > binary_matrix_red;   // Binary threshold image
+    std::vector< std::vector < unsigned char > > binary_matrix_green; // Binary threshold image
+    std::vector< Blob > blobs_red;
+    std::vector< Blob > blobs_green;
     unsigned int width, height;                 // height and width of frame
     unsigned int cols, rows;                    // synonym for height and width of frame
     unsigned int channels;                      // channels
@@ -30,16 +32,16 @@ public:
     // Methods
     void init(std::vector<unsigned char>, unsigned int, unsigned int, unsigned int, unsigned char);
     void convertValues();
-    void inRange(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);  
-    void findBlobs();
-    Blob bestBlob(const unsigned int, const unsigned char*, const unsigned char*, const unsigned char*);
+    void inRange(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned char);  
+    void findBlobs(unsigned char);
+    Blob bestBlob(const unsigned int, const unsigned char*, const unsigned char*, const unsigned char*, unsigned char);
     std::vector< unsigned char >& getValues();
     std::vector< std::vector< Pixel > >& getPixels();
     cv::Mat& getMat(int, int);
     void setValues(std::vector< unsigned char >, unsigned int, unsigned int);
-    std::vector< Blob > getBlobs();
+    std::vector< Blob > getBlobs(unsigned char);
     unsigned char isInitialized();
-    bool hasBlobs();
+    bool hasBlobs(unsigned char);
 };
 
 #endif

@@ -36,26 +36,57 @@
     #include <opencv2/features2d.hpp>
 #endif
 
-// Constants
+// Defining some Constants
 #ifdef HSV
-    const unsigned char blob_bgr[] = {BLOB_HSV_HUE, BLOB_HSV_SAT, BLOB_HSV_VAL}; // 
-    const unsigned char edge_bgr[] = {EDGE_HSV_HUE, EDGE_HSV_SAT, EDGE_HSV_VAL}; // 
-    const unsigned char core_bgr[] = {CORE_HSV_HUE, CORE_HSV_SAT, CORE_HSV_VAL}; // 
-    const unsigned int  filters    = (FILTER_BLOB_HSV_HUE << 0) + (FILTER_BLOB_HSV_SAT << 1) + (FILTER_BLOB_HSV_VAL << 2) +    // blob H S V
-                                     (FILTER_EDGE_HSV_HUE << 3) + (FILTER_EDGE_HSV_SAT << 4) + (FILTER_EDGE_HSV_VAL << 5) +    // edge H S V
-                                     (FILTER_CORE_HSV_HUE << 6) + (FILTER_CORE_HSV_SAT << 7) + (FILTER_CORE_HSV_VAL << 8) +    // core H S V
-                                     (FILTER_SIZE << 9);                                                                       // size
-    int threshold_values[2][3]     = { {HSV_HUE_LOW, HSV_SAT_LOW , HSV_VAL_LOW}, {HSV_HUE_HIGH, HSV_SAT_HIGH, HSV_VAL_HIGH} }; // low/high threshold 
+    // values to base scores off of
+    const unsigned char blob_bgr[2][3] = { {BLOB_RED_LASER_HSV_HUE   , BLOB_RED_LASER_HSV_SAT   , BLOB_RED_LASER_HSV_VAL  },   // Expected Values
+                                           {BLOB_GREEN_LASER_HSV_HUE , BLOB_GREEN_LASER_HSV_SAT , BLOB_GREEN_LASER_HSV_VAL} }; // Expected Values
+    const unsigned char edge_bgr[2][3] = { {EDGE_RED_LASER_HSV_HUE   , EDGE_RED_LASER_HSV_SAT   , EDGE_RED_LASER_HSV_VAL  },   // Expected Values
+                                           {EDGE_GREEN_LASER_HSV_HUE , EDGE_GREEN_LASER_HSV_SAT , EDGE_GREEN_LASER_HSV_VAL} }; // Expected Values
+    const unsigned char core_bgr[2][3] = { {CORE_RED_LASER_HSV_HUE   , CORE_RED_LASER_HSV_SAT   , CORE_RED_LASER_HSV_VAL  },   // Expected Values
+                                           {CORE_GREEN_LASER_HSV_HUE , CORE_GREEN_LASER_HSV_SAT , CORE_GREEN_LASER_HSV_VAL} }; // Expected Values
+    // filters used to score
+    const unsigned int  filters[2]     = { (FILTER_RED_LASER_BLOB_HSV_HUE << 0)   + (FILTER_RED_LASER_BLOB_HSV_SAT << 1)   + (FILTER_RED_LASER_BLOB_HSV_VAL << 2)   + // blob H S V
+                                           (FILTER_RED_LASER_EDGE_HSV_HUE << 3)   + (FILTER_RED_LASER_EDGE_HSV_SAT << 4)   + (FILTER_RED_LASER_EDGE_HSV_VAL << 5)   + // edge H S V
+                                           (FILTER_RED_LASER_CORE_HSV_HUE << 6)   + (FILTER_RED_LASER_CORE_HSV_SAT << 7)   + (FILTER_RED_LASER_CORE_HSV_VAL << 8)   + // core H S V
+                                           (FILTER_RED_LASER_HSV_SIZE << 9),                                                                                          // size
+                                           (FILTER_GREEN_LASER_BLOB_HSV_HUE << 0) + (FILTER_GREEN_LASER_BLOB_HSV_SAT << 1) + (FILTER_GREEN_LASER_BLOB_HSV_VAL << 2) + // blob H S V
+                                           (FILTER_GREEN_LASER_EDGE_HSV_HUE << 3) + (FILTER_GREEN_LASER_EDGE_HSV_SAT << 4) + (FILTER_GREEN_LASER_EDGE_HSV_VAL << 5) + // edge H S V
+                                           (FILTER_GREEN_LASER_CORE_HSV_HUE << 6) + (FILTER_GREEN_LASER_CORE_HSV_SAT << 7) + (FILTER_GREEN_LASER_CORE_HSV_VAL << 8) + // core H S V
+                                           (FILTER_GREEN_LASER_HSV_SIZE << 9)                                                                                         // size
+                                         };
+    // threshold used to get binary matrices
+    int threshold_values[2][2][3]      = { { { RED_LASER_HSV_HUE_LOW,    RED_LASER_HSV_SAT_LOW ,   RED_LASER_HSV_VAL_LOW    }, 
+                                             { RED_LASER_HSV_HUE_HIGH,   RED_LASER_HSV_SAT_HIGH,   RED_LASER_HSV_VAL_HIGH   } }, 
+                                           { { GREEN_LASER_HSV_HUE_LOW,  GREEN_LASER_HSV_SAT_LOW , GREEN_LASER_HSV_VAL_LOW  }, 
+                                             { GREEN_LASER_HSV_HUE_HIGH, GREEN_LASER_HSV_SAT_HIGH, GREEN_LASER_HSV_VAL_HIGH } }  
+                                         };
 
 #else
-    const unsigned char blob_bgr[] = {BLOB_BGR_BLUE, BLOB_BGR_GREEN, BLOB_BGR_RED}; // red-white
-    const unsigned char edge_bgr[] = {EDGE_BGR_BLUE, EDGE_BGR_GREEN, EDGE_BGR_RED}; // red
-    const unsigned char core_bgr[] = {CORE_BGR_BLUE, CORE_BGR_GREEN, CORE_BGR_RED}; // white
-    const unsigned int filters     = (FILTER_BLOB_BGR_BLUE << 0) + (FILTER_BLOB_BGR_GREEN << 1) + (FILTER_BLOB_BGR_RED << 2) +       // blob B G R
-                                     (FILTER_EDGE_BGR_BLUE << 3) + (FILTER_EDGE_BGR_GREEN << 4) + (FILTER_EDGE_BGR_RED << 5) +       // edge B G R
-                                     (FILTER_CORE_BGR_BLUE << 6) + (FILTER_CORE_BGR_GREEN << 7) + (FILTER_CORE_BGR_RED << 8) +       // core B G R
-                                     (FILTER_SIZE << 9);                                                                             // size
-    int threshold_values[2][3]     = { {BGR_BLUE_LOW, BGR_GREEN_LOW , BGR_RED_LOW}, {BGR_BLUE_HIGH, BGR_GREEN_HIGH, BGR_RED_HIGH} }; // low/high threshold 
+    // values to base scores off of
+    const unsigned char blob_bgr[2][3] = { {BLOB_RED_LASER_BGR_BLUE   , BLOB_RED_LASER_BGR_GREEN   , BLOB_RED_LASER_BGR_RED  },   // Expected Values
+                                           {BLOB_GREEN_LASER_BGR_BLUE , BLOB_GREEN_LASER_BGR_GREEN , BLOB_GREEN_LASER_BGR_RED} }; // Expected Values
+    const unsigned char edge_bgr[2][3] = { {EDGE_RED_LASER_BGR_BLUE   , EDGE_RED_LASER_BGR_GREEN   , EDGE_RED_LASER_BGR_RED  },   // Expected Values
+                                           {EDGE_GREEN_LASER_BGR_BLUE , EDGE_GREEN_LASER_BGR_GREEN , EDGE_GREEN_LASER_BGR_RED} }; // Expected Values
+    const unsigned char core_bgr[2][3] = { {CORE_RED_LASER_BGR_BLUE   , CORE_RED_LASER_BGR_GREEN   , CORE_RED_LASER_BGR_RED  },   // Expected Values
+                                           {CORE_GREEN_LASER_BGR_BLUE , CORE_GREEN_LASER_BGR_GREEN , CORE_GREEN_LASER_BGR_RED} }; // Expected Values
+    // filters used to score
+    const unsigned int  filters[2]     = { (FILTER_RED_LASER_BLOB_BGR_BLUE << 0)   + (FILTER_RED_LASER_BLOB_BGR_GREEN << 1)   + (FILTER_RED_LASER_BLOB_BGR_RED << 2)   + // blob B G R
+                                           (FILTER_RED_LASER_EDGE_BGR_BLUE << 3)   + (FILTER_RED_LASER_EDGE_BGR_GREEN << 4)   + (FILTER_RED_LASER_EDGE_BGR_RED << 5)   + // edge B G R
+                                           (FILTER_RED_LASER_CORE_BGR_BLUE << 6)   + (FILTER_RED_LASER_CORE_BGR_GREEN << 7)   + (FILTER_RED_LASER_CORE_BGR_RED << 8)   + // core B G R
+                                           (FILTER_RED_LASER_BGR_SIZE << 9),                                                                                             // size
+                                           (FILTER_GREEN_LASER_BLOB_BGR_BLUE << 0) + (FILTER_GREEN_LASER_BLOB_BGR_GREEN << 1) + (FILTER_GREEN_LASER_BLOB_BGR_RED << 2) + // blob B G R
+                                           (FILTER_GREEN_LASER_EDGE_BGR_BLUE << 3) + (FILTER_GREEN_LASER_EDGE_BGR_GREEN << 4) + (FILTER_GREEN_LASER_EDGE_BGR_RED << 5) + // edge B G R
+                                           (FILTER_GREEN_LASER_CORE_BGR_BLUE << 6) + (FILTER_GREEN_LASER_CORE_BGR_GREEN << 7) + (FILTER_GREEN_LASER_CORE_BGR_RED << 8) + // core B G R
+                                           (FILTER_GREEN_LASER_BGR_SIZE << 9)                                                                                            // size
+                                         };
+    // threshold used to get binary matrices
+    int threshold_values[2][2][3]      = { { { RED_LASER_BGR_BLUE_LOW,    RED_LASER_BGR_GREEN_LOW ,   RED_LASER_BGR_RED_LOW    }, 
+                                             { RED_LASER_BGR_BLUE_HIGH,   RED_LASER_BGR_GREEN_HIGH,   RED_LASER_BGR_RED_HIGH   } }, 
+                                           { { GREEN_LASER_BGR_BLUE_LOW,  GREEN_LASER_BGR_GREEN_LOW , GREEN_LASER_BGR_RED_LOW  }, 
+                                             { GREEN_LASER_BGR_BLUE_HIGH, GREEN_LASER_BGR_GREEN_HIGH, GREEN_LASER_BGR_RED_HIGH } }  
+                                         };
+
 #endif
 
 using namespace cv;
@@ -92,12 +123,12 @@ int main(int, char**)
         int height   = orig_mat.rows;
         vector< unsigned char > frame_data(width * height * channels);  // initialize 'frame_data' to correct size
 
-        createTrackbar( "b_l:", "tuning", &threshold_values[0][0], 255, on_adjust );
-        createTrackbar( "g_l:", "tuning", &threshold_values[0][1], 255, on_adjust );
-        createTrackbar( "r_l:", "tuning", &threshold_values[0][2], 255, on_adjust );
-        createTrackbar( "b_h:", "tuning", &threshold_values[1][0], 255, on_adjust );
-        createTrackbar( "g_h:", "tuning", &threshold_values[1][1], 255, on_adjust );
-        createTrackbar( "r_h:", "tuning", &threshold_values[1][2], 255, on_adjust );
+        createTrackbar( "b_l:", "tuning", &threshold_values[1][0][0], 255, on_adjust );
+        createTrackbar( "g_l:", "tuning", &threshold_values[1][0][1], 255, on_adjust );
+        createTrackbar( "r_l:", "tuning", &threshold_values[1][0][2], 255, on_adjust );
+        createTrackbar( "b_h:", "tuning", &threshold_values[1][1][0], 255, on_adjust );
+        createTrackbar( "g_h:", "tuning", &threshold_values[1][1][1], 255, on_adjust );
+        createTrackbar( "r_h:", "tuning", &threshold_values[1][1][2], 255, on_adjust );
 
         int cont = 1; // continue variable 
         while (cont == 1)
@@ -119,46 +150,41 @@ int main(int, char**)
 
             //// Blob Detection
             // Frame looks at pixels, applyings min/max threshold, and creates binary matrix
-            new_frame.inRange(threshold_values[0][0],  // threshold B/H low
-                              threshold_values[1][0],  // threshold B/H high
-                              threshold_values[0][1],  // threshold G/S low
-                              threshold_values[1][1],  // threshold G/S high
-                              threshold_values[0][2],  // threshold R/V low
-                              threshold_values[1][2]); // threshold R/V high
-            new_frame.findBlobs();  // Find Blobs based on binary matrix results
+            new_frame.inRange(threshold_values[0][0][0], threshold_values[0][1][0], threshold_values[0][0][1], threshold_values[0][1][1], threshold_values[0][0][2], threshold_values[0][1][2], 0); 
+            new_frame.inRange(threshold_values[1][0][0], threshold_values[1][1][0], threshold_values[1][0][1], threshold_values[1][1][1], threshold_values[1][0][2], threshold_values[1][1][2], 1); 
+            new_frame.findBlobs(0);  // Find Blobs based on red binary matrix results
+            new_frame.findBlobs(1);  // Find Blobs based on green binary matrix results
 
-            //// Blob Selection
-            if (new_frame.hasBlobs())
+            Scalar colors[2] = {Scalar(0, 0, 255), Scalar(0, 255, 0)};
+            for (int laser_color = 0; laser_color < 2; laser_color++)
             {
-                // Identify the blob with the highest score
-                Blob best_blob = new_frame.bestBlob(filters, blob_bgr, edge_bgr, core_bgr);
-                if (best_blob.isInitialized())
+                if (new_frame.hasBlobs(laser_color))
                 {
-                    // Draw Best Blob's Boundary
-                    Rect brect = best_blob.getRect();
-                    rectangle(output_mat, Rect(brect.x - 10, brect.y - 10, brect.width + 20, brect.height + 20), Scalar(0, 0, 255), 2);
-                    putText(output_mat, "#: " + to_string(best_blob.getBlobPixels().size()) + " S:" + to_string(best_blob.getScore()), Point(brect.x, brect.y - 20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255), 2);
+                    // Identify the blob with the highest score
+                    Blob best_blob = new_frame.bestBlob(filters[laser_color], blob_bgr[laser_color], edge_bgr[laser_color], core_bgr[laser_color], laser_color);
+                    if (best_blob.isInitialized())
+                    {
+                        // Draw Best Blob's Boundary
+                        Rect brect = best_blob.getRect();
+                        rectangle(output_mat, Rect(brect.x - 10, brect.y - 10, brect.width + 20, brect.height + 20), colors[laser_color], 2);
+                        putText(output_mat, 
+                                "#: " + to_string(best_blob.getBlobPixels().size()) + " S:" + to_string(best_blob.getScore()), 
+                                Point(brect.x, brect.y - 20), FONT_HERSHEY_SIMPLEX, 0.5, colors[laser_color], 2);
 
-                    //Scalar average_bgr = best_blob.getAverageBGR(0);
-                    //string average_bgr_str = to_string((int)average_bgr[0]) + "\n" + to_string((int)average_bgr[1]) + "\n" + to_string((int)average_bgr[2]) + "\n";
-                    //cout << average_bgr_str << "";
-                    //average_bgr = best_blob.getAverageBGR(1);
-                    //average_bgr_str = to_string((int)average_bgr[0]) + "\n" + to_string((int)average_bgr[1]) + "\n" + to_string((int)average_bgr[2]) + "\n";
-                    //cout << average_bgr_str << "";
-                    //average_bgr = best_blob.getAverageBGR(2);
-                    //average_bgr_str = to_string((int)average_bgr[0]) + "\n" + to_string((int)average_bgr[1]) + "\n" + to_string((int)average_bgr[2]) + "\n";
-                    //cout << average_bgr_str << "\n";
+                        // Display info at bottom of screen
+                        Scalar average_bgr = best_blob.getAverageBGR(1);
+                        string average_bgr_str = "#Blobs: " + to_string(new_frame.getBlobs(laser_color).size()) + 
+                                                 " BGR: ("  + to_string((int)average_bgr[0])         + 
+                                                       ", " + to_string((int)average_bgr[1])         + 
+                                                       ", " + to_string((int)average_bgr[2])         + ")";
+                        putText(output_mat, average_bgr_str, Point(10, MAX_ROW - 10 - (20 * laser_color)), FONT_HERSHEY_SIMPLEX, 0.5, colors[laser_color], 2);
 
-                    // Display info at bottom of screen
-                    Scalar average_bgr = best_blob.getAverageBGR(0);
-                    string average_bgr_str = "#Blobs: " + to_string(new_frame.getBlobs().size()) + 
-                                             " BGR: ("  + to_string((int)average_bgr[0])         + 
-                                                   ", " + to_string((int)average_bgr[1])         + 
-                                                   ", " + to_string((int)average_bgr[2])         + ")";
-                    putText(output_mat, average_bgr_str, Point(10, MAX_ROW - 10), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255), 2);
-
-                    // Update Pong Paddle
-                    pong.updatePaddle(brect.y);
+                        // Update Pong Paddle
+                        if (laser_color == 0)
+                            pong.updatePaddle(brect.y, 0);
+                        if (laser_color == 1)
+                            pong.updatePaddle(brect.y, 1);
+                    }
                 }
             }
 
@@ -166,19 +192,23 @@ int main(int, char**)
             if (pong.isRunning())
             {
                 pong.update();
-                rectangle(output_mat, pong.getBall(), Scalar(BALL_BLUE, BALL_GREEN, BALL_RED), 2);
-                rectangle(output_mat, pong.getPaddle(), Scalar(PADDLE_BLUE, PADDLE_GREEN, PADDLE_RED), 2);
+                rectangle(output_mat, pong.getBall(),    Scalar(BALL_BLUE, BALL_GREEN, BALL_RED), 2);
+                rectangle(output_mat, pong.getPaddle(0), Scalar(PADDLE_LEFT_BLUE, PADDLE_LEFT_GREEN, PADDLE_LEFT_RED), 2);
+                rectangle(output_mat, pong.getPaddle(1), Scalar(PADDLE_RIGHT_BLUE, PADDLE_RIGHT_GREEN, PADDLE_RIGHT_RED), 2);
                 if (pong.isLost())
                 {
-                    putText(output_mat, "You Lost!", Point(MAX_COL / 2 - 50, MAX_ROW / 2 - 10), FONT_HERSHEY_SIMPLEX, 1, Scalar(50, 50, 255), 2);
+                    Scalar text_color = (pong.getLostTeam() == 0) ? Scalar(50, 50, 255) : Scalar(50, 255, 50);
+                    putText(output_mat, "Lost!", Point(MAX_COL / 2 - 50, MAX_ROW / 2 - 10), FONT_HERSHEY_SIMPLEX, 1, text_color, 2);
                 }
             }
 
-            Mat frame_mat = new_frame.getMat(1, 1);            // Get OpenCV binary image 
+            Mat frame_mat_red = new_frame.getMat(1, 1);        // Get OpenCV binary image 
+            Mat frame_mat_green = new_frame.getMat(1, 2);      // Get OpenCV binary image 
             Mat resized_orig;                                  // Image to write resized output_image
             resize(output_mat, resized_orig, Size(1040, 780)); // Actually resize output_image
 
-            imshow("tuning", frame_mat);
+            imshow("tuning", frame_mat_red);
+            imshow("tuning", frame_mat_green);
             imshow("output", resized_orig);
 
             cont = processInputs(output_mat);
