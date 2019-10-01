@@ -1,0 +1,1550 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/3fdf28bc/
+$(VERBOSE).SILENT	software/490A_Final_Demo/build/Makefile	/^$(VERBOSE).SILENT:$/;"	t
+$(VERBOSE).SILENT	software/demo1/build/Makefile	/^$(VERBOSE).SILENT:$/;"	t
+$(VERBOSE).SILENT	software/demo2/build/Makefile	/^$(VERBOSE).SILENT:$/;"	t
+$(VERBOSE).SILENT	software/demo2/build/src/Makefile	/^$(VERBOSE).SILENT:$/;"	t
+$(VERBOSE).SILENT	software/demo2/build/src/pong/Makefile	/^$(VERBOSE).SILENT:$/;"	t
+ALT-F4	README.md	/^# ALT-F4$/;"	c
+ALT-F4 (Embedded)	embedded/README.md	/^# ALT-F4 (Embedded)$/;"	c
+ALT-F4 (Software)	software/README.md	/^# ALT-F4 (Software)$/;"	c
+ARCHITECTURE_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#   define ARCHITECTURE_ID /;"	d	file:
+ARCHITECTURE_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define ARCHITECTURE_ID /;"	d	file:
+ARCHITECTURE_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define ARCHITECTURE_ID$/;"	d	file:
+ARCHITECTURE_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#   define ARCHITECTURE_ID /;"	d	file:
+ARCHITECTURE_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define ARCHITECTURE_ID /;"	d	file:
+ARCHITECTURE_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define ARCHITECTURE_ID$/;"	d	file:
+ARCHITECTURE_ID	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#   define ARCHITECTURE_ID /;"	d	file:
+ARCHITECTURE_ID	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define ARCHITECTURE_ID /;"	d	file:
+ARCHITECTURE_ID	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define ARCHITECTURE_ID$/;"	d	file:
+ARCHITECTURE_ID	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#   define ARCHITECTURE_ID /;"	d	file:
+ARCHITECTURE_ID	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define ARCHITECTURE_ID /;"	d	file:
+ARCHITECTURE_ID	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define ARCHITECTURE_ID$/;"	d	file:
+ARCHITECTURE_ID	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#   define ARCHITECTURE_ID /;"	d	file:
+ARCHITECTURE_ID	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define ARCHITECTURE_ID /;"	d	file:
+ARCHITECTURE_ID	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define ARCHITECTURE_ID$/;"	d	file:
+ARCHITECTURE_ID	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#   define ARCHITECTURE_ID /;"	d	file:
+ARCHITECTURE_ID	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define ARCHITECTURE_ID /;"	d	file:
+ARCHITECTURE_ID	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define ARCHITECTURE_ID$/;"	d	file:
+BALL_BLUE	software/demo1/src/global.h	/^#define BALL_BLUE /;"	d
+BALL_BLUE	software/demo2/src/global.hpp	/^#define BALL_BLUE /;"	d
+BALL_GREEN	software/demo1/src/global.h	/^#define BALL_GREEN /;"	d
+BALL_GREEN	software/demo2/src/global.hpp	/^#define BALL_GREEN /;"	d
+BALL_RED	software/demo1/src/global.h	/^#define BALL_RED /;"	d
+BALL_RED	software/demo2/src/global.hpp	/^#define BALL_RED /;"	d
+BALL_VELOCITY	software/demo1/src/global.h	/^#define BALL_VELOCITY /;"	d
+BALL_VELOCITY	software/demo2/src/global.hpp	/^#define BALL_VELOCITY /;"	d
+BLOB_BLUE_WEIGHT	software/demo1/src/global.h	/^#define BLOB_BLUE_WEIGHT /;"	d
+BLOB_BLUE_WEIGHT	software/demo2/src/global.hpp	/^#define BLOB_BLUE_WEIGHT /;"	d
+BLOB_GREEN_LASER_BGR_BLUE	software/demo1/src/global.h	/^#define BLOB_GREEN_LASER_BGR_BLUE /;"	d
+BLOB_GREEN_LASER_BGR_BLUE	software/demo2/src/global.hpp	/^#define BLOB_GREEN_LASER_BGR_BLUE /;"	d
+BLOB_GREEN_LASER_BGR_GREEN	software/demo1/src/global.h	/^#define BLOB_GREEN_LASER_BGR_GREEN /;"	d
+BLOB_GREEN_LASER_BGR_GREEN	software/demo2/src/global.hpp	/^#define BLOB_GREEN_LASER_BGR_GREEN /;"	d
+BLOB_GREEN_LASER_BGR_RED	software/demo1/src/global.h	/^#define BLOB_GREEN_LASER_BGR_RED /;"	d
+BLOB_GREEN_LASER_BGR_RED	software/demo2/src/global.hpp	/^#define BLOB_GREEN_LASER_BGR_RED /;"	d
+BLOB_GREEN_LASER_HSV_HUE	software/demo1/src/global.h	/^#define BLOB_GREEN_LASER_HSV_HUE /;"	d
+BLOB_GREEN_LASER_HSV_HUE	software/demo2/src/global.hpp	/^#define BLOB_GREEN_LASER_HSV_HUE /;"	d
+BLOB_GREEN_LASER_HSV_SAT	software/demo1/src/global.h	/^#define BLOB_GREEN_LASER_HSV_SAT /;"	d
+BLOB_GREEN_LASER_HSV_SAT	software/demo2/src/global.hpp	/^#define BLOB_GREEN_LASER_HSV_SAT /;"	d
+BLOB_GREEN_LASER_HSV_VAL	software/demo1/src/global.h	/^#define BLOB_GREEN_LASER_HSV_VAL /;"	d
+BLOB_GREEN_LASER_HSV_VAL	software/demo2/src/global.hpp	/^#define BLOB_GREEN_LASER_HSV_VAL /;"	d
+BLOB_GREEN_WEIGHT	software/demo1/src/global.h	/^#define BLOB_GREEN_WEIGHT /;"	d
+BLOB_GREEN_WEIGHT	software/demo2/src/global.hpp	/^#define BLOB_GREEN_WEIGHT /;"	d
+BLOB_RED_LASER_BGR_BLUE	software/demo1/src/global.h	/^#define BLOB_RED_LASER_BGR_BLUE /;"	d
+BLOB_RED_LASER_BGR_BLUE	software/demo2/src/global.hpp	/^#define BLOB_RED_LASER_BGR_BLUE /;"	d
+BLOB_RED_LASER_BGR_GREEN	software/demo1/src/global.h	/^#define BLOB_RED_LASER_BGR_GREEN /;"	d
+BLOB_RED_LASER_BGR_GREEN	software/demo2/src/global.hpp	/^#define BLOB_RED_LASER_BGR_GREEN /;"	d
+BLOB_RED_LASER_BGR_RED	software/demo1/src/global.h	/^#define BLOB_RED_LASER_BGR_RED /;"	d
+BLOB_RED_LASER_BGR_RED	software/demo2/src/global.hpp	/^#define BLOB_RED_LASER_BGR_RED /;"	d
+BLOB_RED_LASER_HSV_HUE	software/demo1/src/global.h	/^#define BLOB_RED_LASER_HSV_HUE /;"	d
+BLOB_RED_LASER_HSV_HUE	software/demo2/src/global.hpp	/^#define BLOB_RED_LASER_HSV_HUE /;"	d
+BLOB_RED_LASER_HSV_SAT	software/demo1/src/global.h	/^#define BLOB_RED_LASER_HSV_SAT /;"	d
+BLOB_RED_LASER_HSV_SAT	software/demo2/src/global.hpp	/^#define BLOB_RED_LASER_HSV_SAT /;"	d
+BLOB_RED_LASER_HSV_VAL	software/demo1/src/global.h	/^#define BLOB_RED_LASER_HSV_VAL /;"	d
+BLOB_RED_LASER_HSV_VAL	software/demo2/src/global.hpp	/^#define BLOB_RED_LASER_HSV_VAL /;"	d
+BLOB_RED_WEIGHT	software/demo1/src/global.h	/^#define BLOB_RED_WEIGHT /;"	d
+BLOB_RED_WEIGHT	software/demo2/src/global.hpp	/^#define BLOB_RED_WEIGHT /;"	d
+BUFFERSIZE	software/demo1/src/global.h	/^#define BUFFERSIZE /;"	d
+BUFFERSIZE	software/demo2/src/global.hpp	/^#define BUFFERSIZE /;"	d
+Blob	software/demo1/src/blob.cpp	/^Blob::Blob() $/;"	f	class:Blob
+Blob	software/demo1/src/blob.cpp	/^Blob::Blob(std::vector< Pixel > blob_pixels, std::vector< Pixel > edge_pixels, std::vector< Pixe/;"	f	class:Blob
+Blob	software/demo1/src/blob.h	/^class Blob$/;"	c
+Blob	software/demo2/src/blob.cpp	/^Blob::Blob() $/;"	f	class:Blob
+Blob	software/demo2/src/blob.cpp	/^Blob::Blob(std::vector< Pixel > blob_pixels, std::vector< Pixel > edge_pixels, std::vector< Pixe/;"	f	class:Blob
+Blob	software/demo2/src/blob.hpp	/^class Blob$/;"	c
+Bluetooth Glove	embedded/README.md	/^## Bluetooth Glove$/;"	s
+CAMERA_NUMBER	software/demo1/src/global.h	/^#define CAMERA_NUMBER /;"	d
+CAMERA_NUMBER	software/demo2/src/global.hpp	/^#define CAMERA_NUMBER /;"	d
+CAMERA_SOURCES	software/demo2/src/CMakeLists.txt	/^set(CAMERA_SOURCES $/;"	v
+CMAKE_AR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_AR "\/usr\/bin\/ar")$/;"	v
+CMAKE_AR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_AR "\/usr\/bin\/ar")$/;"	v
+CMAKE_AR	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_AR "\/usr\/bin\/ar")$/;"	v
+CMAKE_AR	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_AR "\/usr\/bin\/ar")$/;"	v
+CMAKE_AR	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_AR "\/usr\/bin\/ar")$/;"	v
+CMAKE_AR	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_AR "\/usr\/bin\/ar")$/;"	v
+CMAKE_BINARY_DIR	software/490A_Final_Demo/build/Makefile	/^CMAKE_BINARY_DIR = \/home\/steven\/alt-f4\/demo\/build$/;"	m
+CMAKE_BINARY_DIR	software/demo1/build/Makefile	/^CMAKE_BINARY_DIR = \/home\/steven\/Development\/alt-f4\/demo1\/build$/;"	m
+CMAKE_BINARY_DIR	software/demo2/build/Makefile	/^CMAKE_BINARY_DIR = \/home\/steven\/Development\/alt-f4\/demo2\/build$/;"	m
+CMAKE_BINARY_DIR	software/demo2/build/src/Makefile	/^CMAKE_BINARY_DIR = \/home\/steven\/Development\/alt-f4\/demo2\/build$/;"	m
+CMAKE_BINARY_DIR	software/demo2/build/src/pong/Makefile	/^CMAKE_BINARY_DIR = \/home\/steven\/Development\/alt-f4\/demo2\/build$/;"	m
+CMAKE_BUILD_TYPE	software/490A_Final_Demo/CMakeLists.txt	/^set(CMAKE_BUILD_TYPE RelWithDebInfo)$/;"	v
+CMAKE_BUILD_TYPE	software/camera/CMakeLists.txt	/^set(CMAKE_BUILD_TYPE RelWithDebInfo)$/;"	v
+CMAKE_BUILD_TYPE	software/demo1/CMakeLists.txt	/^set(CMAKE_BUILD_TYPE RelWithDebInfo)$/;"	v
+CMAKE_BUILD_TYPE	software/demo2/CMakeLists.txt	/^set(CMAKE_BUILD_TYPE RelWithDebInfo)$/;"	v
+CMAKE_C11_COMPILE_FEATURES	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C11_COMPILE_FEATURES "c_std_11;c_static_assert")$/;"	v
+CMAKE_C11_COMPILE_FEATURES	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C11_COMPILE_FEATURES "c_std_11;c_static_assert")$/;"	v
+CMAKE_C11_COMPILE_FEATURES	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C11_COMPILE_FEATURES "c_std_11;c_static_assert")$/;"	v
+CMAKE_C90_COMPILE_FEATURES	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C90_COMPILE_FEATURES "c_std_90;c_function_prototypes")$/;"	v
+CMAKE_C90_COMPILE_FEATURES	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C90_COMPILE_FEATURES "c_std_90;c_function_prototypes")$/;"	v
+CMAKE_C90_COMPILE_FEATURES	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C90_COMPILE_FEATURES "c_std_90;c_function_prototypes")$/;"	v
+CMAKE_C99_COMPILE_FEATURES	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C99_COMPILE_FEATURES "c_std_99;c_restrict;c_variadic_macros")$/;"	v
+CMAKE_C99_COMPILE_FEATURES	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C99_COMPILE_FEATURES "c_std_99;c_restrict;c_variadic_macros")$/;"	v
+CMAKE_C99_COMPILE_FEATURES	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C99_COMPILE_FEATURES "c_std_99;c_restrict;c_variadic_macros")$/;"	v
+CMAKE_CL_SHOWINCLUDES_PREFIX	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^  set(CMAKE_CL_SHOWINCLUDES_PREFIX "${CMAKE_C_CL_SHOWINCLUDES_PREFIX}")$/;"	v
+CMAKE_CL_SHOWINCLUDES_PREFIX	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^  set(CMAKE_CL_SHOWINCLUDES_PREFIX "${CMAKE_CXX_CL_SHOWINCLUDES_PREFIX}")$/;"	v
+CMAKE_CL_SHOWINCLUDES_PREFIX	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^  set(CMAKE_CL_SHOWINCLUDES_PREFIX "${CMAKE_C_CL_SHOWINCLUDES_PREFIX}")$/;"	v
+CMAKE_CL_SHOWINCLUDES_PREFIX	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^  set(CMAKE_CL_SHOWINCLUDES_PREFIX "${CMAKE_CXX_CL_SHOWINCLUDES_PREFIX}")$/;"	v
+CMAKE_CL_SHOWINCLUDES_PREFIX	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^  set(CMAKE_CL_SHOWINCLUDES_PREFIX "${CMAKE_C_CL_SHOWINCLUDES_PREFIX}")$/;"	v
+CMAKE_CL_SHOWINCLUDES_PREFIX	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^  set(CMAKE_CL_SHOWINCLUDES_PREFIX "${CMAKE_CXX_CL_SHOWINCLUDES_PREFIX}")$/;"	v
+CMAKE_COMMAND	software/490A_Final_Demo/build/Makefile	/^CMAKE_COMMAND = \/usr\/bin\/cmake$/;"	m
+CMAKE_COMMAND	software/demo1/build/Makefile	/^CMAKE_COMMAND = \/usr\/bin\/cmake$/;"	m
+CMAKE_COMMAND	software/demo2/build/Makefile	/^CMAKE_COMMAND = \/usr\/bin\/cmake$/;"	m
+CMAKE_COMMAND	software/demo2/build/src/Makefile	/^CMAKE_COMMAND = \/usr\/bin\/cmake$/;"	m
+CMAKE_COMMAND	software/demo2/build/src/pong/Makefile	/^CMAKE_COMMAND = \/usr\/bin\/cmake$/;"	m
+CMAKE_COMPILER_IS_CYGWIN	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_COMPILER_IS_CYGWIN )$/;"	v
+CMAKE_COMPILER_IS_CYGWIN	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_COMPILER_IS_CYGWIN )$/;"	v
+CMAKE_COMPILER_IS_CYGWIN	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_COMPILER_IS_CYGWIN )$/;"	v
+CMAKE_COMPILER_IS_CYGWIN	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_COMPILER_IS_CYGWIN )$/;"	v
+CMAKE_COMPILER_IS_CYGWIN	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_COMPILER_IS_CYGWIN )$/;"	v
+CMAKE_COMPILER_IS_CYGWIN	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_COMPILER_IS_CYGWIN )$/;"	v
+CMAKE_COMPILER_IS_GNUCC	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_COMPILER_IS_GNUCC 1)$/;"	v
+CMAKE_COMPILER_IS_GNUCC	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_COMPILER_IS_GNUCC 1)$/;"	v
+CMAKE_COMPILER_IS_GNUCC	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_COMPILER_IS_GNUCC 1)$/;"	v
+CMAKE_COMPILER_IS_GNUCXX	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_COMPILER_IS_GNUCXX 1)$/;"	v
+CMAKE_COMPILER_IS_GNUCXX	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_COMPILER_IS_GNUCXX 1)$/;"	v
+CMAKE_COMPILER_IS_GNUCXX	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_COMPILER_IS_GNUCXX 1)$/;"	v
+CMAKE_COMPILER_IS_MINGW	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_COMPILER_IS_MINGW )$/;"	v
+CMAKE_COMPILER_IS_MINGW	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_COMPILER_IS_MINGW )$/;"	v
+CMAKE_COMPILER_IS_MINGW	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_COMPILER_IS_MINGW )$/;"	v
+CMAKE_COMPILER_IS_MINGW	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_COMPILER_IS_MINGW )$/;"	v
+CMAKE_COMPILER_IS_MINGW	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_COMPILER_IS_MINGW )$/;"	v
+CMAKE_COMPILER_IS_MINGW	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_COMPILER_IS_MINGW )$/;"	v
+CMAKE_CROSSCOMPILING	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_CROSSCOMPILING "FALSE")$/;"	v
+CMAKE_CROSSCOMPILING	software/490A_Final_Demo/build/cmake_install.cmake	/^  set(CMAKE_CROSSCOMPILING "FALSE")$/;"	v
+CMAKE_CROSSCOMPILING	software/demo1/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_CROSSCOMPILING "FALSE")$/;"	v
+CMAKE_CROSSCOMPILING	software/demo1/build/cmake_install.cmake	/^  set(CMAKE_CROSSCOMPILING "FALSE")$/;"	v
+CMAKE_CROSSCOMPILING	software/demo2/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_CROSSCOMPILING "FALSE")$/;"	v
+CMAKE_CROSSCOMPILING	software/demo2/build/cmake_install.cmake	/^  set(CMAKE_CROSSCOMPILING "FALSE")$/;"	v
+CMAKE_CROSSCOMPILING	software/demo2/build/src/cmake_install.cmake	/^  set(CMAKE_CROSSCOMPILING "FALSE")$/;"	v
+CMAKE_CROSSCOMPILING	software/demo2/build/src/pong/cmake_install.cmake	/^  set(CMAKE_CROSSCOMPILING "FALSE")$/;"	v
+CMAKE_CXX11_COMPILE_FEATURES	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX11_COMPILE_FEATURES "cxx_std_11;cxx_alias_templates;cxx_alignas;cxx_alignof;cxx_att/;"	v
+CMAKE_CXX11_COMPILE_FEATURES	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX11_COMPILE_FEATURES "cxx_std_11;cxx_alias_templates;cxx_alignas;cxx_alignof;cxx_att/;"	v
+CMAKE_CXX11_COMPILE_FEATURES	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX11_COMPILE_FEATURES "cxx_std_11;cxx_alias_templates;cxx_alignas;cxx_alignof;cxx_att/;"	v
+CMAKE_CXX14_COMPILE_FEATURES	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX14_COMPILE_FEATURES "cxx_std_14;cxx_aggregate_default_initializers;cxx_attribute_de/;"	v
+CMAKE_CXX14_COMPILE_FEATURES	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX14_COMPILE_FEATURES "cxx_std_14;cxx_aggregate_default_initializers;cxx_attribute_de/;"	v
+CMAKE_CXX14_COMPILE_FEATURES	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX14_COMPILE_FEATURES "cxx_std_14;cxx_aggregate_default_initializers;cxx_attribute_de/;"	v
+CMAKE_CXX17_COMPILE_FEATURES	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX17_COMPILE_FEATURES "cxx_std_17")$/;"	v
+CMAKE_CXX17_COMPILE_FEATURES	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX17_COMPILE_FEATURES "cxx_std_17")$/;"	v
+CMAKE_CXX17_COMPILE_FEATURES	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX17_COMPILE_FEATURES "cxx_std_17")$/;"	v
+CMAKE_CXX20_COMPILE_FEATURES	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX20_COMPILE_FEATURES "cxx_std_20")$/;"	v
+CMAKE_CXX20_COMPILE_FEATURES	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX20_COMPILE_FEATURES "cxx_std_20")$/;"	v
+CMAKE_CXX20_COMPILE_FEATURES	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX20_COMPILE_FEATURES "cxx_std_20")$/;"	v
+CMAKE_CXX98_COMPILE_FEATURES	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX98_COMPILE_FEATURES "cxx_std_98;cxx_template_template_parameters")$/;"	v
+CMAKE_CXX98_COMPILE_FEATURES	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX98_COMPILE_FEATURES "cxx_std_98;cxx_template_template_parameters")$/;"	v
+CMAKE_CXX98_COMPILE_FEATURES	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX98_COMPILE_FEATURES "cxx_std_98;cxx_template_template_parameters")$/;"	v
+CMAKE_CXX_ABI_COMPILED	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_ABI_COMPILED TRUE)$/;"	v
+CMAKE_CXX_ABI_COMPILED	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_ABI_COMPILED TRUE)$/;"	v
+CMAKE_CXX_ABI_COMPILED	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_ABI_COMPILED TRUE)$/;"	v
+CMAKE_CXX_CL_SHOWINCLUDES_PREFIX	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_CL_SHOWINCLUDES_PREFIX "")$/;"	v
+CMAKE_CXX_CL_SHOWINCLUDES_PREFIX	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_CL_SHOWINCLUDES_PREFIX "")$/;"	v
+CMAKE_CXX_CL_SHOWINCLUDES_PREFIX	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_CL_SHOWINCLUDES_PREFIX "")$/;"	v
+CMAKE_CXX_COMPILER	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER "\/usr\/bin\/c++")$/;"	v
+CMAKE_CXX_COMPILER	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER "\/usr\/bin\/c++")$/;"	v
+CMAKE_CXX_COMPILER	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER "\/usr\/bin\/c++")$/;"	v
+CMAKE_CXX_COMPILER_ABI	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_ABI "ELF")$/;"	v
+CMAKE_CXX_COMPILER_ABI	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_ABI "ELF")$/;"	v
+CMAKE_CXX_COMPILER_ABI	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_ABI "ELF")$/;"	v
+CMAKE_CXX_COMPILER_AR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_AR "\/usr\/bin\/gcc-ar")$/;"	v
+CMAKE_CXX_COMPILER_AR	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_AR "\/usr\/bin\/gcc-ar")$/;"	v
+CMAKE_CXX_COMPILER_AR	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_AR "\/usr\/bin\/gcc-ar")$/;"	v
+CMAKE_CXX_COMPILER_ARG1	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_ARG1 "")$/;"	v
+CMAKE_CXX_COMPILER_ARG1	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_ARG1 "")$/;"	v
+CMAKE_CXX_COMPILER_ARG1	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_ARG1 "")$/;"	v
+CMAKE_CXX_COMPILER_ENV_VAR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_ENV_VAR "CXX")$/;"	v
+CMAKE_CXX_COMPILER_ENV_VAR	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_ENV_VAR "CXX")$/;"	v
+CMAKE_CXX_COMPILER_ENV_VAR	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_ENV_VAR "CXX")$/;"	v
+CMAKE_CXX_COMPILER_FRONTEND_VARIANT	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_FRONTEND_VARIANT "")$/;"	v
+CMAKE_CXX_COMPILER_FRONTEND_VARIANT	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_FRONTEND_VARIANT "")$/;"	v
+CMAKE_CXX_COMPILER_FRONTEND_VARIANT	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_FRONTEND_VARIANT "")$/;"	v
+CMAKE_CXX_COMPILER_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_ID "GNU")$/;"	v
+CMAKE_CXX_COMPILER_ID	software/490A_Final_Demo/build/CMakeFiles/camera.dir/DependInfo.cmake	/^set(CMAKE_CXX_COMPILER_ID "GNU")$/;"	v
+CMAKE_CXX_COMPILER_ID	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_ID "GNU")$/;"	v
+CMAKE_CXX_COMPILER_ID	software/demo1/build/CMakeFiles/camera.dir/DependInfo.cmake	/^set(CMAKE_CXX_COMPILER_ID "GNU")$/;"	v
+CMAKE_CXX_COMPILER_ID	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_ID "GNU")$/;"	v
+CMAKE_CXX_COMPILER_ID	software/demo2/build/src/CMakeFiles/camera.dir/DependInfo.cmake	/^set(CMAKE_CXX_COMPILER_ID "GNU")$/;"	v
+CMAKE_CXX_COMPILER_ID_RUN	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_ID_RUN 1)$/;"	v
+CMAKE_CXX_COMPILER_ID_RUN	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_ID_RUN 1)$/;"	v
+CMAKE_CXX_COMPILER_ID_RUN	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_ID_RUN 1)$/;"	v
+CMAKE_CXX_COMPILER_LOADED	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_LOADED 1)$/;"	v
+CMAKE_CXX_COMPILER_LOADED	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_LOADED 1)$/;"	v
+CMAKE_CXX_COMPILER_LOADED	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_LOADED 1)$/;"	v
+CMAKE_CXX_COMPILER_RANLIB	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_RANLIB "\/usr\/bin\/gcc-ranlib")$/;"	v
+CMAKE_CXX_COMPILER_RANLIB	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_RANLIB "\/usr\/bin\/gcc-ranlib")$/;"	v
+CMAKE_CXX_COMPILER_RANLIB	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_RANLIB "\/usr\/bin\/gcc-ranlib")$/;"	v
+CMAKE_CXX_COMPILER_VERSION	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_VERSION "9.1.0")$/;"	v
+CMAKE_CXX_COMPILER_VERSION	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_VERSION "9.1.0")$/;"	v
+CMAKE_CXX_COMPILER_VERSION	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_VERSION "9.1.0")$/;"	v
+CMAKE_CXX_COMPILER_VERSION_INTERNAL	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_VERSION_INTERNAL "")$/;"	v
+CMAKE_CXX_COMPILER_VERSION_INTERNAL	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_VERSION_INTERNAL "")$/;"	v
+CMAKE_CXX_COMPILER_VERSION_INTERNAL	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_VERSION_INTERNAL "")$/;"	v
+CMAKE_CXX_COMPILER_WORKS	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_WORKS TRUE)$/;"	v
+CMAKE_CXX_COMPILER_WORKS	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_WORKS TRUE)$/;"	v
+CMAKE_CXX_COMPILER_WORKS	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_WORKS TRUE)$/;"	v
+CMAKE_CXX_COMPILER_WRAPPER	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_WRAPPER "")$/;"	v
+CMAKE_CXX_COMPILER_WRAPPER	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_WRAPPER "")$/;"	v
+CMAKE_CXX_COMPILER_WRAPPER	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILER_WRAPPER "")$/;"	v
+CMAKE_CXX_COMPILE_FEATURES	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILE_FEATURES "cxx_std_98;cxx_template_template_parameters;cxx_std_11;cxx_alias/;"	v
+CMAKE_CXX_COMPILE_FEATURES	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILE_FEATURES "cxx_std_98;cxx_template_template_parameters;cxx_std_11;cxx_alias/;"	v
+CMAKE_CXX_COMPILE_FEATURES	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_COMPILE_FEATURES "cxx_std_98;cxx_template_template_parameters;cxx_std_11;cxx_alias/;"	v
+CMAKE_CXX_FLAGS	software/490A_Final_Demo/CMakeLists.txt	/^set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")$/;"	v
+CMAKE_CXX_FLAGS	software/camera/CMakeLists.txt	/^set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")$/;"	v
+CMAKE_CXX_FLAGS	software/demo1/CMakeLists.txt	/^set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")$/;"	v
+CMAKE_CXX_FLAGS	software/demo2/CMakeLists.txt	/^set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")$/;"	v
+CMAKE_CXX_IGNORE_EXTENSIONS	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_IGNORE_EXTENSIONS inl;h;hpp;HPP;H;o;O;obj;OBJ;def;DEF;rc;RC)$/;"	v
+CMAKE_CXX_IGNORE_EXTENSIONS	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_IGNORE_EXTENSIONS inl;h;hpp;HPP;H;o;O;obj;OBJ;def;DEF;rc;RC)$/;"	v
+CMAKE_CXX_IGNORE_EXTENSIONS	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_IGNORE_EXTENSIONS inl;h;hpp;HPP;H;o;O;obj;OBJ;def;DEF;rc;RC)$/;"	v
+CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES "\/usr\/include\/c++\/9.1.0;\/usr\/include\/c++\/9.1./;"	v
+CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES "\/usr\/include\/c++\/9.1.0;\/usr\/include\/c++\/9.1./;"	v
+CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES "\/usr\/include\/c++\/9.1.0;\/usr\/include\/c++\/9.1./;"	v
+CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "\/usr\/lib\/gcc\/x86_64-pc-linux-gnu\/9.1.0;\/usr\/lib;/;"	v
+CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "\/usr\/lib\/gcc\/x86_64-pc-linux-gnu\/9.1.0;\/usr\/lib;/;"	v
+CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "\/usr\/lib\/gcc\/x86_64-pc-linux-gnu\/9.1.0;\/usr\/lib;/;"	v
+CMAKE_CXX_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")$/;"	v
+CMAKE_CXX_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")$/;"	v
+CMAKE_CXX_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")$/;"	v
+CMAKE_CXX_IMPLICIT_LINK_LIBRARIES	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_IMPLICIT_LINK_LIBRARIES "stdc++;m;gcc_s;gcc;c;gcc_s;gcc")$/;"	v
+CMAKE_CXX_IMPLICIT_LINK_LIBRARIES	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_IMPLICIT_LINK_LIBRARIES "stdc++;m;gcc_s;gcc;c;gcc_s;gcc")$/;"	v
+CMAKE_CXX_IMPLICIT_LINK_LIBRARIES	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_IMPLICIT_LINK_LIBRARIES "stdc++;m;gcc_s;gcc;c;gcc_s;gcc")$/;"	v
+CMAKE_CXX_INCLUDE_REGEX_COMPLAIN	software/490A_Final_Demo/build/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_CXX_INCLUDE_REGEX_COMPLAIN ${CMAKE_C_INCLUDE_REGEX_COMPLAIN})$/;"	v
+CMAKE_CXX_INCLUDE_REGEX_COMPLAIN	software/demo1/build/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_CXX_INCLUDE_REGEX_COMPLAIN ${CMAKE_C_INCLUDE_REGEX_COMPLAIN})$/;"	v
+CMAKE_CXX_INCLUDE_REGEX_COMPLAIN	software/demo2/build/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_CXX_INCLUDE_REGEX_COMPLAIN ${CMAKE_C_INCLUDE_REGEX_COMPLAIN})$/;"	v
+CMAKE_CXX_INCLUDE_REGEX_COMPLAIN	software/demo2/build/src/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_CXX_INCLUDE_REGEX_COMPLAIN ${CMAKE_C_INCLUDE_REGEX_COMPLAIN})$/;"	v
+CMAKE_CXX_INCLUDE_REGEX_COMPLAIN	software/demo2/build/src/pong/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_CXX_INCLUDE_REGEX_COMPLAIN ${CMAKE_C_INCLUDE_REGEX_COMPLAIN})$/;"	v
+CMAKE_CXX_INCLUDE_REGEX_SCAN	software/490A_Final_Demo/build/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_CXX_INCLUDE_REGEX_SCAN ${CMAKE_C_INCLUDE_REGEX_SCAN})$/;"	v
+CMAKE_CXX_INCLUDE_REGEX_SCAN	software/demo1/build/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_CXX_INCLUDE_REGEX_SCAN ${CMAKE_C_INCLUDE_REGEX_SCAN})$/;"	v
+CMAKE_CXX_INCLUDE_REGEX_SCAN	software/demo2/build/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_CXX_INCLUDE_REGEX_SCAN ${CMAKE_C_INCLUDE_REGEX_SCAN})$/;"	v
+CMAKE_CXX_INCLUDE_REGEX_SCAN	software/demo2/build/src/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_CXX_INCLUDE_REGEX_SCAN ${CMAKE_C_INCLUDE_REGEX_SCAN})$/;"	v
+CMAKE_CXX_INCLUDE_REGEX_SCAN	software/demo2/build/src/pong/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_CXX_INCLUDE_REGEX_SCAN ${CMAKE_C_INCLUDE_REGEX_SCAN})$/;"	v
+CMAKE_CXX_LIBRARY_ARCHITECTURE	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_LIBRARY_ARCHITECTURE "")$/;"	v
+CMAKE_CXX_LIBRARY_ARCHITECTURE	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_LIBRARY_ARCHITECTURE "")$/;"	v
+CMAKE_CXX_LIBRARY_ARCHITECTURE	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_LIBRARY_ARCHITECTURE "")$/;"	v
+CMAKE_CXX_LINKER_PREFERENCE	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_LINKER_PREFERENCE 30)$/;"	v
+CMAKE_CXX_LINKER_PREFERENCE	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_LINKER_PREFERENCE 30)$/;"	v
+CMAKE_CXX_LINKER_PREFERENCE	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_LINKER_PREFERENCE 30)$/;"	v
+CMAKE_CXX_LINKER_PREFERENCE_PROPAGATES	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_LINKER_PREFERENCE_PROPAGATES 1)$/;"	v
+CMAKE_CXX_LINKER_PREFERENCE_PROPAGATES	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_LINKER_PREFERENCE_PROPAGATES 1)$/;"	v
+CMAKE_CXX_LINKER_PREFERENCE_PROPAGATES	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_LINKER_PREFERENCE_PROPAGATES 1)$/;"	v
+CMAKE_CXX_PLATFORM_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_PLATFORM_ID "Linux")$/;"	v
+CMAKE_CXX_PLATFORM_ID	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_PLATFORM_ID "Linux")$/;"	v
+CMAKE_CXX_PLATFORM_ID	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_PLATFORM_ID "Linux")$/;"	v
+CMAKE_CXX_SIMULATE_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_SIMULATE_ID "")$/;"	v
+CMAKE_CXX_SIMULATE_ID	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_SIMULATE_ID "")$/;"	v
+CMAKE_CXX_SIMULATE_ID	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_SIMULATE_ID "")$/;"	v
+CMAKE_CXX_SIMULATE_VERSION	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_SIMULATE_VERSION "")$/;"	v
+CMAKE_CXX_SIMULATE_VERSION	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_SIMULATE_VERSION "")$/;"	v
+CMAKE_CXX_SIMULATE_VERSION	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_SIMULATE_VERSION "")$/;"	v
+CMAKE_CXX_SIZEOF_DATA_PTR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_SIZEOF_DATA_PTR "8")$/;"	v
+CMAKE_CXX_SIZEOF_DATA_PTR	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_SIZEOF_DATA_PTR "8")$/;"	v
+CMAKE_CXX_SIZEOF_DATA_PTR	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_SIZEOF_DATA_PTR "8")$/;"	v
+CMAKE_CXX_SOURCE_FILE_EXTENSIONS	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_SOURCE_FILE_EXTENSIONS C;M;c++;cc;cpp;cxx;mm;CPP)$/;"	v
+CMAKE_CXX_SOURCE_FILE_EXTENSIONS	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_SOURCE_FILE_EXTENSIONS C;M;c++;cc;cpp;cxx;mm;CPP)$/;"	v
+CMAKE_CXX_SOURCE_FILE_EXTENSIONS	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_SOURCE_FILE_EXTENSIONS C;M;c++;cc;cpp;cxx;mm;CPP)$/;"	v
+CMAKE_CXX_STANDARD	software/demo1/CMakeLists.txt	/^set(CMAKE_CXX_STANDARD 11)$/;"	v
+CMAKE_CXX_STANDARD	software/demo2/CMakeLists.txt	/^set(CMAKE_CXX_STANDARD 11)$/;"	v
+CMAKE_CXX_STANDARD_COMPUTED_DEFAULT	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_STANDARD_COMPUTED_DEFAULT "14")$/;"	v
+CMAKE_CXX_STANDARD_COMPUTED_DEFAULT	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_STANDARD_COMPUTED_DEFAULT "14")$/;"	v
+CMAKE_CXX_STANDARD_COMPUTED_DEFAULT	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_CXX_STANDARD_COMPUTED_DEFAULT "14")$/;"	v
+CMAKE_CXX_TARGET_INCLUDE_PATH	software/490A_Final_Demo/build/CMakeFiles/camera.dir/DependInfo.cmake	/^set(CMAKE_CXX_TARGET_INCLUDE_PATH$/;"	v
+CMAKE_CXX_TARGET_INCLUDE_PATH	software/demo1/build/CMakeFiles/camera.dir/DependInfo.cmake	/^set(CMAKE_CXX_TARGET_INCLUDE_PATH$/;"	v
+CMAKE_CXX_TARGET_INCLUDE_PATH	software/demo2/build/src/CMakeFiles/camera.dir/DependInfo.cmake	/^set(CMAKE_CXX_TARGET_INCLUDE_PATH$/;"	v
+CMAKE_C_ABI_COMPILED	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_ABI_COMPILED TRUE)$/;"	v
+CMAKE_C_ABI_COMPILED	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_ABI_COMPILED TRUE)$/;"	v
+CMAKE_C_ABI_COMPILED	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_ABI_COMPILED TRUE)$/;"	v
+CMAKE_C_CL_SHOWINCLUDES_PREFIX	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_CL_SHOWINCLUDES_PREFIX "")$/;"	v
+CMAKE_C_CL_SHOWINCLUDES_PREFIX	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_CL_SHOWINCLUDES_PREFIX "")$/;"	v
+CMAKE_C_CL_SHOWINCLUDES_PREFIX	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_CL_SHOWINCLUDES_PREFIX "")$/;"	v
+CMAKE_C_COMPILER	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER "\/usr\/bin\/cc")$/;"	v
+CMAKE_C_COMPILER	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER "\/usr\/bin\/cc")$/;"	v
+CMAKE_C_COMPILER	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER "\/usr\/bin\/cc")$/;"	v
+CMAKE_C_COMPILER_ABI	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_ABI "ELF")$/;"	v
+CMAKE_C_COMPILER_ABI	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_ABI "ELF")$/;"	v
+CMAKE_C_COMPILER_ABI	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_ABI "ELF")$/;"	v
+CMAKE_C_COMPILER_AR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_AR "\/usr\/bin\/gcc-ar")$/;"	v
+CMAKE_C_COMPILER_AR	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_AR "\/usr\/bin\/gcc-ar")$/;"	v
+CMAKE_C_COMPILER_AR	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_AR "\/usr\/bin\/gcc-ar")$/;"	v
+CMAKE_C_COMPILER_ARG1	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_ARG1 "")$/;"	v
+CMAKE_C_COMPILER_ARG1	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_ARG1 "")$/;"	v
+CMAKE_C_COMPILER_ARG1	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_ARG1 "")$/;"	v
+CMAKE_C_COMPILER_ENV_VAR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_ENV_VAR "CC")$/;"	v
+CMAKE_C_COMPILER_ENV_VAR	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_ENV_VAR "CC")$/;"	v
+CMAKE_C_COMPILER_ENV_VAR	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_ENV_VAR "CC")$/;"	v
+CMAKE_C_COMPILER_FRONTEND_VARIANT	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_FRONTEND_VARIANT "")$/;"	v
+CMAKE_C_COMPILER_FRONTEND_VARIANT	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_FRONTEND_VARIANT "")$/;"	v
+CMAKE_C_COMPILER_FRONTEND_VARIANT	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_FRONTEND_VARIANT "")$/;"	v
+CMAKE_C_COMPILER_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_ID "GNU")$/;"	v
+CMAKE_C_COMPILER_ID	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_ID "GNU")$/;"	v
+CMAKE_C_COMPILER_ID	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_ID "GNU")$/;"	v
+CMAKE_C_COMPILER_ID_RUN	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_ID_RUN 1)$/;"	v
+CMAKE_C_COMPILER_ID_RUN	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_ID_RUN 1)$/;"	v
+CMAKE_C_COMPILER_ID_RUN	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_ID_RUN 1)$/;"	v
+CMAKE_C_COMPILER_LOADED	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_LOADED 1)$/;"	v
+CMAKE_C_COMPILER_LOADED	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_LOADED 1)$/;"	v
+CMAKE_C_COMPILER_LOADED	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_LOADED 1)$/;"	v
+CMAKE_C_COMPILER_RANLIB	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_RANLIB "\/usr\/bin\/gcc-ranlib")$/;"	v
+CMAKE_C_COMPILER_RANLIB	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_RANLIB "\/usr\/bin\/gcc-ranlib")$/;"	v
+CMAKE_C_COMPILER_RANLIB	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_RANLIB "\/usr\/bin\/gcc-ranlib")$/;"	v
+CMAKE_C_COMPILER_VERSION	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_VERSION "9.1.0")$/;"	v
+CMAKE_C_COMPILER_VERSION	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_VERSION "9.1.0")$/;"	v
+CMAKE_C_COMPILER_VERSION	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_VERSION "9.1.0")$/;"	v
+CMAKE_C_COMPILER_VERSION_INTERNAL	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_VERSION_INTERNAL "")$/;"	v
+CMAKE_C_COMPILER_VERSION_INTERNAL	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_VERSION_INTERNAL "")$/;"	v
+CMAKE_C_COMPILER_VERSION_INTERNAL	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_VERSION_INTERNAL "")$/;"	v
+CMAKE_C_COMPILER_WORKS	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_WORKS TRUE)$/;"	v
+CMAKE_C_COMPILER_WORKS	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_WORKS TRUE)$/;"	v
+CMAKE_C_COMPILER_WORKS	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_WORKS TRUE)$/;"	v
+CMAKE_C_COMPILER_WRAPPER	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_WRAPPER "")$/;"	v
+CMAKE_C_COMPILER_WRAPPER	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_WRAPPER "")$/;"	v
+CMAKE_C_COMPILER_WRAPPER	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILER_WRAPPER "")$/;"	v
+CMAKE_C_COMPILE_FEATURES	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILE_FEATURES "c_std_90;c_function_prototypes;c_std_99;c_restrict;c_variadic_macr/;"	v
+CMAKE_C_COMPILE_FEATURES	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILE_FEATURES "c_std_90;c_function_prototypes;c_std_99;c_restrict;c_variadic_macr/;"	v
+CMAKE_C_COMPILE_FEATURES	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_COMPILE_FEATURES "c_std_90;c_function_prototypes;c_std_99;c_restrict;c_variadic_macr/;"	v
+CMAKE_C_IGNORE_EXTENSIONS	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_IGNORE_EXTENSIONS h;H;o;O;obj;OBJ;def;DEF;rc;RC)$/;"	v
+CMAKE_C_IGNORE_EXTENSIONS	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_IGNORE_EXTENSIONS h;H;o;O;obj;OBJ;def;DEF;rc;RC)$/;"	v
+CMAKE_C_IGNORE_EXTENSIONS	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_IGNORE_EXTENSIONS h;H;o;O;obj;OBJ;def;DEF;rc;RC)$/;"	v
+CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES "\/usr\/lib\/gcc\/x86_64-pc-linux-gnu\/9.1.0\/include;\//;"	v
+CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES "\/usr\/lib\/gcc\/x86_64-pc-linux-gnu\/9.1.0\/include;\//;"	v
+CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES "\/usr\/lib\/gcc\/x86_64-pc-linux-gnu\/9.1.0\/include;\//;"	v
+CMAKE_C_IMPLICIT_LINK_DIRECTORIES	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "\/usr\/lib\/gcc\/x86_64-pc-linux-gnu\/9.1.0;\/usr\/lib;\//;"	v
+CMAKE_C_IMPLICIT_LINK_DIRECTORIES	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "\/usr\/lib\/gcc\/x86_64-pc-linux-gnu\/9.1.0;\/usr\/lib;\//;"	v
+CMAKE_C_IMPLICIT_LINK_DIRECTORIES	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "\/usr\/lib\/gcc\/x86_64-pc-linux-gnu\/9.1.0;\/usr\/lib;\//;"	v
+CMAKE_C_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")$/;"	v
+CMAKE_C_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")$/;"	v
+CMAKE_C_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")$/;"	v
+CMAKE_C_IMPLICIT_LINK_LIBRARIES	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_IMPLICIT_LINK_LIBRARIES "gcc;gcc_s;c;gcc;gcc_s")$/;"	v
+CMAKE_C_IMPLICIT_LINK_LIBRARIES	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_IMPLICIT_LINK_LIBRARIES "gcc;gcc_s;c;gcc;gcc_s")$/;"	v
+CMAKE_C_IMPLICIT_LINK_LIBRARIES	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_IMPLICIT_LINK_LIBRARIES "gcc;gcc_s;c;gcc;gcc_s")$/;"	v
+CMAKE_C_INCLUDE_REGEX_COMPLAIN	software/490A_Final_Demo/build/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_C_INCLUDE_REGEX_COMPLAIN "^$")$/;"	v
+CMAKE_C_INCLUDE_REGEX_COMPLAIN	software/demo1/build/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_C_INCLUDE_REGEX_COMPLAIN "^$")$/;"	v
+CMAKE_C_INCLUDE_REGEX_COMPLAIN	software/demo2/build/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_C_INCLUDE_REGEX_COMPLAIN "^$")$/;"	v
+CMAKE_C_INCLUDE_REGEX_COMPLAIN	software/demo2/build/src/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_C_INCLUDE_REGEX_COMPLAIN "^$")$/;"	v
+CMAKE_C_INCLUDE_REGEX_COMPLAIN	software/demo2/build/src/pong/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_C_INCLUDE_REGEX_COMPLAIN "^$")$/;"	v
+CMAKE_C_INCLUDE_REGEX_SCAN	software/490A_Final_Demo/build/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_C_INCLUDE_REGEX_SCAN "^.*$")$/;"	v
+CMAKE_C_INCLUDE_REGEX_SCAN	software/demo1/build/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_C_INCLUDE_REGEX_SCAN "^.*$")$/;"	v
+CMAKE_C_INCLUDE_REGEX_SCAN	software/demo2/build/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_C_INCLUDE_REGEX_SCAN "^.*$")$/;"	v
+CMAKE_C_INCLUDE_REGEX_SCAN	software/demo2/build/src/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_C_INCLUDE_REGEX_SCAN "^.*$")$/;"	v
+CMAKE_C_INCLUDE_REGEX_SCAN	software/demo2/build/src/pong/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_C_INCLUDE_REGEX_SCAN "^.*$")$/;"	v
+CMAKE_C_LIBRARY_ARCHITECTURE	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_LIBRARY_ARCHITECTURE "")$/;"	v
+CMAKE_C_LIBRARY_ARCHITECTURE	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_LIBRARY_ARCHITECTURE "")$/;"	v
+CMAKE_C_LIBRARY_ARCHITECTURE	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_LIBRARY_ARCHITECTURE "")$/;"	v
+CMAKE_C_LINKER_PREFERENCE	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_LINKER_PREFERENCE 10)$/;"	v
+CMAKE_C_LINKER_PREFERENCE	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_LINKER_PREFERENCE 10)$/;"	v
+CMAKE_C_LINKER_PREFERENCE	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_LINKER_PREFERENCE 10)$/;"	v
+CMAKE_C_PLATFORM_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_PLATFORM_ID "Linux")$/;"	v
+CMAKE_C_PLATFORM_ID	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_PLATFORM_ID "Linux")$/;"	v
+CMAKE_C_PLATFORM_ID	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_PLATFORM_ID "Linux")$/;"	v
+CMAKE_C_SIMULATE_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_SIMULATE_ID "")$/;"	v
+CMAKE_C_SIMULATE_ID	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_SIMULATE_ID "")$/;"	v
+CMAKE_C_SIMULATE_ID	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_SIMULATE_ID "")$/;"	v
+CMAKE_C_SIMULATE_VERSION	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_SIMULATE_VERSION "")$/;"	v
+CMAKE_C_SIMULATE_VERSION	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_SIMULATE_VERSION "")$/;"	v
+CMAKE_C_SIMULATE_VERSION	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_SIMULATE_VERSION "")$/;"	v
+CMAKE_C_SIZEOF_DATA_PTR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_SIZEOF_DATA_PTR "8")$/;"	v
+CMAKE_C_SIZEOF_DATA_PTR	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_SIZEOF_DATA_PTR "8")$/;"	v
+CMAKE_C_SIZEOF_DATA_PTR	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_SIZEOF_DATA_PTR "8")$/;"	v
+CMAKE_C_SOURCE_FILE_EXTENSIONS	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_SOURCE_FILE_EXTENSIONS c;m)$/;"	v
+CMAKE_C_SOURCE_FILE_EXTENSIONS	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_SOURCE_FILE_EXTENSIONS c;m)$/;"	v
+CMAKE_C_SOURCE_FILE_EXTENSIONS	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_SOURCE_FILE_EXTENSIONS c;m)$/;"	v
+CMAKE_C_STANDARD_COMPUTED_DEFAULT	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_STANDARD_COMPUTED_DEFAULT "11")$/;"	v
+CMAKE_C_STANDARD_COMPUTED_DEFAULT	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_STANDARD_COMPUTED_DEFAULT "11")$/;"	v
+CMAKE_C_STANDARD_COMPUTED_DEFAULT	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_C_STANDARD_COMPUTED_DEFAULT "11")$/;"	v
+CMAKE_DEPENDS_CHECK_CXX	software/490A_Final_Demo/build/CMakeFiles/camera.dir/DependInfo.cmake	/^set(CMAKE_DEPENDS_CHECK_CXX$/;"	v
+CMAKE_DEPENDS_CHECK_CXX	software/demo1/build/CMakeFiles/camera.dir/DependInfo.cmake	/^set(CMAKE_DEPENDS_CHECK_CXX$/;"	v
+CMAKE_DEPENDS_CHECK_CXX	software/demo2/build/src/CMakeFiles/camera.dir/DependInfo.cmake	/^set(CMAKE_DEPENDS_CHECK_CXX$/;"	v
+CMAKE_DEPENDS_GENERATOR	software/490A_Final_Demo/build/CMakeFiles/Makefile.cmake	/^set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")$/;"	v
+CMAKE_DEPENDS_GENERATOR	software/demo1/build/CMakeFiles/Makefile.cmake	/^set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")$/;"	v
+CMAKE_DEPENDS_GENERATOR	software/demo2/build/CMakeFiles/Makefile.cmake	/^set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")$/;"	v
+CMAKE_DEPENDS_LANGUAGES	software/490A_Final_Demo/build/CMakeFiles/camera.dir/DependInfo.cmake	/^set(CMAKE_DEPENDS_LANGUAGES$/;"	v
+CMAKE_DEPENDS_LANGUAGES	software/demo1/build/CMakeFiles/camera.dir/DependInfo.cmake	/^set(CMAKE_DEPENDS_LANGUAGES$/;"	v
+CMAKE_DEPENDS_LANGUAGES	software/demo2/build/src/CMakeFiles/camera.dir/DependInfo.cmake	/^set(CMAKE_DEPENDS_LANGUAGES$/;"	v
+CMAKE_DEPEND_INFO_FILES	software/490A_Final_Demo/build/CMakeFiles/Makefile.cmake	/^set(CMAKE_DEPEND_INFO_FILES$/;"	v
+CMAKE_DEPEND_INFO_FILES	software/demo1/build/CMakeFiles/Makefile.cmake	/^set(CMAKE_DEPEND_INFO_FILES$/;"	v
+CMAKE_DEPEND_INFO_FILES	software/demo2/build/CMakeFiles/Makefile.cmake	/^set(CMAKE_DEPEND_INFO_FILES$/;"	v
+CMAKE_FORCE_UNIX_PATHS	software/490A_Final_Demo/build/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_FORCE_UNIX_PATHS 1)$/;"	v
+CMAKE_FORCE_UNIX_PATHS	software/demo1/build/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_FORCE_UNIX_PATHS 1)$/;"	v
+CMAKE_FORCE_UNIX_PATHS	software/demo2/build/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_FORCE_UNIX_PATHS 1)$/;"	v
+CMAKE_FORCE_UNIX_PATHS	software/demo2/build/src/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_FORCE_UNIX_PATHS 1)$/;"	v
+CMAKE_FORCE_UNIX_PATHS	software/demo2/build/src/pong/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_FORCE_UNIX_PATHS 1)$/;"	v
+CMAKE_Fortran_TARGET_MODULE_DIR	software/490A_Final_Demo/build/CMakeFiles/camera.dir/DependInfo.cmake	/^set(CMAKE_Fortran_TARGET_MODULE_DIR "")$/;"	v
+CMAKE_Fortran_TARGET_MODULE_DIR	software/demo1/build/CMakeFiles/camera.dir/DependInfo.cmake	/^set(CMAKE_Fortran_TARGET_MODULE_DIR "")$/;"	v
+CMAKE_Fortran_TARGET_MODULE_DIR	software/demo2/build/src/CMakeFiles/camera.dir/DependInfo.cmake	/^set(CMAKE_Fortran_TARGET_MODULE_DIR "")$/;"	v
+CMAKE_HOST_SYSTEM	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_HOST_SYSTEM "Linux-5.2.9-arch1-1-ARCH")$/;"	v
+CMAKE_HOST_SYSTEM	software/demo1/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_HOST_SYSTEM "Linux-5.2.9-arch1-1-ARCH")$/;"	v
+CMAKE_HOST_SYSTEM	software/demo2/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_HOST_SYSTEM "Linux-5.2.9-arch1-1-ARCH")$/;"	v
+CMAKE_HOST_SYSTEM_NAME	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_HOST_SYSTEM_NAME "Linux")$/;"	v
+CMAKE_HOST_SYSTEM_NAME	software/demo1/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_HOST_SYSTEM_NAME "Linux")$/;"	v
+CMAKE_HOST_SYSTEM_NAME	software/demo2/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_HOST_SYSTEM_NAME "Linux")$/;"	v
+CMAKE_HOST_SYSTEM_PROCESSOR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_HOST_SYSTEM_PROCESSOR "x86_64")$/;"	v
+CMAKE_HOST_SYSTEM_PROCESSOR	software/demo1/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_HOST_SYSTEM_PROCESSOR "x86_64")$/;"	v
+CMAKE_HOST_SYSTEM_PROCESSOR	software/demo2/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_HOST_SYSTEM_PROCESSOR "x86_64")$/;"	v
+CMAKE_HOST_SYSTEM_VERSION	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_HOST_SYSTEM_VERSION "5.2.9-arch1-1-ARCH")$/;"	v
+CMAKE_HOST_SYSTEM_VERSION	software/demo1/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_HOST_SYSTEM_VERSION "5.2.9-arch1-1-ARCH")$/;"	v
+CMAKE_HOST_SYSTEM_VERSION	software/demo2/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_HOST_SYSTEM_VERSION "5.2.9-arch1-1-ARCH")$/;"	v
+CMAKE_INSTALL_COMPONENT	software/490A_Final_Demo/build/cmake_install.cmake	/^    set(CMAKE_INSTALL_COMPONENT "${COMPONENT}")$/;"	v
+CMAKE_INSTALL_COMPONENT	software/490A_Final_Demo/build/cmake_install.cmake	/^    set(CMAKE_INSTALL_COMPONENT)$/;"	v
+CMAKE_INSTALL_COMPONENT	software/demo1/build/cmake_install.cmake	/^    set(CMAKE_INSTALL_COMPONENT "${COMPONENT}")$/;"	v
+CMAKE_INSTALL_COMPONENT	software/demo1/build/cmake_install.cmake	/^    set(CMAKE_INSTALL_COMPONENT)$/;"	v
+CMAKE_INSTALL_COMPONENT	software/demo2/build/cmake_install.cmake	/^    set(CMAKE_INSTALL_COMPONENT "${COMPONENT}")$/;"	v
+CMAKE_INSTALL_COMPONENT	software/demo2/build/cmake_install.cmake	/^    set(CMAKE_INSTALL_COMPONENT)$/;"	v
+CMAKE_INSTALL_COMPONENT	software/demo2/build/src/cmake_install.cmake	/^    set(CMAKE_INSTALL_COMPONENT "${COMPONENT}")$/;"	v
+CMAKE_INSTALL_COMPONENT	software/demo2/build/src/cmake_install.cmake	/^    set(CMAKE_INSTALL_COMPONENT)$/;"	v
+CMAKE_INSTALL_COMPONENT	software/demo2/build/src/pong/cmake_install.cmake	/^    set(CMAKE_INSTALL_COMPONENT "${COMPONENT}")$/;"	v
+CMAKE_INSTALL_COMPONENT	software/demo2/build/src/pong/cmake_install.cmake	/^    set(CMAKE_INSTALL_COMPONENT)$/;"	v
+CMAKE_INSTALL_CONFIG_NAME	software/490A_Final_Demo/build/cmake_install.cmake	/^    set(CMAKE_INSTALL_CONFIG_NAME "RelWithDebInfo")$/;"	v
+CMAKE_INSTALL_CONFIG_NAME	software/demo1/build/cmake_install.cmake	/^    set(CMAKE_INSTALL_CONFIG_NAME "RelWithDebInfo")$/;"	v
+CMAKE_INSTALL_CONFIG_NAME	software/demo2/build/cmake_install.cmake	/^    set(CMAKE_INSTALL_CONFIG_NAME "RelWithDebInfo")$/;"	v
+CMAKE_INSTALL_CONFIG_NAME	software/demo2/build/src/cmake_install.cmake	/^    set(CMAKE_INSTALL_CONFIG_NAME "RelWithDebInfo")$/;"	v
+CMAKE_INSTALL_CONFIG_NAME	software/demo2/build/src/pong/cmake_install.cmake	/^    set(CMAKE_INSTALL_CONFIG_NAME "RelWithDebInfo")$/;"	v
+CMAKE_INSTALL_MANIFEST	software/490A_Final_Demo/build/cmake_install.cmake	/^  set(CMAKE_INSTALL_MANIFEST "install_manifest.txt")$/;"	v
+CMAKE_INSTALL_MANIFEST	software/490A_Final_Demo/build/cmake_install.cmake	/^  set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INSTALL_COMPONENT}.txt")$/;"	v
+CMAKE_INSTALL_MANIFEST	software/demo1/build/cmake_install.cmake	/^  set(CMAKE_INSTALL_MANIFEST "install_manifest.txt")$/;"	v
+CMAKE_INSTALL_MANIFEST	software/demo1/build/cmake_install.cmake	/^  set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INSTALL_COMPONENT}.txt")$/;"	v
+CMAKE_INSTALL_MANIFEST	software/demo2/build/cmake_install.cmake	/^  set(CMAKE_INSTALL_MANIFEST "install_manifest.txt")$/;"	v
+CMAKE_INSTALL_MANIFEST	software/demo2/build/cmake_install.cmake	/^  set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INSTALL_COMPONENT}.txt")$/;"	v
+CMAKE_INSTALL_PREFIX	software/490A_Final_Demo/build/cmake_install.cmake	/^  set(CMAKE_INSTALL_PREFIX "\/usr\/local")$/;"	v
+CMAKE_INSTALL_PREFIX	software/demo1/build/cmake_install.cmake	/^  set(CMAKE_INSTALL_PREFIX "\/usr\/local")$/;"	v
+CMAKE_INSTALL_PREFIX	software/demo2/build/cmake_install.cmake	/^  set(CMAKE_INSTALL_PREFIX "\/usr\/local")$/;"	v
+CMAKE_INSTALL_PREFIX	software/demo2/build/src/cmake_install.cmake	/^  set(CMAKE_INSTALL_PREFIX "\/usr\/local")$/;"	v
+CMAKE_INSTALL_PREFIX	software/demo2/build/src/pong/cmake_install.cmake	/^  set(CMAKE_INSTALL_PREFIX "\/usr\/local")$/;"	v
+CMAKE_INSTALL_SO_NO_EXE	software/490A_Final_Demo/build/cmake_install.cmake	/^  set(CMAKE_INSTALL_SO_NO_EXE "0")$/;"	v
+CMAKE_INSTALL_SO_NO_EXE	software/demo1/build/cmake_install.cmake	/^  set(CMAKE_INSTALL_SO_NO_EXE "0")$/;"	v
+CMAKE_INSTALL_SO_NO_EXE	software/demo2/build/cmake_install.cmake	/^  set(CMAKE_INSTALL_SO_NO_EXE "0")$/;"	v
+CMAKE_INSTALL_SO_NO_EXE	software/demo2/build/src/cmake_install.cmake	/^  set(CMAKE_INSTALL_SO_NO_EXE "0")$/;"	v
+CMAKE_INSTALL_SO_NO_EXE	software/demo2/build/src/pong/cmake_install.cmake	/^  set(CMAKE_INSTALL_SO_NO_EXE "0")$/;"	v
+CMAKE_INTERNAL_PLATFORM_ABI	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^  set(CMAKE_INTERNAL_PLATFORM_ABI "${CMAKE_C_COMPILER_ABI}")$/;"	v
+CMAKE_INTERNAL_PLATFORM_ABI	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^  set(CMAKE_INTERNAL_PLATFORM_ABI "${CMAKE_CXX_COMPILER_ABI}")$/;"	v
+CMAKE_INTERNAL_PLATFORM_ABI	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^  set(CMAKE_INTERNAL_PLATFORM_ABI "${CMAKE_C_COMPILER_ABI}")$/;"	v
+CMAKE_INTERNAL_PLATFORM_ABI	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^  set(CMAKE_INTERNAL_PLATFORM_ABI "${CMAKE_CXX_COMPILER_ABI}")$/;"	v
+CMAKE_INTERNAL_PLATFORM_ABI	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^  set(CMAKE_INTERNAL_PLATFORM_ABI "${CMAKE_C_COMPILER_ABI}")$/;"	v
+CMAKE_INTERNAL_PLATFORM_ABI	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^  set(CMAKE_INTERNAL_PLATFORM_ABI "${CMAKE_CXX_COMPILER_ABI}")$/;"	v
+CMAKE_LIBRARY_ARCHITECTURE	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^  set(CMAKE_LIBRARY_ARCHITECTURE "")$/;"	v
+CMAKE_LIBRARY_ARCHITECTURE	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^  set(CMAKE_LIBRARY_ARCHITECTURE "")$/;"	v
+CMAKE_LIBRARY_ARCHITECTURE	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^  set(CMAKE_LIBRARY_ARCHITECTURE "")$/;"	v
+CMAKE_LIBRARY_ARCHITECTURE	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^  set(CMAKE_LIBRARY_ARCHITECTURE "")$/;"	v
+CMAKE_LIBRARY_ARCHITECTURE	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^  set(CMAKE_LIBRARY_ARCHITECTURE "")$/;"	v
+CMAKE_LIBRARY_ARCHITECTURE	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^  set(CMAKE_LIBRARY_ARCHITECTURE "")$/;"	v
+CMAKE_LINKER	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_LINKER "\/usr\/bin\/ld")$/;"	v
+CMAKE_LINKER	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_LINKER "\/usr\/bin\/ld")$/;"	v
+CMAKE_LINKER	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_LINKER "\/usr\/bin\/ld")$/;"	v
+CMAKE_LINKER	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_LINKER "\/usr\/bin\/ld")$/;"	v
+CMAKE_LINKER	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_LINKER "\/usr\/bin\/ld")$/;"	v
+CMAKE_LINKER	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_LINKER "\/usr\/bin\/ld")$/;"	v
+CMAKE_MAKEFILE_DEPENDS	software/490A_Final_Demo/build/CMakeFiles/Makefile.cmake	/^set(CMAKE_MAKEFILE_DEPENDS$/;"	v
+CMAKE_MAKEFILE_DEPENDS	software/demo1/build/CMakeFiles/Makefile.cmake	/^set(CMAKE_MAKEFILE_DEPENDS$/;"	v
+CMAKE_MAKEFILE_DEPENDS	software/demo2/build/CMakeFiles/Makefile.cmake	/^set(CMAKE_MAKEFILE_DEPENDS$/;"	v
+CMAKE_MAKEFILE_OUTPUTS	software/490A_Final_Demo/build/CMakeFiles/Makefile.cmake	/^set(CMAKE_MAKEFILE_OUTPUTS$/;"	v
+CMAKE_MAKEFILE_OUTPUTS	software/demo1/build/CMakeFiles/Makefile.cmake	/^set(CMAKE_MAKEFILE_OUTPUTS$/;"	v
+CMAKE_MAKEFILE_OUTPUTS	software/demo2/build/CMakeFiles/Makefile.cmake	/^set(CMAKE_MAKEFILE_OUTPUTS$/;"	v
+CMAKE_MAKEFILE_PRODUCTS	software/490A_Final_Demo/build/CMakeFiles/Makefile.cmake	/^set(CMAKE_MAKEFILE_PRODUCTS$/;"	v
+CMAKE_MAKEFILE_PRODUCTS	software/demo1/build/CMakeFiles/Makefile.cmake	/^set(CMAKE_MAKEFILE_PRODUCTS$/;"	v
+CMAKE_MAKEFILE_PRODUCTS	software/demo2/build/CMakeFiles/Makefile.cmake	/^set(CMAKE_MAKEFILE_PRODUCTS$/;"	v
+CMAKE_MT	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_MT "")$/;"	v
+CMAKE_MT	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_MT "")$/;"	v
+CMAKE_MT	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_MT "")$/;"	v
+CMAKE_MT	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_MT "")$/;"	v
+CMAKE_MT	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_MT "")$/;"	v
+CMAKE_MT	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_MT "")$/;"	v
+CMAKE_RANLIB	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_RANLIB "\/usr\/bin\/ranlib")$/;"	v
+CMAKE_RANLIB	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_RANLIB "\/usr\/bin\/ranlib")$/;"	v
+CMAKE_RANLIB	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_RANLIB "\/usr\/bin\/ranlib")$/;"	v
+CMAKE_RANLIB	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_RANLIB "\/usr\/bin\/ranlib")$/;"	v
+CMAKE_RANLIB	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^set(CMAKE_RANLIB "\/usr\/bin\/ranlib")$/;"	v
+CMAKE_RANLIB	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^set(CMAKE_RANLIB "\/usr\/bin\/ranlib")$/;"	v
+CMAKE_RELATIVE_PATH_TOP_BINARY	software/490A_Final_Demo/build/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_RELATIVE_PATH_TOP_BINARY "\/home\/steven\/alt-f4\/demo\/build")$/;"	v
+CMAKE_RELATIVE_PATH_TOP_BINARY	software/demo1/build/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_RELATIVE_PATH_TOP_BINARY "\/home\/steven\/Development\/alt-f4\/demo1\/build")$/;"	v
+CMAKE_RELATIVE_PATH_TOP_BINARY	software/demo2/build/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_RELATIVE_PATH_TOP_BINARY "\/home\/steven\/Development\/alt-f4\/demo2\/build")$/;"	v
+CMAKE_RELATIVE_PATH_TOP_BINARY	software/demo2/build/src/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_RELATIVE_PATH_TOP_BINARY "\/home\/steven\/Development\/alt-f4\/demo2\/build")$/;"	v
+CMAKE_RELATIVE_PATH_TOP_BINARY	software/demo2/build/src/pong/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_RELATIVE_PATH_TOP_BINARY "\/home\/steven\/Development\/alt-f4\/demo2\/build")$/;"	v
+CMAKE_RELATIVE_PATH_TOP_SOURCE	software/490A_Final_Demo/build/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_RELATIVE_PATH_TOP_SOURCE "\/home\/steven\/alt-f4\/demo")$/;"	v
+CMAKE_RELATIVE_PATH_TOP_SOURCE	software/demo1/build/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_RELATIVE_PATH_TOP_SOURCE "\/home\/steven\/Development\/alt-f4\/demo1")$/;"	v
+CMAKE_RELATIVE_PATH_TOP_SOURCE	software/demo2/build/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_RELATIVE_PATH_TOP_SOURCE "\/home\/steven\/Development\/alt-f4\/demo2")$/;"	v
+CMAKE_RELATIVE_PATH_TOP_SOURCE	software/demo2/build/src/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_RELATIVE_PATH_TOP_SOURCE "\/home\/steven\/Development\/alt-f4\/demo2")$/;"	v
+CMAKE_RELATIVE_PATH_TOP_SOURCE	software/demo2/build/src/pong/CMakeFiles/CMakeDirectoryInformation.cmake	/^set(CMAKE_RELATIVE_PATH_TOP_SOURCE "\/home\/steven\/Development\/alt-f4\/demo2")$/;"	v
+CMAKE_SIZEOF_VOID_P	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^  set(CMAKE_SIZEOF_VOID_P "${CMAKE_C_SIZEOF_DATA_PTR}")$/;"	v
+CMAKE_SIZEOF_VOID_P	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^  set(CMAKE_SIZEOF_VOID_P "${CMAKE_CXX_SIZEOF_DATA_PTR}")$/;"	v
+CMAKE_SIZEOF_VOID_P	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^  set(CMAKE_SIZEOF_VOID_P "${CMAKE_C_SIZEOF_DATA_PTR}")$/;"	v
+CMAKE_SIZEOF_VOID_P	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^  set(CMAKE_SIZEOF_VOID_P "${CMAKE_CXX_SIZEOF_DATA_PTR}")$/;"	v
+CMAKE_SIZEOF_VOID_P	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^  set(CMAKE_SIZEOF_VOID_P "${CMAKE_C_SIZEOF_DATA_PTR}")$/;"	v
+CMAKE_SIZEOF_VOID_P	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^  set(CMAKE_SIZEOF_VOID_P "${CMAKE_CXX_SIZEOF_DATA_PTR}")$/;"	v
+CMAKE_SOURCE_DIR	software/490A_Final_Demo/build/Makefile	/^CMAKE_SOURCE_DIR = \/home\/steven\/alt-f4\/demo$/;"	m
+CMAKE_SOURCE_DIR	software/demo1/build/Makefile	/^CMAKE_SOURCE_DIR = \/home\/steven\/Development\/alt-f4\/demo1$/;"	m
+CMAKE_SOURCE_DIR	software/demo2/build/Makefile	/^CMAKE_SOURCE_DIR = \/home\/steven\/Development\/alt-f4\/demo2$/;"	m
+CMAKE_SOURCE_DIR	software/demo2/build/src/Makefile	/^CMAKE_SOURCE_DIR = \/home\/steven\/Development\/alt-f4\/demo2$/;"	m
+CMAKE_SOURCE_DIR	software/demo2/build/src/pong/Makefile	/^CMAKE_SOURCE_DIR = \/home\/steven\/Development\/alt-f4\/demo2$/;"	m
+CMAKE_SYSTEM	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_SYSTEM "Linux-5.2.9-arch1-1-ARCH")$/;"	v
+CMAKE_SYSTEM	software/demo1/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_SYSTEM "Linux-5.2.9-arch1-1-ARCH")$/;"	v
+CMAKE_SYSTEM	software/demo2/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_SYSTEM "Linux-5.2.9-arch1-1-ARCH")$/;"	v
+CMAKE_SYSTEM_LOADED	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_SYSTEM_LOADED 1)$/;"	v
+CMAKE_SYSTEM_LOADED	software/demo1/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_SYSTEM_LOADED 1)$/;"	v
+CMAKE_SYSTEM_LOADED	software/demo2/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_SYSTEM_LOADED 1)$/;"	v
+CMAKE_SYSTEM_NAME	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_SYSTEM_NAME "Linux")$/;"	v
+CMAKE_SYSTEM_NAME	software/demo1/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_SYSTEM_NAME "Linux")$/;"	v
+CMAKE_SYSTEM_NAME	software/demo2/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_SYSTEM_NAME "Linux")$/;"	v
+CMAKE_SYSTEM_PROCESSOR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_SYSTEM_PROCESSOR "x86_64")$/;"	v
+CMAKE_SYSTEM_PROCESSOR	software/demo1/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_SYSTEM_PROCESSOR "x86_64")$/;"	v
+CMAKE_SYSTEM_PROCESSOR	software/demo2/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_SYSTEM_PROCESSOR "x86_64")$/;"	v
+CMAKE_SYSTEM_VERSION	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_SYSTEM_VERSION "5.2.9-arch1-1-ARCH")$/;"	v
+CMAKE_SYSTEM_VERSION	software/demo1/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_SYSTEM_VERSION "5.2.9-arch1-1-ARCH")$/;"	v
+CMAKE_SYSTEM_VERSION	software/demo2/build/CMakeFiles/3.15.2/CMakeSystem.cmake	/^set(CMAKE_SYSTEM_VERSION "5.2.9-arch1-1-ARCH")$/;"	v
+CMAKE_TARGET_LINKED_INFO_FILES	software/490A_Final_Demo/build/CMakeFiles/camera.dir/DependInfo.cmake	/^set(CMAKE_TARGET_LINKED_INFO_FILES$/;"	v
+CMAKE_TARGET_LINKED_INFO_FILES	software/demo1/build/CMakeFiles/camera.dir/DependInfo.cmake	/^set(CMAKE_TARGET_LINKED_INFO_FILES$/;"	v
+CMAKE_TARGET_LINKED_INFO_FILES	software/demo2/build/src/CMakeFiles/camera.dir/DependInfo.cmake	/^set(CMAKE_TARGET_LINKED_INFO_FILES$/;"	v
+COMPILER_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_ID /;"	d	file:
+COMPILER_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_ID /;"	d	file:
+COMPILER_ID	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_ID /;"	d	file:
+COMPILER_ID	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_ID /;"	d	file:
+COMPILER_ID	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_ID /;"	d	file:
+COMPILER_ID	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_ID /;"	d	file:
+COMPILER_VERSION_INTERNAL	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_INTERNAL /;"	d	file:
+COMPILER_VERSION_INTERNAL	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_INTERNAL /;"	d	file:
+COMPILER_VERSION_INTERNAL	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define COMPILER_VERSION_INTERNAL /;"	d	file:
+COMPILER_VERSION_INTERNAL	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_VERSION_INTERNAL /;"	d	file:
+COMPILER_VERSION_INTERNAL	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_INTERNAL /;"	d	file:
+COMPILER_VERSION_INTERNAL	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_INTERNAL /;"	d	file:
+COMPILER_VERSION_INTERNAL	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define COMPILER_VERSION_INTERNAL /;"	d	file:
+COMPILER_VERSION_INTERNAL	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_VERSION_INTERNAL /;"	d	file:
+COMPILER_VERSION_INTERNAL	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_INTERNAL /;"	d	file:
+COMPILER_VERSION_INTERNAL	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_INTERNAL /;"	d	file:
+COMPILER_VERSION_INTERNAL	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define COMPILER_VERSION_INTERNAL /;"	d	file:
+COMPILER_VERSION_INTERNAL	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_VERSION_INTERNAL /;"	d	file:
+COMPILER_VERSION_MAJOR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^  # define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^  # define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^  # define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^  # define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^  # define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^  # define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MAJOR	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_VERSION_MAJOR /;"	d	file:
+COMPILER_VERSION_MINOR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^  # define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^  # define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^  # define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^  # define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^  # define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^  # define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_MINOR	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_VERSION_MINOR /;"	d	file:
+COMPILER_VERSION_PATCH	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^  # define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#   define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^  # define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#   define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^  # define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#   define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^  # define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#   define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^  # define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#   define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^  # define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#   define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_PATCH	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_VERSION_PATCH /;"	d	file:
+COMPILER_VERSION_TWEAK	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_TWEAK /;"	d	file:
+COMPILER_VERSION_TWEAK	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_TWEAK /;"	d	file:
+COMPILER_VERSION_TWEAK	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define COMPILER_VERSION_TWEAK /;"	d	file:
+COMPILER_VERSION_TWEAK	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_VERSION_TWEAK /;"	d	file:
+COMPILER_VERSION_TWEAK	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_TWEAK /;"	d	file:
+COMPILER_VERSION_TWEAK	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_TWEAK /;"	d	file:
+COMPILER_VERSION_TWEAK	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define COMPILER_VERSION_TWEAK /;"	d	file:
+COMPILER_VERSION_TWEAK	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_VERSION_TWEAK /;"	d	file:
+COMPILER_VERSION_TWEAK	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define COMPILER_VERSION_TWEAK /;"	d	file:
+COMPILER_VERSION_TWEAK	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define COMPILER_VERSION_TWEAK /;"	d	file:
+COMPILER_VERSION_TWEAK	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define COMPILER_VERSION_TWEAK /;"	d	file:
+COMPILER_VERSION_TWEAK	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define COMPILER_VERSION_TWEAK /;"	d	file:
+CORE_BLUE_WEIGHT	software/demo1/src/global.h	/^#define CORE_BLUE_WEIGHT /;"	d
+CORE_BLUE_WEIGHT	software/demo2/src/global.hpp	/^#define CORE_BLUE_WEIGHT /;"	d
+CORE_GREEN_LASER_BGR_BLUE	software/demo1/src/global.h	/^#define CORE_GREEN_LASER_BGR_BLUE /;"	d
+CORE_GREEN_LASER_BGR_BLUE	software/demo2/src/global.hpp	/^#define CORE_GREEN_LASER_BGR_BLUE /;"	d
+CORE_GREEN_LASER_BGR_GREEN	software/demo1/src/global.h	/^#define CORE_GREEN_LASER_BGR_GREEN /;"	d
+CORE_GREEN_LASER_BGR_GREEN	software/demo2/src/global.hpp	/^#define CORE_GREEN_LASER_BGR_GREEN /;"	d
+CORE_GREEN_LASER_BGR_RED	software/demo1/src/global.h	/^#define CORE_GREEN_LASER_BGR_RED /;"	d
+CORE_GREEN_LASER_BGR_RED	software/demo2/src/global.hpp	/^#define CORE_GREEN_LASER_BGR_RED /;"	d
+CORE_GREEN_LASER_HSV_HUE	software/demo1/src/global.h	/^#define CORE_GREEN_LASER_HSV_HUE /;"	d
+CORE_GREEN_LASER_HSV_HUE	software/demo2/src/global.hpp	/^#define CORE_GREEN_LASER_HSV_HUE /;"	d
+CORE_GREEN_LASER_HSV_SAT	software/demo1/src/global.h	/^#define CORE_GREEN_LASER_HSV_SAT /;"	d
+CORE_GREEN_LASER_HSV_SAT	software/demo2/src/global.hpp	/^#define CORE_GREEN_LASER_HSV_SAT /;"	d
+CORE_GREEN_LASER_HSV_VAL	software/demo1/src/global.h	/^#define CORE_GREEN_LASER_HSV_VAL /;"	d
+CORE_GREEN_LASER_HSV_VAL	software/demo2/src/global.hpp	/^#define CORE_GREEN_LASER_HSV_VAL /;"	d
+CORE_GREEN_WEIGHT	software/demo1/src/global.h	/^#define CORE_GREEN_WEIGHT /;"	d
+CORE_GREEN_WEIGHT	software/demo2/src/global.hpp	/^#define CORE_GREEN_WEIGHT /;"	d
+CORE_RED_LASER_BGR_BLUE	software/demo1/src/global.h	/^#define CORE_RED_LASER_BGR_BLUE /;"	d
+CORE_RED_LASER_BGR_BLUE	software/demo2/src/global.hpp	/^#define CORE_RED_LASER_BGR_BLUE /;"	d
+CORE_RED_LASER_BGR_GREEN	software/demo1/src/global.h	/^#define CORE_RED_LASER_BGR_GREEN /;"	d
+CORE_RED_LASER_BGR_GREEN	software/demo2/src/global.hpp	/^#define CORE_RED_LASER_BGR_GREEN /;"	d
+CORE_RED_LASER_BGR_RED	software/demo1/src/global.h	/^#define CORE_RED_LASER_BGR_RED /;"	d
+CORE_RED_LASER_BGR_RED	software/demo2/src/global.hpp	/^#define CORE_RED_LASER_BGR_RED /;"	d
+CORE_RED_LASER_HSV_HUE	software/demo1/src/global.h	/^#define CORE_RED_LASER_HSV_HUE /;"	d
+CORE_RED_LASER_HSV_HUE	software/demo2/src/global.hpp	/^#define CORE_RED_LASER_HSV_HUE /;"	d
+CORE_RED_LASER_HSV_SAT	software/demo1/src/global.h	/^#define CORE_RED_LASER_HSV_SAT /;"	d
+CORE_RED_LASER_HSV_SAT	software/demo2/src/global.hpp	/^#define CORE_RED_LASER_HSV_SAT /;"	d
+CORE_RED_LASER_HSV_VAL	software/demo1/src/global.h	/^#define CORE_RED_LASER_HSV_VAL /;"	d
+CORE_RED_LASER_HSV_VAL	software/demo2/src/global.hpp	/^#define CORE_RED_LASER_HSV_VAL /;"	d
+CORE_RED_WEIGHT	software/demo1/src/global.h	/^#define CORE_RED_WEIGHT /;"	d
+CORE_RED_WEIGHT	software/demo2/src/global.hpp	/^#define CORE_RED_WEIGHT /;"	d
+CXX_STD	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define CXX_STD /;"	d	file:
+CXX_STD	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define CXX_STD /;"	d	file:
+CXX_STD	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define CXX_STD /;"	d	file:
+CYGWIN	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^  set(CYGWIN 1)$/;"	v
+CYGWIN	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^  set(CYGWIN 1)$/;"	v
+CYGWIN	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^  set(CYGWIN 1)$/;"	v
+CYGWIN	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^  set(CYGWIN 1)$/;"	v
+CYGWIN	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^  set(CYGWIN 1)$/;"	v
+CYGWIN	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^  set(CYGWIN 1)$/;"	v
+C_DIALECT	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define C_DIALECT /;"	d	file:
+C_DIALECT	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define C_DIALECT$/;"	d	file:
+C_DIALECT	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define C_DIALECT /;"	d	file:
+C_DIALECT	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define C_DIALECT /;"	d	file:
+C_DIALECT	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define C_DIALECT$/;"	d	file:
+C_DIALECT	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define C_DIALECT /;"	d	file:
+C_DIALECT	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define C_DIALECT /;"	d	file:
+C_DIALECT	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define C_DIALECT$/;"	d	file:
+C_DIALECT	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define C_DIALECT /;"	d	file:
+Collaborators	README.md	/^## Collaborators$/;"	s
+Compilation	software/490A_Final_Demo/README.md	/^### Compilation$/;"	S
+Compilation	software/camera/README.md	/^### Compilation$/;"	S
+Compilation	software/demo1/README.md	/^### Compilation$/;"	S
+Compilation	software/demo2/README.md	/^### Compilation$/;"	S
+DEBUG	software/demo1/src/global.h	/^#define DEBUG /;"	d
+DEBUG	software/demo2/src/global.hpp	/^#define DEBUG /;"	d
+DEC	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#define DEC(/;"	d	file:
+DEC	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define DEC(/;"	d	file:
+DEC	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#define DEC(/;"	d	file:
+DEC	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define DEC(/;"	d	file:
+DEC	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#define DEC(/;"	d	file:
+DEC	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define DEC(/;"	d	file:
+EDGE_BLUE_WEIGHT	software/demo1/src/global.h	/^#define EDGE_BLUE_WEIGHT /;"	d
+EDGE_BLUE_WEIGHT	software/demo2/src/global.hpp	/^#define EDGE_BLUE_WEIGHT /;"	d
+EDGE_GREEN_LASER_BGR_BLUE	software/demo1/src/global.h	/^#define EDGE_GREEN_LASER_BGR_BLUE /;"	d
+EDGE_GREEN_LASER_BGR_BLUE	software/demo2/src/global.hpp	/^#define EDGE_GREEN_LASER_BGR_BLUE /;"	d
+EDGE_GREEN_LASER_BGR_GREEN	software/demo1/src/global.h	/^#define EDGE_GREEN_LASER_BGR_GREEN /;"	d
+EDGE_GREEN_LASER_BGR_GREEN	software/demo2/src/global.hpp	/^#define EDGE_GREEN_LASER_BGR_GREEN /;"	d
+EDGE_GREEN_LASER_BGR_RED	software/demo1/src/global.h	/^#define EDGE_GREEN_LASER_BGR_RED /;"	d
+EDGE_GREEN_LASER_BGR_RED	software/demo2/src/global.hpp	/^#define EDGE_GREEN_LASER_BGR_RED /;"	d
+EDGE_GREEN_LASER_HSV_HUE	software/demo1/src/global.h	/^#define EDGE_GREEN_LASER_HSV_HUE /;"	d
+EDGE_GREEN_LASER_HSV_HUE	software/demo2/src/global.hpp	/^#define EDGE_GREEN_LASER_HSV_HUE /;"	d
+EDGE_GREEN_LASER_HSV_SAT	software/demo1/src/global.h	/^#define EDGE_GREEN_LASER_HSV_SAT /;"	d
+EDGE_GREEN_LASER_HSV_SAT	software/demo2/src/global.hpp	/^#define EDGE_GREEN_LASER_HSV_SAT /;"	d
+EDGE_GREEN_LASER_HSV_VAL	software/demo1/src/global.h	/^#define EDGE_GREEN_LASER_HSV_VAL /;"	d
+EDGE_GREEN_LASER_HSV_VAL	software/demo2/src/global.hpp	/^#define EDGE_GREEN_LASER_HSV_VAL /;"	d
+EDGE_GREEN_WEIGHT	software/demo1/src/global.h	/^#define EDGE_GREEN_WEIGHT /;"	d
+EDGE_GREEN_WEIGHT	software/demo2/src/global.hpp	/^#define EDGE_GREEN_WEIGHT /;"	d
+EDGE_RED_LASER_BGR_BLUE	software/demo1/src/global.h	/^#define EDGE_RED_LASER_BGR_BLUE /;"	d
+EDGE_RED_LASER_BGR_BLUE	software/demo2/src/global.hpp	/^#define EDGE_RED_LASER_BGR_BLUE /;"	d
+EDGE_RED_LASER_BGR_GREEN	software/demo1/src/global.h	/^#define EDGE_RED_LASER_BGR_GREEN /;"	d
+EDGE_RED_LASER_BGR_GREEN	software/demo2/src/global.hpp	/^#define EDGE_RED_LASER_BGR_GREEN /;"	d
+EDGE_RED_LASER_BGR_RED	software/demo1/src/global.h	/^#define EDGE_RED_LASER_BGR_RED /;"	d
+EDGE_RED_LASER_BGR_RED	software/demo2/src/global.hpp	/^#define EDGE_RED_LASER_BGR_RED /;"	d
+EDGE_RED_LASER_HSV_HUE	software/demo1/src/global.h	/^#define EDGE_RED_LASER_HSV_HUE /;"	d
+EDGE_RED_LASER_HSV_HUE	software/demo2/src/global.hpp	/^#define EDGE_RED_LASER_HSV_HUE /;"	d
+EDGE_RED_LASER_HSV_SAT	software/demo1/src/global.h	/^#define EDGE_RED_LASER_HSV_SAT /;"	d
+EDGE_RED_LASER_HSV_SAT	software/demo2/src/global.hpp	/^#define EDGE_RED_LASER_HSV_SAT /;"	d
+EDGE_RED_LASER_HSV_VAL	software/demo1/src/global.h	/^#define EDGE_RED_LASER_HSV_VAL /;"	d
+EDGE_RED_LASER_HSV_VAL	software/demo2/src/global.hpp	/^#define EDGE_RED_LASER_HSV_VAL /;"	d
+EDGE_RED_WEIGHT	software/demo1/src/global.h	/^#define EDGE_RED_WEIGHT /;"	d
+EDGE_RED_WEIGHT	software/demo2/src/global.hpp	/^#define EDGE_RED_WEIGHT /;"	d
+EQUALS	software/490A_Final_Demo/build/Makefile	/^EQUALS = =$/;"	m
+EQUALS	software/demo1/build/Makefile	/^EQUALS = =$/;"	m
+EQUALS	software/demo2/build/Makefile	/^EQUALS = =$/;"	m
+EQUALS	software/demo2/build/src/Makefile	/^EQUALS = =$/;"	m
+EQUALS	software/demo2/build/src/pong/Makefile	/^EQUALS = =$/;"	m
+FILTER_GREEN_LASER_BGR_SIZE	software/demo1/src/global.h	/^#define FILTER_GREEN_LASER_BGR_SIZE /;"	d
+FILTER_GREEN_LASER_BGR_SIZE	software/demo2/src/global.hpp	/^#define FILTER_GREEN_LASER_BGR_SIZE /;"	d
+FILTER_GREEN_LASER_BLOB_BGR_BLUE	software/demo1/src/global.h	/^#define FILTER_GREEN_LASER_BLOB_BGR_BLUE /;"	d
+FILTER_GREEN_LASER_BLOB_BGR_BLUE	software/demo2/src/global.hpp	/^#define FILTER_GREEN_LASER_BLOB_BGR_BLUE /;"	d
+FILTER_GREEN_LASER_BLOB_BGR_GREEN	software/demo1/src/global.h	/^#define FILTER_GREEN_LASER_BLOB_BGR_GREEN /;"	d
+FILTER_GREEN_LASER_BLOB_BGR_GREEN	software/demo2/src/global.hpp	/^#define FILTER_GREEN_LASER_BLOB_BGR_GREEN /;"	d
+FILTER_GREEN_LASER_BLOB_BGR_RED	software/demo1/src/global.h	/^#define FILTER_GREEN_LASER_BLOB_BGR_RED /;"	d
+FILTER_GREEN_LASER_BLOB_BGR_RED	software/demo2/src/global.hpp	/^#define FILTER_GREEN_LASER_BLOB_BGR_RED /;"	d
+FILTER_GREEN_LASER_BLOB_HSV_HUE	software/demo1/src/global.h	/^#define FILTER_GREEN_LASER_BLOB_HSV_HUE /;"	d
+FILTER_GREEN_LASER_BLOB_HSV_HUE	software/demo2/src/global.hpp	/^#define FILTER_GREEN_LASER_BLOB_HSV_HUE /;"	d
+FILTER_GREEN_LASER_BLOB_HSV_SAT	software/demo1/src/global.h	/^#define FILTER_GREEN_LASER_BLOB_HSV_SAT /;"	d
+FILTER_GREEN_LASER_BLOB_HSV_SAT	software/demo2/src/global.hpp	/^#define FILTER_GREEN_LASER_BLOB_HSV_SAT /;"	d
+FILTER_GREEN_LASER_BLOB_HSV_VAL	software/demo1/src/global.h	/^#define FILTER_GREEN_LASER_BLOB_HSV_VAL /;"	d
+FILTER_GREEN_LASER_BLOB_HSV_VAL	software/demo2/src/global.hpp	/^#define FILTER_GREEN_LASER_BLOB_HSV_VAL /;"	d
+FILTER_GREEN_LASER_CORE_BGR_BLUE	software/demo1/src/global.h	/^#define FILTER_GREEN_LASER_CORE_BGR_BLUE /;"	d
+FILTER_GREEN_LASER_CORE_BGR_BLUE	software/demo2/src/global.hpp	/^#define FILTER_GREEN_LASER_CORE_BGR_BLUE /;"	d
+FILTER_GREEN_LASER_CORE_BGR_GREEN	software/demo1/src/global.h	/^#define FILTER_GREEN_LASER_CORE_BGR_GREEN /;"	d
+FILTER_GREEN_LASER_CORE_BGR_GREEN	software/demo2/src/global.hpp	/^#define FILTER_GREEN_LASER_CORE_BGR_GREEN /;"	d
+FILTER_GREEN_LASER_CORE_BGR_RED	software/demo1/src/global.h	/^#define FILTER_GREEN_LASER_CORE_BGR_RED /;"	d
+FILTER_GREEN_LASER_CORE_BGR_RED	software/demo2/src/global.hpp	/^#define FILTER_GREEN_LASER_CORE_BGR_RED /;"	d
+FILTER_GREEN_LASER_CORE_HSV_HUE	software/demo1/src/global.h	/^#define FILTER_GREEN_LASER_CORE_HSV_HUE /;"	d
+FILTER_GREEN_LASER_CORE_HSV_HUE	software/demo2/src/global.hpp	/^#define FILTER_GREEN_LASER_CORE_HSV_HUE /;"	d
+FILTER_GREEN_LASER_CORE_HSV_SAT	software/demo1/src/global.h	/^#define FILTER_GREEN_LASER_CORE_HSV_SAT /;"	d
+FILTER_GREEN_LASER_CORE_HSV_SAT	software/demo2/src/global.hpp	/^#define FILTER_GREEN_LASER_CORE_HSV_SAT /;"	d
+FILTER_GREEN_LASER_CORE_HSV_VAL	software/demo1/src/global.h	/^#define FILTER_GREEN_LASER_CORE_HSV_VAL /;"	d
+FILTER_GREEN_LASER_CORE_HSV_VAL	software/demo2/src/global.hpp	/^#define FILTER_GREEN_LASER_CORE_HSV_VAL /;"	d
+FILTER_GREEN_LASER_EDGE_BGR_BLUE	software/demo1/src/global.h	/^#define FILTER_GREEN_LASER_EDGE_BGR_BLUE /;"	d
+FILTER_GREEN_LASER_EDGE_BGR_BLUE	software/demo2/src/global.hpp	/^#define FILTER_GREEN_LASER_EDGE_BGR_BLUE /;"	d
+FILTER_GREEN_LASER_EDGE_BGR_GREEN	software/demo1/src/global.h	/^#define FILTER_GREEN_LASER_EDGE_BGR_GREEN /;"	d
+FILTER_GREEN_LASER_EDGE_BGR_GREEN	software/demo2/src/global.hpp	/^#define FILTER_GREEN_LASER_EDGE_BGR_GREEN /;"	d
+FILTER_GREEN_LASER_EDGE_BGR_RED	software/demo1/src/global.h	/^#define FILTER_GREEN_LASER_EDGE_BGR_RED /;"	d
+FILTER_GREEN_LASER_EDGE_BGR_RED	software/demo2/src/global.hpp	/^#define FILTER_GREEN_LASER_EDGE_BGR_RED /;"	d
+FILTER_GREEN_LASER_EDGE_HSV_HUE	software/demo1/src/global.h	/^#define FILTER_GREEN_LASER_EDGE_HSV_HUE /;"	d
+FILTER_GREEN_LASER_EDGE_HSV_HUE	software/demo2/src/global.hpp	/^#define FILTER_GREEN_LASER_EDGE_HSV_HUE /;"	d
+FILTER_GREEN_LASER_EDGE_HSV_SAT	software/demo1/src/global.h	/^#define FILTER_GREEN_LASER_EDGE_HSV_SAT /;"	d
+FILTER_GREEN_LASER_EDGE_HSV_SAT	software/demo2/src/global.hpp	/^#define FILTER_GREEN_LASER_EDGE_HSV_SAT /;"	d
+FILTER_GREEN_LASER_EDGE_HSV_VAL	software/demo1/src/global.h	/^#define FILTER_GREEN_LASER_EDGE_HSV_VAL /;"	d
+FILTER_GREEN_LASER_EDGE_HSV_VAL	software/demo2/src/global.hpp	/^#define FILTER_GREEN_LASER_EDGE_HSV_VAL /;"	d
+FILTER_GREEN_LASER_HSV_SIZE	software/demo1/src/global.h	/^#define FILTER_GREEN_LASER_HSV_SIZE /;"	d
+FILTER_GREEN_LASER_HSV_SIZE	software/demo2/src/global.hpp	/^#define FILTER_GREEN_LASER_HSV_SIZE /;"	d
+FILTER_RED_LASER_BGR_SIZE	software/demo1/src/global.h	/^#define FILTER_RED_LASER_BGR_SIZE /;"	d
+FILTER_RED_LASER_BGR_SIZE	software/demo2/src/global.hpp	/^#define FILTER_RED_LASER_BGR_SIZE /;"	d
+FILTER_RED_LASER_BLOB_BGR_BLUE	software/demo1/src/global.h	/^#define FILTER_RED_LASER_BLOB_BGR_BLUE /;"	d
+FILTER_RED_LASER_BLOB_BGR_BLUE	software/demo2/src/global.hpp	/^#define FILTER_RED_LASER_BLOB_BGR_BLUE /;"	d
+FILTER_RED_LASER_BLOB_BGR_GREEN	software/demo1/src/global.h	/^#define FILTER_RED_LASER_BLOB_BGR_GREEN /;"	d
+FILTER_RED_LASER_BLOB_BGR_GREEN	software/demo2/src/global.hpp	/^#define FILTER_RED_LASER_BLOB_BGR_GREEN /;"	d
+FILTER_RED_LASER_BLOB_BGR_RED	software/demo1/src/global.h	/^#define FILTER_RED_LASER_BLOB_BGR_RED /;"	d
+FILTER_RED_LASER_BLOB_BGR_RED	software/demo2/src/global.hpp	/^#define FILTER_RED_LASER_BLOB_BGR_RED /;"	d
+FILTER_RED_LASER_BLOB_HSV_HUE	software/demo1/src/global.h	/^#define FILTER_RED_LASER_BLOB_HSV_HUE /;"	d
+FILTER_RED_LASER_BLOB_HSV_HUE	software/demo2/src/global.hpp	/^#define FILTER_RED_LASER_BLOB_HSV_HUE /;"	d
+FILTER_RED_LASER_BLOB_HSV_SAT	software/demo1/src/global.h	/^#define FILTER_RED_LASER_BLOB_HSV_SAT /;"	d
+FILTER_RED_LASER_BLOB_HSV_SAT	software/demo2/src/global.hpp	/^#define FILTER_RED_LASER_BLOB_HSV_SAT /;"	d
+FILTER_RED_LASER_BLOB_HSV_VAL	software/demo1/src/global.h	/^#define FILTER_RED_LASER_BLOB_HSV_VAL /;"	d
+FILTER_RED_LASER_BLOB_HSV_VAL	software/demo2/src/global.hpp	/^#define FILTER_RED_LASER_BLOB_HSV_VAL /;"	d
+FILTER_RED_LASER_CORE_BGR_BLUE	software/demo1/src/global.h	/^#define FILTER_RED_LASER_CORE_BGR_BLUE /;"	d
+FILTER_RED_LASER_CORE_BGR_BLUE	software/demo2/src/global.hpp	/^#define FILTER_RED_LASER_CORE_BGR_BLUE /;"	d
+FILTER_RED_LASER_CORE_BGR_GREEN	software/demo1/src/global.h	/^#define FILTER_RED_LASER_CORE_BGR_GREEN /;"	d
+FILTER_RED_LASER_CORE_BGR_GREEN	software/demo2/src/global.hpp	/^#define FILTER_RED_LASER_CORE_BGR_GREEN /;"	d
+FILTER_RED_LASER_CORE_BGR_RED	software/demo1/src/global.h	/^#define FILTER_RED_LASER_CORE_BGR_RED /;"	d
+FILTER_RED_LASER_CORE_BGR_RED	software/demo2/src/global.hpp	/^#define FILTER_RED_LASER_CORE_BGR_RED /;"	d
+FILTER_RED_LASER_CORE_HSV_HUE	software/demo1/src/global.h	/^#define FILTER_RED_LASER_CORE_HSV_HUE /;"	d
+FILTER_RED_LASER_CORE_HSV_HUE	software/demo2/src/global.hpp	/^#define FILTER_RED_LASER_CORE_HSV_HUE /;"	d
+FILTER_RED_LASER_CORE_HSV_SAT	software/demo1/src/global.h	/^#define FILTER_RED_LASER_CORE_HSV_SAT /;"	d
+FILTER_RED_LASER_CORE_HSV_SAT	software/demo2/src/global.hpp	/^#define FILTER_RED_LASER_CORE_HSV_SAT /;"	d
+FILTER_RED_LASER_CORE_HSV_VAL	software/demo1/src/global.h	/^#define FILTER_RED_LASER_CORE_HSV_VAL /;"	d
+FILTER_RED_LASER_CORE_HSV_VAL	software/demo2/src/global.hpp	/^#define FILTER_RED_LASER_CORE_HSV_VAL /;"	d
+FILTER_RED_LASER_EDGE_BGR_BLUE	software/demo1/src/global.h	/^#define FILTER_RED_LASER_EDGE_BGR_BLUE /;"	d
+FILTER_RED_LASER_EDGE_BGR_BLUE	software/demo2/src/global.hpp	/^#define FILTER_RED_LASER_EDGE_BGR_BLUE /;"	d
+FILTER_RED_LASER_EDGE_BGR_GREEN	software/demo1/src/global.h	/^#define FILTER_RED_LASER_EDGE_BGR_GREEN /;"	d
+FILTER_RED_LASER_EDGE_BGR_GREEN	software/demo2/src/global.hpp	/^#define FILTER_RED_LASER_EDGE_BGR_GREEN /;"	d
+FILTER_RED_LASER_EDGE_BGR_RED	software/demo1/src/global.h	/^#define FILTER_RED_LASER_EDGE_BGR_RED /;"	d
+FILTER_RED_LASER_EDGE_BGR_RED	software/demo2/src/global.hpp	/^#define FILTER_RED_LASER_EDGE_BGR_RED /;"	d
+FILTER_RED_LASER_EDGE_HSV_HUE	software/demo1/src/global.h	/^#define FILTER_RED_LASER_EDGE_HSV_HUE /;"	d
+FILTER_RED_LASER_EDGE_HSV_HUE	software/demo2/src/global.hpp	/^#define FILTER_RED_LASER_EDGE_HSV_HUE /;"	d
+FILTER_RED_LASER_EDGE_HSV_SAT	software/demo1/src/global.h	/^#define FILTER_RED_LASER_EDGE_HSV_SAT /;"	d
+FILTER_RED_LASER_EDGE_HSV_SAT	software/demo2/src/global.hpp	/^#define FILTER_RED_LASER_EDGE_HSV_SAT /;"	d
+FILTER_RED_LASER_EDGE_HSV_VAL	software/demo1/src/global.h	/^#define FILTER_RED_LASER_EDGE_HSV_VAL /;"	d
+FILTER_RED_LASER_EDGE_HSV_VAL	software/demo2/src/global.hpp	/^#define FILTER_RED_LASER_EDGE_HSV_VAL /;"	d
+FILTER_RED_LASER_HSV_SIZE	software/demo1/src/global.h	/^#define FILTER_RED_LASER_HSV_SIZE /;"	d
+FILTER_RED_LASER_HSV_SIZE	software/demo2/src/global.hpp	/^#define FILTER_RED_LASER_HSV_SIZE /;"	d
+FPS	software/demo1/src/global.h	/^#define FPS /;"	d
+FPS	software/demo2/src/global.hpp	/^#define FPS /;"	d
+FRAME_FIFO_SIZE	software/demo1/src/global.h	/^#define FRAME_FIFO_SIZE /;"	d
+FRAME_FIFO_SIZE	software/demo2/src/global.hpp	/^#define FRAME_FIFO_SIZE /;"	d
+Frame	software/demo1/src/frame.cpp	/^Frame::Frame() $/;"	f	class:Frame
+Frame	software/demo1/src/frame.cpp	/^Frame::Frame(std::vector< unsigned char > values, unsigned int width, unsigned int height, $/;"	f	class:Frame
+Frame	software/demo1/src/frame.h	/^class Frame$/;"	c
+Frame	software/demo2/src/frame.cpp	/^Frame::Frame() $/;"	f	class:Frame
+Frame	software/demo2/src/frame.cpp	/^Frame::Frame(std::vector< unsigned char > values, unsigned int width, unsigned int height, $/;"	f	class:Frame
+Frame	software/demo2/src/frame.hpp	/^class Frame$/;"	c
+GREEN_LASER_BGR_BLUE_HIGH	software/demo1/src/global.h	/^#define GREEN_LASER_BGR_BLUE_HIGH /;"	d
+GREEN_LASER_BGR_BLUE_HIGH	software/demo2/src/global.hpp	/^#define GREEN_LASER_BGR_BLUE_HIGH /;"	d
+GREEN_LASER_BGR_BLUE_LOW	software/demo1/src/global.h	/^#define GREEN_LASER_BGR_BLUE_LOW /;"	d
+GREEN_LASER_BGR_BLUE_LOW	software/demo2/src/global.hpp	/^#define GREEN_LASER_BGR_BLUE_LOW /;"	d
+GREEN_LASER_BGR_GREEN_HIGH	software/demo1/src/global.h	/^#define GREEN_LASER_BGR_GREEN_HIGH /;"	d
+GREEN_LASER_BGR_GREEN_HIGH	software/demo2/src/global.hpp	/^#define GREEN_LASER_BGR_GREEN_HIGH /;"	d
+GREEN_LASER_BGR_GREEN_LOW	software/demo1/src/global.h	/^#define GREEN_LASER_BGR_GREEN_LOW /;"	d
+GREEN_LASER_BGR_GREEN_LOW	software/demo2/src/global.hpp	/^#define GREEN_LASER_BGR_GREEN_LOW /;"	d
+GREEN_LASER_BGR_RED_HIGH	software/demo1/src/global.h	/^#define GREEN_LASER_BGR_RED_HIGH /;"	d
+GREEN_LASER_BGR_RED_HIGH	software/demo2/src/global.hpp	/^#define GREEN_LASER_BGR_RED_HIGH /;"	d
+GREEN_LASER_BGR_RED_LOW	software/demo1/src/global.h	/^#define GREEN_LASER_BGR_RED_LOW /;"	d
+GREEN_LASER_BGR_RED_LOW	software/demo2/src/global.hpp	/^#define GREEN_LASER_BGR_RED_LOW /;"	d
+GREEN_LASER_HSV_HUE_HIGH	software/demo1/src/global.h	/^#define GREEN_LASER_HSV_HUE_HIGH /;"	d
+GREEN_LASER_HSV_HUE_HIGH	software/demo2/src/global.hpp	/^#define GREEN_LASER_HSV_HUE_HIGH /;"	d
+GREEN_LASER_HSV_HUE_LOW	software/demo1/src/global.h	/^#define GREEN_LASER_HSV_HUE_LOW /;"	d
+GREEN_LASER_HSV_HUE_LOW	software/demo2/src/global.hpp	/^#define GREEN_LASER_HSV_HUE_LOW /;"	d
+GREEN_LASER_HSV_SAT_HIGH	software/demo1/src/global.h	/^#define GREEN_LASER_HSV_SAT_HIGH /;"	d
+GREEN_LASER_HSV_SAT_HIGH	software/demo2/src/global.hpp	/^#define GREEN_LASER_HSV_SAT_HIGH /;"	d
+GREEN_LASER_HSV_SAT_LOW	software/demo1/src/global.h	/^#define GREEN_LASER_HSV_SAT_LOW /;"	d
+GREEN_LASER_HSV_SAT_LOW	software/demo2/src/global.hpp	/^#define GREEN_LASER_HSV_SAT_LOW /;"	d
+GREEN_LASER_HSV_VAL_HIGH	software/demo1/src/global.h	/^#define GREEN_LASER_HSV_VAL_HIGH /;"	d
+GREEN_LASER_HSV_VAL_HIGH	software/demo2/src/global.hpp	/^#define GREEN_LASER_HSV_VAL_HIGH /;"	d
+GREEN_LASER_HSV_VAL_LOW	software/demo1/src/global.h	/^#define GREEN_LASER_HSV_VAL_LOW /;"	d
+GREEN_LASER_HSV_VAL_LOW	software/demo2/src/global.hpp	/^#define GREEN_LASER_HSV_VAL_LOW /;"	d
+HEX	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#define HEX(/;"	d	file:
+HEX	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define HEX(/;"	d	file:
+HEX	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#define HEX(/;"	d	file:
+HEX	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define HEX(/;"	d	file:
+HEX	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#define HEX(/;"	d	file:
+HEX	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define HEX(/;"	d	file:
+HSV	software/demo1/src/global.h	/^#define HSV /;"	d
+HSV	software/demo2/src/global.hpp	/^#define HSV /;"	d
+ID_VOID_MAIN	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define ID_VOID_MAIN$/;"	d	file:
+ID_VOID_MAIN	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define ID_VOID_MAIN$/;"	d	file:
+ID_VOID_MAIN	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define ID_VOID_MAIN$/;"	d	file:
+Installation	software/490A_Final_Demo/README.md	/^## Installation$/;"	s
+Installation	software/camera/README.md	/^## Installation$/;"	s
+Installation	software/demo1/README.md	/^## Installation$/;"	s
+Installation	software/demo2/README.md	/^## Installation$/;"	s
+Laser Tracker	software/README.md	/^## Laser Tracker$/;"	s
+MAX_COL	software/demo1/src/global.h	/^#define MAX_COL /;"	d
+MAX_COL	software/demo2/src/global.hpp	/^#define MAX_COL /;"	d
+MAX_MINESWEEP_OFFSET	software/demo1/src/global.h	/^#define MAX_MINESWEEP_OFFSET /;"	d
+MAX_MINESWEEP_OFFSET	software/demo2/src/global.hpp	/^#define MAX_MINESWEEP_OFFSET /;"	d
+MAX_ROW	software/demo1/src/global.h	/^#define MAX_ROW /;"	d
+MAX_ROW	software/demo2/src/global.hpp	/^#define MAX_ROW /;"	d
+MINGW	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^  set(MINGW 1)$/;"	v
+MINGW	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^  set(MINGW 1)$/;"	v
+MINGW	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^  set(MINGW 1)$/;"	v
+MINGW	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^  set(MINGW 1)$/;"	v
+MINGW	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^  set(MINGW 1)$/;"	v
+MINGW	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^  set(MINGW 1)$/;"	v
+MIN_COL	software/demo1/src/global.h	/^#define MIN_COL /;"	d
+MIN_COL	software/demo2/src/global.hpp	/^#define MIN_COL /;"	d
+MIN_ROW	software/demo1/src/global.h	/^#define MIN_ROW /;"	d
+MIN_ROW	software/demo2/src/global.hpp	/^#define MIN_ROW /;"	d
+May need to run in sudo depending on whether you are apart of the right groups	software/demo1/README.md	/^# May need to run in sudo depending on whether you are apart of the right groups$/;"	c
+May need to run in sudo depending on whether you are apart of the right groups	software/demo2/README.md	/^# May need to run in sudo depending on whether you are apart of the right groups$/;"	c
+NEIGHBOR_COUNT	software/demo1/src/global.h	/^#define NEIGHBOR_COUNT /;"	d
+NEIGHBOR_COUNT	software/demo2/src/global.hpp	/^#define NEIGHBOR_COUNT /;"	d
+OCV_DEPENDENCIES_FOUND	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^      set(OCV_DEPENDENCIES_FOUND FALSE)$/;"	v
+OCV_DEPENDENCIES_FOUND	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^  set(OCV_DEPENDENCIES_FOUND TRUE)$/;"	v
+OCV_DEPENDENCIES_FOUND	software/demo1/cmake/OpenCVConfig.cmake	/^      set(OCV_DEPENDENCIES_FOUND FALSE)$/;"	v
+OCV_DEPENDENCIES_FOUND	software/demo1/cmake/OpenCVConfig.cmake	/^  set(OCV_DEPENDENCIES_FOUND TRUE)$/;"	v
+OCV_DEPENDENCIES_FOUND	software/demo2/cmake/OpenCVConfig.cmake	/^      set(OCV_DEPENDENCIES_FOUND FALSE)$/;"	v
+OCV_DEPENDENCIES_FOUND	software/demo2/cmake/OpenCVConfig.cmake	/^  set(OCV_DEPENDENCIES_FOUND TRUE)$/;"	v
+OPENCV_MAP_IMPORTED_CONFIG	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^    set(OPENCV_MAP_IMPORTED_CONFIG "RELWITHDEBINFO=!Release;MINSIZEREL=!Release")$/;"	v
+OPENCV_MAP_IMPORTED_CONFIG	software/demo1/cmake/OpenCVConfig.cmake	/^    set(OPENCV_MAP_IMPORTED_CONFIG "RELWITHDEBINFO=!Release;MINSIZEREL=!Release")$/;"	v
+OPENCV_MAP_IMPORTED_CONFIG	software/demo2/cmake/OpenCVConfig.cmake	/^    set(OPENCV_MAP_IMPORTED_CONFIG "RELWITHDEBINFO=!Release;MINSIZEREL=!Release")$/;"	v
+OpenCV_DIR	software/490A_Final_Demo/CMakeLists.txt	/^set(OpenCV_DIR "\/usr\/lib\/")$/;"	v
+OpenCV_DIR	software/camera/CMakeLists.txt	/^set(OpenCV_DIR "\/usr\/lib\/")$/;"	v
+OpenCV_DIR	software/demo1/CMakeLists.txt	/^set(OpenCV_DIR "\/usr\/lib\/")$/;"	v
+OpenCV_DIR	software/demo2/CMakeLists.txt	/^set(OpenCV_DIR "\/usr\/lib\/")$/;"	v
+OpenCV_FIND_COMPONENTS	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^  set(OpenCV_FIND_COMPONENTS ${OpenCV_LIB_COMPONENTS})$/;"	v
+OpenCV_FIND_COMPONENTS	software/demo1/cmake/OpenCVConfig.cmake	/^  set(OpenCV_FIND_COMPONENTS ${OpenCV_LIB_COMPONENTS})$/;"	v
+OpenCV_FIND_COMPONENTS	software/demo2/cmake/OpenCVConfig.cmake	/^  set(OpenCV_FIND_COMPONENTS ${OpenCV_LIB_COMPONENTS})$/;"	v
+OpenCV_INCLUDE_DIRS	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^set(OpenCV_INCLUDE_DIRS "")$/;"	v
+OpenCV_INCLUDE_DIRS	software/demo1/cmake/OpenCVConfig.cmake	/^set(OpenCV_INCLUDE_DIRS "")$/;"	v
+OpenCV_INCLUDE_DIRS	software/demo2/cmake/OpenCVConfig.cmake	/^set(OpenCV_INCLUDE_DIRS "")$/;"	v
+OpenCV_LIBRARIES	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^set(OpenCV_LIBRARIES ${OpenCV_LIBS})$/;"	v
+OpenCV_LIBRARIES	software/demo1/cmake/OpenCVConfig.cmake	/^set(OpenCV_LIBRARIES ${OpenCV_LIBS})$/;"	v
+OpenCV_LIBRARIES	software/demo2/cmake/OpenCVConfig.cmake	/^set(OpenCV_LIBRARIES ${OpenCV_LIBS})$/;"	v
+OpenCV_LIBS	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^    set(OpenCV_LIBS ${OpenCV_LIBS} "${__cvcomponent}")$/;"	v
+OpenCV_LIBS	software/demo1/cmake/OpenCVConfig.cmake	/^    set(OpenCV_LIBS ${OpenCV_LIBS} "${__cvcomponent}")$/;"	v
+OpenCV_LIBS	software/demo2/cmake/OpenCVConfig.cmake	/^    set(OpenCV_LIBS ${OpenCV_LIBS} "${__cvcomponent}")$/;"	v
+OpenCV_LIB_COMPONENTS	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^set(OpenCV_LIB_COMPONENTS @OPENCV_MODULES_CONFIGCMAKE@)$/;"	v
+OpenCV_LIB_COMPONENTS	software/demo1/cmake/OpenCVConfig.cmake	/^set(OpenCV_LIB_COMPONENTS @OPENCV_MODULES_CONFIGCMAKE@)$/;"	v
+OpenCV_LIB_COMPONENTS	software/demo2/cmake/OpenCVConfig.cmake	/^set(OpenCV_LIB_COMPONENTS @OPENCV_MODULES_CONFIGCMAKE@)$/;"	v
+OpenCV_SHARED	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^set(OpenCV_SHARED @BUILD_SHARED_LIBS@)$/;"	v
+OpenCV_SHARED	software/demo1/cmake/OpenCVConfig.cmake	/^set(OpenCV_SHARED @BUILD_SHARED_LIBS@)$/;"	v
+OpenCV_SHARED	software/demo2/cmake/OpenCVConfig.cmake	/^set(OpenCV_SHARED @BUILD_SHARED_LIBS@)$/;"	v
+OpenCV_USE_MANGLED_PATHS	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^set(OpenCV_USE_MANGLED_PATHS @OpenCV_USE_MANGLED_PATHS_CONFIGCMAKE@)$/;"	v
+OpenCV_USE_MANGLED_PATHS	software/demo1/cmake/OpenCVConfig.cmake	/^set(OpenCV_USE_MANGLED_PATHS @OpenCV_USE_MANGLED_PATHS_CONFIGCMAKE@)$/;"	v
+OpenCV_USE_MANGLED_PATHS	software/demo2/cmake/OpenCVConfig.cmake	/^set(OpenCV_USE_MANGLED_PATHS @OpenCV_USE_MANGLED_PATHS_CONFIGCMAKE@)$/;"	v
+OpenCV_VERSION	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^SET(OpenCV_VERSION @OPENCV_VERSION_PLAIN@)$/;"	v
+OpenCV_VERSION	software/demo1/cmake/OpenCVConfig.cmake	/^SET(OpenCV_VERSION @OPENCV_VERSION_PLAIN@)$/;"	v
+OpenCV_VERSION	software/demo2/cmake/OpenCVConfig.cmake	/^SET(OpenCV_VERSION @OPENCV_VERSION_PLAIN@)$/;"	v
+OpenCV_VERSION_MAJOR	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^SET(OpenCV_VERSION_MAJOR  @OPENCV_VERSION_MAJOR@)$/;"	v
+OpenCV_VERSION_MAJOR	software/demo1/cmake/OpenCVConfig.cmake	/^SET(OpenCV_VERSION_MAJOR  @OPENCV_VERSION_MAJOR@)$/;"	v
+OpenCV_VERSION_MAJOR	software/demo2/cmake/OpenCVConfig.cmake	/^SET(OpenCV_VERSION_MAJOR  @OPENCV_VERSION_MAJOR@)$/;"	v
+OpenCV_VERSION_MINOR	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^SET(OpenCV_VERSION_MINOR  @OPENCV_VERSION_MINOR@)$/;"	v
+OpenCV_VERSION_MINOR	software/demo1/cmake/OpenCVConfig.cmake	/^SET(OpenCV_VERSION_MINOR  @OPENCV_VERSION_MINOR@)$/;"	v
+OpenCV_VERSION_MINOR	software/demo2/cmake/OpenCVConfig.cmake	/^SET(OpenCV_VERSION_MINOR  @OPENCV_VERSION_MINOR@)$/;"	v
+OpenCV_VERSION_PATCH	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^SET(OpenCV_VERSION_PATCH  @OPENCV_VERSION_PATCH@)$/;"	v
+OpenCV_VERSION_PATCH	software/demo1/cmake/OpenCVConfig.cmake	/^SET(OpenCV_VERSION_PATCH  @OPENCV_VERSION_PATCH@)$/;"	v
+OpenCV_VERSION_PATCH	software/demo2/cmake/OpenCVConfig.cmake	/^SET(OpenCV_VERSION_PATCH  @OPENCV_VERSION_PATCH@)$/;"	v
+OpenCV_VERSION_STATUS	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^SET(OpenCV_VERSION_STATUS "@OPENCV_VERSION_STATUS@")$/;"	v
+OpenCV_VERSION_STATUS	software/demo1/cmake/OpenCVConfig.cmake	/^SET(OpenCV_VERSION_STATUS "@OPENCV_VERSION_STATUS@")$/;"	v
+OpenCV_VERSION_STATUS	software/demo2/cmake/OpenCVConfig.cmake	/^SET(OpenCV_VERSION_STATUS "@OPENCV_VERSION_STATUS@")$/;"	v
+OpenCV_VERSION_TWEAK	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^SET(OpenCV_VERSION_TWEAK  0)$/;"	v
+OpenCV_VERSION_TWEAK	software/demo1/cmake/OpenCVConfig.cmake	/^SET(OpenCV_VERSION_TWEAK  0)$/;"	v
+OpenCV_VERSION_TWEAK	software/demo2/cmake/OpenCVConfig.cmake	/^SET(OpenCV_VERSION_TWEAK  0)$/;"	v
+OpenCV_WORLD_COMPONENTS	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^set(OpenCV_WORLD_COMPONENTS @OPENCV_WORLD_MODULES@)$/;"	v
+OpenCV_WORLD_COMPONENTS	software/demo1/cmake/OpenCVConfig.cmake	/^set(OpenCV_WORLD_COMPONENTS @OPENCV_WORLD_MODULES@)$/;"	v
+OpenCV_WORLD_COMPONENTS	software/demo2/cmake/OpenCVConfig.cmake	/^set(OpenCV_WORLD_COMPONENTS @OPENCV_WORLD_MODULES@)$/;"	v
+PADDLE_LEFT_BLUE	software/demo1/src/global.h	/^#define PADDLE_LEFT_BLUE /;"	d
+PADDLE_LEFT_BLUE	software/demo2/src/global.hpp	/^#define PADDLE_LEFT_BLUE /;"	d
+PADDLE_LEFT_GREEN	software/demo1/src/global.h	/^#define PADDLE_LEFT_GREEN /;"	d
+PADDLE_LEFT_GREEN	software/demo2/src/global.hpp	/^#define PADDLE_LEFT_GREEN /;"	d
+PADDLE_LEFT_RED	software/demo1/src/global.h	/^#define PADDLE_LEFT_RED /;"	d
+PADDLE_LEFT_RED	software/demo2/src/global.hpp	/^#define PADDLE_LEFT_RED /;"	d
+PADDLE_RIGHT_BLUE	software/demo1/src/global.h	/^#define PADDLE_RIGHT_BLUE /;"	d
+PADDLE_RIGHT_BLUE	software/demo2/src/global.hpp	/^#define PADDLE_RIGHT_BLUE /;"	d
+PADDLE_RIGHT_GREEN	software/demo1/src/global.h	/^#define PADDLE_RIGHT_GREEN /;"	d
+PADDLE_RIGHT_GREEN	software/demo2/src/global.hpp	/^#define PADDLE_RIGHT_GREEN /;"	d
+PADDLE_RIGHT_RED	software/demo1/src/global.h	/^#define PADDLE_RIGHT_RED /;"	d
+PADDLE_RIGHT_RED	software/demo2/src/global.hpp	/^#define PADDLE_RIGHT_RED /;"	d
+PLATFORM_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define PLATFORM_ID /;"	d	file:
+PLATFORM_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define PLATFORM_ID$/;"	d	file:
+PLATFORM_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define PLATFORM_ID /;"	d	file:
+PLATFORM_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define PLATFORM_ID$/;"	d	file:
+PLATFORM_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define PLATFORM_ID /;"	d	file:
+PLATFORM_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define PLATFORM_ID$/;"	d	file:
+PLATFORM_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define PLATFORM_ID /;"	d	file:
+PLATFORM_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define PLATFORM_ID$/;"	d	file:
+PLATFORM_ID	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define PLATFORM_ID /;"	d	file:
+PLATFORM_ID	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define PLATFORM_ID$/;"	d	file:
+PLATFORM_ID	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define PLATFORM_ID /;"	d	file:
+PLATFORM_ID	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define PLATFORM_ID$/;"	d	file:
+PLATFORM_ID	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define PLATFORM_ID /;"	d	file:
+PLATFORM_ID	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define PLATFORM_ID$/;"	d	file:
+PLATFORM_ID	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define PLATFORM_ID /;"	d	file:
+PLATFORM_ID	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define PLATFORM_ID$/;"	d	file:
+PLATFORM_ID	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define PLATFORM_ID /;"	d	file:
+PLATFORM_ID	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define PLATFORM_ID$/;"	d	file:
+PLATFORM_ID	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define PLATFORM_ID /;"	d	file:
+PLATFORM_ID	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define PLATFORM_ID$/;"	d	file:
+PLATFORM_ID	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define PLATFORM_ID /;"	d	file:
+PLATFORM_ID	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define PLATFORM_ID$/;"	d	file:
+PLATFORM_ID	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define PLATFORM_ID /;"	d	file:
+PLATFORM_ID	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^# define PLATFORM_ID$/;"	d	file:
+PONG_SOURCES	software/demo2/src/pong/CMakeLists.txt	/^set(PONG_SOURCES$/;"	v
+Pixel	software/camera/main.cpp	/^typedef struct Pixel$/;"	s	file:
+Pixel	software/camera/main.cpp	/^} Pixel;$/;"	t	typeref:struct:Pixel	file:
+Pixel	software/demo1/src/pixel.cpp	/^Pixel::Pixel() $/;"	f	class:Pixel
+Pixel	software/demo1/src/pixel.cpp	/^Pixel::Pixel(unsigned int row, unsigned int col, unsigned char b, unsigned char g, unsigned char/;"	f	class:Pixel
+Pixel	software/demo1/src/pixel.h	/^class Pixel$/;"	c
+Pixel	software/demo2/src/pixel.cpp	/^Pixel::Pixel() $/;"	f	class:Pixel
+Pixel	software/demo2/src/pixel.cpp	/^Pixel::Pixel(unsigned int row, unsigned int col, unsigned char b, unsigned char g, unsigned char/;"	f	class:Pixel
+Pixel	software/demo2/src/pixel.hpp	/^class Pixel$/;"	c
+Pong	software/demo1/src/pong/pong.cpp	/^Pong::Pong()$/;"	f	class:Pong
+Pong	software/demo1/src/pong/pong.h	/^class Pong$/;"	c
+Pong	software/demo2/src/pong/pong.cpp	/^Pong::Pong()$/;"	f	class:Pong
+Pong	software/demo2/src/pong/pong.hpp	/^class Pong$/;"	c
+RED_LASER_BGR_BLUE_HIGH	software/demo1/src/global.h	/^#define RED_LASER_BGR_BLUE_HIGH /;"	d
+RED_LASER_BGR_BLUE_HIGH	software/demo2/src/global.hpp	/^#define RED_LASER_BGR_BLUE_HIGH /;"	d
+RED_LASER_BGR_BLUE_LOW	software/demo1/src/global.h	/^#define RED_LASER_BGR_BLUE_LOW /;"	d
+RED_LASER_BGR_BLUE_LOW	software/demo2/src/global.hpp	/^#define RED_LASER_BGR_BLUE_LOW /;"	d
+RED_LASER_BGR_GREEN_HIGH	software/demo1/src/global.h	/^#define RED_LASER_BGR_GREEN_HIGH /;"	d
+RED_LASER_BGR_GREEN_HIGH	software/demo2/src/global.hpp	/^#define RED_LASER_BGR_GREEN_HIGH /;"	d
+RED_LASER_BGR_GREEN_LOW	software/demo1/src/global.h	/^#define RED_LASER_BGR_GREEN_LOW /;"	d
+RED_LASER_BGR_GREEN_LOW	software/demo2/src/global.hpp	/^#define RED_LASER_BGR_GREEN_LOW /;"	d
+RED_LASER_BGR_RED_HIGH	software/demo1/src/global.h	/^#define RED_LASER_BGR_RED_HIGH /;"	d
+RED_LASER_BGR_RED_HIGH	software/demo2/src/global.hpp	/^#define RED_LASER_BGR_RED_HIGH /;"	d
+RED_LASER_BGR_RED_LOW	software/demo1/src/global.h	/^#define RED_LASER_BGR_RED_LOW /;"	d
+RED_LASER_BGR_RED_LOW	software/demo2/src/global.hpp	/^#define RED_LASER_BGR_RED_LOW /;"	d
+RED_LASER_HSV_HUE_HIGH	software/demo1/src/global.h	/^#define RED_LASER_HSV_HUE_HIGH /;"	d
+RED_LASER_HSV_HUE_HIGH	software/demo2/src/global.hpp	/^#define RED_LASER_HSV_HUE_HIGH /;"	d
+RED_LASER_HSV_HUE_LOW	software/demo1/src/global.h	/^#define RED_LASER_HSV_HUE_LOW /;"	d
+RED_LASER_HSV_HUE_LOW	software/demo2/src/global.hpp	/^#define RED_LASER_HSV_HUE_LOW /;"	d
+RED_LASER_HSV_SAT_HIGH	software/demo1/src/global.h	/^#define RED_LASER_HSV_SAT_HIGH /;"	d
+RED_LASER_HSV_SAT_HIGH	software/demo2/src/global.hpp	/^#define RED_LASER_HSV_SAT_HIGH /;"	d
+RED_LASER_HSV_SAT_LOW	software/demo1/src/global.h	/^#define RED_LASER_HSV_SAT_LOW /;"	d
+RED_LASER_HSV_SAT_LOW	software/demo2/src/global.hpp	/^#define RED_LASER_HSV_SAT_LOW /;"	d
+RED_LASER_HSV_VAL_HIGH	software/demo1/src/global.h	/^#define RED_LASER_HSV_VAL_HIGH /;"	d
+RED_LASER_HSV_VAL_HIGH	software/demo2/src/global.hpp	/^#define RED_LASER_HSV_VAL_HIGH /;"	d
+RED_LASER_HSV_VAL_LOW	software/demo1/src/global.h	/^#define RED_LASER_HSV_VAL_LOW /;"	d
+RED_LASER_HSV_VAL_LOW	software/demo2/src/global.hpp	/^#define RED_LASER_HSV_VAL_LOW /;"	d
+RM	software/490A_Final_Demo/build/Makefile	/^RM = \/usr\/bin\/cmake -E remove -f$/;"	m
+RM	software/demo1/build/Makefile	/^RM = \/usr\/bin\/cmake -E remove -f$/;"	m
+RM	software/demo2/build/Makefile	/^RM = \/usr\/bin\/cmake -E remove -f$/;"	m
+RM	software/demo2/build/src/Makefile	/^RM = \/usr\/bin\/cmake -E remove -f$/;"	m
+RM	software/demo2/build/src/pong/Makefile	/^RM = \/usr\/bin\/cmake -E remove -f$/;"	m
+SCORE_CUTOFF	software/demo1/src/global.h	/^#define SCORE_CUTOFF /;"	d
+SCORE_CUTOFF	software/demo2/src/global.hpp	/^#define SCORE_CUTOFF /;"	d
+SHELL	software/490A_Final_Demo/build/Makefile	/^SHELL = \/bin\/sh$/;"	m
+SHELL	software/demo1/build/Makefile	/^SHELL = \/bin\/sh$/;"	m
+SHELL	software/demo2/build/Makefile	/^SHELL = \/bin\/sh$/;"	m
+SHELL	software/demo2/build/src/Makefile	/^SHELL = \/bin\/sh$/;"	m
+SHELL	software/demo2/build/src/pong/Makefile	/^SHELL = \/bin\/sh$/;"	m
+SIMULATE_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define SIMULATE_ID /;"	d	file:
+SIMULATE_ID	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define SIMULATE_ID /;"	d	file:
+SIMULATE_ID	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define SIMULATE_ID /;"	d	file:
+SIMULATE_ID	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define SIMULATE_ID /;"	d	file:
+SIMULATE_ID	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define SIMULATE_ID /;"	d	file:
+SIMULATE_ID	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define SIMULATE_ID /;"	d	file:
+SIMULATE_VERSION_MAJOR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define SIMULATE_VERSION_MAJOR /;"	d	file:
+SIMULATE_VERSION_MAJOR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define SIMULATE_VERSION_MAJOR /;"	d	file:
+SIMULATE_VERSION_MAJOR	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define SIMULATE_VERSION_MAJOR /;"	d	file:
+SIMULATE_VERSION_MAJOR	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define SIMULATE_VERSION_MAJOR /;"	d	file:
+SIMULATE_VERSION_MAJOR	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define SIMULATE_VERSION_MAJOR /;"	d	file:
+SIMULATE_VERSION_MAJOR	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define SIMULATE_VERSION_MAJOR /;"	d	file:
+SIMULATE_VERSION_MINOR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define SIMULATE_VERSION_MINOR /;"	d	file:
+SIMULATE_VERSION_MINOR	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define SIMULATE_VERSION_MINOR /;"	d	file:
+SIMULATE_VERSION_MINOR	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define SIMULATE_VERSION_MINOR /;"	d	file:
+SIMULATE_VERSION_MINOR	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define SIMULATE_VERSION_MINOR /;"	d	file:
+SIMULATE_VERSION_MINOR	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define SIMULATE_VERSION_MINOR /;"	d	file:
+SIMULATE_VERSION_MINOR	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define SIMULATE_VERSION_MINOR /;"	d	file:
+SIMULATE_VERSION_PATCH	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define SIMULATE_VERSION_PATCH /;"	d	file:
+SIMULATE_VERSION_PATCH	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define SIMULATE_VERSION_PATCH /;"	d	file:
+SIMULATE_VERSION_PATCH	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define SIMULATE_VERSION_PATCH /;"	d	file:
+SIMULATE_VERSION_PATCH	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define SIMULATE_VERSION_PATCH /;"	d	file:
+SIMULATE_VERSION_PATCH	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#  define SIMULATE_VERSION_PATCH /;"	d	file:
+SIMULATE_VERSION_PATCH	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#  define SIMULATE_VERSION_PATCH /;"	d	file:
+SIZE_IDEAL	software/demo1/src/global.h	/^#define SIZE_IDEAL /;"	d
+SIZE_IDEAL	software/demo2/src/global.hpp	/^#define SIZE_IDEAL /;"	d
+SIZE_WEIGHT	software/demo1/src/global.h	/^#define SIZE_WEIGHT /;"	d
+SIZE_WEIGHT	software/demo2/src/global.hpp	/^#define SIZE_WEIGHT /;"	d
+STRINGIFY	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#define STRINGIFY(/;"	d	file:
+STRINGIFY	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define STRINGIFY(/;"	d	file:
+STRINGIFY	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#define STRINGIFY(/;"	d	file:
+STRINGIFY	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define STRINGIFY(/;"	d	file:
+STRINGIFY	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#define STRINGIFY(/;"	d	file:
+STRINGIFY	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define STRINGIFY(/;"	d	file:
+STRINGIFY_HELPER	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#define STRINGIFY_HELPER(/;"	d	file:
+STRINGIFY_HELPER	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define STRINGIFY_HELPER(/;"	d	file:
+STRINGIFY_HELPER	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#define STRINGIFY_HELPER(/;"	d	file:
+STRINGIFY_HELPER	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define STRINGIFY_HELPER(/;"	d	file:
+STRINGIFY_HELPER	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^#define STRINGIFY_HELPER(/;"	d	file:
+STRINGIFY_HELPER	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^#define STRINGIFY_HELPER(/;"	d	file:
+SUFFIXES	software/490A_Final_Demo/build/Makefile	/^SUFFIXES =$/;"	m
+SUFFIXES	software/demo1/build/Makefile	/^SUFFIXES =$/;"	m
+SUFFIXES	software/demo2/build/Makefile	/^SUFFIXES =$/;"	m
+SUFFIXES	software/demo2/build/src/Makefile	/^SUFFIXES =$/;"	m
+SUFFIXES	software/demo2/build/src/pong/Makefile	/^SUFFIXES =$/;"	m
+Setup for new RaspberryPi	software/490A_Final_Demo/README.md	/^### Setup for new RaspberryPi$/;"	S
+Setup for new RaspberryPi	software/camera/README.md	/^### Setup for new RaspberryPi$/;"	S
+Setup for new RaspberryPi	software/demo1/README.md	/^### Setup for new RaspberryPi$/;"	S
+Setup for new RaspberryPi	software/demo2/README.md	/^### Setup for new RaspberryPi$/;"	S
+Things to do	software/demo1/README.md	/^### Things to do$/;"	S
+Things to do	software/demo2/README.md	/^### Things to do$/;"	S
+Turret Controller	embedded/README.md	/^## Turret Controller$/;"	s
+UNIX	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^  set(UNIX 1)$/;"	v
+UNIX	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^  set(UNIX 1)$/;"	v
+UNIX	software/demo1/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^  set(UNIX 1)$/;"	v
+UNIX	software/demo1/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^  set(UNIX 1)$/;"	v
+UNIX	software/demo2/build/CMakeFiles/3.15.2/CMakeCCompiler.cmake	/^  set(UNIX 1)$/;"	v
+UNIX	software/demo2/build/CMakeFiles/3.15.2/CMakeCXXCompiler.cmake	/^  set(UNIX 1)$/;"	v
+Vec3b	software/camera/main.cpp	/^typedef Vec<uchar, 3> Vec3b;$/;"	t	typeref:typename:Vec<uchar,3>	file:
+_OpenCV_HANDLE_COMPONENTS_MANUALLY	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^  set(_OpenCV_HANDLE_COMPONENTS_MANUALLY FALSE)$/;"	v
+_OpenCV_HANDLE_COMPONENTS_MANUALLY	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^  set(_OpenCV_HANDLE_COMPONENTS_MANUALLY TRUE)$/;"	v
+_OpenCV_HANDLE_COMPONENTS_MANUALLY	software/demo1/cmake/OpenCVConfig.cmake	/^  set(_OpenCV_HANDLE_COMPONENTS_MANUALLY FALSE)$/;"	v
+_OpenCV_HANDLE_COMPONENTS_MANUALLY	software/demo1/cmake/OpenCVConfig.cmake	/^  set(_OpenCV_HANDLE_COMPONENTS_MANUALLY TRUE)$/;"	v
+_OpenCV_HANDLE_COMPONENTS_MANUALLY	software/demo2/cmake/OpenCVConfig.cmake	/^  set(_OpenCV_HANDLE_COMPONENTS_MANUALLY FALSE)$/;"	v
+_OpenCV_HANDLE_COMPONENTS_MANUALLY	software/demo2/cmake/OpenCVConfig.cmake	/^  set(_OpenCV_HANDLE_COMPONENTS_MANUALLY TRUE)$/;"	v
+__BLOB_H_INCLUDED__	software/demo1/src/blob.h	/^#define __BLOB_H_INCLUDED__$/;"	d
+__BLOB_H_INCLUDED__	software/demo2/src/blob.hpp	/^#define __BLOB_H_INCLUDED__$/;"	d
+__FRAME_H_INCLUDED__	software/demo1/src/frame.h	/^#define __FRAME_H_INCLUDED__$/;"	d
+__FRAME_H_INCLUDED__	software/demo2/src/frame.hpp	/^#define __FRAME_H_INCLUDED__$/;"	d
+__OpenCV_INCLUDE_DIRS	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^set(__OpenCV_INCLUDE_DIRS @OpenCV_INCLUDE_DIRS_CONFIGCMAKE@)$/;"	v
+__OpenCV_INCLUDE_DIRS	software/demo1/cmake/OpenCVConfig.cmake	/^set(__OpenCV_INCLUDE_DIRS @OpenCV_INCLUDE_DIRS_CONFIGCMAKE@)$/;"	v
+__OpenCV_INCLUDE_DIRS	software/demo2/cmake/OpenCVConfig.cmake	/^set(__OpenCV_INCLUDE_DIRS @OpenCV_INCLUDE_DIRS_CONFIGCMAKE@)$/;"	v
+__PIXEL_H_INCLUDED__	software/demo1/src/pixel.h	/^#define __PIXEL_H_INCLUDED__$/;"	d
+__PIXEL_H_INCLUDED__	software/demo2/src/pixel.hpp	/^#define __PIXEL_H_INCLUDED__$/;"	d
+__PONG_H_INCLUDED__	software/demo1/src/pong/pong.h	/^#define __PONG_H_INCLUDED__$/;"	d
+__PONG_H_INCLUDED__	software/demo2/src/pong/pong.hpp	/^#define __PONG_H_INCLUDED__$/;"	d
+__add_before	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^  set(__add_before "")$/;"	v	function:ocv_include_directories
+__add_before	software/demo1/cmake/OpenCVConfig.cmake	/^  set(__add_before "")$/;"	v	function:ocv_include_directories
+__add_before	software/demo2/cmake/OpenCVConfig.cmake	/^  set(__add_before "")$/;"	v	function:ocv_include_directories
+__cvcomponent	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^    set(__cvcomponent opencv_${__cvcomponent})$/;"	v
+__cvcomponent	software/demo1/cmake/OpenCVConfig.cmake	/^    set(__cvcomponent opencv_${__cvcomponent})$/;"	v
+__cvcomponent	software/demo2/cmake/OpenCVConfig.cmake	/^    set(__cvcomponent opencv_${__cvcomponent})$/;"	v
+__final_config	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^        set(__final_config "${CMAKE_MATCH_3}")$/;"	v
+__final_config	software/demo1/cmake/OpenCVConfig.cmake	/^        set(__final_config "${CMAKE_MATCH_3}")$/;"	v
+__final_config	software/demo2/cmake/OpenCVConfig.cmake	/^        set(__final_config "${CMAKE_MATCH_3}")$/;"	v
+__force_flag	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^        set(__force_flag "${CMAKE_MATCH_2}")$/;"	v
+__force_flag	software/demo1/cmake/OpenCVConfig.cmake	/^        set(__force_flag "${CMAKE_MATCH_2}")$/;"	v
+__force_flag	software/demo2/cmake/OpenCVConfig.cmake	/^        set(__force_flag "${CMAKE_MATCH_2}")$/;"	v
+__original_cvcomponent	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^  set (__original_cvcomponent ${__cvcomponent})$/;"	v
+__original_cvcomponent	software/demo1/cmake/OpenCVConfig.cmake	/^  set (__original_cvcomponent ${__cvcomponent})$/;"	v
+__original_cvcomponent	software/demo2/cmake/OpenCVConfig.cmake	/^  set (__original_cvcomponent ${__cvcomponent})$/;"	v
+__remap_config	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^        set(__remap_config "${CMAKE_MATCH_1}")$/;"	v
+__remap_config	software/demo1/cmake/OpenCVConfig.cmake	/^        set(__remap_config "${CMAKE_MATCH_1}")$/;"	v
+__remap_config	software/demo2/cmake/OpenCVConfig.cmake	/^        set(__remap_config "${CMAKE_MATCH_1}")$/;"	v
+__remap_warnings	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^            set(__remap_warnings "${__remap_warnings}... Configuration is not available '${__fin/;"	v
+__remap_warnings	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^          set(__remap_warnings "${__remap_warnings}... Configuration already exists ${__remap_co/;"	v
+__remap_warnings	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^set(__remap_warnings "")$/;"	v
+__remap_warnings	software/demo1/cmake/OpenCVConfig.cmake	/^            set(__remap_warnings "${__remap_warnings}... Configuration is not available '${__fin/;"	v
+__remap_warnings	software/demo1/cmake/OpenCVConfig.cmake	/^          set(__remap_warnings "${__remap_warnings}... Configuration already exists ${__remap_co/;"	v
+__remap_warnings	software/demo1/cmake/OpenCVConfig.cmake	/^set(__remap_warnings "")$/;"	v
+__remap_warnings	software/demo2/cmake/OpenCVConfig.cmake	/^            set(__remap_warnings "${__remap_warnings}... Configuration is not available '${__fin/;"	v
+__remap_warnings	software/demo2/cmake/OpenCVConfig.cmake	/^          set(__remap_warnings "${__remap_warnings}... Configuration already exists ${__remap_co/;"	v
+__remap_warnings	software/demo2/cmake/OpenCVConfig.cmake	/^set(__remap_warnings "")$/;"	v
+all	software/490A_Final_Demo/build/Makefile	/^all: cmake_check_build_system$/;"	t
+all	software/demo1/build/Makefile	/^all: cmake_check_build_system$/;"	t
+all	software/demo2/build/Makefile	/^all: cmake_check_build_system$/;"	t
+all	software/demo2/build/src/Makefile	/^all: cmake_check_build_system$/;"	t
+all	software/demo2/build/src/pong/Makefile	/^all: cmake_check_build_system$/;"	t
+average_bgr_blob	software/demo1/src/blob.h	/^    cv::Scalar average_bgr_blob;$/;"	m	class:Blob	typeref:typename:cv::Scalar
+average_bgr_blob	software/demo2/src/blob.hpp	/^    cv::Scalar average_bgr_blob;$/;"	m	class:Blob	typeref:typename:cv::Scalar
+average_bgr_core	software/demo1/src/blob.h	/^    cv::Scalar average_bgr_core;$/;"	m	class:Blob	typeref:typename:cv::Scalar
+average_bgr_core	software/demo2/src/blob.hpp	/^    cv::Scalar average_bgr_core;$/;"	m	class:Blob	typeref:typename:cv::Scalar
+average_bgr_edge	software/demo1/src/blob.h	/^    cv::Scalar average_bgr_edge;$/;"	m	class:Blob	typeref:typename:cv::Scalar
+average_bgr_edge	software/demo2/src/blob.hpp	/^    cv::Scalar average_bgr_edge;$/;"	m	class:Blob	typeref:typename:cv::Scalar
+b	software/camera/main.cpp	/^    unsigned int b;$/;"	m	struct:Pixel	typeref:typename:unsigned int	file:
+ball	software/demo1/src/pong/pong.h	/^    cv::Rect ball   = cv::Rect(start_ball.x, start_ball.y, start_ball.width, start_ball.height);$/;"	m	class:Pong	typeref:typename:cv::Rect
+ball	software/demo2/src/pong/pong.hpp	/^    cv::Rect ball   = cv::Rect(start_ball.x, start_ball.y, start_ball.width, start_ball.height);$/;"	m	class:Pong	typeref:typename:cv::Rect
+ball_velocity_x	software/demo1/src/pong/pong.h	/^    int ball_velocity_x = start_ball_velocity_x;$/;"	m	class:Pong	typeref:typename:int
+ball_velocity_x	software/demo2/src/pong/pong.hpp	/^    int ball_velocity_x = start_ball_velocity_x;$/;"	m	class:Pong	typeref:typename:int
+ball_velocity_y	software/demo1/src/pong/pong.h	/^    int ball_velocity_y = start_ball_velocity_y;$/;"	m	class:Pong	typeref:typename:int
+ball_velocity_y	software/demo2/src/pong/pong.hpp	/^    int ball_velocity_y = start_ball_velocity_y;$/;"	m	class:Pong	typeref:typename:int
+bestBlob	software/demo1/src/frame.cpp	/^Blob Frame::bestBlob(const unsigned int filters, $/;"	f	class:Frame	typeref:typename:Blob
+bestBlob	software/demo2/src/frame.cpp	/^Blob Frame::bestBlob(const unsigned int filters, $/;"	f	class:Frame	typeref:typename:Blob
+binary1D	software/demo1/src/frame.h	/^    unsigned char binary1D[MAX_ROW * MAX_COL];      \/\/ Array used to generate Frame$/;"	m	class:Frame	typeref:typename:unsigned char[]
+binary1D	software/demo2/src/frame.hpp	/^    unsigned char binary1D[MAX_ROW * MAX_COL];      \/\/ Array used to generate Frame$/;"	m	class:Frame	typeref:typename:unsigned char[]
+binary_matrix_green	software/demo1/src/frame.h	/^    std::vector< std::vector < unsigned char > > binary_matrix_green; \/\/ Binary threshold imag/;"	m	class:Frame	typeref:typename:std::vector<std::vector<unsigned char>>
+binary_matrix_green	software/demo2/src/frame.hpp	/^    std::vector< std::vector < unsigned char > > binary_matrix_green; \/\/ Binary threshold imag/;"	m	class:Frame	typeref:typename:std::vector<std::vector<unsigned char>>
+binary_matrix_red	software/demo1/src/frame.h	/^    std::vector< std::vector < unsigned char > > binary_matrix_red;   \/\/ Binary threshold imag/;"	m	class:Frame	typeref:typename:std::vector<std::vector<unsigned char>>
+binary_matrix_red	software/demo2/src/frame.hpp	/^    std::vector< std::vector < unsigned char > > binary_matrix_red;   \/\/ Binary threshold imag/;"	m	class:Frame	typeref:typename:std::vector<std::vector<unsigned char>>
+blob.cpp.i	software/demo2/build/src/Makefile	/^blob.cpp.i:$/;"	t
+blob.cpp.o	software/demo2/build/src/Makefile	/^blob.cpp.o:$/;"	t
+blob.cpp.s	software/demo2/build/src/Makefile	/^blob.cpp.s:$/;"	t
+blob.i	software/demo2/build/src/Makefile	/^blob.i: blob.cpp.i$/;"	t
+blob.o	software/demo2/build/src/Makefile	/^blob.o: blob.cpp.o$/;"	t
+blob.s	software/demo2/build/src/Makefile	/^blob.s: blob.cpp.s$/;"	t
+blob_bgr	software/demo1/src/main.cpp	/^    const unsigned char blob_bgr[2][3] = { {BLOB_RED_LASER_BGR_BLUE   , BLOB_RED_LASER_BGR_GREEN/;"	v	typeref:typename:const unsigned char[2][3]
+blob_bgr	software/demo1/src/main.cpp	/^    const unsigned char blob_bgr[2][3] = { {BLOB_RED_LASER_HSV_HUE   , BLOB_RED_LASER_HSV_SAT   /;"	v	typeref:typename:const unsigned char[2][3]
+blob_bgr	software/demo2/src/main.cpp	/^    const unsigned char blob_bgr[2][3] = { {BLOB_RED_LASER_BGR_BLUE   , BLOB_RED_LASER_BGR_GREEN/;"	v	typeref:typename:const unsigned char[2][3]
+blob_bgr	software/demo2/src/main.cpp	/^    const unsigned char blob_bgr[2][3] = { {BLOB_RED_LASER_HSV_HUE   , BLOB_RED_LASER_HSV_SAT   /;"	v	typeref:typename:const unsigned char[2][3]
+blob_pixels	software/demo1/src/blob.h	/^    std::vector< Pixel > blob_pixels; \/\/ pixels in blob $/;"	m	class:Blob	typeref:typename:std::vector<Pixel>
+blob_pixels	software/demo2/src/blob.hpp	/^    std::vector< Pixel > blob_pixels; \/\/ pixels in blob $/;"	m	class:Blob	typeref:typename:std::vector<Pixel>
+blobs_green	software/demo1/src/frame.h	/^    std::vector< Blob > blobs_green;$/;"	m	class:Frame	typeref:typename:std::vector<Blob>
+blobs_green	software/demo2/src/frame.hpp	/^    std::vector< Blob > blobs_green;$/;"	m	class:Frame	typeref:typename:std::vector<Blob>
+blobs_red	software/demo1/src/frame.h	/^    std::vector< Blob > blobs_red;$/;"	m	class:Frame	typeref:typename:std::vector<Blob>
+blobs_red	software/demo2/src/frame.hpp	/^    std::vector< Blob > blobs_red;$/;"	m	class:Frame	typeref:typename:std::vector<Blob>
+bounds	software/demo1/src/pong/pong.h	/^    cv::Rect bounds = cv::Rect(0, 0, MAX_COL, MAX_ROW);$/;"	m	class:Pong	typeref:typename:cv::Rect
+bounds	software/demo2/src/pong/pong.hpp	/^    cv::Rect bounds = cv::Rect(0, 0, MAX_COL, MAX_ROW);$/;"	m	class:Pong	typeref:typename:cv::Rect
+camera	software/490A_Final_Demo/CMakeLists.txt	/^add_executable(camera main.cpp)$/;"	t
+camera	software/490A_Final_Demo/CMakeLists.txt	/^project(camera VERSION 1.0.0)$/;"	p
+camera	software/490A_Final_Demo/build/Makefile	/^camera: cmake_check_build_system$/;"	t
+camera	software/camera/CMakeLists.txt	/^add_executable(camera main.cpp)$/;"	t
+camera	software/camera/CMakeLists.txt	/^project(camera VERSION 1.0.0)$/;"	p
+camera	software/demo1/CMakeLists.txt	/^add_executable(camera ${SOURCES})$/;"	t
+camera	software/demo1/CMakeLists.txt	/^project(camera)$/;"	p
+camera	software/demo1/build/Makefile	/^camera: cmake_check_build_system$/;"	t
+camera	software/demo2/CMakeLists.txt	/^project(camera)$/;"	p
+camera	software/demo2/build/Makefile	/^camera: cmake_check_build_system$/;"	t
+camera	software/demo2/build/src/Makefile	/^camera: src\/CMakeFiles\/camera.dir\/rule$/;"	t
+camera	software/demo2/src/CMakeLists.txt	/^add_executable(camera ${CAMERA_SOURCES} ${PONG_SOURCES})$/;"	t
+camera/fast	software/490A_Final_Demo/build/Makefile	/^camera\/fast:$/;"	t
+camera/fast	software/demo1/build/Makefile	/^camera\/fast:$/;"	t
+camera/fast	software/demo2/build/Makefile	/^camera\/fast:$/;"	t
+camera/fast	software/demo2/build/src/Makefile	/^camera\/fast:$/;"	t
+capture_name	software/490A_Final_Demo/main.cpp	/^const string capture_name = "capture.png"; \/\/ Name of yanked original image$/;"	v	typeref:typename:const string
+capture_name	software/demo1/src/main.cpp	/^const string capture_name = "capture.png"; \/\/ 'yanked' photo's name in filesystem$/;"	v	typeref:typename:const string
+capture_name	software/demo2/src/main.cpp	/^const string capture_name = "capture.png"; \/\/ 'yanked' photo's name in filesystem$/;"	v	typeref:typename:const string
+center_pixel	software/demo1/src/blob.h	/^    Pixel center_pixel[4];            \/\/ pixel in center-ish (not exact but close)$/;"	m	class:Blob	typeref:typename:Pixel[4]
+center_pixel	software/demo2/src/blob.hpp	/^    Pixel center_pixel[4];            \/\/ pixel in center-ish (not exact but close)$/;"	m	class:Blob	typeref:typename:Pixel[4]
+channels	software/demo1/src/frame.h	/^    unsigned int channels;                      \/\/ channels$/;"	m	class:Frame	typeref:typename:unsigned int
+channels	software/demo2/src/frame.hpp	/^    unsigned int channels;                      \/\/ channels$/;"	m	class:Frame	typeref:typename:unsigned int
+clean	software/490A_Final_Demo/build/Makefile	/^clean:$/;"	t
+clean	software/demo1/build/Makefile	/^clean:$/;"	t
+clean	software/demo2/build/Makefile	/^clean:$/;"	t
+clean	software/demo2/build/src/Makefile	/^clean:$/;"	t
+clean	software/demo2/build/src/pong/Makefile	/^clean:$/;"	t
+clean/fast	software/490A_Final_Demo/build/Makefile	/^clean\/fast: clean$/;"	t
+clean/fast	software/demo1/build/Makefile	/^clean\/fast: clean$/;"	t
+clean/fast	software/demo2/build/Makefile	/^clean\/fast: clean$/;"	t
+clean/fast	software/demo2/build/src/Makefile	/^clean\/fast: clean$/;"	t
+clean/fast	software/demo2/build/src/pong/Makefile	/^clean\/fast: clean$/;"	t
+cmake_check_build_system	software/490A_Final_Demo/build/Makefile	/^cmake_check_build_system:$/;"	t
+cmake_check_build_system	software/demo1/build/Makefile	/^cmake_check_build_system:$/;"	t
+cmake_check_build_system	software/demo2/build/Makefile	/^cmake_check_build_system:$/;"	t
+cmake_check_build_system	software/demo2/build/src/Makefile	/^cmake_check_build_system:$/;"	t
+cmake_check_build_system	software/demo2/build/src/pong/Makefile	/^cmake_check_build_system:$/;"	t
+cmake_force	software/490A_Final_Demo/build/Makefile	/^cmake_force:$/;"	t
+cmake_force	software/demo1/build/Makefile	/^cmake_force:$/;"	t
+cmake_force	software/demo2/build/Makefile	/^cmake_force:$/;"	t
+cmake_force	software/demo2/build/src/Makefile	/^cmake_force:$/;"	t
+cmake_force	software/demo2/build/src/pong/Makefile	/^cmake_force:$/;"	t
+col	software/demo1/src/pixel.h	/^    unsigned int row, col;                        \/\/ position of pixel$/;"	m	class:Pixel	typeref:typename:unsigned int
+col	software/demo2/src/pixel.hpp	/^    unsigned int row, col;                        \/\/ position of pixel$/;"	m	class:Pixel	typeref:typename:unsigned int
+cols	software/demo1/src/frame.h	/^    unsigned int cols, rows;                    \/\/ synonym for height and width of frame$/;"	m	class:Frame	typeref:typename:unsigned int
+cols	software/demo2/src/frame.hpp	/^    unsigned int cols, rows;                    \/\/ synonym for height and width of frame$/;"	m	class:Frame	typeref:typename:unsigned int
+const	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define const$/;"	d	file:
+const	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define const$/;"	d	file:
+const	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define const$/;"	d	file:
+convertValues	software/demo1/src/frame.cpp	/^void Frame::convertValues()$/;"	f	class:Frame	typeref:typename:void
+convertValues	software/demo2/src/frame.cpp	/^void Frame::convertValues()$/;"	f	class:Frame	typeref:typename:void
+core_bgr	software/demo1/src/main.cpp	/^    const unsigned char core_bgr[2][3] = { {CORE_RED_LASER_BGR_BLUE   , CORE_RED_LASER_BGR_GREEN/;"	v	typeref:typename:const unsigned char[2][3]
+core_bgr	software/demo1/src/main.cpp	/^    const unsigned char core_bgr[2][3] = { {CORE_RED_LASER_HSV_HUE   , CORE_RED_LASER_HSV_SAT   /;"	v	typeref:typename:const unsigned char[2][3]
+core_bgr	software/demo2/src/main.cpp	/^    const unsigned char core_bgr[2][3] = { {CORE_RED_LASER_BGR_BLUE   , CORE_RED_LASER_BGR_GREEN/;"	v	typeref:typename:const unsigned char[2][3]
+core_bgr	software/demo2/src/main.cpp	/^    const unsigned char core_bgr[2][3] = { {CORE_RED_LASER_HSV_HUE   , CORE_RED_LASER_HSV_SAT   /;"	v	typeref:typename:const unsigned char[2][3]
+core_pixels	software/demo1/src/blob.h	/^    std::vector< Pixel > core_pixels; \/\/ pixels inside blob (blob_pixels - edge_pixels)$/;"	m	class:Blob	typeref:typename:std::vector<Pixel>
+core_pixels	software/demo2/src/blob.hpp	/^    std::vector< Pixel > core_pixels; \/\/ pixels inside blob (blob_pixels - edge_pixels)$/;"	m	class:Blob	typeref:typename:std::vector<Pixel>
+default_target	software/490A_Final_Demo/build/Makefile	/^default_target: all$/;"	t
+default_target	software/demo1/build/Makefile	/^default_target: all$/;"	t
+default_target	software/demo2/build/Makefile	/^default_target: all$/;"	t
+default_target	software/demo2/build/src/Makefile	/^default_target: all$/;"	t
+default_target	software/demo2/build/src/pong/Makefile	/^default_target: all$/;"	t
+depend	software/490A_Final_Demo/build/Makefile	/^depend:$/;"	t
+depend	software/demo1/build/Makefile	/^depend:$/;"	t
+depend	software/demo2/build/Makefile	/^depend:$/;"	t
+depend	software/demo2/build/src/Makefile	/^depend:$/;"	t
+depend	software/demo2/build/src/pong/Makefile	/^depend:$/;"	t
+edge_bgr	software/demo1/src/main.cpp	/^    const unsigned char edge_bgr[2][3] = { {EDGE_RED_LASER_BGR_BLUE   , EDGE_RED_LASER_BGR_GREEN/;"	v	typeref:typename:const unsigned char[2][3]
+edge_bgr	software/demo1/src/main.cpp	/^    const unsigned char edge_bgr[2][3] = { {EDGE_RED_LASER_HSV_HUE   , EDGE_RED_LASER_HSV_SAT   /;"	v	typeref:typename:const unsigned char[2][3]
+edge_bgr	software/demo2/src/main.cpp	/^    const unsigned char edge_bgr[2][3] = { {EDGE_RED_LASER_BGR_BLUE   , EDGE_RED_LASER_BGR_GREEN/;"	v	typeref:typename:const unsigned char[2][3]
+edge_bgr	software/demo2/src/main.cpp	/^    const unsigned char edge_bgr[2][3] = { {EDGE_RED_LASER_HSV_HUE   , EDGE_RED_LASER_HSV_SAT   /;"	v	typeref:typename:const unsigned char[2][3]
+edge_pixels	software/demo1/src/blob.h	/^    std::vector< Pixel > edge_pixels; \/\/ pixels on perimeter of blob $/;"	m	class:Blob	typeref:typename:std::vector<Pixel>
+edge_pixels	software/demo2/src/blob.hpp	/^    std::vector< Pixel > edge_pixels; \/\/ pixels on perimeter of blob $/;"	m	class:Blob	typeref:typename:std::vector<Pixel>
+edit_cache	software/490A_Final_Demo/build/Makefile	/^edit_cache:$/;"	t
+edit_cache	software/demo1/build/Makefile	/^edit_cache:$/;"	t
+edit_cache	software/demo2/build/Makefile	/^edit_cache:$/;"	t
+edit_cache	software/demo2/build/src/Makefile	/^edit_cache:$/;"	t
+edit_cache	software/demo2/build/src/pong/Makefile	/^edit_cache:$/;"	t
+edit_cache/fast	software/490A_Final_Demo/build/Makefile	/^edit_cache\/fast: edit_cache$/;"	t
+edit_cache/fast	software/demo1/build/Makefile	/^edit_cache\/fast: edit_cache$/;"	t
+edit_cache/fast	software/demo2/build/Makefile	/^edit_cache\/fast: edit_cache$/;"	t
+edit_cache/fast	software/demo2/build/src/Makefile	/^edit_cache\/fast: edit_cache$/;"	t
+edit_cache/fast	software/demo2/build/src/pong/Makefile	/^edit_cache\/fast: edit_cache$/;"	t
+filters	software/demo1/src/main.cpp	/^    const unsigned int  filters[2]     = { (FILTER_RED_LASER_BLOB_BGR_BLUE << 0)   + (FILTER_RED/;"	v	typeref:typename:const unsigned int[2]
+filters	software/demo1/src/main.cpp	/^    const unsigned int  filters[2]     = { (FILTER_RED_LASER_BLOB_HSV_HUE << 0)   + (FILTER_RED_/;"	v	typeref:typename:const unsigned int[2]
+filters	software/demo2/src/main.cpp	/^    const unsigned int  filters[2]     = { (FILTER_RED_LASER_BLOB_BGR_BLUE << 0)   + (FILTER_RED/;"	v	typeref:typename:const unsigned int[2]
+filters	software/demo2/src/main.cpp	/^    const unsigned int  filters[2]     = { (FILTER_RED_LASER_BLOB_HSV_HUE << 0)   + (FILTER_RED_/;"	v	typeref:typename:const unsigned int[2]
+findBlobs	software/demo1/src/frame.cpp	/^void Frame::findBlobs(unsigned char type = 0)$/;"	f	class:Frame	typeref:typename:void
+findBlobs	software/demo2/src/frame.cpp	/^void Frame::findBlobs(unsigned char type = 0)$/;"	f	class:Frame	typeref:typename:void
+find_host_package	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^    macro(find_host_package)$/;"	m
+find_host_package	software/demo1/cmake/OpenCVConfig.cmake	/^    macro(find_host_package)$/;"	m
+find_host_package	software/demo2/cmake/OpenCVConfig.cmake	/^    macro(find_host_package)$/;"	m
+find_host_program	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^    macro(find_host_program)$/;"	m
+find_host_program	software/demo1/cmake/OpenCVConfig.cmake	/^    macro(find_host_program)$/;"	m
+find_host_program	software/demo2/cmake/OpenCVConfig.cmake	/^    macro(find_host_program)$/;"	m
+frame.cpp.i	software/demo2/build/src/Makefile	/^frame.cpp.i:$/;"	t
+frame.cpp.o	software/demo2/build/src/Makefile	/^frame.cpp.o:$/;"	t
+frame.cpp.s	software/demo2/build/src/Makefile	/^frame.cpp.s:$/;"	t
+frame.i	software/demo2/build/src/Makefile	/^frame.i: frame.cpp.i$/;"	t
+frame.o	software/demo2/build/src/Makefile	/^frame.o: frame.cpp.o$/;"	t
+frame.s	software/demo2/build/src/Makefile	/^frame.s: frame.cpp.s$/;"	t
+g	software/camera/main.cpp	/^    unsigned int g;$/;"	m	struct:Pixel	typeref:typename:unsigned int	file:
+getAverageBGR	software/demo1/src/blob.cpp	/^cv::Scalar Blob::getAverageBGR(int type = 0)$/;"	f	class:Blob	typeref:typename:cv::Scalar
+getAverageBGR	software/demo2/src/blob.cpp	/^cv::Scalar Blob::getAverageBGR(int type = 0)$/;"	f	class:Blob	typeref:typename:cv::Scalar
+getBall	software/demo1/src/pong/pong.h	/^    cv::Rect getBall() { return this->ball; }$/;"	f	class:Pong	typeref:typename:cv::Rect
+getBall	software/demo2/src/pong/pong.hpp	/^    cv::Rect getBall() { return this->ball; }$/;"	f	class:Pong	typeref:typename:cv::Rect
+getBlobPixels	software/demo1/src/blob.cpp	/^std::vector< Pixel > Blob::getBlobPixels()$/;"	f	class:Blob	typeref:typename:std::vector<Pixel>
+getBlobPixels	software/demo2/src/blob.cpp	/^std::vector< Pixel > Blob::getBlobPixels()$/;"	f	class:Blob	typeref:typename:std::vector<Pixel>
+getBlobs	software/demo1/src/frame.cpp	/^std::vector< Blob > Frame::getBlobs(unsigned char type = 0)$/;"	f	class:Frame	typeref:typename:std::vector<Blob>
+getBlobs	software/demo2/src/frame.cpp	/^std::vector< Blob > Frame::getBlobs(unsigned char type = 0)$/;"	f	class:Frame	typeref:typename:std::vector<Blob>
+getCol	software/demo1/src/pixel.cpp	/^unsigned int Pixel::getCol() const$/;"	f	class:Pixel	typeref:typename:unsigned int
+getCol	software/demo2/src/pixel.cpp	/^unsigned int Pixel::getCol() const$/;"	f	class:Pixel	typeref:typename:unsigned int
+getCorePixels	software/demo1/src/blob.cpp	/^std::vector< Pixel > Blob::getCorePixels()$/;"	f	class:Blob	typeref:typename:std::vector<Pixel>
+getCorePixels	software/demo2/src/blob.cpp	/^std::vector< Pixel > Blob::getCorePixels()$/;"	f	class:Blob	typeref:typename:std::vector<Pixel>
+getEdgePixels	software/demo1/src/blob.cpp	/^std::vector< Pixel > Blob::getEdgePixels()$/;"	f	class:Blob	typeref:typename:std::vector<Pixel>
+getEdgePixels	software/demo2/src/blob.cpp	/^std::vector< Pixel > Blob::getEdgePixels()$/;"	f	class:Blob	typeref:typename:std::vector<Pixel>
+getLostTeam	software/demo1/src/pong/pong.h	/^    int getLostTeam() { return (this->lost_team); }$/;"	f	class:Pong	typeref:typename:int
+getLostTeam	software/demo2/src/pong/pong.hpp	/^    int getLostTeam() { return (this->lost_team); }$/;"	f	class:Pong	typeref:typename:int
+getMat	software/demo1/src/frame.cpp	/^cv::Mat& Frame::getMat(int channels = 3, int type = 0)$/;"	f	class:Frame	typeref:typename:cv::Mat &
+getMat	software/demo2/src/frame.cpp	/^cv::Mat& Frame::getMat(int channels = 3, int type = 0)$/;"	f	class:Frame	typeref:typename:cv::Mat &
+getPaddle	software/demo1/src/pong/pong.h	/^    cv::Rect getPaddle(unsigned char type) { return (type == 0) ? this->paddle_l : this->paddle_/;"	f	class:Pong	typeref:typename:cv::Rect
+getPaddle	software/demo2/src/pong/pong.hpp	/^    cv::Rect getPaddle(unsigned char type) { return (type == 0) ? this->paddle_l : this->paddle_/;"	f	class:Pong	typeref:typename:cv::Rect
+getPixels	software/demo1/src/frame.cpp	/^std::vector< std::vector< Pixel > >& Frame::getPixels()$/;"	f	class:Frame	typeref:typename:std::vector<std::vector<Pixel>> &
+getPixels	software/demo2/src/frame.cpp	/^std::vector< std::vector< Pixel > >& Frame::getPixels()$/;"	f	class:Frame	typeref:typename:std::vector<std::vector<Pixel>> &
+getRect	software/demo1/src/blob.cpp	/^cv::Rect Blob::getRect()$/;"	f	class:Blob	typeref:typename:cv::Rect
+getRect	software/demo2/src/blob.cpp	/^cv::Rect Blob::getRect()$/;"	f	class:Blob	typeref:typename:cv::Rect
+getRow	software/demo1/src/pixel.cpp	/^unsigned int Pixel::getRow() const$/;"	f	class:Pixel	typeref:typename:unsigned int
+getRow	software/demo2/src/pixel.cpp	/^unsigned int Pixel::getRow() const$/;"	f	class:Pixel	typeref:typename:unsigned int
+getScore	software/demo1/src/blob.cpp	/^int Blob::getScore()$/;"	f	class:Blob	typeref:typename:int
+getScore	software/demo2/src/blob.cpp	/^int Blob::getScore()$/;"	f	class:Blob	typeref:typename:int
+getValues	software/demo1/src/frame.cpp	/^std::vector< unsigned char >& Frame::getValues()$/;"	f	class:Frame	typeref:typename:std::vector<unsigned char> &
+getValues	software/demo2/src/frame.cpp	/^std::vector< unsigned char >& Frame::getValues()$/;"	f	class:Frame	typeref:typename:std::vector<unsigned char> &
+hasBlobs	software/demo1/src/frame.cpp	/^bool Frame::hasBlobs(unsigned char type = 0)$/;"	f	class:Frame	typeref:typename:bool
+hasBlobs	software/demo2/src/frame.cpp	/^bool Frame::hasBlobs(unsigned char type = 0)$/;"	f	class:Frame	typeref:typename:bool
+height	software/demo1/src/frame.h	/^    unsigned int width, height;                 \/\/ height and width of frame$/;"	m	class:Frame	typeref:typename:unsigned int
+height	software/demo2/src/frame.hpp	/^    unsigned int width, height;                 \/\/ height and width of frame$/;"	m	class:Frame	typeref:typename:unsigned int
+help	software/490A_Final_Demo/build/Makefile	/^help:$/;"	t
+help	software/demo1/build/Makefile	/^help:$/;"	t
+help	software/demo2/build/Makefile	/^help:$/;"	t
+help	software/demo2/build/src/Makefile	/^help:$/;"	t
+help	software/demo2/build/src/pong/Makefile	/^help:$/;"	t
+inRange	software/demo1/src/frame.cpp	/^void Frame::inRange(unsigned char b_l, unsigned char b_h,  \/\/ low \/ high blue $/;"	f	class:Frame	typeref:typename:void
+inRange	software/demo2/src/frame.cpp	/^void Frame::inRange(unsigned char b_l, unsigned char b_h,  \/\/ low \/ high blue $/;"	f	class:Frame	typeref:typename:void
+info_arch	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_arch = "INFO" ":" "arch[" ARCHITECTURE_ID "]";$/;"	v	typeref:typename:char const *
+info_arch	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_arch = "INFO" ":" "arch[" ARCHITECTURE_ID "]";$/;"	v	typeref:typename:char const *
+info_arch	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_arch = "INFO" ":" "arch[" ARCHITECTURE_ID "]";$/;"	v	typeref:typename:char const *
+info_arch	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_arch = "INFO" ":" "arch[" ARCHITECTURE_ID "]";$/;"	v	typeref:typename:char const *
+info_arch	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_arch = "INFO" ":" "arch[" ARCHITECTURE_ID "]";$/;"	v	typeref:typename:char const *
+info_arch	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_arch = "INFO" ":" "arch[" ARCHITECTURE_ID "]";$/;"	v	typeref:typename:char const *
+info_compiler	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_compiler = "INFO" ":" "compiler[" COMPILER_ID "]";$/;"	v	typeref:typename:char const *
+info_compiler	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_compiler = "INFO" ":" "compiler[" COMPILER_ID "]";$/;"	v	typeref:typename:char const *
+info_compiler	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_compiler = "INFO" ":" "compiler[" COMPILER_ID "]";$/;"	v	typeref:typename:char const *
+info_compiler	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_compiler = "INFO" ":" "compiler[" COMPILER_ID "]";$/;"	v	typeref:typename:char const *
+info_compiler	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_compiler = "INFO" ":" "compiler[" COMPILER_ID "]";$/;"	v	typeref:typename:char const *
+info_compiler	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_compiler = "INFO" ":" "compiler[" COMPILER_ID "]";$/;"	v	typeref:typename:char const *
+info_cray	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const *info_cray = "INFO" ":" "compiler_wrapper[CrayPrgEnv]";$/;"	v	typeref:typename:char const *
+info_cray	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const *info_cray = "INFO" ":" "compiler_wrapper[CrayPrgEnv]";$/;"	v	typeref:typename:char const *
+info_cray	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const *info_cray = "INFO" ":" "compiler_wrapper[CrayPrgEnv]";$/;"	v	typeref:typename:char const *
+info_cray	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const *info_cray = "INFO" ":" "compiler_wrapper[CrayPrgEnv]";$/;"	v	typeref:typename:char const *
+info_cray	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const *info_cray = "INFO" ":" "compiler_wrapper[CrayPrgEnv]";$/;"	v	typeref:typename:char const *
+info_cray	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const *info_cray = "INFO" ":" "compiler_wrapper[CrayPrgEnv]";$/;"	v	typeref:typename:char const *
+info_language_dialect_default	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^const char* info_language_dialect_default =$/;"	v	typeref:typename:const char *
+info_language_dialect_default	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^const char* info_language_dialect_default = "INFO" ":" "dialect_default["$/;"	v	typeref:typename:const char *
+info_language_dialect_default	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^const char* info_language_dialect_default =$/;"	v	typeref:typename:const char *
+info_language_dialect_default	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^const char* info_language_dialect_default = "INFO" ":" "dialect_default["$/;"	v	typeref:typename:const char *
+info_language_dialect_default	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^const char* info_language_dialect_default =$/;"	v	typeref:typename:const char *
+info_language_dialect_default	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^const char* info_language_dialect_default = "INFO" ":" "dialect_default["$/;"	v	typeref:typename:const char *
+info_platform	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_platform = "INFO" ":" "platform[" PLATFORM_ID "]";$/;"	v	typeref:typename:char const *
+info_platform	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_platform = "INFO" ":" "platform[" PLATFORM_ID "]";$/;"	v	typeref:typename:char const *
+info_platform	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_platform = "INFO" ":" "platform[" PLATFORM_ID "]";$/;"	v	typeref:typename:char const *
+info_platform	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_platform = "INFO" ":" "platform[" PLATFORM_ID "]";$/;"	v	typeref:typename:char const *
+info_platform	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_platform = "INFO" ":" "platform[" PLATFORM_ID "]";$/;"	v	typeref:typename:char const *
+info_platform	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_platform = "INFO" ":" "platform[" PLATFORM_ID "]";$/;"	v	typeref:typename:char const *
+info_simulate	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_simulate = "INFO" ":" "simulate[" SIMULATE_ID "]";$/;"	v	typeref:typename:char const *
+info_simulate	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_simulate = "INFO" ":" "simulate[" SIMULATE_ID "]";$/;"	v	typeref:typename:char const *
+info_simulate	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_simulate = "INFO" ":" "simulate[" SIMULATE_ID "]";$/;"	v	typeref:typename:char const *
+info_simulate	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_simulate = "INFO" ":" "simulate[" SIMULATE_ID "]";$/;"	v	typeref:typename:char const *
+info_simulate	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const* info_simulate = "INFO" ":" "simulate[" SIMULATE_ID "]";$/;"	v	typeref:typename:char const *
+info_simulate	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* info_simulate = "INFO" ":" "simulate[" SIMULATE_ID "]";$/;"	v	typeref:typename:char const *
+info_simulate_version	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const info_simulate_version[] = {$/;"	v	typeref:typename:char const[]
+info_simulate_version	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_simulate_version[] = {$/;"	v	typeref:typename:char const[]
+info_simulate_version	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const info_simulate_version[] = {$/;"	v	typeref:typename:char const[]
+info_simulate_version	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_simulate_version[] = {$/;"	v	typeref:typename:char const[]
+info_simulate_version	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const info_simulate_version[] = {$/;"	v	typeref:typename:char const[]
+info_simulate_version	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_simulate_version[] = {$/;"	v	typeref:typename:char const[]
+info_version	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const info_version[] = {$/;"	v	typeref:typename:char const[]
+info_version	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_version[] = {$/;"	v	typeref:typename:char const[]
+info_version	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const info_version[] = {$/;"	v	typeref:typename:char const[]
+info_version	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_version[] = {$/;"	v	typeref:typename:char const[]
+info_version	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const info_version[] = {$/;"	v	typeref:typename:char const[]
+info_version	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_version[] = {$/;"	v	typeref:typename:char const[]
+info_version_internal	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const info_version_internal[] = {$/;"	v	typeref:typename:char const[]
+info_version_internal	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_version_internal[] = {$/;"	v	typeref:typename:char const[]
+info_version_internal	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const info_version_internal[] = {$/;"	v	typeref:typename:char const[]
+info_version_internal	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_version_internal[] = {$/;"	v	typeref:typename:char const[]
+info_version_internal	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const info_version_internal[] = {$/;"	v	typeref:typename:char const[]
+info_version_internal	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const info_version_internal[] = {$/;"	v	typeref:typename:char const[]
+init	software/demo1/src/blob.cpp	/^void Blob::init(std::vector< Pixel > blob_pixels, std::vector< Pixel > edge_pixels, std::vector</;"	f	class:Blob	typeref:typename:void
+init	software/demo1/src/frame.cpp	/^void Frame::init(std::vector< unsigned char > values, unsigned int width, unsigned int height, $/;"	f	class:Frame	typeref:typename:void
+init	software/demo1/src/pixel.cpp	/^void Pixel::init(unsigned int row, unsigned int col, unsigned char b, unsigned char g, unsigned /;"	f	class:Pixel	typeref:typename:void
+init	software/demo2/src/blob.cpp	/^void Blob::init(std::vector< Pixel > blob_pixels, std::vector< Pixel > edge_pixels, std::vector</;"	f	class:Blob	typeref:typename:void
+init	software/demo2/src/frame.cpp	/^void Frame::init(std::vector< unsigned char > values, unsigned int width, unsigned int height, $/;"	f	class:Frame	typeref:typename:void
+init	software/demo2/src/pixel.cpp	/^void Pixel::init(unsigned int row, unsigned int col, unsigned char b, unsigned char g, unsigned /;"	f	class:Pixel	typeref:typename:void
+initializeVideo	software/demo1/src/main.cpp	/^VideoCapture initializeVideo()$/;"	f	typeref:typename:VideoCapture
+initializeVideo	software/demo2/src/main.cpp	/^VideoCapture initializeVideo()$/;"	f	typeref:typename:VideoCapture
+initialized	software/demo1/src/blob.h	/^    unsigned char initialized = 0;    \/\/ boolean to check if initialized$/;"	m	class:Blob	typeref:typename:unsigned char
+initialized	software/demo1/src/frame.h	/^    unsigned char initialized = 0;              \/\/ boolean to check if initialized$/;"	m	class:Frame	typeref:typename:unsigned char
+initialized	software/demo1/src/pixel.h	/^    unsigned char initialized = 0;                \/\/ boolean to check if initialized$/;"	m	class:Pixel	typeref:typename:unsigned char
+initialized	software/demo2/src/blob.hpp	/^    unsigned char initialized = 0;    \/\/ boolean to check if initialized$/;"	m	class:Blob	typeref:typename:unsigned char
+initialized	software/demo2/src/frame.hpp	/^    unsigned char initialized = 0;              \/\/ boolean to check if initialized$/;"	m	class:Frame	typeref:typename:unsigned char
+initialized	software/demo2/src/pixel.hpp	/^    unsigned char initialized = 0;                \/\/ boolean to check if initialized$/;"	m	class:Pixel	typeref:typename:unsigned char
+isInitialized	software/demo1/src/blob.cpp	/^unsigned char Blob::isInitialized()$/;"	f	class:Blob	typeref:typename:unsigned char
+isInitialized	software/demo1/src/frame.cpp	/^unsigned char Frame::isInitialized()$/;"	f	class:Frame	typeref:typename:unsigned char
+isInitialized	software/demo1/src/pixel.cpp	/^unsigned char Pixel::isInitialized()$/;"	f	class:Pixel	typeref:typename:unsigned char
+isInitialized	software/demo2/src/blob.cpp	/^unsigned char Blob::isInitialized()$/;"	f	class:Blob	typeref:typename:unsigned char
+isInitialized	software/demo2/src/frame.cpp	/^unsigned char Frame::isInitialized()$/;"	f	class:Frame	typeref:typename:unsigned char
+isInitialized	software/demo2/src/pixel.cpp	/^unsigned char Pixel::isInitialized()$/;"	f	class:Pixel	typeref:typename:unsigned char
+isLost	software/demo1/src/pong/pong.h	/^    bool isLost() { return (this->lost_count > 0); }$/;"	f	class:Pong	typeref:typename:bool
+isLost	software/demo2/src/pong/pong.hpp	/^    bool isLost() { return (this->lost_count > 0); }$/;"	f	class:Pong	typeref:typename:bool
+isRunning	software/demo1/src/pong/pong.h	/^    bool isRunning() { return this->running; }$/;"	f	class:Pong	typeref:typename:bool
+isRunning	software/demo2/src/pong/pong.hpp	/^    bool isRunning() { return this->running; }$/;"	f	class:Pong	typeref:typename:bool
+lost_count	software/demo1/src/pong/pong.h	/^    int lost_count = 0;     \/\/ keeping track of how long "lost" text stays on screen$/;"	m	class:Pong	typeref:typename:int
+lost_count	software/demo2/src/pong/pong.hpp	/^    int lost_count = 0;     \/\/ keeping track of how long "lost" text stays on screen$/;"	m	class:Pong	typeref:typename:int
+lost_team	software/demo1/src/pong/pong.h	/^    int lost_team = 0;      \/\/ keeping track of how long "lost" text stays on screen$/;"	m	class:Pong	typeref:typename:int
+lost_team	software/demo2/src/pong/pong.hpp	/^    int lost_team = 0;      \/\/ keeping track of how long "lost" text stays on screen$/;"	m	class:Pong	typeref:typename:int
+main	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^int main(argc, argv) int argc; char *argv[];$/;"	f
+main	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^void main() {}$/;"	f	typeref:typename:void
+main	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^int main(int argc, char* argv[])$/;"	f	typeref:typename:int
+main	software/490A_Final_Demo/main.cpp	/^int main(int, char**)$/;"	f	typeref:typename:int
+main	software/camera/main.cpp	/^int main(int, char**)$/;"	f	typeref:typename:int
+main	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^int main(argc, argv) int argc; char *argv[];$/;"	f
+main	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^void main() {}$/;"	f	typeref:typename:void
+main	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^int main(int argc, char* argv[])$/;"	f	typeref:typename:int
+main	software/demo1/src/main.cpp	/^int main(int, char**)$/;"	f	typeref:typename:int
+main	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^int main(argc, argv) int argc; char *argv[];$/;"	f
+main	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^void main() {}$/;"	f	typeref:typename:void
+main	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^int main(int argc, char* argv[])$/;"	f	typeref:typename:int
+main	software/demo2/src/main.cpp	/^int main(int, char**)$/;"	f	typeref:typename:int
+main.cpp.i	software/490A_Final_Demo/build/Makefile	/^main.cpp.i:$/;"	t
+main.cpp.i	software/demo2/build/src/Makefile	/^main.cpp.i:$/;"	t
+main.cpp.o	software/490A_Final_Demo/build/Makefile	/^main.cpp.o:$/;"	t
+main.cpp.o	software/demo2/build/src/Makefile	/^main.cpp.o:$/;"	t
+main.cpp.s	software/490A_Final_Demo/build/Makefile	/^main.cpp.s:$/;"	t
+main.cpp.s	software/demo2/build/src/Makefile	/^main.cpp.s:$/;"	t
+main.i	software/490A_Final_Demo/build/Makefile	/^main.i: main.cpp.i$/;"	t
+main.i	software/demo2/build/src/Makefile	/^main.i: main.cpp.i$/;"	t
+main.o	software/490A_Final_Demo/build/Makefile	/^main.o: main.cpp.o$/;"	t
+main.o	software/demo2/build/src/Makefile	/^main.o: main.cpp.o$/;"	t
+main.s	software/490A_Final_Demo/build/Makefile	/^main.s: main.cpp.s$/;"	t
+main.s	software/demo2/build/src/Makefile	/^main.s: main.cpp.s$/;"	t
+ocv_check_dependencies	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^macro(ocv_check_dependencies)$/;"	m
+ocv_check_dependencies	software/demo1/cmake/OpenCVConfig.cmake	/^macro(ocv_check_dependencies)$/;"	m
+ocv_check_dependencies	software/demo2/cmake/OpenCVConfig.cmake	/^macro(ocv_check_dependencies)$/;"	m
+ocv_include_directories	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^function(ocv_include_directories)$/;"	f
+ocv_include_directories	software/demo1/cmake/OpenCVConfig.cmake	/^function(ocv_include_directories)$/;"	f
+ocv_include_directories	software/demo2/cmake/OpenCVConfig.cmake	/^function(ocv_include_directories)$/;"	f
+ocv_include_modules	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^macro(ocv_include_modules)$/;"	m
+ocv_include_modules	software/demo1/cmake/OpenCVConfig.cmake	/^macro(ocv_include_modules)$/;"	m
+ocv_include_modules	software/demo2/cmake/OpenCVConfig.cmake	/^macro(ocv_include_modules)$/;"	m
+ocv_include_modules_recurse	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^macro(ocv_include_modules_recurse)$/;"	m
+ocv_include_modules_recurse	software/demo1/cmake/OpenCVConfig.cmake	/^macro(ocv_include_modules_recurse)$/;"	m
+ocv_include_modules_recurse	software/demo2/cmake/OpenCVConfig.cmake	/^macro(ocv_include_modules_recurse)$/;"	m
+ocv_list_filterout	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^macro(ocv_list_filterout lst regex)$/;"	m
+ocv_list_filterout	software/demo1/cmake/OpenCVConfig.cmake	/^macro(ocv_list_filterout lst regex)$/;"	m
+ocv_list_filterout	software/demo2/cmake/OpenCVConfig.cmake	/^macro(ocv_list_filterout lst regex)$/;"	m
+ocv_map_imported_config	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^macro(ocv_map_imported_config target)$/;"	m
+ocv_map_imported_config	software/demo1/cmake/OpenCVConfig.cmake	/^macro(ocv_map_imported_config target)$/;"	m
+ocv_map_imported_config	software/demo2/cmake/OpenCVConfig.cmake	/^macro(ocv_map_imported_config target)$/;"	m
+ocv_target_link_libraries	software/490A_Final_Demo/cmake/OpenCVConfig.cmake	/^macro(ocv_target_link_libraries)$/;"	m
+ocv_target_link_libraries	software/demo1/cmake/OpenCVConfig.cmake	/^macro(ocv_target_link_libraries)$/;"	m
+ocv_target_link_libraries	software/demo2/cmake/OpenCVConfig.cmake	/^macro(ocv_target_link_libraries)$/;"	m
+on_adjust	software/490A_Final_Demo/main.cpp	/^void on_adjust(int, void* ) $/;"	f	typeref:typename:void
+on_adjust	software/demo1/src/main.cpp	/^void on_adjust(int, void* ) {}$/;"	f	typeref:typename:void
+on_adjust	software/demo2/src/main.cpp	/^void on_adjust(int, void* ) {}$/;"	f	typeref:typename:void
+operator ==	software/demo1/src/pixel.h	/^    bool operator ==(const Pixel &p) { return (this->row == p.getRow() && this->col == p.getCol(/;"	f	class:Pixel	typeref:typename:bool
+operator ==	software/demo2/src/pixel.hpp	/^    bool operator ==(const Pixel &p) { return (this->row == p.getRow() && this->col == p.getCol(/;"	f	class:Pixel	typeref:typename:bool
+operator []	software/demo1/src/blob.h	/^    Pixel   operator [](unsigned char i) const { return blob_pixels[i]; }$/;"	f	class:Blob	typeref:typename:Pixel
+operator []	software/demo1/src/blob.h	/^    Pixel & operator [](unsigned char i)       { return blob_pixels[i]; }$/;"	f	class:Blob	typeref:typename:Pixel &
+operator []	software/demo1/src/pixel.h	/^    unsigned char   operator [](unsigned char i) const { return bgr[i]; }$/;"	f	class:Pixel	typeref:typename:unsigned char
+operator []	software/demo1/src/pixel.h	/^    unsigned char & operator [](unsigned char i)       { return bgr[i]; }$/;"	f	class:Pixel	typeref:typename:unsigned char &
+operator []	software/demo2/src/blob.hpp	/^    Pixel   operator [](unsigned char i) const { return blob_pixels[i]; }$/;"	f	class:Blob	typeref:typename:Pixel
+operator []	software/demo2/src/blob.hpp	/^    Pixel & operator [](unsigned char i)       { return blob_pixels[i]; }$/;"	f	class:Blob	typeref:typename:Pixel &
+operator []	software/demo2/src/pixel.hpp	/^    unsigned char   operator [](unsigned char i) const { return bgr[i]; }$/;"	f	class:Pixel	typeref:typename:unsigned char
+operator []	software/demo2/src/pixel.hpp	/^    unsigned char & operator [](unsigned char i)       { return bgr[i]; }$/;"	f	class:Pixel	typeref:typename:unsigned char &
+output_frame	software/demo1/src/frame.h	/^    cv::Mat output_frame;                       \/\/ Frame to be returned to main for display$/;"	m	class:Frame	typeref:typename:cv::Mat
+output_frame	software/demo2/src/frame.hpp	/^    cv::Mat output_frame;                       \/\/ Frame to be returned to main for display$/;"	m	class:Frame	typeref:typename:cv::Mat
+paddle_l	software/demo1/src/pong/pong.h	/^    cv::Rect paddle_l = cv::Rect(start_paddle_l.x, start_paddle_l.y, start_paddle_l.width, start/;"	m	class:Pong	typeref:typename:cv::Rect
+paddle_l	software/demo2/src/pong/pong.hpp	/^    cv::Rect paddle_l = cv::Rect(start_paddle_l.x, start_paddle_l.y, start_paddle_l.width, start/;"	m	class:Pong	typeref:typename:cv::Rect
+paddle_r	software/demo1/src/pong/pong.h	/^    cv::Rect paddle_r = cv::Rect(start_paddle_r.x, start_paddle_r.y, start_paddle_r.width, start/;"	m	class:Pong	typeref:typename:cv::Rect
+paddle_r	software/demo2/src/pong/pong.hpp	/^    cv::Rect paddle_r = cv::Rect(start_paddle_r.x, start_paddle_r.y, start_paddle_r.width, start/;"	m	class:Pong	typeref:typename:cv::Rect
+pixel.cpp.i	software/demo2/build/src/Makefile	/^pixel.cpp.i:$/;"	t
+pixel.cpp.o	software/demo2/build/src/Makefile	/^pixel.cpp.o:$/;"	t
+pixel.cpp.s	software/demo2/build/src/Makefile	/^pixel.cpp.s:$/;"	t
+pixel.i	software/demo2/build/src/Makefile	/^pixel.i: pixel.cpp.i$/;"	t
+pixel.o	software/demo2/build/src/Makefile	/^pixel.o: pixel.cpp.o$/;"	t
+pixel.s	software/demo2/build/src/Makefile	/^pixel.s: pixel.cpp.s$/;"	t
+pixels	software/demo1/src/frame.h	/^    std::vector< std::vector< Pixel > > pixels; \/\/ 2D Array of pixels $/;"	m	class:Frame	typeref:typename:std::vector<std::vector<Pixel>>
+pixels	software/demo2/src/frame.hpp	/^    std::vector< std::vector< Pixel > > pixels; \/\/ 2D Array of pixels $/;"	m	class:Frame	typeref:typename:std::vector<std::vector<Pixel>>
+pixels1D	software/demo1/src/frame.h	/^    unsigned char pixels1D[MAX_ROW * MAX_COL * 3];  \/\/ Array used to generate Frame$/;"	m	class:Frame	typeref:typename:unsigned char[]
+pixels1D	software/demo2/src/frame.hpp	/^    unsigned char pixels1D[MAX_ROW * MAX_COL * 3];  \/\/ Array used to generate Frame$/;"	m	class:Frame	typeref:typename:unsigned char[]
+pong	software/demo1/src/main.cpp	/^Pong pong;$/;"	v	typeref:typename:Pong
+pong	software/demo2/src/main.cpp	/^Pong pong;$/;"	v	typeref:typename:Pong
+preinstall	software/490A_Final_Demo/build/Makefile	/^preinstall: all$/;"	t
+preinstall	software/demo1/build/Makefile	/^preinstall: all$/;"	t
+preinstall	software/demo2/build/Makefile	/^preinstall: all$/;"	t
+preinstall	software/demo2/build/src/Makefile	/^preinstall: all$/;"	t
+preinstall	software/demo2/build/src/pong/Makefile	/^preinstall: all$/;"	t
+preinstall/fast	software/490A_Final_Demo/build/Makefile	/^preinstall\/fast:$/;"	t
+preinstall/fast	software/demo1/build/Makefile	/^preinstall\/fast:$/;"	t
+preinstall/fast	software/demo2/build/Makefile	/^preinstall\/fast:$/;"	t
+preinstall/fast	software/demo2/build/src/Makefile	/^preinstall\/fast:$/;"	t
+preinstall/fast	software/demo2/build/src/pong/Makefile	/^preinstall\/fast:$/;"	t
+printStats	software/demo1/src/main.cpp	/^void printStats(VideoCapture cap, Mat img)$/;"	f	typeref:typename:void
+printStats	software/demo2/src/main.cpp	/^void printStats(VideoCapture cap, Mat img)$/;"	f	typeref:typename:void
+processInputs	software/demo1/src/main.cpp	/^int processInputs(Mat yank_mat)$/;"	f	typeref:typename:int
+processInputs	software/demo2/src/main.cpp	/^int processInputs(Mat yank_mat)$/;"	f	typeref:typename:int
+qnxnto	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const* qnxnto = "INFO" ":" "qnxnto[]";$/;"	v	typeref:typename:char const *
+qnxnto	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* qnxnto = "INFO" ":" "qnxnto[]";$/;"	v	typeref:typename:char const *
+qnxnto	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const* qnxnto = "INFO" ":" "qnxnto[]";$/;"	v	typeref:typename:char const *
+qnxnto	software/demo1/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* qnxnto = "INFO" ":" "qnxnto[]";$/;"	v	typeref:typename:char const *
+qnxnto	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^char const* qnxnto = "INFO" ":" "qnxnto[]";$/;"	v	typeref:typename:char const *
+qnxnto	software/demo2/build/CMakeFiles/3.15.2/CompilerIdCXX/CMakeCXXCompilerId.cpp	/^char const* qnxnto = "INFO" ":" "qnxnto[]";$/;"	v	typeref:typename:char const *
+r	software/camera/main.cpp	/^    unsigned int r;$/;"	m	struct:Pixel	typeref:typename:unsigned int	file:
+rebuild_cache	software/490A_Final_Demo/build/Makefile	/^rebuild_cache:$/;"	t
+rebuild_cache	software/demo1/build/Makefile	/^rebuild_cache:$/;"	t
+rebuild_cache	software/demo2/build/Makefile	/^rebuild_cache:$/;"	t
+rebuild_cache	software/demo2/build/src/Makefile	/^rebuild_cache:$/;"	t
+rebuild_cache	software/demo2/build/src/pong/Makefile	/^rebuild_cache:$/;"	t
+rebuild_cache/fast	software/490A_Final_Demo/build/Makefile	/^rebuild_cache\/fast: rebuild_cache$/;"	t
+rebuild_cache/fast	software/demo1/build/Makefile	/^rebuild_cache\/fast: rebuild_cache$/;"	t
+rebuild_cache/fast	software/demo2/build/Makefile	/^rebuild_cache\/fast: rebuild_cache$/;"	t
+rebuild_cache/fast	software/demo2/build/src/Makefile	/^rebuild_cache\/fast: rebuild_cache$/;"	t
+rebuild_cache/fast	software/demo2/build/src/pong/Makefile	/^rebuild_cache\/fast: rebuild_cache$/;"	t
+rect	software/demo1/src/blob.h	/^    cv::Rect rect;            $/;"	m	class:Blob	typeref:typename:cv::Rect
+rect	software/demo2/src/blob.hpp	/^    cv::Rect rect;            $/;"	m	class:Blob	typeref:typename:cv::Rect
+restart	software/demo1/src/pong/pong.cpp	/^void Pong::restart()$/;"	f	class:Pong	typeref:typename:void
+restart	software/demo2/src/pong/pong.cpp	/^void Pong::restart()$/;"	f	class:Pong	typeref:typename:void
+row	software/demo1/src/pixel.h	/^    unsigned int row, col;                        \/\/ position of pixel$/;"	m	class:Pixel	typeref:typename:unsigned int
+row	software/demo2/src/pixel.hpp	/^    unsigned int row, col;                        \/\/ position of pixel$/;"	m	class:Pixel	typeref:typename:unsigned int
+rows	software/demo1/src/frame.h	/^    unsigned int cols, rows;                    \/\/ synonym for height and width of frame$/;"	m	class:Frame	typeref:typename:unsigned int
+rows	software/demo2/src/frame.hpp	/^    unsigned int cols, rows;                    \/\/ synonym for height and width of frame$/;"	m	class:Frame	typeref:typename:unsigned int
+running	software/demo1/src/pong/pong.h	/^    bool running = false;$/;"	m	class:Pong	typeref:typename:bool
+running	software/demo2/src/pong/pong.hpp	/^    bool running = false;$/;"	m	class:Pong	typeref:typename:bool
+score	software/demo1/src/blob.h	/^    int score = 0;$/;"	m	class:Blob	typeref:typename:int
+score	software/demo2/src/blob.hpp	/^    int score = 0;$/;"	m	class:Blob	typeref:typename:int
+setAverageBGR	software/demo1/src/blob.cpp	/^void Blob::setAverageBGR(cv::Scalar bgr, int type = 0)$/;"	f	class:Blob	typeref:typename:void
+setAverageBGR	software/demo2/src/blob.cpp	/^void Blob::setAverageBGR(cv::Scalar bgr, int type = 0)$/;"	f	class:Blob	typeref:typename:void
+setScore	software/demo1/src/blob.cpp	/^void Blob::setScore(int score)$/;"	f	class:Blob	typeref:typename:void
+setScore	software/demo2/src/blob.cpp	/^void Blob::setScore(int score)$/;"	f	class:Blob	typeref:typename:void
+src/CMakeFiles/camera.dir/rule	software/demo2/build/src/Makefile	/^src\/CMakeFiles\/camera.dir\/rule:$/;"	t
+src/blob.cpp.i	software/demo1/build/Makefile	/^src\/blob.cpp.i:$/;"	t
+src/blob.cpp.o	software/demo1/build/Makefile	/^src\/blob.cpp.o:$/;"	t
+src/blob.cpp.s	software/demo1/build/Makefile	/^src\/blob.cpp.s:$/;"	t
+src/blob.i	software/demo1/build/Makefile	/^src\/blob.i: src\/blob.cpp.i$/;"	t
+src/blob.o	software/demo1/build/Makefile	/^src\/blob.o: src\/blob.cpp.o$/;"	t
+src/blob.s	software/demo1/build/Makefile	/^src\/blob.s: src\/blob.cpp.s$/;"	t
+src/frame.cpp.i	software/demo1/build/Makefile	/^src\/frame.cpp.i:$/;"	t
+src/frame.cpp.o	software/demo1/build/Makefile	/^src\/frame.cpp.o:$/;"	t
+src/frame.cpp.s	software/demo1/build/Makefile	/^src\/frame.cpp.s:$/;"	t
+src/frame.i	software/demo1/build/Makefile	/^src\/frame.i: src\/frame.cpp.i$/;"	t
+src/frame.o	software/demo1/build/Makefile	/^src\/frame.o: src\/frame.cpp.o$/;"	t
+src/frame.s	software/demo1/build/Makefile	/^src\/frame.s: src\/frame.cpp.s$/;"	t
+src/main.cpp.i	software/demo1/build/Makefile	/^src\/main.cpp.i:$/;"	t
+src/main.cpp.o	software/demo1/build/Makefile	/^src\/main.cpp.o:$/;"	t
+src/main.cpp.s	software/demo1/build/Makefile	/^src\/main.cpp.s:$/;"	t
+src/main.i	software/demo1/build/Makefile	/^src\/main.i: src\/main.cpp.i$/;"	t
+src/main.o	software/demo1/build/Makefile	/^src\/main.o: src\/main.cpp.o$/;"	t
+src/main.s	software/demo1/build/Makefile	/^src\/main.s: src\/main.cpp.s$/;"	t
+src/pixel.cpp.i	software/demo1/build/Makefile	/^src\/pixel.cpp.i:$/;"	t
+src/pixel.cpp.o	software/demo1/build/Makefile	/^src\/pixel.cpp.o:$/;"	t
+src/pixel.cpp.s	software/demo1/build/Makefile	/^src\/pixel.cpp.s:$/;"	t
+src/pixel.i	software/demo1/build/Makefile	/^src\/pixel.i: src\/pixel.cpp.i$/;"	t
+src/pixel.o	software/demo1/build/Makefile	/^src\/pixel.o: src\/pixel.cpp.o$/;"	t
+src/pixel.s	software/demo1/build/Makefile	/^src\/pixel.s: src\/pixel.cpp.s$/;"	t
+src/pong/pong.cpp.i	software/demo1/build/Makefile	/^src\/pong\/pong.cpp.i:$/;"	t
+src/pong/pong.cpp.o	software/demo1/build/Makefile	/^src\/pong\/pong.cpp.o:$/;"	t
+src/pong/pong.cpp.s	software/demo1/build/Makefile	/^src\/pong\/pong.cpp.s:$/;"	t
+src/pong/pong.i	software/demo1/build/Makefile	/^src\/pong\/pong.i: src\/pong\/pong.cpp.i$/;"	t
+src/pong/pong.o	software/demo1/build/Makefile	/^src\/pong\/pong.o: src\/pong\/pong.cpp.o$/;"	t
+src/pong/pong.s	software/demo1/build/Makefile	/^src\/pong\/pong.s: src\/pong\/pong.cpp.s$/;"	t
+start	software/demo1/src/pong/pong.h	/^    void start() { this->running = true; }$/;"	f	class:Pong	typeref:typename:void
+start	software/demo2/src/pong/pong.hpp	/^    void start() { this->running = true; }$/;"	f	class:Pong	typeref:typename:void
+start_ball	software/demo1/src/pong/pong.h	/^    cv::Rect start_ball   = cv::Rect(15, 10, 10, 10);$/;"	m	class:Pong	typeref:typename:cv::Rect
+start_ball	software/demo2/src/pong/pong.hpp	/^    cv::Rect start_ball   = cv::Rect(15, 10, 10, 10);$/;"	m	class:Pong	typeref:typename:cv::Rect
+start_ball_velocity_x	software/demo1/src/pong/pong.h	/^    int start_ball_velocity_x = BALL_VELOCITY;$/;"	m	class:Pong	typeref:typename:int
+start_ball_velocity_x	software/demo2/src/pong/pong.hpp	/^    int start_ball_velocity_x = BALL_VELOCITY;$/;"	m	class:Pong	typeref:typename:int
+start_ball_velocity_y	software/demo1/src/pong/pong.h	/^    int start_ball_velocity_y = BALL_VELOCITY;$/;"	m	class:Pong	typeref:typename:int
+start_ball_velocity_y	software/demo2/src/pong/pong.hpp	/^    int start_ball_velocity_y = BALL_VELOCITY;$/;"	m	class:Pong	typeref:typename:int
+start_paddle_l	software/demo1/src/pong/pong.h	/^    cv::Rect start_paddle_l = cv::Rect(5, 10, 2, 40);$/;"	m	class:Pong	typeref:typename:cv::Rect
+start_paddle_l	software/demo2/src/pong/pong.hpp	/^    cv::Rect start_paddle_l = cv::Rect(5, 10, 2, 40);$/;"	m	class:Pong	typeref:typename:cv::Rect
+start_paddle_r	software/demo1/src/pong/pong.h	/^    cv::Rect start_paddle_r = cv::Rect(MAX_COL - 5 - 2, 10, 2, 40);$/;"	m	class:Pong	typeref:typename:cv::Rect
+start_paddle_r	software/demo2/src/pong/pong.hpp	/^    cv::Rect start_paddle_r = cv::Rect(MAX_COL - 5 - 2, 10, 2, 40);$/;"	m	class:Pong	typeref:typename:cv::Rect
+stop	software/demo1/src/pong/pong.h	/^    void stop() { this->running = false; }$/;"	f	class:Pong	typeref:typename:void
+stop	software/demo2/src/pong/pong.hpp	/^    void stop() { this->running = false; }$/;"	f	class:Pong	typeref:typename:void
+threshold_values	software/demo1/src/main.cpp	/^    int threshold_values[2][2][3]      = { { { RED_LASER_BGR_BLUE_LOW,    RED_LASER_BGR_GREEN_LO/;"	v	typeref:typename:int[2][2][3]
+threshold_values	software/demo1/src/main.cpp	/^    int threshold_values[2][2][3]      = { { { RED_LASER_HSV_HUE_LOW,    RED_LASER_HSV_SAT_LOW ,/;"	v	typeref:typename:int[2][2][3]
+threshold_values	software/demo2/src/main.cpp	/^    int threshold_values[2][2][3]      = { { { RED_LASER_BGR_BLUE_LOW,    RED_LASER_BGR_GREEN_LO/;"	v	typeref:typename:int[2][2][3]
+threshold_values	software/demo2/src/main.cpp	/^    int threshold_values[2][2][3]      = { { { RED_LASER_HSV_HUE_LOW,    RED_LASER_HSV_SAT_LOW ,/;"	v	typeref:typename:int[2][2][3]
+time	software/demo1/src/frame.h	/^    unsigned int time;                          \/\/ timestamp of when frame was taken$/;"	m	class:Frame	typeref:typename:unsigned int
+time	software/demo2/src/frame.hpp	/^    unsigned int time;                          \/\/ timestamp of when frame was taken$/;"	m	class:Frame	typeref:typename:unsigned int
+update	software/demo1/src/pong/pong.cpp	/^void Pong::update()$/;"	f	class:Pong	typeref:typename:void
+update	software/demo2/src/pong/pong.cpp	/^void Pong::update()$/;"	f	class:Pong	typeref:typename:void
+updatePaddle	software/demo1/src/pong/pong.cpp	/^void Pong::updatePaddle(int y, unsigned char type)$/;"	f	class:Pong	typeref:typename:void
+updatePaddle	software/demo2/src/pong/pong.cpp	/^void Pong::updatePaddle(int y, unsigned char type)$/;"	f	class:Pong	typeref:typename:void
+values	software/demo1/src/frame.h	/^    std::vector< unsigned char > values;        \/\/ 1D Array of values (b, g, r, b, g, r, etc../;"	m	class:Frame	typeref:typename:std::vector<unsigned char>
+values	software/demo2/src/frame.hpp	/^    std::vector< unsigned char > values;        \/\/ 1D Array of values (b, g, r, b, g, r, etc../;"	m	class:Frame	typeref:typename:std::vector<unsigned char>
+volatile	software/490A_Final_Demo/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define volatile$/;"	d	file:
+volatile	software/demo1/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define volatile$/;"	d	file:
+volatile	software/demo2/build/CMakeFiles/3.15.2/CompilerIdC/CMakeCCompilerId.c	/^# define volatile$/;"	d	file:
+width	software/demo1/src/frame.h	/^    unsigned int width, height;                 \/\/ height and width of frame$/;"	m	class:Frame	typeref:typename:unsigned int
+width	software/demo2/src/frame.hpp	/^    unsigned int width, height;                 \/\/ height and width of frame$/;"	m	class:Frame	typeref:typename:unsigned int
