@@ -1,0 +1,5 @@
+set(PONG_SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/pong.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/pong.hpp
+    PARENT_SCOPE
+)
