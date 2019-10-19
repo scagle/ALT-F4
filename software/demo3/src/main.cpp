@@ -213,7 +213,13 @@ int main(int, char**)
                                 Point(brect.x, brect.y - 20), FONT_HERSHEY_SIMPLEX, 0.5, colors[laser_color], 2);
 
                         // Display info at bottom of screen
-                        Scalar average_bgr = best_blob.getAverageBGR(1);
+                        Scalar average_bgr = best_blob.getAverageBGR(0);
+                        Scalar edge_bgr = best_blob.getAverageBGR(1);
+                        Scalar core_bgr = best_blob.getAverageBGR(2);
+                        printf("BLOB: (%d, %d, %d)\nEDGE: (%d, %d, %d)\nCORE: (%d, %d, %d)\n", (int)average_bgr[0], (int)average_bgr[1], (int)average_bgr[2],
+                                                                                               (int)edge_bgr[0], (int)edge_bgr[1], (int)edge_bgr[2],
+                                                                                               (int)core_bgr[0], (int)core_bgr[1], (int)core_bgr[2]  );
+
                         string average_bgr_str = "#Blobs: " + to_string(new_frame.getBlobs(laser_color).size()) + 
                                                  " BGR: ("  + to_string((int)average_bgr[0])         + 
                                                        ", " + to_string((int)average_bgr[1])         + 
@@ -277,7 +283,7 @@ void serial_thread()
         int rx = red_x;
         int ry = red_y;
         mtx.unlock();
-        printf("[+] Writing string to UART.\n");
+        printf("Writing to UART...\n");
         sh.uart_writestr(intToString(gx).c_str());
         sh.uart_writestr(intToString(gy).c_str());
         sh.uart_writestr(intToString(rx).c_str());
@@ -285,7 +291,7 @@ void serial_thread()
         sh.uart_writestr("stop\r\n");
         auto end = std::chrono::steady_clock::now();
         auto duration = std::chrono::duration_cast< std::chrono::milliseconds >( end - begin );
-        std::this_thread::sleep_for( std::chrono::milliseconds( 100 ) - duration );
+        std::this_thread::sleep_for( std::chrono::milliseconds( 1000 ) - duration );
     }
 }
 
