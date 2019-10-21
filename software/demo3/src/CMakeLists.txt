@@ -5,6 +5,8 @@ set(OpenCV_DIR "/usr/lib/")
 find_package(OpenCV REQUIRED COMPONENTS core imgproc highgui videoio features2d)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
+SET(CMAKE_INSTALL_PREFIX "/usr/include/serial")
+
 # Threads
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 set(THREADS_PREFER_PTHREAD_FLAG TRUE)

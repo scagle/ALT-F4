@@ -131,14 +131,21 @@ int main(int, char**)
 {
     VideoCapture cap = initializeVideo();
     // Variable Declaration
-    Mat orig_mat, edited_mat, output_mat; // Original Image, Modified Image, Output Image
+    Mat orig_mat, edited_mat, output_mat;   // Original Image, Modified Image, Output Image
     namedWindow("output", WINDOW_AUTOSIZE); // Window to show output images
     namedWindow("tuning", WINDOW_AUTOSIZE); // Window to show tuning images
 
-    const char *portname = "/dev/ttyACM0";
-    if(!sh.uart_open(portname, B115200, 0)) 
-        return -1;
-
+    std::string path = "/dev/ttyACM0";
+    if ( sh.openUART( path ) == false )
+    {
+        printf( "Error opening '%s'\n", path.c_str() );
+    }
+    else
+    {
+        printf("UART Initialization Success!\nEnabling UART!\n");
+        sh.set_interface_attribs( B115200, 0 );   // set speed to 115,200 bps, 8n1 (no parity)
+        sh.set_blocking( 0 );                     // set no blocking
+    }
     std::thread st( serial_thread );
 
     try { 
@@ -194,18 +201,19 @@ int main(int, char**)
                     {
                         // Draw Best Blob's Boundary
                         Rect brect = best_blob.getRect();
-                        mtx.lock();
+
+                        mtx.lock(); // Lock mutex, because uart thread wants to use these values
                         if ( laser_color == 0 )
                         {
-                            red_x = brect.x + brect.width / 2; 
-                            red_y = brect.y + brect.height / 2; 
+                            red_x = brect.x + brect.width / 2;   // Get Center Position
+                            red_y = brect.y + brect.height / 2;  // Get Center Position
                         }
                         else
                         {
-                            green_x = brect.x + brect.width / 2; 
-                            green_y = brect.y + brect.height / 2; 
+                            green_x = brect.x + brect.width / 2;  // Get Center Position
+                            green_y = brect.y + brect.height / 2; // Get Center Position
                         }
-                        mtx.unlock();
+                        mtx.unlock(); // Unlock mutex, so that uart thread can start using these values
 
                         rectangle(output_mat, Rect(brect.x - 10, brect.y - 10, brect.width + 20, brect.height + 20), colors[laser_color], 2);
                         putText(output_mat, 
@@ -260,7 +268,6 @@ int main(int, char**)
 
             cont = processInputs(output_mat);
         }
-        sh.uart_close();
     }
     catch (int e){
         cout << "An Exception occurred. Exception #" << e << "\n";
@@ -284,11 +291,20 @@ void serial_thread()
         int ry = red_y;
         mtx.unlock();
         printf("Writing to UART...\n");
-        sh.uart_writestr(intToString(gx).c_str());
-        sh.uart_writestr(intToString(gy).c_str());
-        sh.uart_writestr(intToString(rx).c_str());
-        sh.uart_writestr(intToString(ry).c_str());
-        sh.uart_writestr("stop\r\n");
+        sh.writeNumber( 1234 );                   
+        std::this_thread::sleep_for( std::chrono::milliseconds( 10 ) );
+        sh.writeNumber( 5678 );                   
+        std::this_thread::sleep_for( std::chrono::milliseconds( 10 ) );
+        sh.writeNumber( 9876 );                  
+        std::this_thread::sleep_for( std::chrono::milliseconds( 10 ) );
+        sh.writeNumber( 5432 );                  
+        std::this_thread::sleep_for( std::chrono::milliseconds( 10 ) );
+        sh.writeString( "stop\r" );              
+        std::this_thread::sleep_for( std::chrono::milliseconds( 10 ) );
+        //sh.uart_writestr(intToString(gx).c_str());
+        //sh.uart_writestr(intToString(gy).c_str());
+        //sh.uart_writestr(intToString(rx).c_str());
+        //sh.uart_writestr(intToString(ry).c_str());
         auto end = std::chrono::steady_clock::now();
         auto duration = std::chrono::duration_cast< std::chrono::milliseconds >( end - begin );
         std::this_thread::sleep_for( std::chrono::milliseconds( 1000 ) - duration );
@@ -298,7 +314,7 @@ void serial_thread()
 std::string intToString ( int number )
 {
     std::ostringstream ss;
-    ss << number << "\r\n";
+    ss << number << "\r";
     return ss.str();
 }
 
@@ -389,17 +405,17 @@ int processInputs(Mat yank_mat)
             }
         case 'r':  // flash leds
             {
-                sh.uart_writestr( "r" );
+                sh.writeString( "r\r" );
                 break;
             }
         case 'g':  // flash leds
             {
-                sh.uart_writestr( "g" );
+                sh.writeString( "g\r" );
                 break;
             }
         case 'b':  // flash leds
             {
-                sh.uart_writestr( "b" );
+                sh.writeString( "b\r" );
                 break;
             }
     }
