@@ -11,6 +11,8 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <fcntl.h> 
+#include <sstream>
+#include <iomanip>
 #include <iostream>
 #include <stdint.h>
 #include <stdio.h>
@@ -126,6 +128,7 @@ int cont = 1; // continue variable
 // Pong initializations
 Pong pong;
 SerialHandler sh;
+Frame new_frame;
 
 int main(int, char**)
 {
@@ -181,7 +184,7 @@ int main(int, char**)
 
             //// Manipulate FIFO Queue
             frames.pop_back();                                            // Remove last Frame from queue
-            Frame new_frame = Frame(frame_data, width, height, channels); // Create a new Frame based on frame_data
+            new_frame = Frame(frame_data, width, height, channels); // Create a new Frame based on frame_data
             frames.push_front(new_frame);                                 // Add the new Frame to the front of queue
 
             //// Blob Detection
@@ -291,45 +294,35 @@ void serial_thread()
         int ry = red_y;
         mtx.unlock();
         printf("Writing to UART...\n");
-        sh.writeNumber( 1234 );                   
-        std::this_thread::sleep_for( std::chrono::milliseconds( 10 ) );
-        sh.writeNumber( 5678 );                   
-        std::this_thread::sleep_for( std::chrono::milliseconds( 10 ) );
-        sh.writeNumber( 9876 );                  
-        std::this_thread::sleep_for( std::chrono::milliseconds( 10 ) );
-        sh.writeNumber( 5432 );                  
-        std::this_thread::sleep_for( std::chrono::milliseconds( 10 ) );
-        sh.writeString( "stop\r" );              
-        std::this_thread::sleep_for( std::chrono::milliseconds( 10 ) );
-        //sh.uart_writestr(intToString(gx).c_str());
-        //sh.uart_writestr(intToString(gy).c_str());
-        //sh.uart_writestr(intToString(rx).c_str());
-        //sh.uart_writestr(intToString(ry).c_str());
+        if ( new_frame.hasBlobs(1) )
+        {
+            sh.writeString( "strt\r" );              
+            std::this_thread::sleep_for( std::chrono::milliseconds( 20 ) );
+            sh.writeNumber( green_x );                   
+            std::this_thread::sleep_for( std::chrono::milliseconds( 20 ) );
+            sh.writeNumber( green_y );                   
+            std::this_thread::sleep_for( std::chrono::milliseconds( 20 ) );
+            sh.writeNumber( red_x );                  
+            std::this_thread::sleep_for( std::chrono::milliseconds( 20 ) );
+            sh.writeNumber( red_y );                  
+            std::this_thread::sleep_for( std::chrono::milliseconds( 20 ) );
+            sh.writeString( "stop\r" );              
+            std::this_thread::sleep_for( std::chrono::milliseconds( 20 ) );
+        }
+        else
+        {
+            sh.writeString( "strt\r" );              
+            std::this_thread::sleep_for( std::chrono::milliseconds( 20 ) );
+            sh.writeString( "none\r" );              
+            std::this_thread::sleep_for( std::chrono::milliseconds( 20 ) );
+            sh.writeString( "stop\r" );              
+            std::this_thread::sleep_for( std::chrono::milliseconds( 20 ) );
+        }
         auto end = std::chrono::steady_clock::now();
         auto duration = std::chrono::duration_cast< std::chrono::milliseconds >( end - begin );
         std::this_thread::sleep_for( std::chrono::milliseconds( 1000 ) - duration );
     }
 }
-
-std::string intToString ( int number )
-{
-    std::ostringstream ss;
-    ss << number << "\r";
-    return ss.str();
-}
-
-//void serialWriteCoordinates(int green_x, int green_y, int red_x, int red_y)
-//{
-//    std::string gx = intToString( green_x );
-//    std::string gy = intToString( green_y );
-//    std::string rx = intToString( red_x );
-//    std::string ry = intToString( red_y );
-//    sh.writeLine(gx); 
-//    sh.writeLine(gy); 
-//    sh.writeLine(rx); 
-//    sh.writeLine(ry); 
-//    sh.writeLine("stop\r\n"); 
-//}
 
 VideoCapture initializeVideo()
 {
