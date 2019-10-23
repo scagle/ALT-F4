@@ -5,6 +5,8 @@ find_package(Threads REQUIRED)
 
 set(BASE_SOURCES 
     main.cpp
+    serial.cpp
+    serial.hpp
 )
 
 add_executable(camera ${BASE_SOURCES} ${PONG_SOURCES})
