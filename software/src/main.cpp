@@ -184,7 +184,11 @@ int main(int, char**)
 
             //// Manipulate FIFO Queue
             frames.pop_back();                                            // Remove last Frame from queue
+
+            mtx.lock(); // Lock mutex, because uart thread wants to use these values
+
             new_frame = Frame(frame_data, width, height, channels); // Create a new Frame based on frame_data
+
             frames.push_front(new_frame);                                 // Add the new Frame to the front of queue
 
             //// Blob Detection
@@ -193,6 +197,13 @@ int main(int, char**)
             new_frame.inRange(threshold_values[1][0][0], threshold_values[1][1][0], threshold_values[1][0][1], threshold_values[1][1][1], threshold_values[1][0][2], threshold_values[1][1][2], 1); 
             new_frame.findBlobs(0);  // Find Blobs based on red binary matrix results
             new_frame.findBlobs(1);  // Find Blobs based on green binary matrix results
+
+            mtx.unlock(); // Lock mutex, because uart thread wants to use these values
+
+            if ( new_frame.hasBlobs(1) == false )
+            {
+                printf("MAIN_THREAD has no blobs\n");
+            }
             Scalar colors[2] = {Scalar(0, 0, 255), Scalar(0, 255, 0)};
             for (int laser_color = 0; laser_color < 2; laser_color++)
             {
@@ -292,9 +303,10 @@ void serial_thread()
         int gy = green_y;
         int rx = red_x;
         int ry = red_y;
+        bool green_laser_detected = new_frame.hasBlobs(1);
         mtx.unlock();
         printf("Writing to UART...\n");
-        if ( new_frame.hasBlobs(1) )
+        if ( green_laser_detected )
         {
             sh.writeString( "strt\r" );              
             std::this_thread::sleep_for( std::chrono::milliseconds( 20 ) );
@@ -311,6 +323,7 @@ void serial_thread()
         }
         else
         {
+            printf("\nNO BLOBS!!!\n");
             sh.writeString( "strt\r" );              
             std::this_thread::sleep_for( std::chrono::milliseconds( 20 ) );
             sh.writeString( "none\r" );              
@@ -320,7 +333,7 @@ void serial_thread()
         }
         auto end = std::chrono::steady_clock::now();
         auto duration = std::chrono::duration_cast< std::chrono::milliseconds >( end - begin );
-        std::this_thread::sleep_for( std::chrono::milliseconds( 1000 ) - duration );
+        std::this_thread::sleep_for( std::chrono::milliseconds( 100 ) - duration );
     }
 }
 
