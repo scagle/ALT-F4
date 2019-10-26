@@ -13,16 +13,7 @@ set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 find_package(Threads REQUIRED)
 
 set(BASE_SOURCES 
-    blob.cpp
-    blob.hpp
-    frame.cpp
-    frame.hpp
-    global.hpp
     main.cpp
-    pixel.cpp
-    pixel.hpp
-    serial.cpp
-    serial.hpp
 )
 
 add_subdirectory(pong)
