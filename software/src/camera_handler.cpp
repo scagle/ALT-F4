@@ -1,4 +1,5 @@
 #include "camera_handler.hpp"
+#include "image.hpp"
 
 namespace altf4
 {
@@ -21,7 +22,8 @@ namespace altf4
 
             Image* image = CameraHandler::cameras[camera_index].grabImage();
             CameraHandler::image_copies_lock.lock();
-            CameraHandler::image_copies[CameraHandler::current_copies_index][camera_index] = *image; // Copy image into image_copies
+            CameraHandler::image_copies[CameraHandler::current_copies_index][camera_index] = Image(*image); // Copy image into image_copies
+            printf("Here\n");
             CameraHandler::image_copies_lock.unlock();
 
             auto end = std::chrono::steady_clock::now();
@@ -44,10 +46,14 @@ namespace altf4
         cameras.resize( number_of_cameras );    
         camera_threads.resize( number_of_cameras );    
         image_copies.resize( number_of_cameras );    
+        for (int i = 0; i < number_of_cameras; i++)
+        {
+            image_copies[i].resize(2);
+        }
     }
 
     // Methods
-    std::vector< Image >* CameraHandler::read()
+    std::vector< Image >* CameraHandler::readAll()
     {    
         std::vector< Image >* images;
 
@@ -64,7 +70,6 @@ namespace altf4
         }
         return images;
     }
-
 
     bool CameraHandler::initializeCameras()
     {

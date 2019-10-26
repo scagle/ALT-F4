@@ -28,7 +28,7 @@ namespace altf4
             virtual ~CameraHandler() { }
 
             // Methods
-            std::vector< Image >* read();
+            std::vector< Image >* readAll();
             void resolveThreads();
             bool initializeCameras();
 

@@ -4,6 +4,8 @@
 #include "keyboard_handler.hpp"
 #include "serial_handler.hpp"
 #include "window.hpp"
+#include "data_frame.hpp"
+#include "image.hpp"
 #include <cstdlib>
 #include <cstdio>
 #include <signal.h>
@@ -23,7 +25,7 @@ static void signalHandler( int signal_value );
 std::mutex print_lock;  // Mutex to lock printing to console for threads
 
 // Objects
-altf4::CameraHandler camera_handler( 1, &print_lock );
+altf4::CameraHandler camera_handler( 4, &print_lock );
 altf4::ProcessHandler process_handler;
 altf4::KeyboardHandler keyboard_handler;
 altf4::SerialHandler serial_handler;
@@ -40,6 +42,10 @@ int main( int argc, char** argv )
     while ( !done && !interrupted )
     {
         auto begin = std::chrono::steady_clock::now();
+
+        std::vector< altf4::Image >* images = camera_handler.readAll();
+        std::vector< altf4::DataFrame >* frames = process_handler.processImages( images );
+
         auto end = std::chrono::steady_clock::now();
         auto duration = std::chrono::duration_cast< std::chrono::milliseconds >( end - begin );
         std::this_thread::sleep_for( std::chrono::milliseconds( 100 ) - duration );

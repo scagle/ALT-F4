@@ -11,10 +11,13 @@ namespace altf4
         private:
             // Private Members
             std::vector< unsigned char > data;
+            int width, height, channels;
             
 
         public:
             Image() { }
+            Image( int width, int height, int channels );
+            Image( Image* );
             virtual ~Image() { }
 
             // Methods

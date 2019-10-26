@@ -1,4 +1,7 @@
 #pragma once
+#include "data_frame.hpp"
+#include "image.hpp"
+#include <vector>
 
 namespace altf4
 {
@@ -16,6 +19,7 @@ namespace altf4
             virtual ~ProcessHandler() { }
 
             // Methods
+            std::vector< DataFrame >* processImages( std::vector< Image >* images );
 
             // Accessors
 
