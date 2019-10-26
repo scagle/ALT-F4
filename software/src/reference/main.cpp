@@ -362,7 +362,7 @@ void printStats(VideoCapture cap, Mat img)
     {
         unsigned int width = img.cols;
         unsigned int height = img.rows;  
-        unsigned int step = img.step;    // Full row width in bytes (so width * 8?)
+        unsigned int step = img.step;           // Full row width in bytes (so width * 8?)
         unsigned int channels = img.channels(); // How many channels does the images have (rgb = 3)
         cout << "Camera Settings:" << "\n";
         cout << "\tcamera width  / cols: " << cap.get(CAP_PROP_FRAME_WIDTH)  << "\n";
