@@ -10,13 +10,13 @@ namespace altf4
         data.resize(width * height * channels);  
     }
 
-    Image::Image( Image* other )
+    Image::Image( const Image& other )
     {
         printf("Trying to copy image\n");
-        width = other->width;
-        height = other->height;
-        channels = other->channels;
-        data = other->data;
+        width = other.width;
+        height = other.height;
+        channels = other.channels;
+        data = other.data;
     }
 
 

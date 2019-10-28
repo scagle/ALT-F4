@@ -27,7 +27,7 @@ namespace altf4
 
             // Methods
             Image* grabImage();
-            void initialize( int camera_number );
+            bool initialize( int camera_number );
             void printStats();
 
             // Accessors

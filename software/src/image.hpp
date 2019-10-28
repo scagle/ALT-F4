@@ -17,13 +17,17 @@ namespace altf4
         public:
             Image() { }
             Image( int width, int height, int channels );
-            Image( Image* );
+            Image( const Image& );
             virtual ~Image() { }
 
             // Methods
             void copyMatrix( cv::Mat* matrix, int channels );
 
             // Accessors
+            int getRows() const { return height; }
+            int getCols() const { return width; }
+            int getChannels() const { return channels; }
+            std::vector< unsigned char >* getData() { return &data; } ;
 
             // Mutators
     };

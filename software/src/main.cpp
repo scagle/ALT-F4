@@ -18,19 +18,21 @@
 void grabVideoFrames( unsigned int camera_index );
 void resolveAllThreads();
 bool initialize();
-bool initializeCameras();
+bool initializeCameraHandler();
+bool initializeProcessHandler();
 static bool initializeSignalHandler();
 static void signalHandler( int signal_value );
 
 std::mutex print_lock;  // Mutex to lock printing to console for threads
 
 // Objects
-altf4::CameraHandler camera_handler( 4, &print_lock );
+altf4::CameraHandler camera_handler;
 altf4::ProcessHandler process_handler;
 altf4::KeyboardHandler keyboard_handler;
 altf4::SerialHandler serial_handler;
-altf4::Window Window;
+altf4::Window window;
 
+unsigned int number_of_cameras = 4;
 static bool interrupted = false;
 static bool done = false;
 
@@ -39,12 +41,16 @@ int main( int argc, char** argv )
     if ( !initialize() )
         return 1;
 
+    printf("Initializations were all good!\n");
     while ( !done && !interrupted )
     {
         auto begin = std::chrono::steady_clock::now();
 
         std::vector< altf4::Image >* images = camera_handler.readAll();
-        std::vector< altf4::DataFrame >* frames = process_handler.processImages( images );
+        window.temp( images );
+        printf("%ld\n", images->size());
+        //std::vector< altf4::DataFrame >* frames = process_handler.processImages( images );
+        //window.display( frames );
 
         auto end = std::chrono::steady_clock::now();
         auto duration = std::chrono::duration_cast< std::chrono::milliseconds >( end - begin );
@@ -64,15 +70,22 @@ bool initialize()
 {
     if (!initializeSignalHandler())
         return false;
-    if (!initializeCameras())
+    if (!initializeCameraHandler())
+        return false;
+    if (!initializeProcessHandler())
         return false;
 
     return true;
 }
 
-bool initializeCameras()
+bool initializeProcessHandler()
 {
-    return camera_handler.initializeCameras();
+    return process_handler.initialize(number_of_cameras, &print_lock);
+}
+
+bool initializeCameraHandler()
+{
+    return camera_handler.initialize(number_of_cameras, &print_lock);
 }
 
 static bool initializeSignalHandler()
