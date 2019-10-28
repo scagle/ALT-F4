@@ -13,6 +13,12 @@ namespace altf4
         data.resize(width * height * channels);  
     }
 
+    Image::Image( cv::Mat* matrix, int width, int height, int channels ) : width(width), height(height), channels(channels) 
+    { 
+        data.resize(width * height * channels);  
+        convertToVector(matrix);
+    }
+
     Image::Image( const Image& other )
     {
         width = other.width;
@@ -25,12 +31,6 @@ namespace altf4
     // Methods
     void Image::copyMatrix( cv::Mat* matrix, int channels )
     {
-        //TODO: This was for testing only. Remove this clone statement in production
-        if (!matrix->empty())
-        {
-            this->matrix = *matrix;
-        }
-
         convertToVector( matrix );
     }
 

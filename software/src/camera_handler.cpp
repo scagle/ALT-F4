@@ -9,11 +9,10 @@ namespace altf4
     // Static Declarations
     std::vector< Camera > CameraHandler::cameras;                    // List of cameras
     std::vector< std::thread > CameraHandler::camera_threads;        // Threads used to grab images from OpenCV
-    std::vector< std::vector< Image > > CameraHandler::image_copies; // Copies to use for "Double-Buffer" effect
+    std::vector< Image > CameraHandler::images;                      //  
     std::mutex* CameraHandler::print_lock;                           //
-    std::mutex CameraHandler::image_copies_lock;                     // To protect image_copies
-    //std::mutex CameraHandler::fps_lock;                              // To protect FPS 
-    int CameraHandler::current_copies_index = 0;                     // Alternates between 0 and 1 every read
+    std::mutex CameraHandler::image_lock;                            // To protect images
+    //std::mutex CameraHandler::fps_lock;                            // To protect FPS 
     bool CameraHandler::stop_threads = false;  
     std::vector< bool > CameraHandler::updated_list;
     std::vector< bool > CameraHandler::working_list;
@@ -28,10 +27,10 @@ namespace altf4
             auto begin = std::chrono::steady_clock::now();
 
             Image* image = cameras[camera_index].grabImage();
-            image_copies_lock.lock();
+            image_lock.lock();
             updated_list[camera_index] = true;
-            image_copies[current_copies_index][camera_index] = *image; // Copy image into image_copies
-            image_copies_lock.unlock();
+            images[camera_index] = *image; // Copy image into images
+            image_lock.unlock();
 
             auto end = std::chrono::steady_clock::now();
             auto duration = std::chrono::duration_cast< std::chrono::milliseconds >( end - begin );
@@ -52,35 +51,25 @@ namespace altf4
     // Constructors
     
     // Methods
-    std::vector< Image >* CameraHandler::readAll()
+    std::vector< Image > CameraHandler::readAll()
     {    
-        std::vector< Image >* images;
-
-        std::unique_lock<std::mutex> ul( image_copies_lock );
+        std::unique_lock<std::mutex> ul( image_lock );
+        // Check if all cameras have had a chance to write their capture to images
         if ( imagesReady() == false )
         {
+            // Wait until all cameras have had a chance to write
             ul.unlock();
             while ( imagesReady() == false )
             {
-                std::this_thread::sleep_for( std::chrono::milliseconds( 100 ) );
+                std::this_thread::sleep_for( std::chrono::milliseconds( 10 ) );
             }
             //printf("Images READY, trying to unlock!\n");
             ul.lock();
         }
-        if ( current_copies_index == 0 )
-        {
-            images = &(image_copies[current_copies_index]);
-            current_copies_index = 1;
-        }
-        else
-        {
-            images = &(image_copies[current_copies_index]);
-            current_copies_index = 0;
-        }
+
         for (unsigned int i = 0; i < updated_list.size(); i++)
             updated_list[i] = false;
-        ul.unlock();
-
+        
         return images;
     }
 
@@ -103,11 +92,7 @@ namespace altf4
         print_lock = pl;
         cameras.resize( num_cam );    
         camera_threads.resize( num_cam );    
-        image_copies.resize( 2 );    
-        for (unsigned int i = 0; i < 2; i++)
-        {
-            image_copies[i].resize(num_cam);
-        }
+        images.resize( num_cam );    
         updated_list.resize( num_cam, false );    
         working_list.resize( num_cam, true );    
 

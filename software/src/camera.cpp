@@ -17,10 +17,9 @@ namespace altf4
     {
 
         cap >> matrix_buffer;
-        static Image image(width, rows, channels);
-        image.copyMatrix( &matrix_buffer, channels );
+        current_image = Image(&matrix_buffer, width, rows, channels);
 
-        return &image;
+        return &current_image;
     }
 
     bool Camera::initialize( int camera_number )

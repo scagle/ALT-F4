@@ -58,12 +58,14 @@ int main( int argc, char** argv )
     {
         auto begin = std::chrono::steady_clock::now();
 
-        std::vector< altf4::Image >* images = camera_handler.readAll();
+        std::vector< altf4::Image > images = camera_handler.readAll();
         for (unsigned int i = 0; i < number_of_cameras; i++)
         {
-            std::vector< unsigned char>* data = (*images)[i].getData();
+            std::vector< unsigned char>* data = images[i].getData();
             if (data->size() == 0)
                 continue;
+
+            delete matrices[i];
             matrices[i] = new cv::Mat(480, 640, CV_8UC3, data->data());
             //matrices[i] = (*images)[i].getMatrix();
             //if (matrices[i]->empty())

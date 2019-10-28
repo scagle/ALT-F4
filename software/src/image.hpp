@@ -11,13 +11,13 @@ namespace altf4
         private:
             // Private Members
             std::vector< unsigned char > data;
-            cv::Mat matrix;
             int width, height, channels;
             
 
         public:
             Image() { }
             Image( int width, int height, int channels );
+            Image( cv::Mat* matrix, int width, int height, int channels ); 
             Image( const Image& );
             virtual ~Image() { }
 
@@ -30,7 +30,6 @@ namespace altf4
             int getCols() const { return width; }
             int getChannels() const { return channels; }
             std::vector< unsigned char >* getData() { return &data; } ;
-            cv::Mat* getMatrix() { return &matrix; } ;
 
             // Mutators
     };
