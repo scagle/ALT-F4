@@ -12,7 +12,9 @@ namespace altf4
 
         private:
             // Private Members
-            int number_of_images = 0;
+            std::vector< std::string > names;
+            std::vector< cv::Mat* > matrices;
+            unsigned int number_of_images = 0;
             
 
         public:
@@ -21,9 +23,10 @@ namespace altf4
             virtual ~Window() { }
 
             // Methods
-            bool initializeWindow();
+            bool initialize(unsigned int);
             void temp( std::vector< Image >* images );
-            void display( std::vector< DataFrame >* );
+            void tempDisplay( std::vector< Image >& );  // TODO: temporary debugging display 
+            void display( std::vector< DataFrame >& );
 
             // Accessors
 

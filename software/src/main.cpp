@@ -23,6 +23,7 @@ void resolveAllThreads();
 bool initialize();
 bool initializeCameraHandler();
 bool initializeProcessHandler();
+bool initializeWindow();
 static bool initializeSignalHandler();
 static void signalHandler( int signal_value );
 
@@ -44,37 +45,12 @@ int main( int argc, char** argv )
     if ( !initialize() )
         return 1;
 
-    std::vector< std::string > names(number_of_cameras);
-    std::vector< cv::Mat* > matrices(number_of_cameras);
-    for (unsigned int i = 0; i < number_of_cameras; i++)
-    {
-        std::stringstream ss;
-        ss << "Camera " << i;
-        namedWindow( ss.str(), cv::WINDOW_AUTOSIZE );
-        names[i] = ss.str();
-    }
-
     while ( !done && !interrupted )
     {
         auto begin = std::chrono::steady_clock::now();
-
         std::vector< altf4::Image > images = camera_handler.readAll();
-        for (unsigned int i = 0; i < number_of_cameras; i++)
-        {
-            std::vector< unsigned char>* data = images[i].getData();
-            if (data->size() == 0)
-                continue;
-
-            delete matrices[i];
-            matrices[i] = new cv::Mat(480, 640, CV_8UC3, data->data());
-            //matrices[i] = (*images)[i].getMatrix();
-            //if (matrices[i]->empty())
-            //    continue;
-            cv::imshow( names[i], *(matrices[i]) );
-        }
-        cv::waitKey(50);
-
         //std::vector< altf4::DataFrame >* frames = process_handler.processImages( images );
+        window.tempDisplay( images );
         //window.display( frames );
 
         auto end = std::chrono::steady_clock::now();
@@ -99,6 +75,8 @@ bool initialize()
         return false;
     if (!initializeProcessHandler())
         return false;
+    if (!initializeWindow())
+        return false;
 
     return true;
 }
@@ -111,6 +89,11 @@ bool initializeProcessHandler()
 bool initializeCameraHandler()
 {
     return camera_handler.initialize(number_of_cameras, &print_lock);
+}
+
+bool initializeWindow()
+{
+    return window.initialize(number_of_cameras);
 }
 
 static bool initializeSignalHandler()

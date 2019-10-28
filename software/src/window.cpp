@@ -10,24 +10,44 @@ namespace altf4
     // Constructors
 
     // Methods
-    bool Window::initializeWindow()
+    bool Window::initialize( unsigned int number_of_images )
     {
-        for ( int i = 0; i < number_of_images; i++ )
+        this->number_of_images = number_of_images;
+        names.resize(number_of_images);
+        matrices.resize(number_of_images);
+        for (unsigned int i = 0; i < number_of_images; i++)
         {
             std::stringstream ss;
             ss << "Camera " << i;
-            namedWindow( ss.str(), cv::WINDOW_AUTOSIZE ); // Window to show output images
+            names[i] = ss.str();
         }
         return true;
     }
 
-    void Window::display( std::vector< DataFrame >* frames )
+    void Window::tempDisplay( std::vector< Image >& images )
     {
-        for ( int i = 0; i < number_of_images; i++ )
+        for (unsigned int i = 0; i < number_of_images; i++)
         {
-            std::stringstream ss;
-            ss << "Camera " << i;
-            cv::imshow( ss.str(), *((*frames)[i].getMat()) );
+            namedWindow( names[i], cv::WINDOW_AUTOSIZE );
+            std::vector< unsigned char>* data = images[i].getData();
+            if (data->size() == 0)
+                continue;
+
+            delete matrices[i];
+            matrices[i] = new cv::Mat(480, 640, CV_8UC3, data->data());
+            //matrices[i] = (*images)[i].getMatrix();
+            //if (matrices[i]->empty())
+            //    continue;
+            cv::imshow( names[i], *(matrices[i]) );
+        }
+        cv::waitKey(50);
+    }
+
+    void Window::display( std::vector< DataFrame >& frames )
+    {
+        for ( unsigned int i = 0; i < number_of_images; i++ )
+        {
+            cv::imshow( names[i], *(frames[i].getMat()) );
             
         }
     }
