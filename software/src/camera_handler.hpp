@@ -19,6 +19,8 @@ namespace altf4
             static std::mutex image_copies_lock;                      // To protect image_copies
             static int current_copies_index;                          // Alternates between 0 and 1 every read
             static bool stop_threads;  
+            static std::vector< bool > updated_list;
+            static std::vector< bool > working_list;
 
         private:
 
@@ -31,6 +33,7 @@ namespace altf4
             std::vector< Image >* readAll();
             void resolveThreads();
             bool initialize( unsigned int num_cam, std::mutex* pl);
+            bool imagesReady();
 
             // Accessors
 

@@ -6,13 +6,16 @@
 #include "window.hpp"
 #include "data_frame.hpp"
 #include "image.hpp"
+#include "globals.hpp"
 #include <cstdlib>
 #include <cstdio>
+#include <iostream>
 #include <signal.h>
 #include <chrono>
 #include <thread>
 #include <mutex>
 #include <vector>
+#include <opencv2/highgui.hpp>
 
 // Function Definitions
 void grabVideoFrames( unsigned int camera_index );
@@ -41,14 +44,35 @@ int main( int argc, char** argv )
     if ( !initialize() )
         return 1;
 
-    printf("Initializations were all good!\n");
+    std::vector< std::string > names(number_of_cameras);
+    std::vector< cv::Mat* > matrices(number_of_cameras);
+    for (unsigned int i = 0; i < number_of_cameras; i++)
+    {
+        std::stringstream ss;
+        ss << "Camera " << i;
+        namedWindow( ss.str(), cv::WINDOW_AUTOSIZE );
+        names[i] = ss.str();
+    }
+
     while ( !done && !interrupted )
     {
         auto begin = std::chrono::steady_clock::now();
 
         std::vector< altf4::Image >* images = camera_handler.readAll();
-        window.temp( images );
-        printf("%ld\n", images->size());
+        for (unsigned int i = 0; i < number_of_cameras; i++)
+        {
+            std::vector< unsigned char>* data = (*images)[i].getData();
+            matrices[i] = (*images)[i].getMatrix();
+            //matrices[i] = new cv::Mat(640 * 480 * 3, 1, CV_8UC3, data);
+            printf("data->size() : %ld\n", data->size());
+            if (!matrices[i]->empty())
+            {
+                //printf("Trying to show %s\n", names[i].c_str());
+                cv::imshow( names[i], *(matrices[i]) );
+            }
+        }
+        cv::waitKey(100);
+
         //std::vector< altf4::DataFrame >* frames = process_handler.processImages( images );
         //window.display( frames );
 

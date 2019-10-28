@@ -2,6 +2,9 @@
 #include "image.hpp"
 #include "globals.hpp"
 #include <opencv2/videoio.hpp>
+#include <chrono>
+#include <iostream>
+#include <mutex>
 
 namespace altf4
 {
@@ -12,6 +15,7 @@ namespace altf4
     // Methods
     Image* Camera::grabImage()
     {
+
         cap >> matrix_buffer;
         static Image image(width, rows, channels);
         image.copyMatrix( &matrix_buffer, channels );
@@ -23,6 +27,7 @@ namespace altf4
     {
         try
         {
+            this->camera_number = camera_number;
             cap = cv::VideoCapture(camera_number * 2);    // open the camera located at /dev/videoX
             if (!cap.isOpened())    // check if we succeeded
             {

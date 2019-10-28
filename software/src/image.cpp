@@ -1,4 +1,7 @@
 #include "image.hpp"
+#include "globals.hpp"
+#include <opencv2/highgui.hpp>
+#include <iostream>
 
 namespace altf4
 {
@@ -12,7 +15,6 @@ namespace altf4
 
     Image::Image( const Image& other )
     {
-        printf("Trying to copy image\n");
         width = other.width;
         height = other.height;
         channels = other.channels;
@@ -23,7 +25,29 @@ namespace altf4
     // Methods
     void Image::copyMatrix( cv::Mat* matrix, int channels )
     {
-        data.assign(matrix->data, matrix->data + matrix->total() * channels); 
+        //TODO: This was for testing only. Remove this clone statement in production
+        if (!matrix->empty())
+        {
+            this->matrix = *matrix;
+        }
+
+        convertToVector( matrix );
+    }
+
+    void Image::convertToVector( cv::Mat* matrix )
+    {
+        if ( matrix->isContinuous() ) 
+        {
+            data.assign(matrix->data, matrix->data + matrix->total() * channels);
+        } 
+        else 
+        {
+            printf("*** WARNING: Image is not continuous! (image.cpp)\n");
+            //for (int i = 0; i < matrix->rows; ++i) 
+            //{
+            //    data.insert(data.end(), matrix->ptr<uchar>(i), matrix->ptr<uchar>(i)+matrix->cols);
+            //}
+        }
     }
 };
 

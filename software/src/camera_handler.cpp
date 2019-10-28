@@ -1,5 +1,7 @@
 #include "camera_handler.hpp"
 #include "image.hpp"
+#include <iostream>
+#include <mutex>
 
 namespace altf4
 {
@@ -11,6 +13,8 @@ namespace altf4
     std::mutex CameraHandler::image_copies_lock;                     // To protect image_copies
     int CameraHandler::current_copies_index = 0;                     // Alternates between 0 and 1 every read
     bool CameraHandler::stop_threads = false;  
+    std::vector< bool > CameraHandler::updated_list;
+    std::vector< bool > CameraHandler::working_list;
     
     // This is the thread used to grab camera information
     void CameraHandler::grabVideoFramesThread( unsigned int camera_index )
@@ -22,20 +26,22 @@ namespace altf4
 
             Image* image = cameras[camera_index].grabImage();
             image_copies_lock.lock();
-            image_copies[current_copies_index][camera_index] = Image(*image); // Copy image into image_copies
+            updated_list[camera_index] = true;
+            image_copies[current_copies_index][camera_index] = *image; // Copy image into image_copies
             image_copies_lock.unlock();
 
             auto end = std::chrono::steady_clock::now();
             auto duration = std::chrono::duration_cast< std::chrono::milliseconds >( end - begin );
-            std::this_thread::sleep_for( std::chrono::milliseconds( 100 ) - duration );
+            std::this_thread::sleep_for( std::chrono::milliseconds( 50 ) - duration );
 
             print_lock->lock();
-            printf( "Camera %d finished in %ld\n", camera_index, duration.count() );
+            printf( "Camera %d finished in '%ld' milliseconds\n", camera_index, duration.count() );
             print_lock->unlock();
         }
         print_lock->lock();
         printf( "Camera Thread #%d exited\n", camera_index);
         print_lock->unlock();
+        working_list[camera_index] = false;
     }
 
     // Constructors
@@ -45,7 +51,17 @@ namespace altf4
     {    
         std::vector< Image >* images;
 
-        std::lock_guard<std::mutex> guard( image_copies_lock );
+        std::unique_lock<std::mutex> ul( image_copies_lock );
+        if ( imagesReady() == false )
+        {
+            ul.unlock();
+            while ( imagesReady() == false )
+            {
+                std::this_thread::sleep_for( std::chrono::milliseconds( 100 ) );
+            }
+            //printf("Images READY, trying to unlock!\n");
+            ul.lock();
+        }
         if ( current_copies_index == 0 )
         {
             images = &(image_copies[current_copies_index]);
@@ -56,8 +72,25 @@ namespace altf4
             images = &(image_copies[current_copies_index]);
             current_copies_index = 0;
         }
+        ul.unlock();
+        for (unsigned int i = 0; i < updated_list.size(); i++)
+            updated_list[i] = false;
 
         return images;
+    }
+
+    bool CameraHandler::imagesReady()
+    {
+        bool ready = true;
+        for ( unsigned int i = 0; i < updated_list.size(); i++)
+        {
+            if (!updated_list[i] && working_list[i])  // If not updated and working
+            {
+                ready = false;
+                break;
+            }
+        }
+        return ready;
     }
 
     bool CameraHandler::initialize( unsigned int num_cam, std::mutex* pl)
@@ -70,8 +103,10 @@ namespace altf4
         {
             image_copies[i].resize(num_cam);
         }
+        updated_list.resize( num_cam, false );    
+        working_list.resize( num_cam, true );    
 
-        for ( unsigned int i = 0; i < camera_threads.size(); i++ )
+        for ( unsigned int i = 0; i < num_cam; i++ )
         {
             camera_threads[i] = std::thread( &CameraHandler::grabVideoFramesThread, i );
         }
