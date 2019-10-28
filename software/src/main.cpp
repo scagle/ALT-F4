@@ -62,16 +62,15 @@ int main( int argc, char** argv )
         for (unsigned int i = 0; i < number_of_cameras; i++)
         {
             std::vector< unsigned char>* data = (*images)[i].getData();
-            matrices[i] = (*images)[i].getMatrix();
-            //matrices[i] = new cv::Mat(640 * 480 * 3, 1, CV_8UC3, data);
-            printf("data->size() : %ld\n", data->size());
-            if (!matrices[i]->empty())
-            {
-                //printf("Trying to show %s\n", names[i].c_str());
-                cv::imshow( names[i], *(matrices[i]) );
-            }
+            if (data->size() == 0)
+                continue;
+            matrices[i] = new cv::Mat(480, 640, CV_8UC3, data->data());
+            //matrices[i] = (*images)[i].getMatrix();
+            //if (matrices[i]->empty())
+            //    continue;
+            cv::imshow( names[i], *(matrices[i]) );
         }
-        cv::waitKey(100);
+        cv::waitKey(50);
 
         //std::vector< altf4::DataFrame >* frames = process_handler.processImages( images );
         //window.display( frames );

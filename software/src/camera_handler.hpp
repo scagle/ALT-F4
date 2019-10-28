@@ -4,6 +4,7 @@
 #include <vector>
 #include <thread>
 #include <mutex>
+#include <deque>
 
 namespace altf4
 {
@@ -17,10 +18,12 @@ namespace altf4
             static std::vector< std::vector< Image > > image_copies;  // Copies to use for "Double-Buffer" effect
             static std::mutex* print_lock;                            // Locks stdout
             static std::mutex image_copies_lock;                      // To protect image_copies
+            //static std::mutex fps_lock;                      // To protect image_copies
             static int current_copies_index;                          // Alternates between 0 and 1 every read
             static bool stop_threads;  
             static std::vector< bool > updated_list;
             static std::vector< bool > working_list;
+            //static std::vector< std::deque< int > > fps_timing;
 
         private:
 

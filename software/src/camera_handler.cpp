@@ -2,6 +2,7 @@
 #include "image.hpp"
 #include <iostream>
 #include <mutex>
+#include <deque>
 
 namespace altf4
 {
@@ -11,10 +12,12 @@ namespace altf4
     std::vector< std::vector< Image > > CameraHandler::image_copies; // Copies to use for "Double-Buffer" effect
     std::mutex* CameraHandler::print_lock;                           //
     std::mutex CameraHandler::image_copies_lock;                     // To protect image_copies
+    //std::mutex CameraHandler::fps_lock;                              // To protect FPS 
     int CameraHandler::current_copies_index = 0;                     // Alternates between 0 and 1 every read
     bool CameraHandler::stop_threads = false;  
     std::vector< bool > CameraHandler::updated_list;
     std::vector< bool > CameraHandler::working_list;
+    //std::vector< std::deque< int > > CameraHandler::fps_timing;
     
     // This is the thread used to grab camera information
     void CameraHandler::grabVideoFramesThread( unsigned int camera_index )
@@ -34,9 +37,11 @@ namespace altf4
             auto duration = std::chrono::duration_cast< std::chrono::milliseconds >( end - begin );
             std::this_thread::sleep_for( std::chrono::milliseconds( 50 ) - duration );
 
-            print_lock->lock();
-            printf( "Camera %d finished in '%ld' milliseconds\n", camera_index, duration.count() );
-            print_lock->unlock();
+            //fps_lock.lock();
+            //fps_timing[camera_index].push_front(duration.count());  // Keep track of time
+            //if ( fps_timing[camera_index].size() > 1000 )           // Don't keep track of too much time
+            //    fps_timing[camera_index].pop_back();
+            //fps_lock.unlock();
         }
         print_lock->lock();
         printf( "Camera Thread #%d exited\n", camera_index);
@@ -72,9 +77,9 @@ namespace altf4
             images = &(image_copies[current_copies_index]);
             current_copies_index = 0;
         }
-        ul.unlock();
         for (unsigned int i = 0; i < updated_list.size(); i++)
             updated_list[i] = false;
+        ul.unlock();
 
         return images;
     }
@@ -106,6 +111,8 @@ namespace altf4
         updated_list.resize( num_cam, false );    
         working_list.resize( num_cam, true );    
 
+        //fps_timing.resize( num_cam );    
+
         for ( unsigned int i = 0; i < num_cam; i++ )
         {
             camera_threads[i] = std::thread( &CameraHandler::grabVideoFramesThread, i );
@@ -121,6 +128,16 @@ namespace altf4
         {
             printf("Attempting to join Camera %d\n", i);
             camera_threads[i].join();
+            //unsigned long sum = 0;
+            //for ( unsigned int j = 0; j < fps_timing[i].size(); j++ )
+            //{
+            //    sum += fps_timing[i][j];
+            //}
+            // 
+            //if ( fps_timing[i].size() > 0 )
+            //    printf("Camera '%d' ended with an average fps of around '%ld'\n", i, sum / fps_timing[i].size());
+            //else
+            //    printf("Camera '%d' never ran\n", i);
         }
     }
 
