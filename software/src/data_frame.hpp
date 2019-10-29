@@ -13,8 +13,9 @@ namespace altf4
 
         private:
             // Private Members
-            Image* original_image = nullptr;                         // Pointer to original image in main.cpp
+            Image* original_image = nullptr;               // Pointer to original image in main.cpp
             std::vector< Image > binary_images;            // Array of binary_images representing each color ( IE: green / red in our case )
+            std::vector< std::vector< unsigned char* > > binary_datas_2d;  // Array of binary_image data represented in 2 dimensions
             std::vector< std::vector< Blob > > all_blobs;  // Array of all blobs found in colored binary_images
             std::vector< Blob >                best_blobs; // Array of single best blob found in colored binary_image
 
@@ -30,6 +31,7 @@ namespace altf4
             // Accessors
             Image* getOriginalImage() { return this->original_image; }
             std::vector< Image >& getBinaryImages() { return this->binary_images; }
+            std::vector< std::vector< unsigned char* > >& getBinaryDatas2D() { return this->binary_datas_2d; }
             std::vector< std::vector< Blob > >& getAllBlobs() { return this->all_blobs; }
             std::vector< Blob >& getBestBlobs() { return this->best_blobs; }
 

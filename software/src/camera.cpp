@@ -19,7 +19,7 @@ namespace altf4
 
         cap >> matrix_buffer;
         cv::cvtColor(matrix_buffer, matrix_buffer, cv::COLOR_BGR2HSV); // convert to hsv
-        current_image = Image(&matrix_buffer, width, rows, channels);
+        current_image = Image(&matrix_buffer, rows, cols, channels);
 
         return &current_image;
     }

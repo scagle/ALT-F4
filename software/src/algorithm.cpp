@@ -17,7 +17,6 @@ namespace altf4
             unsigned int rows = image->getRows();
             unsigned int cols = image->getCols();
             unsigned int channels = image->getChannels();
-            unsigned int data_size = rows * cols * channels;
             unsigned int binary_data_size = rows * cols * 1;
 
             binary_data->resize( binary_data_size, 0 );
@@ -34,9 +33,26 @@ namespace altf4
             }
         }
 
-        void transDimensiate( Image* image, Image& binary_image )
+        void transDimensiateBinaryMatrix( Image& binary_image, std::vector< unsigned char* >& binary_data_2d )
         {
-            printf("Transdimensiate!\n");
+            unsigned int rows = binary_image.getRows();
+            unsigned int cols = binary_image.getCols();
+            binary_data_2d.resize(cols, nullptr);
+
+            for ( unsigned int i = 0; i < rows; i++ )
+            {
+                binary_data_2d[i] = &((*binary_image.getData())[i * cols]);
+            }
+
+            //for ( unsigned int row = 0; row < rows; row++ )
+            //{
+            //    for ( unsigned int col = 0; col < cols; col++ )
+            //    {
+            //        printf("%d ", binary_data_2d[row][col]);
+            //    }
+            //    printf("\n(%d, X) rows: %d, cols: %d\n", row, rows, cols);
+            //}
+            //printf("DONE\n");
         }
     };
 };

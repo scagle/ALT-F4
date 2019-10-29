@@ -30,9 +30,9 @@ namespace altf4
                 tuning::hsv_thresholds[i]    // <- thresholds for min/max boundaries of binary_image 
             );
 
-            algorithm::transDimensiate(      // Create 2D representations of 1D arrays
-                frame.getOriginalImage(),    // <- reference to original image 
-                frame.getBinaryImages()[i]   // <- reference to binary_image 
+            algorithm::transDimensiateBinaryMatrix(  // Create 2D representations of 1D arrays ( without copying )
+                frame.getBinaryImages()[i],          // <- reference to binary_image 
+                frame.getBinaryDatas2D()[i]          // <- reference to binary_data_2d
             );
         }
     }

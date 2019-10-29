@@ -40,6 +40,7 @@ namespace altf4
     void DataFrame::initialize( unsigned int number_of_tests )
     {
         this->binary_images.resize( tuning::hsv_thresholds.size() );
+        this->binary_datas_2d.resize( tuning::hsv_thresholds.size() );
         this->all_blobs.resize( tuning::hsv_thresholds.size() );
         this->best_blobs.resize( tuning::hsv_thresholds.size() );
     }

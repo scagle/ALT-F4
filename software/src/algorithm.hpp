@@ -9,7 +9,7 @@ namespace altf4
     namespace algorithm
     {
         void writeBinaryData( Image* image, Image& binary_image, const std::pair< Color, Color >& thresholds );
-        void transDimensiate( Image* image, Image& binary_image );
+        void transDimensiateBinaryMatrix( Image& binary_image, std::vector< unsigned char* >& binary_data_2d );
     };
 };
 
