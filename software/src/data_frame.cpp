@@ -13,28 +13,10 @@ namespace altf4
 
     } 
 
-    DataFrame::DataFrame( Image* image ) : original_image(image)
+    DataFrame::DataFrame( Image* image ) : image(image)
     {
 
     }
-
-    // DataFrame::DataFrame( const DataFrame& other ) 
-    // {
-    //     printf("Copying DataFrame!\n"); 
-    //     original_image = other.original_image;
-    //     bool temp = other.opencv_matrix.empty() ;
-    //     printf("%d\n", temp);
-    //     if ( other.opencv_matrix.empty() )
-    //     {
-    //         opencv_matrix = cv::Mat();
-    //     }
-    //     else
-    //     {
-    //         opencv_matrix = other.opencv_matrix.clone();
-    //     }
-    //     printf("%d\n", temp);
-    //     printf("Copied DataFrame!\n"); 
-    // }
 
     // Methods
     void DataFrame::initialize( unsigned int number_of_tests )

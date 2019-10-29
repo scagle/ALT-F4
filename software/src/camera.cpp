@@ -20,7 +20,6 @@ namespace altf4
         cap >> matrix_buffer;
         cv::cvtColor(matrix_buffer, matrix_buffer, cv::COLOR_BGR2HSV); // convert to hsv
         current_image = Image(&matrix_buffer, rows, cols, channels);
-
         return &current_image;
     }
 
@@ -46,9 +45,7 @@ namespace altf4
             cap >> temp_matrix; // get a frame from camera, so we can grab size
             channels = temp_matrix.channels();
             cols     = temp_matrix.cols;
-            width    = temp_matrix.cols;
             rows     = temp_matrix.rows;
-            height   = temp_matrix.rows;
             if ( DEBUG == true )
                 printStats();
         }
@@ -58,7 +55,7 @@ namespace altf4
 
         }
 
-        matrix_buffer.resize(width * height * channels);  // initialize 'buffer' to correct size
+        matrix_buffer.resize(rows * cols * channels);  // initialize 'buffer' to correct size
         return true;
     }
 
@@ -70,8 +67,8 @@ namespace altf4
         printf("\tcamera framerate    : %lf\n", cap.get(cv::CAP_PROP_FPS)         );
         printf("\tcamera auto-whitebal: %lf\n", cap.get(cv::CAP_PROP_AUTO_WB)     );
         //printf("\tvideo buffer size   : %lf\n", cap.get(cv::CAP_PROP_BUFFERSIZE)  );
-        printf("\tvideo width  / cols : %d\n", width                             );
-        printf("\tvideo height / rows : %d\n", height                            );
+        printf("\tvideo width  / cols : %d\n", cols                             );
+        printf("\tvideo height / rows : %d\n", rows                            );
         printf("\tvideo channels      : %d\n", channels                          );
     }
 };

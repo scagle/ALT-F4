@@ -27,6 +27,8 @@ set(BASE_SOURCES
     keyboard_handler.cpp
     keyboard_handler.hpp
     main.cpp
+    post_process.cpp
+    post_process.hpp
     process.cpp
     process_handler.cpp
     process_handler.hpp

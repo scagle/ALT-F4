@@ -25,14 +25,26 @@ namespace altf4
         for (unsigned int i = 0; i < tuning::hsv_thresholds.size(); i++)
         {
             algorithm::writeBinaryData(      // Write binary image to dataframe directly:
-                frame.getOriginalImage(),    // <- reference to original image that binary image reads from
-                frame.getBinaryImages()[i],  // <- reference to binary_image to write to
-                tuning::hsv_thresholds[i]    // <- thresholds for min/max boundaries of binary_image 
+                frame.getImage(),            // <- reference to original image that binary image reads from
+                frame.getBinaryImages()[i],  // <- reference to binary_image to be written to
+                tuning::hsv_thresholds[i]    // <- thresholds for min/max boundaries of binary_image
             );
 
-            algorithm::transDimensiateBinaryMatrix(  // Create 2D representations of 1D arrays ( without copying )
-                frame.getBinaryImages()[i],          // <- reference to binary_image 
-                frame.getBinaryDatas2D()[i]          // <- reference to binary_data_2d
+            algorithm::transDimensiateImage(  // Create 2D representations of 1D arrays ( without copying )
+                frame.getImage(),             // <- reference to binary_image to be read from
+                frame.getColor2D()            // <- reference to binary_data_2d to be written to
+            );
+
+            algorithm::transDimensiateBinaryImage(  // Create 2D representations of 1D arrays ( without copying )
+                frame.getBinaryImages()[i],         // <- reference to binary_image to be read from
+                frame.getBinaryDatas2D()[i]         // <- reference to binary_data_2d to be written to
+            );
+
+            algorithm::getBlobs(             // Create 2D representations of 1D arrays ( without copying )
+                frame.getImage(),            // <- reference to original image that we get information from (#rows, #cols, pixeldata)
+                frame.getColor2D(),          // <- reference to color_2d to be read from
+                frame.getBinaryDatas2D()[i], // <- reference to binary_data_2d to be read from
+                frame.getAllBlobs()[i]       // <- reference to all_blobs to written to
             );
         }
     }

@@ -17,10 +17,8 @@ namespace altf4
 
             int camera_number;
             int channels;
-            int cols;
-            int width;
             int rows;
-            int height;
+            int cols;
 
         public:
             Camera() { }

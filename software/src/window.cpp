@@ -29,7 +29,7 @@ namespace altf4
         for (unsigned int i = 0; i < number_of_images; i++)
         {
             namedWindow( names[i], cv::WINDOW_AUTOSIZE );
-            Image* image = frames[i].getOriginalImage();
+            Image* image = frames[i].getImage();
             std::vector< Image > binary_images = frames[i].getBinaryImages();
             if ( image == nullptr || image->isEmpty() )
                 continue;

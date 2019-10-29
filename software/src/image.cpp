@@ -13,25 +13,16 @@ namespace altf4
 
     }
 
-    Image::Image( int width, int height, int channels ) : width(width), height(height), channels(channels) 
+    Image::Image( int rows, int cols, int channels ) : rows(rows), cols(cols), channels(channels) 
     { 
-        data.resize(width * height * channels);  
+        data.resize(rows * cols * channels);  
     }
 
-    Image::Image( cv::Mat* matrix, int width, int height, int channels ) : width(width), height(height), channels(channels) 
+    Image::Image( cv::Mat* matrix, int rows, int cols, int channels ) : rows(rows), cols(cols), channels(channels) 
     { 
-        data.resize(width * height * channels);  
+        data.resize(rows * cols * channels);  
         convertToVector(matrix);
     }
-
-    Image::Image( const Image& other )
-    {
-        width = other.width;
-        height = other.height;
-        channels = other.channels;
-        data = other.data;
-    }
-
 
     // Methods
     void Image::copyMatrix( cv::Mat* matrix, int channels )
