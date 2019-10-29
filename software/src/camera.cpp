@@ -10,6 +10,7 @@
 namespace altf4
 {
     // Static Declarations
+    std::mutex init_lock;   // Lets OpenCV initialize itself cleanly and without multi-threading
 
     // Constructors
 
@@ -27,6 +28,7 @@ namespace altf4
     {
         try
         {
+            std::unique_lock< std::mutex > ul( init_lock );
             this->camera_number = camera_number;
             cap = cv::VideoCapture(camera_number * 2);    // open the camera located at /dev/videoX
             if (!cap.isOpened())    // check if we succeeded
@@ -34,6 +36,7 @@ namespace altf4
                 printf("*** WARNING: Camera %d can't be opened! (camera.cpp)\n", camera_number);
                 return false;
             }
+            ul.unlock();
             // Setup VideoCapture settings (if not supported)
             cap.set(cv::CAP_PROP_FPS, FPS)              ; // 30 seems to be maximum. (may hang program depending on cam)
             cap.set(cv::CAP_PROP_FRAME_WIDTH, MAX_COL)  ; // Lowest possible 4:3 aspect ratio
