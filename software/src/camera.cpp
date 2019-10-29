@@ -2,6 +2,7 @@
 #include "image.hpp"
 #include "globals.hpp"
 #include <opencv2/videoio.hpp>
+#include <opencv2/imgproc.hpp>
 #include <chrono>
 #include <iostream>
 #include <mutex>
@@ -17,6 +18,7 @@ namespace altf4
     {
 
         cap >> matrix_buffer;
+        cv::cvtColor(matrix_buffer, matrix_buffer, cv::COLOR_BGR2HSV); // convert to hsv
         current_image = Image(&matrix_buffer, width, rows, channels);
 
         return &current_image;
