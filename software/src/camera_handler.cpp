@@ -28,8 +28,8 @@ namespace altf4
 
             Image* image = cameras[camera_index].grabImage();
             image_lock.lock();
-            updated_list[camera_index] = true;
             images[camera_index] = *image; // Copy image into images
+            updated_list[camera_index] = true;
             image_lock.unlock();
 
             auto end = std::chrono::steady_clock::now();
@@ -51,7 +51,7 @@ namespace altf4
     // Constructors
     
     // Methods
-    std::vector< Image > CameraHandler::readAll()
+    std::vector< Image > CameraHandler::readImages()
     {    
         std::unique_lock<std::mutex> ul( image_lock );
         // Check if all cameras have had a chance to write their capture to images

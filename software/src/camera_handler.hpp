@@ -32,7 +32,7 @@ namespace altf4
 
             // Methods
             static void grabVideoFramesThread( unsigned int camera_index );
-            std::vector< Image > readAll(); // Grabs a synchronized copy of images
+            std::vector< Image > readImages(); // Grabs a synchronized copy of images
             void resolveThreads();
             bool initialize( unsigned int num_cam, std::mutex* pl);
             bool imagesReady();

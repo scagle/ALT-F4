@@ -1,31 +1,40 @@
 #include "process.hpp"
+
 #include "image.hpp"
 #include "data_frame.hpp"
+#include "algorithm.hpp"
+#include "tuning.hpp"
+#include <vector>
 
 namespace altf4
 {
     // Static Declarations
-    static DataFrame temporary_empty_data_frame_please_fix_me_in_future;
 
     // Constructors
-    Process::Process()
+    Process::Process( int camera_index, Image& image, DataFrame& frame ) 
+        : camera_index(camera_index), image(image), frame(frame)
     {
-        printf("*** WARNING: Created empty process with no image to process (process.cpp)\n");
-    }
-    Process::Process( Image* image ) : original_image(image)
-    {
-        processImage();
+        // Initialize DataFrame to hold appropriate number of tests (defined in tuning.hpp)
+        frame.initialize( tuning::hsv_thresholds.size() ); 
     }
 
     // Methods
-    void Process::processImage()
+    void Process::performAlgorithms()
     {
-        image_frame = DataFrame( original_image );
-    }
+        // Get Binary Image
+        for (unsigned int i = 0; i < tuning::hsv_thresholds.size(); i++)
+        {
+            algorithm::writeBinaryData(      // Write binary image to dataframe directly:
+                frame.getOriginalImage(),    // <- reference to original image that binary image reads from
+                frame.getBinaryImages()[i],  // <- reference to binary_image to write to
+                tuning::hsv_thresholds[i]    // <- thresholds for min/max boundaries of binary_image 
+            );
 
-    DataFrame* Process::getDataFrame()
-    {
-        return &(image_frame);
+            algorithm::transDimensiate(      // Create 2D representations of 1D arrays
+                frame.getOriginalImage(),    // <- reference to original image 
+                frame.getBinaryImages()[i]   // <- reference to binary_image 
+            );
+        }
     }
 };
 

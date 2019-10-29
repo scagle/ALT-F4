@@ -8,6 +8,11 @@ namespace altf4
     // Static Declarations
 
     // Constructors
+    Image::Image()
+    {
+
+    }
+
     Image::Image( int width, int height, int channels ) : width(width), height(height), channels(channels) 
     { 
         data.resize(width * height * channels);  

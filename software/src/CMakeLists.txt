@@ -11,6 +11,8 @@ set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 find_package(Threads REQUIRED)
 
 set(BASE_SOURCES 
+    algorithm.cpp
+    algorithm.hpp
     blob.cpp
     blob.hpp
     camera.cpp
@@ -31,11 +33,14 @@ set(BASE_SOURCES
     process.hpp
     serial_handler.cpp
     serial_handler.hpp
+    tuning.hpp
     window.cpp
     window.hpp
 )
 
-add_executable(camera ${BASE_SOURCES} ${PONG_SOURCES})
+add_subdirectory(datatypes)
+
+add_executable(camera ${BASE_SOURCES} ${DATATYPE_SOURCES})
 target_link_libraries(camera ${OpenCV_LIBS})
 target_link_libraries(camera Threads::Threads)
 

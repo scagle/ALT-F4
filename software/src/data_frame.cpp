@@ -1,4 +1,5 @@
 #include "data_frame.hpp"
+#include "tuning.hpp"
 #include <opencv2/videoio.hpp>
 #include <opencv2/core/mat.hpp>
 
@@ -7,16 +8,14 @@ namespace altf4
     // Static Declarations
 
     // Constructors
-    DataFrame::DataFrame( )
-    {
-        printf("Creating DataFrame!\n"); 
-    }
+    DataFrame::DataFrame( ) 
+    { 
 
-    DataFrame::DataFrame( Image* image ) 
+    } 
+
+    DataFrame::DataFrame( Image* image ) : original_image(image)
     {
-        printf("Creating DataFrame!\n"); 
-        original_image = image;
-        opencv_matrix = cv::Mat( image->getRows(), image->getCols(), CV_8UC3, image->getData() );
+
     }
 
     // DataFrame::DataFrame( const DataFrame& other ) 
@@ -38,10 +37,11 @@ namespace altf4
     // }
 
     // Methods
-    cv::Mat* DataFrame::getMat()
+    void DataFrame::initialize( unsigned int number_of_tests )
     {
-        return &opencv_matrix;
+        this->binary_images.resize( tuning::hsv_thresholds.size() );
+        this->all_blobs.resize( tuning::hsv_thresholds.size() );
+        this->best_blobs.resize( tuning::hsv_thresholds.size() );
     }
-    
 };
 

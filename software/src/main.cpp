@@ -45,12 +45,15 @@ int main( int argc, char** argv )
     if ( !initialize() )
         return 1;
 
+    std::vector< altf4::Image > images(number_of_cameras);
+    std::vector< altf4::DataFrame > frames(number_of_cameras);
     while ( !done && !interrupted )
     {
         auto begin = std::chrono::steady_clock::now();
-        std::vector< altf4::Image > images = camera_handler.readAll();
-        //std::vector< altf4::DataFrame >* frames = process_handler.processImages( images );
-        window.tempDisplay( images );
+        images = camera_handler.readImages();
+        process_handler.grabDataFrames( &images, &frames ); 
+        
+        window.tempDisplay( frames );
         //window.display( frames );
 
         auto end = std::chrono::steady_clock::now();
@@ -69,7 +72,7 @@ void resolveAllThreads()
 
 bool initialize()
 {
-    if (!initializeSignalHandler())
+    if (!initializeSignalHandler()) // initialize CTRL-C and SIGTERM handling
         return false;
     if (!initializeCameraHandler())
         return false;

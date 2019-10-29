@@ -21,6 +21,7 @@ namespace altf4
             // Private Members
 
             std::vector< std::thread > process_threads;    // list of threads
+            std::vector< std::thread* > running_threads;   // list of running threads
             unsigned int number_of_processes = 0;          // Number of process_threads
             bool stop_threads = false;
             bool image_size_mismatch_warned = false;       // A "one-time" warning that some cameras aren't working
@@ -31,8 +32,8 @@ namespace altf4
             virtual ~ProcessHandler() = default;
 
             // Methods
-            static void processImageThread( int image_index, Image& image );
-            std::vector< DataFrame >* processImages( std::vector< Image >* images );
+            static void processThread( int image_index, Image& image, DataFrame& frame );
+            void grabDataFrames( std::vector< Image >* images, std::vector< DataFrame >* frames );
             void resolveThreads();
             bool initialize( int num_proc, std::mutex* pl );
 

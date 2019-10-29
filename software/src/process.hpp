@@ -11,20 +11,20 @@ namespace altf4
 
         private:
             // Private Members
-            Image* original_image;
-            DataFrame image_frame;
+            int camera_index;
+            Image& image;
+            DataFrame& frame;
             
 
         public:
-            Process();
-            Process( Image* image );
+            Process( int camera_index, Image& image, DataFrame& frame );
             virtual ~Process() { printf("Destroying Process!\n"); }
 
             // Methods
-            void processImage();
-            DataFrame* getDataFrame();
+            void performAlgorithms();
 
             // Accessors
+            DataFrame& getDataFrame() { return this->frame; }
 
             // Mutators
     };

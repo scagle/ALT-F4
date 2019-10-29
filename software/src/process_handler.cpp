@@ -15,56 +15,74 @@ namespace altf4
     std::mutex ProcessHandler::frames_copies_lock;          // Locks frames_copies 
     std::mutex* ProcessHandler::print_lock;                 // Locks stdout
 
-    void ProcessHandler::processImageThread( int image_index, Image& image )
+    void ProcessHandler::processThread( int image_index, Image& image, DataFrame& frame )
     {
-        printf( "PHThread %d || %p, %ld \t\tcapacity: %ls\n", image_index, &frames_copies, frames_copies.size(), frames_copies.capacity() );
-        Process process( &image );
-        DataFrame* process_frame = process.getDataFrame();
-        frames_copies_lock.lock();
-        frames_copies[current_copies_index][image_index] = DataFrame(*process_frame); // Copy dataframe into frames_copies
-        frames_copies_lock.unlock();
+        Process process( image_index, image, frame );
+        process.performAlgorithms();
+
+        //frames_copies_lock.lock();
+        //frames_copies[current_copies_index][image_index] = DataFrame(*process_frame); // Copy dataframe into frames_copies
+        //frames_copies_lock.unlock();
     }
 
     // Constructors
 
     // Methods
-    std::vector< DataFrame >* ProcessHandler::processImages( std::vector< Image >* images )
+    void ProcessHandler::grabDataFrames( std::vector< Image >* images, std::vector< DataFrame>* frames )
     {
-        //printf( "PHprocessImages || %p, %ld \t\tcapacity: %ls\n", &frames_copies, frames_copies.size(), frames_copies.capacity() );
-        printf( "PHprocessImages || %p %ld %ld\n", &frames_copies, frames_copies.size(), frames_copies[0].size());
-        printf( "%d\n", number_of_processes );
-        if ( images->size() != number_of_processes && image_size_mismatch_warned == false )
+        if ( images->size() != frames->size() )
         {
-            printf("*** WARNING: Predicted '%d' images, but received '%ld'. Maybe some cameras aren't working? (process_handler.cpp)\n", 
-                    number_of_processes, images->size());
-            image_size_mismatch_warned = true;
+            printf("*** WARNING: Mismatch in size of images (%ld) vs frames (%ld)! (process_handler.cpp)\n", images->size(), frames->size() );
         }
-
         for ( unsigned int i = 0; i < images->size(); i++ )
         {
-            // Spawn thread
-            process_threads[i] = std::thread( &ProcessHandler::processImageThread, i, std::ref( (*images)[i] ));
+            if ( !(*images)[i].isEmpty() ) // Check if image[i] is initialized, not frames[i] since we want to modify it;
+            {
+                (*frames)[i] = DataFrame( &(*images)[i] ); // Reinitialize frames[i], as we want to modify it
+                process_threads[i] = std::thread( &ProcessHandler::processThread, i, std::ref( (*images)[i] ), std::ref( (*frames)[i] ) );
+                running_threads.push_back( &process_threads[i] );
+                printf("Started thread for images[%d]\n", i);
+            }
         }
 
-        for ( unsigned int i = 0; i < images->size(); i++ )
+        for ( unsigned int i = 0; i < running_threads.size(); i++ )
         {
-            printf("Attempting to join Process %d\n", i);
-            process_threads[i].join();
+            running_threads[i]->join();
         }
-        std::vector< DataFrame>* frames;
-        if ( current_copies_index == 0 )
-        {
-            frames = &(frames_copies[current_copies_index]);
-            current_copies_index = 1;
-        }
-        else
-        {
-            frames = &(frames_copies[current_copies_index]);
-            current_copies_index = 0;
-        }
+        running_threads.clear();
+
+        //if ( images->size() != number_of_processes && image_size_mismatch_warned == false )
+        //{
+        //    printf("*** WARNING: Predicted '%d' images, but received '%ld'. Maybe some cameras aren't working? (process_handler.cpp)\n", 
+        //            number_of_processes, images->size());
+        //    image_size_mismatch_warned = true;
+        //}
+
+        //for ( unsigned int i = 0; i < images->size(); i++ )
+        //{
+        //    // Spawn thread
+        //    process_threads[i] = std::thread( &ProcessHandler::processThread, i, std::ref( (*images)[i] ));
+        //}
+
+        //for ( unsigned int i = 0; i < images->size(); i++ )
+        //{
+        //    printf("Attempting to join Process %d\n", i);
+        //    process_threads[i].join();
+        //}
+        //std::vector< DataFrame>* frames;
+        //if ( current_copies_index == 0 )
+        //{
+        //    frames = &(frames_copies[current_copies_index]);
+        //    current_copies_index = 1;
+        //}
+        //else
+        //{
+        //    frames = &(frames_copies[current_copies_index]);
+        //    current_copies_index = 0;
+        //}
 
 
-        return frames;
+        //return frames;
     }
 
     void ProcessHandler::resolveThreads()
