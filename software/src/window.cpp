@@ -24,25 +24,15 @@ namespace altf4
         return true;
     }
 
-    void Window::tempDisplay( std::vector< DataFrame >& frames )
+    void Window::tempDisplay( std::vector< cv::Mat >* mats )
     {
         for (unsigned int i = 0; i < number_of_images; i++)
         {
             namedWindow( names[i], cv::WINDOW_AUTOSIZE );
-            Image* image = frames[i].getImage();
-            std::vector< Image > binary_images = frames[i].getBinaryImages();
-            if ( image == nullptr || image->isEmpty() )
+
+            if ( (*mats)[i].empty())
                 continue;
-
-            delete matrices[i];
-            //matrices[i] = new cv::Mat(480, 640, CV_8UC3, image->getData()->data());
-            matrices[i] = new cv::Mat(480, 640, CV_8UC1, binary_images[0].getData()->data());
-            
-
-            //matrices[i] = (*images)[i].getMatrix();
-            //if (matrices[i]->empty())
-            //    continue;
-            cv::imshow( names[i], *(matrices[i]) );
+            cv::imshow( names[i], (*mats)[i] );
         }
         cv::waitKey(50);
     }

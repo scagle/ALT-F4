@@ -3,16 +3,15 @@
 #include "process_handler.hpp"
 #include "keyboard_handler.hpp"
 #include "serial_handler.hpp"
+#include "post_process.hpp"
 #include "window.hpp"
 #include "data_frame.hpp"
 #include "image.hpp"
 #include "globals.hpp"
 #include <cstdlib>
 #include <cstdio>
-#include <iostream>
 #include <signal.h>
 #include <chrono>
-#include <thread>
 #include <mutex>
 #include <vector>
 #include <opencv2/highgui.hpp>
@@ -23,6 +22,7 @@ void resolveAllThreads();
 bool initialize();
 bool initializeCameraHandler();
 bool initializeProcessHandler();
+bool initializePostProcess();
 bool initializeWindow();
 static bool initializeSignalHandler();
 static void signalHandler( int signal_value );
@@ -32,9 +32,10 @@ std::mutex print_lock;  // Mutex to lock printing to console for threads
 // Objects
 altf4::CameraHandler camera_handler;
 altf4::ProcessHandler process_handler;
+altf4::PostProcess post_process;
+altf4::Window window;
 altf4::KeyboardHandler keyboard_handler;
 altf4::SerialHandler serial_handler;
-altf4::Window window;
 
 unsigned int number_of_cameras = 4;
 static bool interrupted = false;
@@ -50,10 +51,14 @@ int main( int argc, char** argv )
     while ( !done && !interrupted )
     {
         auto begin = std::chrono::steady_clock::now();
+
+        // Read Images from cameras
         images = camera_handler.readImages();
+        // Process Images to find lasers
         process_handler.grabDataFrames( &images, &frames ); 
-        
-        window.tempDisplay( frames );
+
+        post_process.renderMats( &frames );
+        window.tempDisplay( post_process.getMats() );
         //window.display( frames );
 
         auto end = std::chrono::steady_clock::now();
@@ -78,10 +83,17 @@ bool initialize()
         return false;
     if (!initializeProcessHandler())
         return false;
+    if (!initializePostProcess())
+        return false;
     if (!initializeWindow())
         return false;
 
     return true;
+}
+
+bool initializeCameraHandler()
+{
+    return camera_handler.initialize(number_of_cameras, &print_lock);
 }
 
 bool initializeProcessHandler()
@@ -89,9 +101,9 @@ bool initializeProcessHandler()
     return process_handler.initialize(number_of_cameras, &print_lock);
 }
 
-bool initializeCameraHandler()
+bool initializePostProcess()
 {
-    return camera_handler.initialize(number_of_cameras, &print_lock);
+    return post_process.initialize(number_of_cameras);
 }
 
 bool initializeWindow()

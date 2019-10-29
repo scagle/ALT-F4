@@ -25,7 +25,7 @@ namespace altf4
             // Methods
             bool initialize(unsigned int);
             void temp( std::vector< Image >* images );
-            void tempDisplay( std::vector< DataFrame >& );  // TODO: temporary debugging display 
+            void tempDisplay( std::vector< cv::Mat >* mats );
             void display( std::vector< DataFrame >& );
 
             // Accessors
