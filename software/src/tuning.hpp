@@ -31,13 +31,13 @@ namespace altf4
         //      1: Red-Laser gets red gui elements
         //         ...
         //      n: ...
-        const std::vector< Color > associated_color = 
+        const std::vector< cv::Scalar > associated_color = 
         {
             // Green Laser:
-            Color{ 100, 255, 100 },
+            { 100, 255, 100 },
 
             // Red Laser:
-            Color{ 100, 100, 255 },
+            { 100, 100, 255 },
         };
     };
 };

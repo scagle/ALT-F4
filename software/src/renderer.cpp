@@ -1,5 +1,8 @@
 #include "renderer.hpp"
+
+#include "tuning.hpp"
 #include <opencv2/videoio.hpp>
+#include <opencv2/imgproc.hpp>
 
 namespace altf4
 {
@@ -20,41 +23,47 @@ namespace altf4
 
             mats[i] = cv::Mat(image->getRows(), image->getCols(), CV_8UC3, image->getData()->data());
             all_binary_mats[i].clear();
-            for ( unsigned int t = 0; t < binary_images.size(); t++ )
+            for ( unsigned int type = 0; type < binary_images.size(); type++ )
             {
-                all_binary_mats[i].push_back(cv::Mat(image->getRows(), image->getCols(), CV_8UC1, binary_images[t].getData()->data()));
+                all_binary_mats[i].push_back(cv::Mat(image->getRows(), image->getCols(), CV_8UC1, binary_images[type].getData()->data()));
             }
 
-            if (type == 0)
+            if (display_type == 0)
             {
-                annotateMat(i, &( (*original_images)[i] ) );
+                annotateMat(i, &( (*original_images)[i] ), (*frames)[i].getAllBlobs() );
                 window.render( i, &( (*original_images)[i] ) );
             }
-            else if (type == 1)
+            else if (display_type == 1)
             {
-                annotateMat(i, &( mats[i] ) );
+                annotateMat(i, &( mats[i] ), (*frames)[i].getAllBlobs() );
                 window.render( i, &( mats[i] ) );
             }
             else
             {
-                if ( all_binary_mats.size() > 0 && type - 2 < all_binary_mats[0].size()  )
+                if ( all_binary_mats.size() > 0 && display_type - 2 < (int)all_binary_mats[0].size()  )
                 {
-                    printf("Type '%d'\n", type);
-                    annotateMat(i, &( all_binary_mats[i][type-2] ) );
-                    window.render( i, &( all_binary_mats[i][type-2] ) );
+                    annotateMat(i, &( all_binary_mats[i][display_type-2] ), (*frames)[i].getAllBlobs() );
+                    window.render( i, &( all_binary_mats[i][display_type-2] ) );
                 }
                 else
                 {
-                    printf("Invalid type '%d'\n", type);
-                    type = 0;
+                    printf("Invalid display_type '%d'\n", display_type);
+                    display_type = 0;
                 }
             }
         }
     }
     
-    void Renderer::annotateMat( int index, cv::Mat* mat )
+    void Renderer::annotateMat( int index, cv::Mat* mat, std::vector< std::vector< Blob > >& blobs )
     {
-        printf("Annotating %d, type = %d\n", index, type);
+        for ( unsigned int type = 0; type < blobs.size(); type++ )
+        {
+            for ( auto&& blob : blobs[type] )
+            {
+                cv::rectangle( *mat, blob.getEncompassingRect(2), tuning::associated_color[type], 2 );
+                printf( "Annotating %d, type = %d\n", index, type );
+            }
+        }
     }
 
     bool Renderer::initialize( int number_of_cameras )

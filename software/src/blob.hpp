@@ -1,6 +1,7 @@
 #pragma once
 #include "datatypes/pixel.hpp"
 #include <vector>
+#include <opencv2/videoio.hpp>
 
 namespace altf4
 {
@@ -24,6 +25,9 @@ namespace altf4
             // Methods
 
             // Accessors
+            cv::Rect getRect() { return cv::Rect( blob_min_row, blob_min_col, blob_max_row, blob_max_col ); }
+            cv::Rect getEncompassingRect( int padding ) 
+            { return cv::Rect( blob_min_row - padding, blob_min_col - padding, blob_max_row + padding, blob_max_col + padding ); }
 
             // Mutators
     };
