@@ -24,11 +24,11 @@ set(BASE_SOURCES
     globals.hpp
     image.cpp
     image.hpp
-    keyboard_handler.cpp
-    keyboard_handler.hpp
+    input_handler.cpp
+    input_handler.hpp
     main.cpp
-    post_process.cpp
-    post_process.hpp
+    renderer.cpp
+    renderer.hpp
     process.cpp
     process_handler.cpp
     process_handler.hpp

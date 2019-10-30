@@ -12,8 +12,8 @@ namespace altf4
         private:
             // Private Members
             cv::VideoCapture cap;    // open the camera located at /dev/videoX
-            cv::Mat3b matrix_buffer; // store camera captures in here initialially
-            Image current_image;
+            cv::Mat3b matrix_buffer;    // open the camera located at /dev/videoX
+            std::pair< cv::Mat3b, Image > image_pair;
 
             int camera_number;
             int channels;
@@ -25,7 +25,7 @@ namespace altf4
             virtual ~Camera() { }
 
             // Methods
-            Image* grabImage();
+            std::pair< cv::Mat3b, Image >* grabImage();
             bool initialize( int camera_number );
             void printStats();
 

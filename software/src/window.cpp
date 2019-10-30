@@ -1,5 +1,6 @@
 #include "window.hpp"
 #include "data_frame.hpp"
+#include "input_handler.hpp"
 #include <sstream>
 #include <opencv2/highgui.hpp>
 
@@ -34,16 +35,26 @@ namespace altf4
                 continue;
             cv::imshow( names[i], (*mats)[i] );
         }
-        cv::waitKey(50);
+
+        // Handle key input
+        unsigned char key = cv::waitKey(10);
+        if ( key != 255 )
+        {
+            InputHandler::addEvent( key );
+        }
     }
 
-    void Window::display( std::vector< DataFrame >& frames )
+    void Window::render( unsigned int index, cv::Mat* mat )
     {
-        for ( unsigned int i = 0; i < number_of_images; i++ )
+        cv::imshow( names[index], *mat );
+
+        // Handle key input
+        unsigned char key = cv::waitKey(10);
+        if ( key != 255 )
         {
-            //cv::imshow( names[i], *(frames[i].getMat()) );
-            
+            InputHandler::addEvent( key );
         }
+        printf("Displaying! empty = %s\n", (mat->empty()) ? "true" : "false");
     }
 };
 

@@ -97,7 +97,6 @@ namespace altf4
             unsigned int rows = image->getRows();
             unsigned int cols = image->getCols();
 
-            printf(" Blob Detection!\n");            
             std::stack< Position > edited_pixels; // stack of modified pixels, that allows us to change them back
             unsigned int blob_count = 0;
 

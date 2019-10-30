@@ -10,17 +10,19 @@
 namespace altf4
 {
     // Static Declarations
+    std::mutex capture_mutex;
 
     // Constructors
 
     // Methods
-    Image* Camera::grabImage()
+    std::pair< cv::Mat3b, Image >* Camera::grabImage()
     {
-
         cap >> matrix_buffer;
+        image_pair.first = matrix_buffer.clone();    // Keep original
         cv::cvtColor(matrix_buffer, matrix_buffer, cv::COLOR_BGR2HSV); // convert to hsv
-        current_image = Image(&matrix_buffer, rows, cols, channels);
-        return &current_image;
+        image_pair.second = Image(&matrix_buffer, rows, cols, channels);
+
+        return &image_pair;
     }
 
     bool Camera::initialize( int camera_number )
@@ -28,12 +30,14 @@ namespace altf4
         try
         {
             this->camera_number = camera_number;
+            std::unique_lock< std::mutex> ul( capture_mutex );
             cap = cv::VideoCapture(camera_number * 2);    // open the camera located at /dev/videoX
             if (!cap.isOpened())    // check if we succeeded
             {
                 printf("*** WARNING: Camera %d can't be opened! (camera.cpp)\n", camera_number);
                 return false;
             }
+            ul.unlock();
             // Setup VideoCapture settings (if not supported)
             cap.set(cv::CAP_PROP_FPS, FPS)              ; // 30 seems to be maximum. (may hang program depending on cam)
             cap.set(cv::CAP_PROP_FRAME_WIDTH, MAX_COL)  ; // Lowest possible 4:3 aspect ratio

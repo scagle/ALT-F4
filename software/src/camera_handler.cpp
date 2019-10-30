@@ -9,6 +9,7 @@ namespace altf4
     // Static Declarations
     std::vector< Camera > CameraHandler::cameras;                    // List of cameras
     std::vector< std::thread > CameraHandler::camera_threads;        // Threads used to grab images from OpenCV
+    std::vector< cv::Mat3b > CameraHandler::original_images;         //  
     std::vector< Image > CameraHandler::images;                      //  
     std::mutex* CameraHandler::print_lock;                           //
     std::mutex CameraHandler::image_lock;                            // To protect images
@@ -26,9 +27,10 @@ namespace altf4
         {
             auto begin = std::chrono::steady_clock::now();
 
-            Image* image = cameras[camera_index].grabImage();
+            std::pair< cv::Mat3b, Image >* image_pair = cameras[camera_index].grabImage();
             image_lock.lock();
-            images[camera_index] = *image; // Copy image into images
+            original_images[camera_index] = (*image_pair).first; // Copy image into images
+            images[camera_index] = (*image_pair).second; // Copy image into images
             updated_list[camera_index] = true;
             image_lock.unlock();
 
@@ -51,7 +53,7 @@ namespace altf4
     // Constructors
     
     // Methods
-    std::vector< Image > CameraHandler::readImages()
+    void CameraHandler::readImages( std::vector< cv::Mat3b >* original_images, std::vector< Image >* images )
     {    
         std::unique_lock<std::mutex> ul( image_lock );
         // Check if all cameras have had a chance to write their capture to images
@@ -70,7 +72,8 @@ namespace altf4
         for (unsigned int i = 0; i < updated_list.size(); i++)
             updated_list[i] = false;
         
-        return images;
+        (*original_images) = this->original_images;
+        (*images) = this->images;
     }
 
     bool CameraHandler::imagesReady()
@@ -92,6 +95,7 @@ namespace altf4
         print_lock = pl;
         cameras.resize( num_cam );    
         camera_threads.resize( num_cam );    
+        original_images.resize( num_cam );    
         images.resize( num_cam );    
         updated_list.resize( num_cam, false );    
         working_list.resize( num_cam, true );    
@@ -111,7 +115,7 @@ namespace altf4
         stop_threads = true;
         for ( unsigned int i = 0; i < camera_threads.size(); i++ )
         {
-            printf("Attempting to join Camera %d\n", i);
+            printf("Attempting to join Camera %d Thread\n", i);
             camera_threads[i].join();
             //unsigned long sum = 0;
             //for ( unsigned int j = 0; j < fps_timing[i].size(); j++ )

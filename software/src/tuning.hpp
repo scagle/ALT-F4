@@ -14,7 +14,7 @@ namespace altf4
             {
                 
                 Color{  28,  42, 153 },   // Min Threshold
-                Color{ 255, 255, 255 }    // Max Threshold
+                Color{  63, 101, 240 }    // Max Threshold
             },
 
             // Red Laser:
