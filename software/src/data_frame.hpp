@@ -25,7 +25,7 @@ namespace altf4
             DataFrame();
             DataFrame( Image* image );
             //DataFrame( const DataFrame& other );
-            virtual ~DataFrame() { }
+            virtual ~DataFrame() { printf("Destroying DataFrame!\n"); }
 
             // Methods
             void initialize( unsigned int number_of_tests );

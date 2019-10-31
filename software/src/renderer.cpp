@@ -30,19 +30,19 @@ namespace altf4
 
             if (display_type == 0)
             {
-                annotateMat(i, &( (*original_images)[i] ), (*frames)[i].getAllBlobs() );
+                annotateMat(i, &( (*original_images)[i] ), (*frames)[i].getBestBlobs() );
                 window.render( i, &( (*original_images)[i] ) );
             }
             else if (display_type == 1)
             {
-                annotateMat(i, &( mats[i] ), (*frames)[i].getAllBlobs() );
+                annotateMat(i, &( mats[i] ), (*frames)[i].getBestBlobs() );
                 window.render( i, &( mats[i] ) );
             }
             else
             {
                 if ( all_binary_mats.size() > 0 && display_type - 2 < (int)all_binary_mats[0].size()  )
                 {
-                    annotateMat(i, &( all_binary_mats[i][display_type-2] ), (*frames)[i].getAllBlobs() );
+                    //annotateMat(i, &( all_binary_mats[i][display_type-2] ), (*frames)[i].getBestBlobs() );
                     window.render( i, &( all_binary_mats[i][display_type-2] ) );
                 }
                 else
@@ -54,15 +54,26 @@ namespace altf4
         }
     }
     
-    void Renderer::annotateMat( int index, cv::Mat* mat, std::vector< std::vector< Blob > >& blobs )
+    void Renderer::annotateMat( int index, cv::Mat* mat, std::vector< Blob >& best_blobs )
     {
-        for ( unsigned int type = 0; type < blobs.size(); type++ )
+        for ( unsigned int type = 0; type < best_blobs.size(); type++ )
         {
-            for ( auto&& blob : blobs[type] )
+            if ( best_blobs[type].isInitialized() )
             {
-                cv::rectangle( *mat, blob.getEncompassingRect(2), tuning::associated_color[type], 2 );
-                printf( "Annotating %d, type = %d\n", index, type );
+                cv::rectangle( *mat, best_blobs[type].getEncompassingRect(10), tuning::associated_color[type], 2 );
             }
+            if ( best_blobs[type].getCorePixels()->size() > 0 )
+            {
+                cv::rectangle( *mat, best_blobs[type].getEncompassingRect(15), {255, 255, 0}, 5 );
+            }
+
+            //if ( blob.isInitialized() )
+            //{
+            //    for ( auto&& blob : blobs[type] )
+            //    {
+            //        cv::rectangle( *mat, blob.getEncompassingRect(2), tuning::associated_color[type], 2 );
+            //    }
+            //}
         }
     }
 

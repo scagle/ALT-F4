@@ -26,7 +26,7 @@ namespace altf4
         // Methods
         bool initialize( int number_of_cameras );
         void renderMats( std::vector< DataFrame >* frames, std::vector< cv::Mat3b >* original_images );
-        void annotateMat( int index, cv::Mat* mat, std::vector< std::vector< Blob > >& blobs );
+        void annotateMat( int index, cv::Mat* mat, std::vector< Blob >& best_blobs );
 
         // Accessors
         std::vector< cv::Mat >* getMats() { return &mats; }

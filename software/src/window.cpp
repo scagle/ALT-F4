@@ -54,7 +54,6 @@ namespace altf4
         {
             InputHandler::addEvent( key );
         }
-        printf("Displaying! empty = %s\n", (mat->empty()) ? "true" : "false");
     }
 };
 
