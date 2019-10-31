@@ -10,12 +10,12 @@ namespace altf4
     // Constructors
     DataFrame::DataFrame( ) 
     { 
-
+        printf("Creating DataFrame!\n");
     } 
 
     DataFrame::DataFrame( Image* image ) : image(image)
     {
-
+        printf("Creating DataFrame!\n");
     }
 
     // Methods

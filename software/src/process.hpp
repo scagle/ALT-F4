@@ -18,7 +18,7 @@ namespace altf4
 
         public:
             Process( int camera_index, Image& image, DataFrame& frame );
-            virtual ~Process() { printf("Destroying Process!\n"); }
+            virtual ~Process() { }
 
             // Methods
             void performAlgorithms();

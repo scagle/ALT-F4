@@ -10,26 +10,27 @@
 namespace altf4
 {
     // Static Declarations
-    std::mutex init_lock;   // Lets OpenCV initialize itself cleanly and without multi-threading
+    std::mutex capture_mutex;
 
     // Constructors
 
     // Methods
-    Image* Camera::grabImage()
+    std::pair< cv::Mat3b, Image >* Camera::grabImage()
     {
-
         cap >> matrix_buffer;
+        image_pair.first = matrix_buffer.clone();    // Keep original
         cv::cvtColor(matrix_buffer, matrix_buffer, cv::COLOR_BGR2HSV); // convert to hsv
-        current_image = Image(&matrix_buffer, rows, cols, channels);
-        return &current_image;
+        image_pair.second = Image(&matrix_buffer, rows, cols, channels);
+
+        return &image_pair;
     }
 
     bool Camera::initialize( int camera_number )
     {
         try
         {
-            std::unique_lock< std::mutex > ul( init_lock );
             this->camera_number = camera_number;
+            std::unique_lock< std::mutex> ul( capture_mutex );
             cap = cv::VideoCapture(camera_number * 2);    // open the camera located at /dev/videoX
             if (!cap.isOpened())    // check if we succeeded
             {

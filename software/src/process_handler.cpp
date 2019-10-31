@@ -105,7 +105,6 @@ namespace altf4
         {
             frames_copies[i].resize( num_proc );
         }
-        printf( "PHConstructor || %p, %ld, %ld \t\tcapacity: %ld\n", &frames_copies, frames_copies.size(), frames_copies[0].size(), frames_copies.capacity() );
         return true;
     }
 };

@@ -40,11 +40,17 @@ namespace altf4
                 frame.getBinaryDatas2D()[i]         // <- reference to binary_data_2d to be written to
             );
 
-            algorithm::getBlobs(             // Create 2D representations of 1D arrays ( without copying )
+            algorithm::getBlobs(             // Grab blobs from binary_images
                 frame.getImage(),            // <- reference to original image that we get information from (#rows, #cols, pixeldata)
                 frame.getColor2D(),          // <- reference to color_2d to be read from
                 frame.getBinaryDatas2D()[i], // <- reference to binary_data_2d to be read from
                 frame.getAllBlobs()[i]       // <- reference to all_blobs to written to
+            );
+
+            algorithm::scoreBlobs(              // Score blobs based on attributes
+                frame.getAllBlobs()[i],         // <- reference to blobs the read from
+                frame.getBestBlobs()[i],        // <- reference to best blob to write to
+                i                               // <- index of 
             );
         }
     }
