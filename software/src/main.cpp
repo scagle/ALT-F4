@@ -44,7 +44,7 @@ std::deque< unsigned char > events;
 unsigned int number_of_cameras = 4;
 static bool interrupted = false;
 static bool done = false;
-static bool tune = false;
+static bool tune = false;    // Toggles tune menu
 
 int main( int argc, char** argv )
 {

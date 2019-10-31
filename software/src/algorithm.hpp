@@ -19,10 +19,8 @@ namespace altf4
         void getBlobs( Image* image, std::vector< std::vector< Color > >& data_2d, 
                        std::vector< unsigned char* >& binary_data_2d, std::vector< Blob >& all_blobs );
 
-        void getBlobs( Image* image, std::vector< std::vector< Color > >& data_2d, 
-                       std::vector< unsigned char* >& binary_data_2d, std::vector< Blob >& all_blobs );
-
-        void scoreBlobs( std::vector< Blob >& blobs, Blob& best_blob, int type );
+        void scoreBlobs( std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d, 
+            std::vector< Blob >& blobs, Blob& best_blob, int type );
     };
 };
 

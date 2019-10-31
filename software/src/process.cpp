@@ -31,8 +31,8 @@ namespace altf4
             );
 
             algorithm::transDimensiateImage(  // Create 2D representations of 1D arrays ( without copying )
-                frame.getImage(),             // <- reference to binary_image to be read from
-                frame.getColor2D()            // <- reference to binary_data_2d to be written to
+                frame.getImage(),             // <- reference to image to be read from
+                frame.getColor2D()            // <- reference to color_data_2d to be written to
             );
 
             algorithm::transDimensiateBinaryImage(  // Create 2D representations of 1D arrays ( without copying )
@@ -48,9 +48,11 @@ namespace altf4
             );
 
             algorithm::scoreBlobs(              // Score blobs based on attributes
+                frame.getColor2D(),             // <- reference to color_data_2d to be written to
+                frame.getBinaryDatas2D()[i],    // <- reference to binary_data_2d to be written to
                 frame.getAllBlobs()[i],         // <- reference to blobs the read from
                 frame.getBestBlobs()[i],        // <- reference to best blob to write to
-                i                               // <- index of 
+                i                               // <- index of type
             );
         }
     }

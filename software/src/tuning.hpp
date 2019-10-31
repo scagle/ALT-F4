@@ -16,10 +16,8 @@ namespace altf4
             // Green Laser:
             {
                 
-                Color{ 50, 50, 50 },   // Min Threshold
-                Color{ 200, 200, 200}    // Max Threshold
-                //Color{  28,  42, 153 },   // Min Threshold
-                //Color{  63, 101, 240 }    // Max Threshold
+                Color{  15,  20, 20 },   // Min Threshold
+                Color{  65, 100, 60 }    // Max Threshold
             },
 
             // Red Laser:
@@ -29,8 +27,12 @@ namespace altf4
             },
         };
 
-        const int core_max_neighbors = 3; // Max number of neighbors until not blob anymore
-        const int core_size_cutoff = 150; // Bigger than this, and core blob explodes ( prevents blob leak )
+        // Recursive Approach
+        //const int core_max_neighbors = 3; // Max number of neighbors until not blob anymore
+        //const int core_size_cutoff = 150; // Bigger than this, and core blob explodes ( prevents blob leak )
+
+        // Sticky Ball Approach
+        const int number_of_whitest_pixel_searches = 3; // How many "max" pixels we search for before averaging O(kn)
 
 
 /***************************************************************************************/

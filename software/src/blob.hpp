@@ -1,6 +1,7 @@
 #pragma once
 #include "datatypes/pixel.hpp"
 #include "datatypes/color.hpp"
+#include "core.hpp"
 #include <vector>
 #include <opencv2/videoio.hpp>
 
@@ -12,6 +13,7 @@ namespace altf4
             // Private Members
             std::vector< Pixel > pixels;
             std::vector< Pixel > core_pixels;
+            Core core;
             int blob_min_y;
             int blob_min_x;
             int blob_max_y;
@@ -37,10 +39,12 @@ namespace altf4
             bool isInitialized() { return this->initialized; }
             bool isExploded() { return this->exploded; }
             std::vector< Pixel >* getCorePixels() { return &(this->core_pixels); }
+            Core* getCore() { return &(this->core); }
 
             // Mutators
             void explode() { this->exploded = true; }  // Max-size exceeded. Blob exploded... ( blob_detection )
             void setCorePixels( std::vector< Pixel > core_pixels ) { this->core_pixels = core_pixels; }
+            void setCore( Core core ) { this->core = core; }
     };
 };
 

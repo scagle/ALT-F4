@@ -19,6 +19,8 @@ set(BASE_SOURCES
     camera_handler.cpp
     camera_handler.hpp
     camera.hpp
+    core.cpp
+    core.hpp
     data_frame.cpp
     data_frame.hpp
     globals.hpp
@@ -27,12 +29,12 @@ set(BASE_SOURCES
     input_handler.cpp
     input_handler.hpp
     main.cpp
-    renderer.cpp
-    renderer.hpp
     process.cpp
     process_handler.cpp
     process_handler.hpp
     process.hpp
+    renderer.cpp
+    renderer.hpp
     serial_handler.cpp
     serial_handler.hpp
     tuning.hpp

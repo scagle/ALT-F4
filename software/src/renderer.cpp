@@ -61,7 +61,9 @@ namespace altf4
             if ( best_blobs[type].isInitialized() )
             {
                 cv::rectangle( *mat, best_blobs[type].getEncompassingRect(10), tuning::associated_color[type], 2 );
+                cv::rectangle( *mat, best_blobs[type].getCore()->getEncompassingRect(2), {150, 200, 255}, 1 );
             }
+
             if ( best_blobs[type].getCorePixels()->size() > 0 )
             {
                 cv::rectangle( *mat, best_blobs[type].getEncompassingRect(15), {255, 255, 0}, 5 );
