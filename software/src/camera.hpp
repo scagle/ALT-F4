@@ -14,6 +14,7 @@ namespace altf4
             cv::VideoCapture cap;    // open the camera located at /dev/videoX
             cv::Mat3b matrix_buffer;    // open the camera located at /dev/videoX
             std::pair< cv::Mat3b, Image > image_pair;
+            std::string os;
 
             int camera_number;
             int channels;
@@ -28,6 +29,7 @@ namespace altf4
             std::pair< cv::Mat3b, Image >* grabImage();
             bool initialize( int camera_number );
             void printStats();
+            void readOS();
 
             // Accessors
 
