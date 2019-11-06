@@ -3,7 +3,7 @@
 #include "globals.hpp"
 #include "datatypes/pixel.hpp"
 #include "blob.hpp"
-#include "tuning.hpp"
+#include "tuner.hpp"
 #include "core.hpp"
 #include <stack>
 
@@ -210,7 +210,7 @@ namespace altf4
                         //    Blob core_blob;
                         //    formulateBlob( 
                         //        core_blob, binary_data_2d, color_2d, edited_core_pixels, center.a, center.b, 
-                        //        0, tuning::core_max_neighbors, std::min( tuning::core_size_cutoff, blob.getArea() ) 
+                        //        0, Tuner::core_max_neighbors, std::min( Tuner::core_size_cutoff, blob.getArea() ) 
                         //    );
                         //    if ( !core_blob.isExploded() ) // If inv_blob exceeded maximum size
                         //    {
@@ -255,7 +255,6 @@ namespace altf4
             return ( 255 - normalized_diff );
         }
 
-
         void scoreBlobs( std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d, 
             std::vector< Blob >& blobs, Blob& best_blob, int type )
         {
@@ -269,16 +268,16 @@ namespace altf4
                 float score = 0;
                 float maximum_score = 0;
                 
-                if ( tuning::scoring_masks[0] )
+                if ( Tuner::scoring_masks[0] )
                 {
-                    score += scoreAverageColor( color, tuning::hsv_expected_values[type] );
+                    score += scoreAverageColor( color, Tuner::hsv_expected_values[type] );
                     maximum_score += 255;
                 }
 
                 float percent_score = ( score / maximum_score ); // Get percentage score
                 blob.setScore( percent_score );
             
-                if ( percent_score >= tuning::percentage_score_cutoff )
+                if ( percent_score >= Tuner::percentage_score_cutoff )
                 {
                     printf( "Rigorous test!!!!!\n");
                     // Apply more rigorous testing on the higher scoring blobs to save resources
@@ -306,7 +305,6 @@ namespace altf4
 
             return 1.0;
         }
-
 
         Core getCore( Blob& blob, 
                 std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d )
@@ -342,7 +340,7 @@ namespace altf4
 
             // Find K brightest pixels
             std::vector< Pixel > brightest_pixels; // K brightest pixels
-            for (int search = 0; search < tuning::number_of_whitest_pixel_searches; search++ )
+            for (int search = 0; search < Tuner::number_of_whitest_pixel_searches; search++ )
             {
                 unsigned int max_brightness = 0;
                 Pixel* brightest_pixel = nullptr;

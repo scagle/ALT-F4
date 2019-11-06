@@ -3,6 +3,7 @@
 #include "globals.hpp"
 #include <opencv2/videoio.hpp>
 #include <opencv2/imgproc.hpp>
+//#include <opencv2/xphoto/white_balance.hpp>
 #include <chrono>
 #include <iostream>
 #include <mutex>
@@ -12,6 +13,7 @@ namespace altf4
 {
     // Static Declarations
     std::mutex capture_mutex;
+    //cv::Ptr<cv::xphoto::WhiteBalancer> wb = cv::xphoto::createSimpleWB();
 
     // Constructors
 
@@ -19,6 +21,7 @@ namespace altf4
     std::pair< cv::Mat3b, Image >* Camera::grabImage()
     {
         cap >> matrix_buffer;
+        //wb->balanceWhite( matrix_buffer, matrix_buffer );
         image_pair.first = matrix_buffer.clone();    // Keep original
         cv::cvtColor(matrix_buffer, matrix_buffer, cv::COLOR_BGR2HSV); // convert to hsv
         image_pair.second = Image(&matrix_buffer, rows, cols, channels);
@@ -95,7 +98,6 @@ namespace altf4
                     int start = line.find("\"") + 1;
                     int end = line.find("\"", start);
                     this->os = line.substr(start, end-start);
-                    printf("line: '%d', '%d'\n", start, end);
                     printf("Detected Operating System: %s\n", this->os.c_str());
                     break;
                 }

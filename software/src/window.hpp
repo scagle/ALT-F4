@@ -15,7 +15,7 @@ namespace altf4
             std::vector< std::string > names;
             std::vector< cv::Mat* > matrices;
             unsigned int number_of_images = 0;
-            unsigned char type = 0;         // 0 = image, 1 = binary image
+            bool tune = false;
             
 
         public:
@@ -27,13 +27,12 @@ namespace altf4
             bool initialize(unsigned int);
             void temp( std::vector< Image >* images );
             void tempDisplay( std::vector< cv::Mat >* mats );
-            void display( std::vector< DataFrame >& );
             void render( unsigned int index, cv::Mat* mat );
+            void toggleTune( int type );    
 
             // Accessors
 
             // Mutators
-            void setType( unsigned char type ) { this->type = type; }
     };
 };
 

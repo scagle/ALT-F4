@@ -3,7 +3,7 @@
 #include "image.hpp"
 #include "data_frame.hpp"
 #include "algorithm.hpp"
-#include "tuning.hpp"
+#include "tuner.hpp"
 #include <vector>
 
 namespace altf4
@@ -15,19 +15,19 @@ namespace altf4
         : camera_index(camera_index), image(image), frame(frame)
     {
         // Initialize DataFrame to hold appropriate number of tests (defined in tuning.hpp)
-        frame.initialize( tuning::hsv_thresholds.size() ); 
+        frame.initialize( Tuner::hsv_thresholds.size() ); 
     }
 
     // Methods
     void Process::performAlgorithms()
     {
         // Get Binary Image
-        for (unsigned int i = 0; i < tuning::hsv_thresholds.size(); i++)
+        for (unsigned int i = 0; i < Tuner::hsv_thresholds.size(); i++)
         {
             algorithm::writeBinaryData(      // Write binary image to dataframe directly:
                 frame.getImage(),            // <- reference to original image that binary image reads from
                 frame.getBinaryImages()[i],  // <- reference to binary_image to be written to
-                tuning::hsv_thresholds[i]    // <- thresholds for min/max boundaries of binary_image
+                Tuner::hsv_thresholds[i]    // <- thresholds for min/max boundaries of binary_image
             );
 
             algorithm::transDimensiateImage(  // Create 2D representations of 1D arrays ( without copying )

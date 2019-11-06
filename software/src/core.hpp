@@ -16,7 +16,7 @@ namespace altf4
         private:
             // Private Members
             Position origin;
-            std::vector< std::vector< Position > > tendrils;
+            std::vector< Position > anchors;
             
 
         public:
@@ -25,11 +25,14 @@ namespace altf4
             virtual ~Core() { }
 
             // Methods
+            Position getAnchor( std::vector< unsigned char* >& binary_data_2d, int dir_row, int dir_col);
             void spread( std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d );
-
             cv::Rect getEncompassingRect( int padding );
+            unsigned int getArea();
+            unsigned int getEccentricity(); // Calculate eccentricity
 
             // Accessors
+            std::vector< Position >& getAnchors() { return this->anchors; };
 
             // Mutators
     };

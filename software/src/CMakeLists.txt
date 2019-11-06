@@ -37,7 +37,8 @@ set(BASE_SOURCES
     renderer.hpp
     serial_handler.cpp
     serial_handler.hpp
-    tuning.hpp
+    tuner.cpp
+    tuner.hpp
     window.cpp
     window.hpp
 )

@@ -1,6 +1,6 @@
 #include "renderer.hpp"
 
-#include "tuning.hpp"
+#include "tuner.hpp"
 #include <opencv2/videoio.hpp>
 #include <opencv2/imgproc.hpp>
 
@@ -60,8 +60,8 @@ namespace altf4
         {
             if ( best_blobs[type].isInitialized() )
             {
-                cv::rectangle( *mat, best_blobs[type].getEncompassingRect(10), tuning::associated_color[type], 2 );
-                cv::rectangle( *mat, best_blobs[type].getCore()->getEncompassingRect(2), {150, 200, 255}, 1 );
+                cv::rectangle( *mat, best_blobs[type].getEncompassingRect(10), Tuner::associated_color[type], 2 );
+                cv::rectangle( *mat, best_blobs[type].getCore()->getEncompassingRect(0), {150, 200, 255}, 5 );
             }
 
             if ( best_blobs[type].getCorePixels()->size() > 0 )
@@ -73,7 +73,7 @@ namespace altf4
             //{
             //    for ( auto&& blob : blobs[type] )
             //    {
-            //        cv::rectangle( *mat, blob.getEncompassingRect(2), tuning::associated_color[type], 2 );
+            //        cv::rectangle( *mat, blob.getEncompassingRect(2), Tuner::associated_color[type], 2 );
             //    }
             //}
         }
