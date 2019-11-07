@@ -80,6 +80,7 @@ void handleInputsThread( std::deque< unsigned char >& events, bool& done, bool& 
         // events written directly to by InputHandler
         if ( !events.empty() ) 
         {
+            printf( "Received event %d\n", events.back() );
             switch ( events.back() )
             {
                 case 'q':

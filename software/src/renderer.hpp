@@ -16,7 +16,8 @@ namespace altf4
             Window window;
             std::vector< cv::Mat > mats;                           // original image per camera
             std::vector< std::vector< cv::Mat > > all_binary_mats; // multiple binary images ( one for each test ) per camera 
-            int display_type = 0;                                       // 0 = image, 1 = binary image
+            // 0 = original image, 1 = HSV image, 2+ binary image #(2 - n)
+            int display_type = 0;                                       
         
 
         public:
@@ -33,7 +34,7 @@ namespace altf4
             std::vector< std::vector< cv::Mat > >* getAllBinaryMats() { return &all_binary_mats; }
 
             // Mutators
-            void setDisplayType( unsigned char display_type ) { this->display_type = display_type; }
+            void setDisplayType( unsigned char display_type );
             void toggleTune() { window.toggleTune( display_type ); }
     };
 };

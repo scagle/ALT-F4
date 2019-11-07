@@ -244,9 +244,9 @@ namespace altf4
         unsigned char scoreAverageColor( Color& average_color, const Color& expected_color )
         {
             // Get distance in pixels
-            unsigned int diff_c1 = std::abs(average_color.b - expected_color.b);
-            unsigned int diff_c2 = std::abs(average_color.g - expected_color.g);
-            unsigned int diff_c3 = std::abs(average_color.r - expected_color.r);
+            unsigned int diff_c1 = std::abs((int)average_color.b - (int)expected_color.b);
+            unsigned int diff_c2 = std::abs((int)average_color.g - (int)expected_color.g);
+            unsigned int diff_c3 = std::abs((int)average_color.r - (int)expected_color.r);
 
             // Normalize (0 - 765) to (0 - 255)
             unsigned int normalized_diff = ( (float)( diff_c1 + diff_c2 + diff_c3 ) / ( 255.0 * 3.0 ) * 255.0 );
@@ -279,7 +279,7 @@ namespace altf4
             
                 if ( percent_score >= Tuner::percentage_score_cutoff )
                 {
-                    printf( "Rigorous test!!!!!\n");
+                    //printf( "Rigorous test!!!!!\n");
                     // Apply more rigorous testing on the higher scoring blobs to save resources
                     float multiplier = rigorouslyScoreBlob( blob, color_2d, binary_data_2d );
                     percent_score *= multiplier;
@@ -371,11 +371,11 @@ namespace altf4
             {
                 average_row += bright_pixel.position.a;
                 average_col += bright_pixel.position.b;
-                printf ("Individual Pixel = %d, %d\n", bright_pixel.position.a, bright_pixel.position.b );
+                //printf ("Individual Pixel = %d, %d\n", bright_pixel.position.a, bright_pixel.position.b );
             }
             average_row /= brightest_pixels.size();
             average_col /= brightest_pixels.size();
-            printf ("Average Pixel = %d, %d\n", average_row, average_col);
+            //printf ("Average Pixel = %d, %d\n", average_row, average_col);
 
             Position core_origin = {average_row, average_col};
 

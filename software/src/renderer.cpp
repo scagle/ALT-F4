@@ -42,7 +42,7 @@ namespace altf4
             {
                 if ( all_binary_mats.size() > 0 && display_type - 2 < (int)all_binary_mats[0].size()  )
                 {
-                    //annotateMat(i, &( all_binary_mats[i][display_type-2] ), (*frames)[i].getBestBlobs() );
+                    annotateMat(i, &( all_binary_mats[i][display_type-2] ), (*frames)[i].getBestBlobs() );
                     window.render( i, &( all_binary_mats[i][display_type-2] ) );
                 }
                 else
@@ -85,6 +85,12 @@ namespace altf4
         all_binary_mats.resize( number_of_cameras );
         window.initialize( number_of_cameras );
         return true;
+    }
+
+    void Renderer::setDisplayType( unsigned char display_type ) 
+    { 
+        this->display_type = display_type; 
+        window.updateTune( display_type );
     }
 };
 

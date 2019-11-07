@@ -38,7 +38,7 @@ namespace altf4
 
         for ( auto&& anchor : anchors )
         {
-            printf("\t (%d, %d)\n", anchor.a, anchor.b);
+            //printf("\t (%d, %d)\n", anchor.a, anchor.b);
         }
     }
 
