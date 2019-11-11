@@ -12,6 +12,10 @@ namespace altf4
 /***************************************************************************************/
 /**                                     Detection                                     **/
 /***************************************************************************************/
+
+    // Kernel used in edge detection
+    static const std::vector< std::vector< int > > convolution_kernel; 
+
     // List of all pixel value Minimums / Maximums for Binary Images
     static std::vector< std::pair< Color, Color > > hsv_thresholds;
 

@@ -24,15 +24,21 @@ namespace altf4
         // Get Binary Image
         for (unsigned int i = 0; i < Tuner::hsv_thresholds.size(); i++)
         {
-            algorithm::writeBinaryData(      // Write binary image to dataframe directly:
-                frame.getImage(),            // <- reference to original image that binary image reads from
-                frame.getBinaryImages()[i],  // <- reference to binary_image to be written to
-                Tuner::hsv_thresholds[i]    // <- thresholds for min/max boundaries of binary_image
-            );
-
             algorithm::transDimensiateImage(  // Create 2D representations of 1D arrays ( without copying )
                 frame.getImage(),             // <- reference to image to be read from
                 frame.getColor2D()            // <- reference to color_data_2d to be written to
+            );
+
+            algorithm::writeConvData(      // Write binary image to dataframe directly:
+                frame.getColor2D(),          // <- reference to original image that binary image reads from
+                frame.getConvData(),        // <- reference to binary_image to be written to
+                Tuner::convolution_kernel    // <- kernel used to perform edge detection
+            );
+
+            algorithm::writeBinaryData(      // Write binary image to dataframe directly:
+                frame.getImage(),            // <- reference to original image that binary image reads from
+                frame.getBinaryImages()[i],  // <- reference to binary_image to be written to
+                Tuner::hsv_thresholds[i]     // <- thresholds for min/max boundaries of binary_image
             );
 
             algorithm::transDimensiateBinaryImage(  // Create 2D representations of 1D arrays ( without copying )

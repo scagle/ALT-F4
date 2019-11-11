@@ -5,6 +5,14 @@ namespace altf4
 /***************************************************************************************/
 /**                                     Detection                                     **/
 /***************************************************************************************/
+    // Kernel used in edge detection
+    const std::vector< std::vector< int > > Tuner::convolution_kernel = 
+    {
+        { 0, -1,  0},
+        {-1,  4, -1},
+        { 0, -1,  0},
+    };
+
     // List of all pixel value Minimums / Maximums for Binary Images
     std::vector< std::pair< Color, Color > > Tuner::hsv_thresholds = 
     {

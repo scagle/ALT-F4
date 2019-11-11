@@ -15,8 +15,9 @@ namespace altf4
             // Private Members
             Window window;
             std::vector< cv::Mat > mats;                           // original image per camera
+            std::vector< cv::Mat > conv_mats;                      // convoultion images
             std::vector< std::vector< cv::Mat > > all_binary_mats; // multiple binary images ( one for each test ) per camera 
-            // 0 = original image, 1 = HSV image, 2+ binary image #(2 - n)
+            // 0 = original image, 1 = HSV image, 2 = convolution image, 3+ binary image #(3 - n)
             int display_type = 0;                                       
         
 

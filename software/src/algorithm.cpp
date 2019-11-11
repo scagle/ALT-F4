@@ -18,33 +18,6 @@ namespace altf4
         Core getCore( Blob& blob, 
                 std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d );
 
-        // Read original image, apply pixel color thresholds, and extract binary image
-        void writeBinaryData( Image* image, Image& binary_image, const std::pair< Color, Color >& thresholds )
-        {
-            binary_image = Image( image->getRows(), image->getCols(), 1 ); // initialize binary_image
-
-            std::vector< unsigned char >* data = image->getData();
-            std::vector< unsigned char >* binary_data = binary_image.getData();
-            
-            unsigned int rows = image->getRows();
-            unsigned int cols = image->getCols();
-            unsigned int channels = image->getChannels();
-            unsigned int binary_data_size = rows * cols * 1;
-
-            binary_data->resize( binary_data_size, 0 );
-
-            for ( unsigned int i = 0; i < binary_data_size; i++ )
-            {
-                bool pass = true;
-                pass &= ( (*data)[i * channels + 0] >= thresholds.first.b && (*data)[i * channels + 0] <= thresholds.second.b );
-                pass &= ( (*data)[i * channels + 1] >= thresholds.first.g && (*data)[i * channels + 1] <= thresholds.second.g );
-                pass &= ( (*data)[i * channels + 2] >= thresholds.first.r && (*data)[i * channels + 2] <= thresholds.second.r );
-
-                if ( pass )
-                    (*binary_data)[i] = 255;
-            }
-        }
-
         void transDimensiateImage( Image* image, std::vector< std::vector< Color > >& color_2d )
         {
             unsigned int rows = image->getRows();
@@ -73,6 +46,67 @@ namespace altf4
             //    printf("\n(%d, X) rows: %d, cols: %d\n", row, rows, cols);
             //}
             //printf("DONE\n");
+        }
+
+        // Get Convolution of the image
+        void writeConvData( std::vector< std::vector< Color > >& color_2d, std::vector< std::vector< int > >& conv_data, 
+            const std::vector< std::vector< int > >& kernel )
+        {
+            int rows = color_2d.size();
+            int cols = color_2d[0].size();
+
+            conv_data.resize(rows);
+            for ( unsigned int row = 0; row < rows; row++ )
+            {
+                conv_data[row].resize(cols);
+            }
+
+            for ( int row = 1; row < rows - 1; row++ )
+            {
+                for ( int col = 1; col < cols - 1; col++ )
+                {
+                    // Since we're dealing with symmetric kernels, we don't need to flip both axes:
+                    // http://www.songho.ca/dsp/convolution/convolution.html#convolution_2d
+                    int kernel_rows = kernel.size();
+                    int kernel_cols = kernel[0].size();
+                    int dotproduct = 0;
+                    for ( int ker_row = 0; ker_row < kernel_rows; ker_row++ )
+                    {
+                        for ( int ker_col = 0; ker_col < kernel_cols; ker_col++ )
+                        {
+                            dotproduct += color_2d[row + ker_row - 1][col + ker_col - 1].b * kernel[kernel_rows - ker_row - 1][kernel_cols - ker_col - 1];
+                        }
+                    }
+                    conv_data[row][col] = dotproduct;
+                }
+            }
+        }
+
+        // Read original image, apply pixel color thresholds, and extract binary image
+        void writeBinaryData( Image* image, Image& binary_image, const std::pair< Color, Color >& thresholds )
+        {
+            binary_image = Image( image->getRows(), image->getCols(), 1 ); // initialize binary_image
+
+            std::vector< unsigned char >* data = image->getData();
+            std::vector< unsigned char >* binary_data = binary_image.getData();
+            
+            unsigned int rows = image->getRows();
+            unsigned int cols = image->getCols();
+            unsigned int channels = image->getChannels();
+            unsigned int binary_data_size = rows * cols * 1;
+
+            binary_data->resize( binary_data_size, 0 );
+
+            for ( unsigned int i = 0; i < binary_data_size; i++ )
+            {
+                bool pass = true;
+                pass &= ( (*data)[i * channels + 0] >= thresholds.first.b && (*data)[i * channels + 0] <= thresholds.second.b );
+                pass &= ( (*data)[i * channels + 1] >= thresholds.first.g && (*data)[i * channels + 1] <= thresholds.second.g );
+                pass &= ( (*data)[i * channels + 2] >= thresholds.first.r && (*data)[i * channels + 2] <= thresholds.second.r );
+
+                if ( pass )
+                    (*binary_data)[i] = 255;
+            }
         }
 
         void transDimensiateBinaryImage( Image& binary_image, std::vector< unsigned char* >& binary_data_2d )

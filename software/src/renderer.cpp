@@ -16,12 +16,17 @@ namespace altf4
         for ( unsigned int i = 0; i < frames->size(); i++ )
         {
             Image* image = (*frames)[i].getImage();
+            int rows = image->getRows();
+            int cols = image->getCols();
+
+            std::vector< std::vector< int > >& conv_data = (*frames)[i].getConvData();
             std::vector< Image >& binary_images = (*frames)[i].getBinaryImages();
             
             if ( image == nullptr || image->isEmpty() )
                 continue;
 
-            mats[i] = cv::Mat(image->getRows(), image->getCols(), CV_8UC3, image->getData()->data());
+            mats[i] = cv::Mat(rows, cols, CV_8UC3, image->getData()->data());
+            conv_mats[i] = cv::Mat(rows, cols, CV_8UC1, conv_data.data());
             all_binary_mats[i].clear();
             for ( unsigned int type = 0; type < binary_images.size(); type++ )
             {
@@ -38,12 +43,17 @@ namespace altf4
                 annotateMat(i, &( mats[i] ), (*frames)[i].getBestBlobs() );
                 window.render( i, &( mats[i] ) );
             }
+            else if (display_type == 2)
+            {
+                annotateMat(i, &( mats[i] ), (*frames)[i].getBestBlobs() );
+                window.render( i, &( conv_mats[i] ) );
+            }
             else
             {
-                if ( all_binary_mats.size() > 0 && display_type - 2 < (int)all_binary_mats[0].size()  )
+                if ( all_binary_mats.size() > 0 && display_type - 3 < (int)all_binary_mats[0].size()  )
                 {
-                    annotateMat(i, &( all_binary_mats[i][display_type-2] ), (*frames)[i].getBestBlobs() );
-                    window.render( i, &( all_binary_mats[i][display_type-2] ) );
+                    annotateMat(i, &( all_binary_mats[i][display_type-3] ), (*frames)[i].getBestBlobs() );
+                    window.render( i, &( all_binary_mats[i][display_type-3] ) );
                 }
                 else
                 {
