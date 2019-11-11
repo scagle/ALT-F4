@@ -15,24 +15,26 @@ namespace altf4
 
         private:
             // Private Members
+            bool initialized = false;
             Position origin;
             std::vector< Position > anchors;
             
 
         public:
             Core() { }
-            Core( Position origin ) : origin(origin) { }
+            Core( Position origin ) : initialized(true), origin(origin) { }
             virtual ~Core() { }
 
             // Methods
-            Position getAnchor( std::vector< unsigned char* >& binary_data_2d, int dir_row, int dir_col);
+            Position getAnchor( std::vector< unsigned char* >& binary_data_2d, unsigned int num_rows, unsigned int num_columns, int dir_row, int dir_col);
             void spread( std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d );
             cv::Rect getEncompassingRect( int padding );
             unsigned int getArea();
             unsigned int getEccentricity(); // Calculate eccentricity
 
             // Accessors
-            std::vector< Position >& getAnchors() { return this->anchors; };
+            std::vector< Position >& getAnchors() { return this->anchors; }
+            bool isInitialized() { return this->initialized; }
 
             // Mutators
     };

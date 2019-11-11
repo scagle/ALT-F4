@@ -30,9 +30,11 @@ namespace altf4
             // Methods
             cv::Rect getEncompassingRect( int padding );
             Color getAverageColor();
-            int getArea(){ return ( ( blob_max_x - blob_min_x ) * ( blob_max_y - blob_min_y ) ); }
+            unsigned int getArea();
             Position getCenterPosition();
             void setScore( int score ) { this->score = score; }
+            float getNormalizedEccentricity();
+            float getNormalizedCoreArea();
 
             // Accessors
             std::vector< Pixel >* getPixels() { return &( this->pixels ); }
@@ -40,6 +42,7 @@ namespace altf4
             bool isExploded() { return this->exploded; }
             std::vector< Pixel >* getCorePixels() { return &(this->core_pixels); }
             Core* getCore() { return &(this->core); }
+            bool hasCore() { return core.isInitialized(); }
 
             // Mutators
             void explode() { this->exploded = true; }  // Max-size exceeded. Blob exploded... ( blob_detection )

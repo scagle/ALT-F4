@@ -7,16 +7,30 @@ namespace altf4
     // Constructors
 
     // Methods
-    Position Core::getAnchor( std::vector< unsigned char* >& binary_data_2d, int dir_row, int dir_col)
+    Position Core::getAnchor( std::vector< unsigned char* >& binary_data_2d, unsigned int num_rows, unsigned int num_columns, int dir_row, int dir_col)
     {
         int current_row = origin.a;
         int current_col = origin.b;
-        int next_row = current_row + dir_row;
-        int next_col = current_col + dir_col;
+        int next_row = current_row;
+        int next_col = current_col;
+        int count = 0;
 
-        while ( binary_data_2d[next_row++][next_col++] != 255 ) { }
+        do 
+        { 
+            next_row += dir_row;
+            next_col += dir_col;
+            if ( next_row <= 0 || next_row >= num_rows )
+                break;
+            if ( next_col <= 0 || next_col >= num_columns )
+                break;
+            count++;
+        }
+        while ( binary_data_2d[next_row][next_col] != 255 && count < 5 ); 
 
-        return Position{ current_row, current_col };
+        next_row -= dir_row;
+        next_col -= dir_col;
+
+        return Position{ next_row, next_col };
     }
 
     void Core::spread( std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d )
@@ -27,18 +41,18 @@ namespace altf4
         //  - Get circularness of core
            
         // Grab Anchors in clockwise manner (upperleft -> upperright -> lowerright -> lowerleft)
-        anchors.push_back(getAnchor(binary_data_2d, -1, -1));
-        anchors.push_back(getAnchor(binary_data_2d, -1,  0));
-        anchors.push_back(getAnchor(binary_data_2d, -1,  1));
-        anchors.push_back(getAnchor(binary_data_2d,  0,  1));
-        anchors.push_back(getAnchor(binary_data_2d,  1,  1));
-        anchors.push_back(getAnchor(binary_data_2d,  1,  0));
-        anchors.push_back(getAnchor(binary_data_2d,  1, -1));
-        anchors.push_back(getAnchor(binary_data_2d,  0, -1));
+        anchors.push_back(getAnchor(binary_data_2d, color_2d.size(), color_2d[0].size(), -1, -1));
+        anchors.push_back(getAnchor(binary_data_2d, color_2d.size(), color_2d[0].size(), -1,  0));
+        anchors.push_back(getAnchor(binary_data_2d, color_2d.size(), color_2d[0].size(), -1,  1));
+        anchors.push_back(getAnchor(binary_data_2d, color_2d.size(), color_2d[0].size(),  0,  1));
+        anchors.push_back(getAnchor(binary_data_2d, color_2d.size(), color_2d[0].size(),  1,  1));
+        anchors.push_back(getAnchor(binary_data_2d, color_2d.size(), color_2d[0].size(),  1,  0));
+        anchors.push_back(getAnchor(binary_data_2d, color_2d.size(), color_2d[0].size(),  1, -1));
+        anchors.push_back(getAnchor(binary_data_2d, color_2d.size(), color_2d[0].size(),  0, -1));
 
         for ( auto&& anchor : anchors )
         {
-            //printf("\t (%d, %d)\n", anchor.a, anchor.b);
+            printf("\t (%d, %d)\n", anchor.a, anchor.b);
         }
     }
 
@@ -57,12 +71,18 @@ namespace altf4
         //                    ( blob_max_y - blob_min_y ) + ( padding * 2 )
         //               ); 
     }
+
     unsigned int Core::getArea()
     {
         // Area of polygon
         // https://www.mathopenref.com/coordpolygonarea.html
-        
-        return 0;
+        int sum = 0;
+        for ( int i = 0; i < anchors.size(); i++ )
+        {
+            int next_i = (i + 1) % anchors.size(); // Wraps around back to (i = 0) if (i = max)
+            sum += ( ( anchors[i].a * anchors[next_i].b ) - ( anchors[i].b * anchors[next_i].a ) );
+        }
+        return (unsigned int)(std::abs(sum) / 2);
     }
 };
 

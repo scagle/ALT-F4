@@ -277,7 +277,6 @@ namespace altf4
             
                 if ( percent_score >= Tuner::percentage_score_cutoff )
                 {
-                    //printf( "Rigorous test!!!!!\n");
                     // Apply more rigorous testing on the higher scoring blobs to save resources
                     float multiplier = rigorouslyScoreBlob( blob, color_2d, binary_data_2d );
                     percent_score *= multiplier;
@@ -296,12 +295,20 @@ namespace altf4
                 std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d )
         {
 
+            // Do intensive things that only the best of blobs need here:
+            // Find core
             blob.setCore( getCore( blob, color_2d, binary_data_2d ) );
-
             Core* core = blob.getCore();
             core->spread( color_2d, binary_data_2d );
 
-            return 1.0;
+            // Calculate score multiplier
+            float multiplier = 1;
+            multiplier *= blob.getNormalizedEccentricity();
+
+            // TODO: Broken and not well implemented
+            //multiplier *= blob.getNormalizedCoreArea();
+
+            return multiplier;
         }
 
         Core getCore( Blob& blob, 

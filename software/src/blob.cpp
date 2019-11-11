@@ -54,5 +54,38 @@ namespace altf4
             blob_min_x + ( blob_max_x - blob_min_x ) / 2  // Center Column
         };
     }
+
+    unsigned int Blob::getArea()
+    {
+        return ( blob_max_x - blob_min_x + 1 ) * ( blob_max_y - blob_min_y + 1 );
+    }
+
+    // Returns normalized value of how "circular" the overall blob is
+    // Just compares width and height
+    float Blob::getNormalizedEccentricity()
+    {
+        int width = blob_max_x - blob_min_x + 1; // Plus one to avoid floating point exception
+        int height = blob_max_y - blob_min_y + 1; // Plus one to avoid floating point exception
+        int maximum = std::max(width, height);
+        return 1 - ( std::abs(width - height) / maximum );
+    }
+
+    float Blob::getNormalizedCoreArea()
+    {
+        unsigned int core_area = core.getArea();
+        unsigned int blob_area = getArea();
+        float ratio = (float)std::min(core_area, blob_area) / (float)blob_area; 
+        float ideal = 0.5;
+        float multiplier = ideal - (ideal - ratio);
+
+        printf("CoreArea: %d, BlobArea: %d, Ratio: %f\n", core_area, blob_area, multiplier);
+        return ratio;
+
+        // TODO 
+        // Write blob.getArea()
+        // Normalize core area somehow the best you can
+        // (Find typical ratio of max area to core area of laser blobs, and base off that)
+
+    }
 };
 

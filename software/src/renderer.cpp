@@ -61,12 +61,11 @@ namespace altf4
             if ( best_blobs[type].isInitialized() )
             {
                 cv::rectangle( *mat, best_blobs[type].getEncompassingRect(10), Tuner::associated_color[type], 2 );
-                cv::rectangle( *mat, best_blobs[type].getCore()->getEncompassingRect(0), {150, 200, 255}, 5 );
-            }
-
-            if ( best_blobs[type].getCorePixels()->size() > 0 )
-            {
-                cv::rectangle( *mat, best_blobs[type].getEncompassingRect(15), {255, 255, 0}, 5 );
+                if ( best_blobs[type].hasCore() )
+                {
+                    cv::rectangle( *mat, best_blobs[type].getCore()->getEncompassingRect(1), {150, 200, 255}, 5 );
+                    cv::rectangle( *mat, best_blobs[type].getEncompassingRect(15), {255, 255, 0}, 5 ); // make the cores a little more visible
+                }
             }
 
             //if ( blob.isInitialized() )
