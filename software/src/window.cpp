@@ -68,7 +68,6 @@ namespace altf4
             }
             if ( tune || update_tune )
             {
-                printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 update_tune = false;
                 namedWindow( "tuning", cv::WINDOW_AUTOSIZE );
                 cv::createTrackbar( "hue_l:", "tuning", &Tuner::hsv_thresholds[tune_type].first.b , 255, nullptr );

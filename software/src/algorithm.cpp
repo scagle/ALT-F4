@@ -18,8 +18,6 @@ namespace altf4
         Core getCore( Blob& blob, 
                 std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d );
 
-
-
         // Read original image, apply pixel color thresholds, and extract binary image
         void writeBinaryData( Image* image, Image& binary_image, const std::pair< Color, Color >& thresholds )
         {

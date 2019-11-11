@@ -40,6 +40,8 @@ altf4::SerialHandler serial_handler;
 std::thread input_thread;
 std::mutex input_mutex;
 std::deque< unsigned char > events;
+bool update_display = false;  // Synchronized flag to update display 
+int update_display_type = 0;  // Value of display_type to be updated to
 
 unsigned int number_of_cameras = 4;
 static bool interrupted = false;
@@ -63,6 +65,13 @@ int main( int argc, char** argv )
         // Process Images to find lasers
         process_handler.grabDataFrames( &images, &frames ); 
         renderer.renderMats( &frames, &original_images );
+
+        // Check if display should be updated or not
+        if ( update_display )
+        {
+            renderer.setDisplayType( update_display_type );  
+            update_display = false;
+        }
 
         auto end = std::chrono::steady_clock::now();
         auto duration = std::chrono::duration_cast< std::chrono::milliseconds >( end - begin );
@@ -96,7 +105,8 @@ void handleInputsThread( std::deque< unsigned char >& events, bool& done, bool& 
 
                 case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
                 {
-                    renderer.setDisplayType( events.back() - 48 );  // 48 = ascii value for zero + offset
+                    update_display = true;
+                    update_display_type = events.back() - 48; // 48 = ascii value for zero + offset
                     break;
                 }
             }
