@@ -9,13 +9,11 @@ namespace altf4
 {
     class DataFrame
     {
-        public:
-            // Public Enums
-
         private:
             // Private Members
             Image* image = nullptr;                                 // Pointer to original image in main.cpp
-            std::vector< std::vector< int > > conv_data;            // Convolution data
+            std::vector< std::vector< unsigned char > > conv_data;            // Convolution data
+            std::vector< unsigned char > conv_data_1d;                        // Convolution data in 1 dimension
             std::vector< Image > binary_images;                     // Array of binary_images representing each color ( IE: green / red in our case )
             std::vector< std::vector< Color > > color_2d;           // Array of image colors represented in 2 dimensions
             std::vector< std::vector< unsigned char* > > binary_datas_2d;  // Array of binary_image data represented in 2 dimensions
@@ -34,7 +32,8 @@ namespace altf4
             // Accessors
             Image* getImage() { return this->image; }
             std::vector< std::vector< Color > >& getColor2D() { return this->color_2d; }
-            std::vector< std::vector< int > >& getConvData() { return this->conv_data; }
+            std::vector< std::vector< unsigned char > >& getConvData() { return this->conv_data; }
+            std::vector< unsigned char >& getConvData1D() { return this->conv_data_1d; }
             std::vector< Image >& getBinaryImages() { return this->binary_images; }
             std::vector< std::vector< unsigned char* > >& getBinaryDatas2D() { return this->binary_datas_2d; }
             std::vector< std::vector< Blob > >& getAllBlobs() { return this->all_blobs; }

@@ -118,9 +118,9 @@ namespace altf4
 
     int displayToTuneType( int display_type )
     {
-        if ( display_type >= 2 && (int)Tuner::hsv_thresholds.size() > ( display_type - 2 ) )
+        if ( display_type >= 3 && (int)Tuner::hsv_thresholds.size() > ( display_type - 3 ) )
         {
-            return ( display_type - 2 );
+            return ( display_type - 3 );
         }
         return 0;
     }

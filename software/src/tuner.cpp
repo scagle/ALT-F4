@@ -8,9 +8,9 @@ namespace altf4
     // Kernel used in edge detection
     const std::vector< std::vector< int > > Tuner::convolution_kernel = 
     {
-        { 0, -1,  0},
-        {-1,  4, -1},
-        { 0, -1,  0},
+        {-1, -1, -1},
+        {-1,  8, -1},
+        {-1, -1, -1},
     };
 
     // List of all pixel value Minimums / Maximums for Binary Images

@@ -16,21 +16,22 @@ namespace altf4
         for ( unsigned int i = 0; i < frames->size(); i++ )
         {
             Image* image = (*frames)[i].getImage();
-            int rows = image->getRows();
-            int cols = image->getCols();
-
-            std::vector< std::vector< int > >& conv_data = (*frames)[i].getConvData();
+            std::vector< unsigned char >& conv_data_1d = (*frames)[i].getConvData1D();
             std::vector< Image >& binary_images = (*frames)[i].getBinaryImages();
             
             if ( image == nullptr || image->isEmpty() )
                 continue;
 
-            mats[i] = cv::Mat(rows, cols, CV_8UC3, image->getData()->data());
-            conv_mats[i] = cv::Mat(rows, cols, CV_8UC1, conv_data.data());
+            int rows = image->getRows();
+            int cols = image->getCols();
+
+            std::vector< unsigned char > test(rows * cols, 0);
+            mats.push_back(cv::Mat(rows, cols, CV_8UC3, image->getData()->data()));
+            conv_mats.push_back(cv::Mat(rows, cols, CV_8UC1, conv_data_1d.data()));
             all_binary_mats[i].clear();
             for ( unsigned int type = 0; type < binary_images.size(); type++ )
             {
-                all_binary_mats[i].push_back(cv::Mat(image->getRows(), image->getCols(), CV_8UC1, binary_images[type].getData()->data()));
+                all_binary_mats[i].push_back(cv::Mat(rows, cols, CV_8UC1, binary_images[type].getData()->data()));
             }
 
             if (display_type == 0)
@@ -90,7 +91,6 @@ namespace altf4
 
     bool Renderer::initialize( int number_of_cameras )
     {
-        mats.resize( number_of_cameras );
         all_binary_mats.resize( number_of_cameras );
         window.initialize( number_of_cameras );
         return true;

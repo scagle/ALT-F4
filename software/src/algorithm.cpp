@@ -49,18 +49,21 @@ namespace altf4
         }
 
         // Get Convolution of the image
-        void writeConvData( std::vector< std::vector< Color > >& color_2d, std::vector< std::vector< int > >& conv_data, 
-            const std::vector< std::vector< int > >& kernel )
+        void writeConvData( std::vector< std::vector< Color > >& color_2d, std::vector< std::vector< unsigned char > >& conv_data, 
+            std::vector< unsigned char >& conv_data_1d, const std::vector< std::vector< int > >& kernel )
         {
             int rows = color_2d.size();
             int cols = color_2d[0].size();
+            std::vector< int > temp(rows * cols);
 
+            conv_data_1d.resize(rows * cols);
             conv_data.resize(rows);
             for ( unsigned int row = 0; row < rows; row++ )
             {
                 conv_data[row].resize(cols);
             }
-
+            int dot_min = 0;
+            int dot_max = 0;
             for ( int row = 1; row < rows - 1; row++ )
             {
                 for ( int col = 1; col < cols - 1; col++ )
@@ -74,12 +77,29 @@ namespace altf4
                     {
                         for ( int ker_col = 0; ker_col < kernel_cols; ker_col++ )
                         {
-                            dotproduct += color_2d[row + ker_row - 1][col + ker_col - 1].b * kernel[kernel_rows - ker_row - 1][kernel_cols - ker_col - 1];
+                            dotproduct += color_2d[row + ker_row - 1][col + ker_col - 1].g * kernel[kernel_rows - ker_row - 1][kernel_cols - ker_col - 1];
                         }
                     }
-                    conv_data[row][col] = dotproduct;
+                    if ( dotproduct > dot_max )
+                        dot_max = dotproduct;
+                    if ( dotproduct < dot_min )
+                        dot_min = dotproduct;
+                    temp[((cols-2) * (row - 1)) + (col - 1)] = dotproduct;
                 }
             }
+
+            // Normalize
+            for ( int row = 1; row < rows - 1; row++ )
+            {
+                for ( int col = 1; col < cols - 1; col++ )
+                {
+                    int value = temp[((cols - 2) * (row - 1)) + (col - 1)];
+                    unsigned char normalized_value = ( ( ( dot_max - dot_min ) - (float)value ) / ( dot_max - dot_min ) * 255 );
+                    conv_data[row][col] = normalized_value;
+                    conv_data_1d[(cols * row) + col] = normalized_value;
+                }
+            }
+            printf("max = %d, min = %d\n", dot_max, dot_min);
         }
 
         // Read original image, apply pixel color thresholds, and extract binary image

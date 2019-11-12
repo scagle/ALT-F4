@@ -50,10 +50,10 @@ namespace altf4
         anchors.push_back(getAnchor(binary_data_2d, color_2d.size(), color_2d[0].size(),  1, -1));
         anchors.push_back(getAnchor(binary_data_2d, color_2d.size(), color_2d[0].size(),  0, -1));
 
-        for ( auto&& anchor : anchors )
-        {
-            printf("\t (%d, %d)\n", anchor.a, anchor.b);
-        }
+        //for ( auto&& anchor : anchors )
+        //{
+        //    printf("\t (%d, %d)\n", anchor.a, anchor.b);
+        //}
     }
 
     cv::Rect Core::getEncompassingRect( int padding ) 

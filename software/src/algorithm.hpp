@@ -12,8 +12,8 @@ namespace altf4
         // Algorithms
         void transDimensiateImage( Image* image, std::vector< std::vector< Color > >& data_2d );
 
-        void writeConvData( std::vector< std::vector< Color > >& color_2d, std::vector< std::vector< int > >& conv_image, 
-            const std::vector< std::vector< int > >& kernel );
+        void writeConvData( std::vector< std::vector< Color > >& color_2d, std::vector< std::vector< unsigned char > >& conv_data, 
+            std::vector< unsigned char >& conv_data_1d, const std::vector< std::vector< int > >& kernel );
 
         void writeBinaryData( Image* image, Image& binary_image, const std::pair< Color, Color >& thresholds );
 
