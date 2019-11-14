@@ -27,7 +27,7 @@ namespace altf4
 
             std::vector< unsigned char > test(rows * cols, 0);
             mats.push_back(cv::Mat(rows, cols, CV_8UC3, image->getData()->data()));
-            conv_mats.push_back(cv::Mat(rows, cols, CV_8UC1, conv_data_1d.data()));
+            //conv_mats.push_back(cv::Mat(rows, cols, CV_8UC1, conv_data_1d.data()));
             all_binary_mats[i].clear();
             for ( unsigned int type = 0; type < binary_images.size(); type++ )
             {
@@ -36,18 +36,20 @@ namespace altf4
 
             if (display_type == 0)
             {
-                annotateMat(i, &( (*original_images)[i] ), (*frames)[i].getBestBlobs() );
+                annotateMat( i, &( (*original_images)[i] ), (*frames)[i].getBestBlobs() );
                 window.render( i, &( (*original_images)[i] ) );
             }
             else if (display_type == 1)
             {
-                annotateMat(i, &( mats[i] ), (*frames)[i].getBestBlobs() );
+                annotateMat( i, &( mats[i] ), (*frames)[i].getBestBlobs() );
                 window.render( i, &( mats[i] ) );
             }
             else if (display_type == 2)
             {
-                annotateMat(i, &( mats[i] ), (*frames)[i].getBestBlobs() );
-                window.render( i, &( conv_mats[i] ) );
+                display_type = 0;
+                //annotateMat( i, &( conv_mats[i] ), (*frames)[i].getBestBlobs() );
+                ////drawConvolutionSpots( i, (*frames)[i].getBestBlobs() );
+                //window.render( i, &( conv_mats[i] ) );
             }
             else
             {
@@ -74,9 +76,17 @@ namespace altf4
                 cv::rectangle( *mat, best_blobs[type].getEncompassingRect(10), Tuner::associated_color[type], 2 );
                 if ( best_blobs[type].hasCore() )
                 {
-                    cv::rectangle( *mat, best_blobs[type].getCore()->getEncompassingRect(1), {150, 200, 255}, 5 );
-                    cv::rectangle( *mat, best_blobs[type].getEncompassingRect(15), {255, 255, 0}, 5 ); // make the cores a little more visible
+                    //cv::rectangle( *mat, best_blobs[type].getCore()->getEncompassingRect(1), {150, 200, 255}, 5 );
+                    //cv::rectangle( *mat, best_blobs[type].getEncompassingRect(15), {255, 255, 0}, 5 ); // make the cores a little more visible
                 }
+                std::ostringstream ss;
+                //ss << best_blobs[type].getScore() << ", " << (int)best_blobs[type].getConvolutionAverage() << ", " << best_blobs[type].getArea() << ", " << best_blobs[type].getSize();
+                ss << best_blobs[type].getScore() << ", " 
+                   << (int)best_blobs[type].getAverageColorScore() << ", " 
+                   << (int)best_blobs[type].getAreaScore() << ", " 
+                   << (int)best_blobs[type].getSizeScore() << ", "
+                   << (int)best_blobs[type].getConvolutionAverageScore();
+                cv::putText( *mat, ss.str(), cv::Point(10, 470 - (type * 20)), cv::FONT_HERSHEY_SIMPLEX, 0.5, Tuner::associated_color[type], 2);
             }
 
             //if ( blob.isInitialized() )
@@ -88,6 +98,17 @@ namespace altf4
             //}
         }
     }
+
+    //void Renderer::drawConvolutionSpots( int index, std::vector< Blob >& best_blobs )
+    //{
+    //    for ( unsigned int type = 0; type < best_blobs.size(); type++ )
+    //    {
+    //        if ( best_blobs[type].isInitialized() )
+    //        {
+
+    //        }
+    //    }
+    //}
 
     bool Renderer::initialize( int number_of_cameras )
     {

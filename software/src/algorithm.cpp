@@ -1,10 +1,13 @@
 #include "algorithm.hpp"
 
-#include "globals.hpp"
-#include "datatypes/pixel.hpp"
 #include "blob.hpp"
 #include "tuner.hpp"
 #include "core.hpp"
+#include "datatypes/pixel.hpp"
+#include "datatypes/pixel_1.hpp"
+
+#include "globals.hpp"
+
 #include <stack>
 
 namespace altf4
@@ -14,7 +17,8 @@ namespace altf4
         // Function Prototypes
         void formulateBlob( Blob& blob, std::vector< unsigned char* >& binary_data_2d, std::vector< std::vector< Color > >& color_2d, 
                 std::stack< Position >& edited_pixels, int row, int col, unsigned char check_value, int min_neighbors, int max_size );
-        float rigorouslyScoreBlob( Blob&, std::vector< std::vector< Color > >&, std::vector< unsigned char* >& );
+        float rigorouslyScoreBlob( Blob& blob, std::vector< std::vector< Color > >& color_2d, 
+                std::vector< unsigned char* >& binary_data_2d, int type );
         Core getCore( Blob& blob, 
                 std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d );
 
@@ -54,7 +58,7 @@ namespace altf4
         {
             int rows = color_2d.size();
             int cols = color_2d[0].size();
-            std::vector< int > temp(rows * cols);
+            std::vector< int > temp(rows * cols, 0);
 
             conv_data_1d.resize(rows * cols);
             conv_data.resize(rows);
@@ -73,33 +77,33 @@ namespace altf4
                     int kernel_rows = kernel.size();
                     int kernel_cols = kernel[0].size();
                     int dotproduct = 0;
-                    for ( int ker_row = 0; ker_row < kernel_rows; ker_row++ )
+                    for ( int ker_row = -1; ker_row <= 1; ker_row++ )
                     {
-                        for ( int ker_col = 0; ker_col < kernel_cols; ker_col++ )
+                        for ( int ker_col = -1; ker_col <= 1; ker_col++ )
                         {
-                            dotproduct += color_2d[row + ker_row - 1][col + ker_col - 1].g * kernel[kernel_rows - ker_row - 1][kernel_cols - ker_col - 1];
+                            dotproduct += color_2d[row - ker_row][col - ker_col].r * kernel[ker_row + 1][ker_col + 1];
                         }
                     }
                     if ( dotproduct > dot_max )
                         dot_max = dotproduct;
                     if ( dotproduct < dot_min )
                         dot_min = dotproduct;
-                    temp[((cols-2) * (row - 1)) + (col - 1)] = dotproduct;
+                    temp[((cols - 2) * (row - 1)) + (col - 1)] = dotproduct;
                 }
             }
 
             // Normalize
+            int dot_range = dot_max - dot_min;
             for ( int row = 1; row < rows - 1; row++ )
             {
                 for ( int col = 1; col < cols - 1; col++ )
                 {
                     int value = temp[((cols - 2) * (row - 1)) + (col - 1)];
-                    unsigned char normalized_value = ( ( ( dot_max - dot_min ) - (float)value ) / ( dot_max - dot_min ) * 255 );
+                    unsigned char normalized_value = ( (float)( value - dot_min ) / (float)( dot_max - dot_min ) ) * 255;
                     conv_data[row][col] = normalized_value;
                     conv_data_1d[(cols * row) + col] = normalized_value;
                 }
             }
-            printf("max = %d, min = %d\n", dot_max, dot_min);
         }
 
         // Read original image, apply pixel color thresholds, and extract binary image
@@ -293,18 +297,57 @@ namespace altf4
             }
         }
 
-        unsigned char scoreAverageColor( Color& average_color, const Color& expected_color )
+        unsigned char scoreAverageColor( Color& average_color, const Color& expected_color, int multiplier )
         {
             // Get distance in pixels
-            unsigned int diff_c1 = std::abs((int)average_color.b - (int)expected_color.b);
-            unsigned int diff_c2 = std::abs((int)average_color.g - (int)expected_color.g);
-            unsigned int diff_c3 = std::abs((int)average_color.r - (int)expected_color.r);
+            unsigned int diff_c1 = std::abs( (int)average_color.b - (int)expected_color.b );
+            unsigned int diff_c2 = std::abs( (int)average_color.g - (int)expected_color.g );
+            unsigned int diff_c3 = std::abs( (int)average_color.r - (int)expected_color.r );
 
             // Normalize (0 - 765) to (0 - 255)
             unsigned int normalized_diff = ( (float)( diff_c1 + diff_c2 + diff_c3 ) / ( 255.0 * 3.0 ) * 255.0 );
 
             // Invert, so that the lower number gives the higher score 
             return ( 255 - normalized_diff );
+        }
+
+        unsigned char scoreArea( unsigned int area, const unsigned int expected_area, int multiplier )
+        {
+            unsigned int diff_area = (int)expected_area - (int)area;
+
+            int normalized_diff = 255 - diff_area * multiplier;
+            if ( normalized_diff > 255 )
+                normalized_diff = 255;
+            if ( normalized_diff < 0 )
+                normalized_diff = 0;
+
+            return (unsigned char)normalized_diff;
+        }
+
+        unsigned char scoreSize( unsigned int size, const unsigned int expected_size, int multiplier )
+        {
+            unsigned int diff_size = (int)expected_size - (int)size;
+
+            int normalized_diff = 255 - diff_size * multiplier;
+            if ( normalized_diff > 255 )
+                normalized_diff = 255;
+            if ( normalized_diff < 0 )
+                normalized_diff = 0;
+
+            return (unsigned char)normalized_diff;
+        }
+
+        unsigned char scoreConvolutionAverage( unsigned char average, const unsigned int expected_average, int multiplier )
+        {
+            unsigned int diff_average = (int)expected_average - (int)average;
+
+            int normalized_diff = 255 - diff_average * multiplier;
+            if ( normalized_diff > 255 )
+                normalized_diff = 255;
+            if ( normalized_diff < 0 )
+                normalized_diff = 0;
+
+            return (unsigned char)normalized_diff;
         }
 
         void scoreBlobs( std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d, 
@@ -316,13 +359,31 @@ namespace altf4
             for ( auto&& blob : blobs )
             {
                 Color color = blob.getAverageColor();
+                unsigned int area = blob.getArea();
+                unsigned int size = blob.getSize();
 
                 float score = 0;
                 float maximum_score = 0;
                 
                 if ( Tuner::scoring_masks[0] )
                 {
-                    score += scoreAverageColor( color, Tuner::hsv_expected_values[type] );
+                    unsigned char score_average_color = scoreAverageColor( color, Tuner::hsv_expected_values[type], 1 );
+                    score += score_average_color;
+                    blob.setAverageColorScore( score_average_color );
+                    maximum_score += 255;
+                }
+                if ( Tuner::scoring_masks[1] )
+                {
+                    unsigned char score_area = scoreArea( area, Tuner::expected_areas[type], 2 );
+                    score += score_area;
+                    blob.setAreaScore( score_area );
+                    maximum_score += 255;
+                }
+                if ( Tuner::scoring_masks[2] )
+                {
+                    unsigned char score_size = scoreSize( size, Tuner::expected_sizes[type], 1 );
+                    score += score_size;
+                    blob.setSizeScore( score_size );
                     maximum_score += 255;
                 }
 
@@ -332,7 +393,7 @@ namespace altf4
                 if ( percent_score >= Tuner::percentage_score_cutoff )
                 {
                     // Apply more rigorous testing on the higher scoring blobs to save resources
-                    float multiplier = rigorouslyScoreBlob( blob, color_2d, binary_data_2d );
+                    float multiplier = rigorouslyScoreBlob( blob, color_2d, binary_data_2d, type );
                     percent_score *= multiplier;
 
                     if ( percent_score > best_score )
@@ -345,11 +406,13 @@ namespace altf4
             }
         }
 
-        float rigorouslyScoreBlob( Blob& blob, 
-                std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d )
+        float rigorouslyScoreBlob( Blob& blob, std::vector< std::vector< Color > >& color_2d, 
+                std::vector< unsigned char* >& binary_data_2d, int type )
         {
 
             // Do intensive things that only the best of blobs need here:
+            // Get Convolution Score
+            convoluteBlob( blob, color_2d, Tuner::convolution_kernel );
             // Find core
             blob.setCore( getCore( blob, color_2d, binary_data_2d ) );
             Core* core = blob.getCore();
@@ -357,12 +420,80 @@ namespace altf4
 
             // Calculate score multiplier
             float multiplier = 1;
-            multiplier *= blob.getNormalizedEccentricity();
 
+            if ( Tuner::scoring_rigorous_masks[0] )
+            {
+                unsigned char conv_average = blob.getConvolutionAverage();
+                unsigned char score_conv_average = scoreConvolutionAverage( conv_average, Tuner::expected_conv_averages[type], 1 );
+                multiplier *= (float)score_conv_average / 255.0;
+                blob.setConvolutionAverageScore( score_conv_average );
+            }
+
+            //multiplier *= blob.getNormalizedEccentricity();
             // TODO: Broken and not well implemented
             //multiplier *= blob.getNormalizedCoreArea();
 
             return multiplier;
+        }
+
+        void convoluteBlob( Blob& blob, std::vector< std::vector< Color > >& color_2d, 
+                const std::vector< std::vector< int > >& kernel )
+        {
+            std::vector< Pixel >* blob_pixels = blob.getPixels();       // Blob pixels (3 channels)
+            std::vector< Pixel_1 >* conv_pixels = blob.getConvPixels(); // Normalized Convolution pixels (1 channel) ( 0 - 255 )
+            std::vector< int > product_values(blob_pixels->size(), 0);   // Convolution before normalization ( + / - )
+
+            int dot_product_min = 0;
+            int dot_product_max = 0;
+
+            for ( Pixel& pixel : *blob_pixels )
+            {
+                const int row = pixel.position.a;
+                const int col = pixel.position.b;
+
+                int dot_product_sum = 0;
+
+                for ( int kernel_row = -1; kernel_row <= 1; kernel_row++ )
+                {
+                    for ( int kernel_col = -1; kernel_col <= 1; kernel_col++ )
+                    {
+                        // Check edge cases
+                        if ( ( row - kernel_row >= 0 )      && 
+                             ( row - kernel_row < MAX_ROW ) && 
+                             ( col - kernel_col >= 0 )      &&
+                             ( col - kernel_col < MAX_COL ) )
+                        { 
+                            dot_product_sum += color_2d[row - kernel_row][col - kernel_col].r * kernel[kernel_row + 1][kernel_col + 1];
+                        }
+                    }
+                }
+
+                if ( dot_product_sum > dot_product_min )
+                    dot_product_min = dot_product_sum;
+                if ( dot_product_sum < dot_product_max )
+                    dot_product_max = dot_product_sum;
+
+                product_values.push_back( dot_product_sum );
+            }
+
+            // Normalize
+            int total_dot_product_sum = 0;
+            int dot_product_range = dot_product_max - dot_product_min;
+            int i = 0;
+            for ( auto&& conv_value : product_values )
+            {
+                int row = (*blob_pixels)[i].position.a;
+                int col = (*blob_pixels)[i].position.b; 
+                unsigned char normalized_value = ( (float)( conv_value - dot_product_min ) / (float)( dot_product_max - dot_product_min ) ) * 255;
+                conv_pixels->push_back( { { row, col }, normalized_value } );
+                total_dot_product_sum += normalized_value;
+                i++;
+            }
+
+            // Set total convolution sum
+            blob.setConvolutionSum( total_dot_product_sum );
+            // Set ratio convolution sum
+            blob.setConvolutionAverage( total_dot_product_sum / (float)(product_values.size()) );
         }
 
         Core getCore( Blob& blob, 

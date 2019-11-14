@@ -55,14 +55,52 @@ namespace altf4
         },
     };
 
+    // List of expected areas for scoring ( How big the blob should be )
+    const std::vector< unsigned int > Tuner::expected_areas = 
+    {
+        // Green Laser:
+        90,
+
+        // Red Laser:
+        70,
+    };
+
+    // List of expected areas for scoring ( How big the blob should be )
+    const std::vector< unsigned int > Tuner::expected_sizes = 
+    {
+        // Green Laser:
+        100,
+
+        // Red Laser:
+        30,
+    };
+
+    // List of expected convolution averages for scoring ( How edgey the blob is )
+    const std::vector< unsigned char > Tuner::expected_conv_averages = 
+    {
+        // Green Laser:
+        180,
+
+        // Red Laser:
+        180,
+    };
+
     // Scoring features to use 
     const std::vector< bool > Tuner::scoring_masks = 
     {
         true,   // Closeness to Expected Color ( closer -> higher score )
+        true,   // Closeness to Expected Area  ( closer -> higher score )
+        false,   // Closeness to Expected Size  ( closer -> higher score )
+    };
+
+    // Scoring features to use on high scoring blobs
+    const std::vector< bool > Tuner::scoring_rigorous_masks = 
+    {
+        true,   // Closeness to expected Convolution Average ( closer -> higher score )
     };
 
     // Score percentage cutoff. If above this percentage of max score, then it qualifies
-    const float Tuner::percentage_score_cutoff = 0.8;
+    const float Tuner::percentage_score_cutoff = 0.7;
 
 /***************************************************************************************/
 /**                                      Outputs                                      **/

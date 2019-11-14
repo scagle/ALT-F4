@@ -24,6 +24,9 @@ namespace altf4
 
         void scoreBlobs( std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d, 
             std::vector< Blob >& blobs, Blob& best_blob, int type );
+
+        void convoluteBlob( Blob& blob, std::vector< std::vector< Color > >& color_2d, 
+                const std::vector< std::vector< int > >& kernel );
     };
 };
 

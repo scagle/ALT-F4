@@ -33,8 +33,20 @@ namespace altf4
     // List of expected values for scoring ( What the average pixel color should be for the blob )
     static const std::vector< Color > hsv_expected_values;
 
+    // List of expected areas for scoring ( How big the blob should be )
+    static const std::vector< unsigned int > expected_areas;
+
+    // List of expected sizes for scoring ( How many pixels the blob should have )
+    static const std::vector< unsigned int > expected_sizes;
+
+    // List of expected convolution averages for scoring ( How edgey the blob is )
+    static const std::vector< unsigned char > expected_conv_averages;
+
     // Scoring features to use 
     static const std::vector< bool > scoring_masks;
+
+    // Scoring features to use on high scoring blobs
+    static const std::vector< bool > scoring_rigorous_masks;
 
     // Score percentage cutoff. If above this percentage of max score, then it qualifies
     static const float percentage_score_cutoff;

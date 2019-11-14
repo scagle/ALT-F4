@@ -29,12 +29,12 @@ namespace altf4
                 frame.getColor2D()            // <- reference to color_data_2d to be written to
             );
 
-            algorithm::writeConvData(       // Write binary image to dataframe directly:
-                frame.getColor2D(),         // <- reference to original image that binary image reads from
-                frame.getConvData(),        // <- reference to conv_data to be written to
-                frame.getConvData1D(),      // <- reference to conv_data_1d to be written to
-                Tuner::convolution_kernel   // <- kernel used to perform edge detection
-            );
+            //algorithm::writeConvData(       // Write binary image to dataframe directly:
+            //    frame.getColor2D(),         // <- reference to original image that binary image reads from
+            //    frame.getConvData(),        // <- reference to conv_data to be written to
+            //    frame.getConvData1D(),      // <- reference to conv_data_1d to be written to
+            //    Tuner::convolution_kernel   // <- kernel used to perform edge detection
+            //);
 
             algorithm::writeBinaryData(      // Write binary image to dataframe directly:
                 frame.getImage(),            // <- reference to original image that binary image reads from
