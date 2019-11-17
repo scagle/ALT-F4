@@ -10,17 +10,19 @@ namespace altf4
     // Constructors
     DataFrame::DataFrame( ) 
     { 
-
+        this->initialized = false;
     } 
 
-    DataFrame::DataFrame( Image* image ) : image(image)
+    DataFrame::DataFrame( int camera_index, Image* image ) : camera_index(camera_index), image(image)
     {
-
+        this->initialized = true;
     }
 
     // Methods
-    void DataFrame::initialize( unsigned int number_of_tests )
+    void DataFrame::initialize( int camera_index, unsigned int number_of_tests )
     {
+        this->initialized = true;
+        this->camera_index = camera_index;
         this->binary_images.resize( Tuner::hsv_thresholds.size() );
         this->binary_datas_2d.resize( Tuner::hsv_thresholds.size() );
         this->all_blobs.resize( Tuner::hsv_thresholds.size() );

@@ -38,7 +38,9 @@ namespace altf4
         {
             if ( !(*images)[i].isEmpty() ) // Check if image[i] is initialized, not frames[i] since we want to modify it;
             {
-                (*frames)[i] = DataFrame( &(*images)[i] ); // Reinitialize frames[i], as we want to modify it
+                //TODO: What the heck am I doing here?
+                (*frames)[i] = DataFrame( i, &(*images)[i] ); // Reinitialize frames[i], as we want to modify it
+
                 process_threads[i] = std::thread( &ProcessHandler::processThread, i, std::ref( (*images)[i] ), std::ref( (*frames)[i] ) );
                 running_threads.push_back( &process_threads[i] );
                 printf("Started thread for images[%d]\n", i);
@@ -107,5 +109,6 @@ namespace altf4
         }
         return true;
     }
+
 };
 

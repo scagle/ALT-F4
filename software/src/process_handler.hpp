@@ -29,13 +29,15 @@ namespace altf4
 
         public:
             ProcessHandler() { }
-            virtual ~ProcessHandler() = default;
+            virtual ~ProcessHandler() { }
 
             // Methods
             static void processThread( int image_index, Image& image, DataFrame& frame );
             void grabDataFrames( std::vector< Image >* images, std::vector< DataFrame >* frames );
             void resolveThreads();
             bool initialize( int num_proc, std::mutex* pl );
+            static bool hasNewData();
+            static std::vector< Position > getCoordinates();
 
             // Accessors
 

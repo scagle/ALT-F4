@@ -15,6 +15,7 @@ namespace altf4
     {
         for ( unsigned int i = 0; i < frames->size(); i++ )
         {
+            // REFACTOR TODO: Do checks to see if dataframe is really initialized
             Image* image = (*frames)[i].getImage();
             std::vector< unsigned char >& conv_data_1d = (*frames)[i].getConvData1D();
             std::vector< Image >& binary_images = (*frames)[i].getBinaryImages();

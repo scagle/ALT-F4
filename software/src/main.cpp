@@ -2,13 +2,13 @@
 #include "camera_handler.hpp"
 #include "process_handler.hpp"
 #include "input_handler.hpp"
-#include "serial_handler.hpp"
+#include "uart_handler.hpp"
 #include "renderer.hpp"
 #include "data_frame.hpp"
 #include "image.hpp"
 #include "globals.hpp"
-#include <cstdlib>
-#include <cstdio>
+#include <stdlib.h>
+#include <stdio.h>
 #include <signal.h>
 #include <chrono>
 #include <mutex>
@@ -23,7 +23,9 @@ bool initialize();
 bool initializeCameraHandler();
 bool initializeProcessHandler();
 bool initializeRenderer();
+bool initializeUARTHandler();
 bool initializeInput();
+void handleSerialThread( bool& done, bool& interrupted );
 void handleInputsThread( std::deque< unsigned char >& events, bool& done, bool& interrupted );
 static bool initializeSignalHandler();
 static void signalHandler( int signal_value );
@@ -34,14 +36,19 @@ std::mutex print_lock;  // Mutex to lock printing to console for threads
 altf4::CameraHandler camera_handler;
 altf4::ProcessHandler process_handler;
 altf4::Renderer renderer;
-altf4::SerialHandler serial_handler;
+altf4::UARTHandler uart_handler;
 
 // Input Handling
 std::thread input_thread;
+std::thread serial_thread;
 std::mutex input_mutex;
 std::deque< unsigned char > events;
 bool update_display = false;  // Synchronized flag to update display 
 int update_display_type = 0;  // Value of display_type to be updated to
+
+std::string serial_path = "/dev/ttyACM0";
+int serial_baud = 115200;
+int serial_parity = 0;
 
 unsigned int number_of_cameras = 4;
 static bool interrupted = false;
@@ -50,7 +57,10 @@ static bool done = false;
 int main( int argc, char** argv )
 {
     if ( !initialize() )
+    {
+        printf("!!! Initialization Failed! Exiting program...\n");
         return 1;
+    }
 
     std::vector< cv::Mat3b > original_images(number_of_cameras);
     std::vector< altf4::Image > images(number_of_cameras);
@@ -64,7 +74,11 @@ int main( int argc, char** argv )
         camera_handler.readImages( &original_images, &images );
         // Process Images to find lasers
         process_handler.grabDataFrames( &images, &frames ); 
+        // Display all types of images to screen
         renderer.renderMats( &frames, &original_images );
+
+        // Send dataframes to UART Handler to be formatted and sent to MCU
+        uart_handler.prepareData( frames );
 
         // Check if display should be updated or not
         if ( update_display )
@@ -120,7 +134,12 @@ void handleInputsThread( std::deque< unsigned char >& events, bool& done, bool& 
 
 void resolveAllThreads()
 {
+    // Resolve all children object threads 
     camera_handler.resolveThreads();    
+    // process_handler resolves its own threads
+    uart_handler.resolveThreads();    
+    
+    // Resolve Input thread
     printf("Attempting to join Input Thread\n");
     input_thread.join();
 }
@@ -128,15 +147,35 @@ void resolveAllThreads()
 bool initialize()
 {
     if (!initializeSignalHandler()) // initialize CTRL-C and SIGTERM handling
+    {
+        printf("initializeSignalHandler Failed!\n");
         return false;
+    }
     if (!initializeCameraHandler())
+    {
+        printf("initializeCameraHandler Failed!\n");
         return false;
+    }
     if (!initializeProcessHandler())
+    {
+        printf("initializeProcessHandler Failed!\n");
         return false;
+    }
     if (!initializeRenderer())
+    {
+        printf("initializeRenderer Failed!\n");
         return false;
+    }
+    if (!initializeUARTHandler())
+    {
+        printf("initializeUARTHandler Failed!\n");
+        return false;
+    }
     if (!initializeInput())
+    {
+        printf("initializeInput Failed!\n");
         return false;
+    }
 
     return true;
 }
@@ -154,6 +193,20 @@ bool initializeProcessHandler()
 bool initializeRenderer()
 {
     return renderer.initialize(number_of_cameras);
+}
+
+bool initializeUARTHandler()
+{
+    if ( uart_handler.startUART( "/dev/pts/14", serial_baud, serial_parity ) )
+    {
+        printf("Successfully started uart thread for '%s'!\n", "/dev/pts");
+    }
+    if (uart_handler.startUART( serial_path, serial_baud, serial_parity ) )
+    {
+        printf("Successfully started uart thread '%s'!\n", serial_path.c_str());
+    }
+    
+    return true; // Ignore failures to initialize, since it's not vital. But still prints them
 }
 
 bool initializeInput()

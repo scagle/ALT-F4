@@ -19,15 +19,17 @@ namespace altf4
             std::vector< std::vector< unsigned char* > > binary_datas_2d;  // Array of binary_image data represented in 2 dimensions
             std::vector< std::vector< Blob > > all_blobs;           // Array of all blobs found in colored binary_images
             std::vector< Blob > best_blobs;                         // Array of single best blob found in colored binary_image
+            int camera_index;
+            bool initialized = false;
 
         public:
             DataFrame();
-            DataFrame( Image* image );
+            DataFrame( int camera_index, Image* image );
             //DataFrame( const DataFrame& other );
             virtual ~DataFrame() { }
 
             // Methods
-            void initialize( unsigned int number_of_tests );
+            void initialize( int camera_index, unsigned int number_of_tests );
 
             // Accessors
             Image* getImage() { return this->image; }
@@ -38,6 +40,8 @@ namespace altf4
             std::vector< std::vector< unsigned char* > >& getBinaryDatas2D() { return this->binary_datas_2d; }
             std::vector< std::vector< Blob > >& getAllBlobs() { return this->all_blobs; }
             std::vector< Blob >& getBestBlobs() { return this->best_blobs; }
+            int getCameraIndex() { return this->camera_index; }
+            bool isInitialized() { return this->initialized; }
 
             // Mutators
     };

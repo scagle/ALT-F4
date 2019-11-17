@@ -1,25 +1,27 @@
 #pragma once
+#include <string>
 
 namespace altf4
 {
     class SerialHandler
     {
-        public:
-            // Public Enums
-
         private:
-            // Private Members
-            
+            std::string path;
+            int fd = -1; 
 
         public:
             SerialHandler() { }
             virtual ~SerialHandler() { }
 
-            // Methods
+            // Initialization
+            bool initialize( std::string path, int baud, int parity );
+            bool openUART( std::string path );
+            int set_interface_attribs( int speed, int parity );
 
-            // Accessors
-
-            // Mutators
+            std::string numberToString(unsigned long number);
+            void writeNumber( unsigned long number );
+            void writeString( std::string s );
+            void set_blocking( int should_block );
     };
 };
 

@@ -15,7 +15,7 @@ namespace altf4
         : camera_index(camera_index), image(image), frame(frame)
     {
         // Initialize DataFrame to hold appropriate number of tests (defined in tuning.hpp)
-        frame.initialize( Tuner::hsv_thresholds.size() ); 
+        frame.initialize( camera_index, Tuner::hsv_thresholds.size() ); 
     }
 
     // Methods

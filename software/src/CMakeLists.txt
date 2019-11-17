@@ -39,6 +39,12 @@ set(BASE_SOURCES
     serial_handler.hpp
     tuner.cpp
     tuner.hpp
+    uart.cpp
+    uart.hpp
+    uart_handler.cpp
+    uart_handler.hpp
+    uart_logic.cpp
+    uart_logic.hpp
     window.cpp
     window.hpp
 )

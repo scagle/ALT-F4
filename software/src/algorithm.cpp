@@ -221,6 +221,7 @@ namespace altf4
                                 if ( check_col + co > blob_max_col )
                                     blob_max_col = check_col + co;
                             }
+
                             //else if (edited_matrix[p_row + ro][p_col + co] != 0)
                             //{
                             //    if ( ( std::abs(ro) <= 1 ) && ( std::abs(co) <= 1 ) ) // make sure they're IMMEDIATE neighbors (Max of 8)
