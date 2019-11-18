@@ -28,7 +28,7 @@ namespace altf4
     // Constructors
 
     // Methods
-    void ProcessHandler::grabDataFrames( std::vector< Image >* images, std::vector< DataFrame>* frames )
+    void ProcessHandler::grabDataFrames( std::vector< Image >* images, std::vector< DataFrame >* frames )
     {
         if ( images->size() != frames->size() )
         {
@@ -43,7 +43,6 @@ namespace altf4
 
                 process_threads[i] = std::thread( &ProcessHandler::processThread, i, std::ref( (*images)[i] ), std::ref( (*frames)[i] ) );
                 running_threads.push_back( &process_threads[i] );
-                printf("Started thread for images[%d]\n", i);
             }
         }
 

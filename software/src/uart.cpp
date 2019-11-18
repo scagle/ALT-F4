@@ -94,7 +94,7 @@ namespace altf4
     std::string UART::numberToString( unsigned long number )
     {
         std::ostringstream oss;
-        oss << number << "\r";
+        oss << number << "\r\n";
         return oss.str();
     }
     
@@ -154,20 +154,20 @@ namespace altf4
             case UART::State::GREEN_LASER : 
             case UART::State::BOTH_LASER : 
             {
-                writeString("strt\r");
+                writeString("strt\r\n");
                 writeNumber( data.coords[0].a );
                 writeNumber( data.coords[0].b );
                 writeNumber( data.coords[1].a );
                 writeNumber( data.coords[1].b );
-                writeString("stop\r");
+                writeString("stop\r\n");
                 break;
             }
             case UART::State::NO_LASER : 
             case UART::State::RED_LASER : 
             {
-                writeString("strt\r");
-                writeString("none\r");
-                writeString("stop\r");
+                writeString("strt\r\n");
+                writeString("none\r\n");
+                writeString("stop\r\n");
                 break;
             }
             default:

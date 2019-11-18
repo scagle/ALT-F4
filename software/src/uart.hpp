@@ -24,7 +24,7 @@ namespace altf4
                 std::vector< Position > coords;
                 State state;
             };
-            bool debug = true; // flag used aid in debugging (IE: print overwriting data warnings, etc)
+            bool debug = false; // flag used aid in debugging (IE: print overwriting data warnings, etc)
 
         private:
             // Private Members
@@ -45,8 +45,7 @@ namespace altf4
             void set_blocking( int should_block );
 
         public:
-            UART( std::string path, int baud, int parity, std::mutex* dm ) : path(path), baud(baud), parity(parity), data_mutex(dm) 
-                { printf("New UART\n"); }
+            UART( std::string path, int baud, int parity, std::mutex* dm ) : path(path), baud(baud), parity(parity), data_mutex(dm) { }
             virtual ~UART() { }
 
             // Methods

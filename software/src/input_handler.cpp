@@ -11,7 +11,6 @@ namespace altf4
     // Methods
     void InputHandler::addEvent( unsigned char key )
     {
-        printf("Event Added\n");
         std::lock_guard< std::mutex > lock( *input_mutex );
         events->push_front( key );
     }

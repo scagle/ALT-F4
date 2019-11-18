@@ -47,6 +47,7 @@ bool update_display = false;  // Synchronized flag to update display
 int update_display_type = 0;  // Value of display_type to be updated to
 
 std::string serial_path = "/dev/ttyACM0";
+std::string debug_serial_path = "/dev/pts/11";
 int serial_baud = 115200;
 int serial_parity = 0;
 
@@ -103,7 +104,6 @@ void handleInputsThread( std::deque< unsigned char >& events, bool& done, bool& 
         // events written directly to by InputHandler
         if ( !events.empty() ) 
         {
-            printf( "Received event %d\n", events.back() );
             switch ( events.back() )
             {
                 case 'q':
@@ -197,9 +197,9 @@ bool initializeRenderer()
 
 bool initializeUARTHandler()
 {
-    if ( uart_handler.startUART( "/dev/pts/14", serial_baud, serial_parity ) )
+    if ( uart_handler.startUART( debug_serial_path, serial_baud, serial_parity ) )
     {
-        printf("Successfully started uart thread for '%s'!\n", "/dev/pts");
+        printf("Successfully started uart thread for '%s'!\n", debug_serial_path.c_str());
     }
     if (uart_handler.startUART( serial_path, serial_baud, serial_parity ) )
     {

@@ -5,6 +5,9 @@
 #include "blob.hpp"
 
 #include "datatypes/position.hpp"
+#include <chrono>
+#include <thread>
+
 namespace altf4
 {
     // Static Declarations
@@ -16,27 +19,34 @@ namespace altf4
     // Constructors
 
     // Methods
-    void UARTHandler::UARTThread( UART& uart )
+    void UARTHandler::UARTThread( int uart_index )
     {
-        bool opened = uart.initialize();
+        bool opened = uarts[uart_index].initialize();
         if (!opened)
         {
-            printf("Could not open UART to '%s'!\n", uart.getPath().c_str());
+            printf("Could not open UART to '%s'!\n", uarts[uart_index].getPath().c_str());
         }
         while ( !stop_threads && opened )
         {
-            if ( uart.hasNewData() )
+            auto begin = std::chrono::steady_clock::now();
+
+            if ( uarts[uart_index].hasNewData() )
             {
-                uart.sendData();
+                uarts[uart_index].sendData();
             }
+
+            auto end = std::chrono::steady_clock::now();
+            auto duration = std::chrono::duration_cast< std::chrono::milliseconds >( end - begin );
+            std::this_thread::sleep_for( std::chrono::milliseconds( 50 ) - duration );
         }
-        printf("UART Thread '%s' exited\n", uart.getPath().c_str());
+        printf("UART Thread '%s' exited\n", uarts[uart_index].getPath().c_str());
     }
 
     bool UARTHandler::startUART( std::string path, int baud, int parity )
     {
         uarts.push_back(UART( path, baud, parity, &data_mutex ));
-        uart_threads.push_back( std::thread( &UARTHandler::UARTThread, std::ref( uarts[uarts.size()-1] ) ) );
+        uart_threads.push_back( std::thread( &UARTHandler::UARTThread, uarts.size()-1 ) );
+        //printf("start: %p: %s\n", &(uarts[.hasNewData()), uart.hasNewData() ? "true" : "false" );
         printf("Started UART '%s' Thread!\n", path.c_str());
         return true;
     }
@@ -48,7 +58,7 @@ namespace altf4
         printf("Attempting to join UART \n");
         for ( unsigned int i = 0; i < uart_threads.size(); i++ )
         {
-            printf("Attempting to join UART %d Thread out of %ls\n", i, uart_threads.size());
+            printf("Attempting to join UART %d\n", i);
             uart_threads[i].join();
         }
     }
@@ -58,6 +68,7 @@ namespace altf4
     // Side Cameras: Medium Priority
     // Back Camera:  Lowest Priority
     // TODO: Hardcoding it for now
+    // TODO: Make sides/back be max X values (in either direction)
     void UARTHandler::prepareData( std::vector< DataFrame >& frames )
     {
         UART::Data best_data = { { {0, 0}, {0, 0} }, UART::State::NO_LASER };

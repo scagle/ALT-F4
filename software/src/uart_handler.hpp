@@ -26,7 +26,7 @@ namespace altf4
             virtual ~UARTHandler() { }
 
             // Methods
-            static void UARTThread( UART& uart);
+            static void UARTThread( int uart_index );
             bool startUART( std::string path, int baud, int parity );
             void resolveThreads();
             void prepareData( std::vector< DataFrame >& frames );
