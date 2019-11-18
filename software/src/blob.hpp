@@ -16,10 +16,7 @@ namespace altf4
             std::vector< Pixel_1 > conv_pixels;
             std::vector< Pixel > core_pixels;
             Core core;
-            int blob_min_y;
-            int blob_min_x;
-            int blob_max_y;
-            int blob_max_x;
+            Boundary boundary; // Boundary of blob
             unsigned char score_average_color = 0;
             unsigned char score_area = 0;
             unsigned char score_size = 0;
@@ -32,7 +29,7 @@ namespace altf4
 
         public:
             Blob(); 
-            Blob( std::vector< Pixel > pixels, int blob_min_y, int blob_min_x, int blob_max_y, int blob_max_x );
+            Blob( std::vector< Pixel > pixels, Boundary boundary );
             virtual ~Blob() { }
 
             // Methods
@@ -52,6 +49,7 @@ namespace altf4
             bool isExploded() { return this->exploded; }
             std::vector< Pixel >* getCorePixels() { return &(this->core_pixels); }
             bool hasCore() { return core.isInitialized(); }
+            Boundary* getBoundary() { return &(this->boundary); }
             Core* getCore() { return &(this->core); }
             float getScore() { return this->percent_score; }
             unsigned int getConvolutionSum() { return conv_sum; }

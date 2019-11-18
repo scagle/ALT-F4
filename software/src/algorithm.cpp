@@ -19,7 +19,7 @@ namespace altf4
                 std::stack< Position >& edited_pixels, int row, int col, unsigned char check_value, int min_neighbors, int max_size );
         float rigorouslyScoreBlob( Blob& blob, std::vector< std::vector< Color > >& color_2d, 
                 std::vector< unsigned char* >& binary_data_2d, int type );
-        Core getCore( Blob& blob, 
+        Core calculateCore( Blob& blob, 
                 std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d );
 
         void transDimensiateImage( Image* image, std::vector< std::vector< Color > >& color_2d )
@@ -234,7 +234,7 @@ namespace altf4
                 }
             }
             // Directly modify referenced blob
-            blob = Blob( blob_pixels, blob_min_row, blob_min_col, blob_max_row, blob_max_col );
+            blob = Blob( blob_pixels, { blob_min_row, blob_min_col, blob_max_row, blob_max_col } );
         }
 
         void getBlobs( Image* image, std::vector< std::vector< Color > >& color_2d, 
@@ -410,12 +410,11 @@ namespace altf4
         float rigorouslyScoreBlob( Blob& blob, std::vector< std::vector< Color > >& color_2d, 
                 std::vector< unsigned char* >& binary_data_2d, int type )
         {
-
             // Do intensive things that only the best of blobs need here:
             // Get Convolution Score
             convoluteBlob( blob, color_2d, Tuner::convolution_kernel );
             // Find core
-            blob.setCore( getCore( blob, color_2d, binary_data_2d ) );
+            blob.setCore( calculateCore( blob, color_2d, binary_data_2d ) );
             Core* core = blob.getCore();
             core->spread( color_2d, binary_data_2d );
 
@@ -497,7 +496,7 @@ namespace altf4
             blob.setConvolutionAverage( total_dot_product_sum / (float)(product_values.size()) );
         }
 
-        Core getCore( Blob& blob, 
+        Core calculateCore( Blob& blob, 
                 std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d )
         {
             std::vector< Pixel >* blob_pixels = blob.getPixels(); // Blob pixels
@@ -570,7 +569,7 @@ namespace altf4
 
             Position core_origin = {average_row, average_col};
 
-            return Core( core_origin );
+            return Core( core_origin, blob.getBoundary() );
         }
 
 

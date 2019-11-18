@@ -1,5 +1,6 @@
 set(DATATYPE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/position.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/boundary.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/color.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/pixel.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/pixel_1.hpp

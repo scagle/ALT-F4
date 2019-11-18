@@ -1,5 +1,6 @@
 #pragma once
 
+#include "datatypes/boundary.hpp"
 #include "datatypes/position.hpp"
 #include "datatypes/pixel.hpp"
 
@@ -10,19 +11,19 @@ namespace altf4
 {
     class Core
     {
-        public:
-            // Public Enums
-
         private:
             // Private Members
             bool initialized = false;
             Position origin;
             std::vector< Position > anchors;
+            Boundary* blob_boundary;
+            Boundary core_boundary;
+
             
 
         public:
             Core() { }
-            Core( Position origin ) : initialized(true), origin(origin) { }
+            Core( Position origin, Boundary* blob_boundary ) : initialized(true), origin(origin), blob_boundary(blob_boundary) { }
             virtual ~Core() { }
 
             // Methods

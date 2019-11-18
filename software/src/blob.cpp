@@ -11,8 +11,8 @@ namespace altf4
         this->initialized = false;
     }
 
-    Blob::Blob( std::vector< Pixel > pixels, int blob_min_y, int blob_min_x, int blob_max_y, int blob_max_x )
-        : pixels(pixels), blob_min_y(blob_min_y), blob_min_x(blob_min_x), blob_max_y(blob_max_y), blob_max_x(blob_max_x)
+    Blob::Blob( std::vector< Pixel > pixels, Boundary boundary )
+        : pixels(pixels), boundary(boundary)
     {
         this->initialized = true;
     }
@@ -21,10 +21,10 @@ namespace altf4
     // Methods
     cv::Rect Blob::getEncompassingRect( int padding ) 
     { 
-        return cv::Rect(    blob_min_x - padding, 
-                            blob_min_y - padding, 
-                            ( blob_max_x - blob_min_x ) + ( padding * 2 ), 
-                            ( blob_max_y - blob_min_y ) + ( padding * 2 )
+        return cv::Rect(    boundary.la - padding, 
+                            boundary.lb - padding, 
+                            ( boundary.ha - boundary.la ) + ( padding * 2 ), 
+                            ( boundary.hb - boundary.lb ) + ( padding * 2 )
                        ); 
     }
 
@@ -50,22 +50,22 @@ namespace altf4
     Position Blob::getCenterPosition()
     {
         return Position{ 
-            blob_min_y + ( blob_max_y - blob_min_y ) / 2, // Center Row
-            blob_min_x + ( blob_max_x - blob_min_x ) / 2  // Center Column
+            boundary.lb + ( boundary.hb - boundary.lb ) / 2, // Center Row
+            boundary.la + ( boundary.ha - boundary.la ) / 2  // Center Column
         };
     }
 
     unsigned int Blob::getArea()
     {
-        return ( blob_max_x - blob_min_x + 1 ) * ( blob_max_y - blob_min_y + 1 );
+        return ( boundary.ha - boundary.la + 1 ) * ( boundary.hb - boundary.lb + 1 );
     }
 
     // Returns normalized value of how "circular" the overall blob is
     // Just compares width and height
     float Blob::getNormalizedEccentricity()
     {
-        int width = blob_max_x - blob_min_x + 1; // Plus one to avoid floating point exception
-        int height = blob_max_y - blob_min_y + 1; // Plus one to avoid floating point exception
+        int width = boundary.ha - boundary.la + 1; // Plus one to avoid floating point exception
+        int height = boundary.hb - boundary.lb + 1; // Plus one to avoid floating point exception
         int maximum = std::max(width, height);
         return 1 - ( std::abs(width - height) / maximum );
     }
