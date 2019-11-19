@@ -19,7 +19,7 @@ namespace altf4
         // Green Laser:
         {
             
-            Color{  30,  20, 100 },   // Min Threshold
+            Color{  30,  60, 100 },   // Min Threshold
             Color{  90, 200, 245 }    // Max Threshold
         },
 
@@ -89,6 +89,16 @@ namespace altf4
         },
     };
 
+    // List of expected core anchor length for scoring (average CoreAnchor lengths)
+    const std::vector< unsigned int > Tuner::expected_core_length = 
+    {
+        // Green Laser:
+        4,
+
+        // Red Laser:
+        4,
+    };
+
     // List of expected convolution averages for scoring ( How edgey the blob is )
     const std::vector< unsigned char > Tuner::expected_conv_averages = 
     {
@@ -111,7 +121,7 @@ namespace altf4
     const std::vector< bool > Tuner::scoring_rigorous_masks = 
     {
         true,   // Closeness to expected Anchor Color ( closer -> higher score )
-        false,  // Expected Core Anchor length ( closer -> higher score )
+        true,  // Expected Core Anchor length ( closer -> higher score )
         true,   // Exploded Core Anchor ( exploded -> bad score )
         true,   // Closeness to expected Convolution Average ( closer -> higher score )
     };

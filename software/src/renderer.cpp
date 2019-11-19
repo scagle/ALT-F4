@@ -162,6 +162,7 @@ namespace altf4
         if (!blob.isInitialized())
         {
             printf("NO GREEN BLOB!\n");
+            window.wait(10);
             return;
         }
         Core* core = blob.getCore();

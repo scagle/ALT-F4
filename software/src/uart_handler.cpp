@@ -5,6 +5,8 @@
 #include "blob.hpp"
 
 #include "datatypes/position.hpp"
+#include "globals.hpp"
+
 #include <chrono>
 #include <thread>
 
@@ -73,6 +75,7 @@ namespace altf4
     {
         UART::Data best_data = { { {0, 0}, {0, 0} }, UART::State::NO_LASER };
 
+        int camera_index = 0;
         for ( auto&& frame : frames )
         {
             if ( frame.isInitialized() == false )
@@ -105,19 +108,59 @@ namespace altf4
             // Update Buffers if necessary
             if ( green_found )
             {
-                green_pos_buffer = green_blob.getCenterPosition();
-            }
-            if ( red_found )
-            {
-                red_pos_buffer = red_blob.getCenterPosition();
-            }
+                // TODO: ERASE THIS DEBUG STATEMENT IN FUTURE PLEASE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                camera_index = 0;
+                //
+                
+                printf("CAMERA INDEX %d FOUND GREEN LASER!\n", camera_index);
+                if ( camera_index == 0)
+                {
+                    green_pos_buffer = green_blob.getCenterPosition();
+                    if ( red_found )
+                    {
+                        red_pos_buffer = red_blob.getCenterPosition();
+                    }
+                    // else keep previous value
+                }
+                else
+                {
+                    // Defaults for Red Laser, as it's largely irrelevant at this point 
+                    // ( Sides/Back should never see red laser )
+                    red_pos_buffer = { MAX_COL / 2, MAX_ROW / 2 }; 
 
-            // Formulate Data
-            if ( state != UART::State::NO_LASER && state != UART::State::RED_LASER)
-            {
+                    // Find Values for Green Laser
+                    int green_x = 0;
+                    int green_y = 0;
+
+                    // Find Green Y
+                    green_y = green_blob.getCenterPosition().b;
+
+                    // Find Green X ( Will be either 0 or MAX_COL, since we want turret to rotate quickly )
+                    switch ( camera_index )
+                    {
+                        case 1:  // Right Camera
+                            green_x = MAX_COL;  // Turn right as fast as possible
+                            break;
+                        case 2:  // Left Camera
+                            green_x = 0;  // Turn Left as fast as possible
+                            break;
+                        case 3:  // Back Camera
+                            // Round to [0 - 1], to get which half of screen the green laser is on, and determine which way is quicker
+                            green_x = ( (int)((double)green_blob.getCenterPosition().a / MAX_COL + 0.5) ) ? MAX_COL : 0;
+                            printf("GREEN_X Decided %d!\n", green_x);
+                            break;
+                        default:
+                            printf("*** WARNING: Not well equipped to handle more than 4 cameras! (uart_handler.cpp)\n");
+                            break;
+                    }
+
+                    // Add Green Coordinates to buffer
+                    green_pos_buffer = { green_x, green_y };
+                }
                 best_data = { { green_pos_buffer, red_pos_buffer }, state };
                 break; // Since highest priority starts at beginning, we now no longer have to continue with for-loop iterations
             }
+            camera_index++;
         }
         updateUARTData( best_data );
     }

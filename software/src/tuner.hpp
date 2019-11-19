@@ -42,6 +42,9 @@ namespace altf4
     // List of expected core color values for scoring ( Average color of core of blob )
     static const std::vector< Color > expected_core_colors;
 
+    // List of expected core anchor length for scoring (average CoreAnchor lengths)
+    static const std::vector< unsigned int > expected_core_length;
+
     // List of expected convolution averages for scoring ( How edgey the blob is )
     static const std::vector< unsigned char > expected_conv_averages;
 

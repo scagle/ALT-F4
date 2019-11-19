@@ -354,6 +354,19 @@ namespace altf4
             return ( 255 - normalized_diff );
         }
 
+        unsigned char scoreAverageCoreLength( const int average_length, const int expected_length, int multiplier )
+        {
+            unsigned int diff_length = (int)expected_length - (int)average_length;
+
+            int normalized_diff = 255 - diff_length * multiplier;
+            if ( normalized_diff > 255 )
+                normalized_diff = 255;
+            if ( normalized_diff < 0 )
+                normalized_diff = 0;
+
+            return (unsigned char)normalized_diff;
+        }
+
         unsigned char scoreConvolutionAverage( unsigned char average, const unsigned int expected_average, int multiplier )
         {
             unsigned int diff_average = (int)expected_average - (int)average;
@@ -447,9 +460,13 @@ namespace altf4
                 multiplier *= (float)score_average_core_color;
             }
 
-            // Core expected length
+            // Core expected average length
             if ( Tuner::scoring_rigorous_masks[1] )
             {
+                int average_length = core->getAverageLength();
+                unsigned char score_average_core_length = scoreAverageCoreLength( average_length, Tuner::expected_core_length[type], 10 );
+                printf("average_length: %d\n", average_length );
+                multiplier *= (float)score_average_core_length;
             }
 
             // Core exploded

@@ -57,6 +57,7 @@ namespace altf4
 
     Position Blob::getCenterPosition()
     {
+        // Note:  X / Y representation
         return Position{ 
             boundary.lb + ( boundary.hb - boundary.lb ) / 2, // Center Row
             boundary.la + ( boundary.ha - boundary.la ) / 2  // Center Column

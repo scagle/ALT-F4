@@ -18,8 +18,8 @@ namespace altf4
             static std::mutex data_mutex;
             static bool stop_threads;
 
-            Position red_pos_buffer = { 320, 240 };
-            Position green_pos_buffer = { 320, 240 };
+            Position red_pos_buffer = { 320, 240 }; // Buffer used for latching onto previous laser position
+            Position green_pos_buffer = { 320, 240 }; // Buffer used for latching onto previous laser position
 
         public:
             UARTHandler() { }

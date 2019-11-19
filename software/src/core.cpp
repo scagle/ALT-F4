@@ -102,6 +102,7 @@ namespace altf4
         int channel_a_sum = 0;
         int channel_b_sum = 0;
         int channel_c_sum = 0;
+        int length_sum = 0;
         int valid_count = 0;
 
         for ( auto&& anchor : anchors )
@@ -111,19 +112,23 @@ namespace altf4
             channel_a_sum += anchor.avg_color.b;
             channel_b_sum += anchor.avg_color.g;
             channel_c_sum += anchor.avg_color.r;
+            length_sum += anchor.length;
             valid_count++;
         }
 
         if ( valid_count == 0 ) // Avoiding arithmetic exception
         {
             this->avg_color = color_2d[origin.a][origin.b];
+            this->avg_length = 0;
         }
         else
         {
             channel_a_sum /= valid_count;
             channel_b_sum /= valid_count;
             channel_c_sum /= valid_count;
+            length_sum /= valid_count;
             this->avg_color = { channel_a_sum, channel_b_sum, channel_c_sum };
+            this->avg_length = length_sum; 
         }
 
         //for ( auto&& anchor : anchors )
