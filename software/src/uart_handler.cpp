@@ -108,10 +108,6 @@ namespace altf4
             // Update Buffers if necessary
             if ( green_found )
             {
-                // TODO: ERASE THIS DEBUG STATEMENT IN FUTURE PLEASE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                camera_index = 0;
-                //
-                
                 printf("CAMERA INDEX %d FOUND GREEN LASER!\n", camera_index);
                 if ( camera_index == 0)
                 {
