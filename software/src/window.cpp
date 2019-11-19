@@ -52,6 +52,17 @@ namespace altf4
             InputHandler::addEvent( key );
         }
     }
+    
+    void Window::wait( int wait_time )
+    {
+        // Handle key input
+        unsigned char key = cv::waitKey( wait_time );
+        if ( key != 255 )
+        {
+            InputHandler::addEvent( key );
+        }
+    }
+
 
     void Window::render( unsigned int index, cv::Mat* mat )
     {

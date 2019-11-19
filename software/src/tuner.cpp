@@ -35,7 +35,7 @@ namespace altf4
     //const int Tuner::core_size_cutoff = 150; // Bigger than this, and core blob explodes ( prevents blob leak )
 
     // Sticky Ball Approach
-    const int Tuner::number_of_whitest_pixel_searches = 3; // How many "max" pixels we search for before averaging O(kn)
+    const int Tuner::number_of_whitest_pixel_searches = 20; // How many "max" pixels we search for before averaging O(kn)
 
 
 /***************************************************************************************/
@@ -75,6 +75,20 @@ namespace altf4
         30,
     };
 
+    // List of expected core color values for scoring ( Average color of core of blob )
+    const std::vector< Color > Tuner::expected_core_colors = 
+    {
+        // Green Laser:
+        {
+            Color{ 255, 80, 90 },  
+        },
+
+        // Red Laser:
+        {
+            Color{ 255, 80, 90 },   
+        },
+    };
+
     // List of expected convolution averages for scoring ( How edgey the blob is )
     const std::vector< unsigned char > Tuner::expected_conv_averages = 
     {
@@ -96,6 +110,9 @@ namespace altf4
     // Scoring features to use on high scoring blobs
     const std::vector< bool > Tuner::scoring_rigorous_masks = 
     {
+        true,   // Closeness to expected Anchor Color ( closer -> higher score )
+        false,  // Expected Core Anchor length ( closer -> higher score )
+        true,   // Exploded Core Anchor ( exploded -> bad score )
         true,   // Closeness to expected Convolution Average ( closer -> higher score )
     };
 

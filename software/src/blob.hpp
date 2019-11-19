@@ -25,7 +25,6 @@ namespace altf4
             bool initialized = false; // If blob is created but not initialized
             unsigned int conv_sum = 0;
             unsigned char conv_average = 0;
-            bool exploded = false; // If blob exceeds max_size when it is being built, it explodes and is useless  ( blob_detection )
 
         public:
             Blob(); 
@@ -33,7 +32,7 @@ namespace altf4
             virtual ~Blob() { }
 
             // Methods
-            cv::Rect getEncompassingRect( int padding );
+            cv::Rect getEncompassingRect( int padding ); // Get SDL_Rect representation of blob
             Color getAverageColor();
             unsigned int getArea();
             unsigned int getSize() { return this->pixels.size(); }
@@ -46,7 +45,7 @@ namespace altf4
             std::vector< Pixel >* getPixels() { return &( this->pixels ); }
             std::vector< Pixel_1 >* getConvPixels() { return &( this->conv_pixels ); }
             bool isInitialized() { return this->initialized; }
-            bool isExploded() { return this->exploded; }
+            bool isExploded() { return this->core.isExploded(); }
             std::vector< Pixel >* getCorePixels() { return &(this->core_pixels); }
             bool hasCore() { return core.isInitialized(); }
             Boundary* getBoundary() { return &(this->boundary); }
@@ -62,7 +61,7 @@ namespace altf4
             unsigned char getConvolutionAverageScore() { return this->score_conv_average; }
 
             // Mutators
-            void explode() { this->exploded = true; }  // Max-size exceeded. Blob exploded... ( blob_detection )
+            void explode() { this->core.explode(); }  // Max-size exceeded. Blob exploded... ( blob_detection )
             void setCorePixels( std::vector< Pixel > core_pixels ) { this->core_pixels = core_pixels; }
             void setCore( Core core ) { this->core = core; }
             void setConvolutionSum( unsigned int conv_sum ) { this->conv_sum = conv_sum; }

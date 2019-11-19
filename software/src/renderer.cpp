@@ -1,8 +1,14 @@
 #include "renderer.hpp"
 
+#include "core.hpp"
 #include "tuner.hpp"
+
+#include "datatypes/position.hpp"
+#include "datatypes/core_anchor.hpp"
+
 #include <opencv2/videoio.hpp>
 #include <opencv2/imgproc.hpp>
+#include <csignal>
 
 namespace altf4
 {
@@ -13,6 +19,11 @@ namespace altf4
     // Methods
     void Renderer::renderMats( std::vector< DataFrame >* frames, std::vector< cv::Mat3b >* original_images )
     {
+        if ( pause )
+        {
+            window.wait(10); // OpenCV needs waitKey to handle input ( otherwise it will freeze forever )
+            return;
+        }
         for ( unsigned int i = 0; i < frames->size(); i++ )
         {
             // REFACTOR TODO: Do checks to see if dataframe is really initialized
@@ -26,7 +37,6 @@ namespace altf4
             int rows = image->getRows();
             int cols = image->getCols();
 
-            std::vector< unsigned char > test(rows * cols, 0);
             mats.push_back(cv::Mat(rows, cols, CV_8UC3, image->getData()->data()));
             //conv_mats.push_back(cv::Mat(rows, cols, CV_8UC1, conv_data_1d.data()));
             all_binary_mats[i].clear();
@@ -47,7 +57,9 @@ namespace altf4
             }
             else if (display_type == 2)
             {
-                display_type = 0;
+                // Draw Detailed Blob / Core picture ( debugging )
+                blobAndCoreToImage( i, (*frames)[i].getBinaryDatas2D()[0], (*frames)[i].getBestBlobs()[0] );
+
                 //annotateMat( i, &( conv_mats[i] ), (*frames)[i].getBestBlobs() );
                 ////drawConvolutionSpots( i, (*frames)[i].getBestBlobs() );
                 //window.render( i, &( conv_mats[i] ) );
@@ -122,6 +134,86 @@ namespace altf4
     { 
         this->display_type = display_type; 
         window.updateTune( display_type );
+    }
+
+    int absoluteToRelative( int absolute, int relative_start, int relative_end )
+    {
+        int relative = absolute - relative_start;
+        if ( relative < 0 )
+        {
+            return -1;
+        }
+        if ( relative > relative_end - relative_start - 1 )
+        {
+            return -1;
+        }
+        return relative;
+    }
+    cv::Point positionToPoint( Position pos )
+    {
+        if ( pos.t == ROW_COL )
+            return cv::Point( pos.b, pos.a );
+        else
+            return cv::Point( pos.a, pos.b );
+    }
+
+    void Renderer::blobAndCoreToImage( int window_index, std::vector< unsigned char* >& binary_data_2d, Blob& blob )
+    {
+        if (!blob.isInitialized())
+        {
+            printf("NO GREEN BLOB!\n");
+            return;
+        }
+        Core* core = blob.getCore();
+        Position core_origin = core->getOrigin();
+        cv::Rect blob_rect = blob.getEncompassingRect(0);
+
+        cv::Mat image( blob_rect.height, blob_rect.width, CV_8UC3, cv::Scalar(0, 0, 0) );
+        const int start_row = blob_rect.y;
+        const int end_row = blob_rect.y + blob_rect.height;
+        const int start_col = blob_rect.x;
+        const int end_col = blob_rect.x + blob_rect.width;
+
+        for ( int row = start_row; row < end_row; row++ )
+        {
+            for ( int col = start_col; col < end_col; col++ )
+            {
+                const int rel_row = absoluteToRelative(row, start_row, end_row);
+                const int rel_col = absoluteToRelative(col, start_col, end_col);
+
+                if ( binary_data_2d[row][col] == 255 )
+                {
+                    image.at< cv::Vec3b >( cv::Point( rel_col, rel_row ) )[0] = 100;
+                    image.at< cv::Vec3b >( cv::Point( rel_col, rel_row ) )[1] = 100;
+                    image.at< cv::Vec3b >( cv::Point( rel_col, rel_row ) )[2] = 100;
+                }
+            }
+        }
+
+        const int rel_row_origin = absoluteToRelative(core_origin.a, start_row, end_row);
+        const int rel_col_origin = absoluteToRelative(core_origin.b, start_col, end_col);
+        image.at< cv::Vec3b >( cv::Point( rel_col_origin, rel_row_origin ) )[2] = 255;
+
+        std::vector< CoreAnchor >& anchors = core->getAnchors();
+        for ( auto&& anchor : anchors )
+        {
+            const int rel_row_anchor = absoluteToRelative(anchor.anchor.a, start_row, end_row);
+            const int rel_col_anchor = absoluteToRelative(anchor.anchor.b, start_col, end_col);
+            //printf("[0 - %d] get %d\n", end_row - start_row, rel_row_anchor);
+            //printf("[0 - %d] get %d\n", end_col - start_col, rel_col_anchor);
+
+            // Skip if -1
+            if ( rel_row_anchor < 0 || rel_col_anchor < 0 )
+                continue;
+
+            image.at< cv::Vec3b >( cv::Point( rel_col_anchor, rel_row_anchor ) )[0] = 255;
+            //image.at< cv::Vec3b >( cv::Point( rel_col_anchor, rel_row_anchor ) )[1] = 255;
+            //image.at< cv::Vec3b >( cv::Point( 0, 0 ) )[0] = 255;
+            //image.at< cv::Vec3b >( cv::Point( 0, 0 ) )[1] = 255;
+
+        }
+
+        window.render( window_index, &( image ) );
     }
 };
 

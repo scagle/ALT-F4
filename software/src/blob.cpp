@@ -21,10 +21,18 @@ namespace altf4
     // Methods
     cv::Rect Blob::getEncompassingRect( int padding ) 
     { 
-        return cv::Rect(    boundary.la - padding, 
-                            boundary.lb - padding, 
-                            ( boundary.ha - boundary.la ) + ( padding * 2 ), 
-                            ( boundary.hb - boundary.lb ) + ( padding * 2 )
+        // Note: 
+        // For future viewers, OpenCV uses X / Y notation instead of R / C for drawing rectangles.
+        // To emphasize this, below is how R / C is translated into X / Y:
+        const int blob_min_x = boundary.lb;
+        const int blob_min_y = boundary.la;
+        const int blob_max_x = boundary.hb;
+        const int blob_max_y = boundary.ha;
+
+        return cv::Rect(    blob_min_x - padding, 
+                            blob_min_y - padding, 
+                            ( blob_max_x - blob_min_x ) + ( padding * 2 ), 
+                            ( blob_max_y - blob_min_y ) + ( padding * 2 )
                        ); 
     }
 

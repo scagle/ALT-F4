@@ -30,6 +30,7 @@ namespace altf4
             bool initialize(unsigned int);
             void temp( std::vector< Image >* images );
             void tempDisplay( std::vector< cv::Mat >* mats );
+            void wait( int wait_time );
             void render( unsigned int index, cv::Mat* mat );
             void toggleTune( int type );    
             void updateTune( int display_type );

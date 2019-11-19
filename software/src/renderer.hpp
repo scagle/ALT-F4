@@ -19,6 +19,7 @@ namespace altf4
             std::vector< std::vector< cv::Mat > > all_binary_mats; // multiple binary images ( one for each test ) per camera 
             // 0 = original image, 1 = HSV image, 2 = convolution image, 3+ binary image #(3 - n)
             int display_type = 0;                                       
+            bool pause = false;                                       
         
 
         public:
@@ -30,6 +31,10 @@ namespace altf4
             void renderMats( std::vector< DataFrame >* frames, std::vector< cv::Mat3b >* original_images );
             void annotateMat( int index, cv::Mat* mat, std::vector< Blob >& best_blobs );
 
+            void blobAndCoreToImage( int window_index, std::vector< unsigned char* >& binary_data_2d, 
+                    Blob& blob ); // Used for debugging blob and core calculations
+
+            void togglePause() { this->pause ^= 1; }
             // Accessors
             std::vector< cv::Mat >* getMats() { return &mats; }
             std::vector< std::vector< cv::Mat > >* getAllBinaryMats() { return &all_binary_mats; }

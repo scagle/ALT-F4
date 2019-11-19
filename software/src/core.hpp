@@ -1,7 +1,8 @@
 #pragma once
 
-#include "datatypes/boundary.hpp"
 #include "datatypes/position.hpp"
+#include "datatypes/core_anchor.hpp"
+#include "datatypes/boundary.hpp"
 #include "datatypes/pixel.hpp"
 
 #include <opencv2/videoio.hpp>
@@ -15,11 +16,11 @@ namespace altf4
             // Private Members
             bool initialized = false;
             Position origin;
-            std::vector< Position > anchors;
+            Color avg_color;
+            std::vector< CoreAnchor > anchors;
             Boundary* blob_boundary;
             Boundary core_boundary;
-
-            
+            bool exploded = false;
 
         public:
             Core() { }
@@ -27,17 +28,22 @@ namespace altf4
             virtual ~Core() { }
 
             // Methods
-            Position getAnchor( std::vector< unsigned char* >& binary_data_2d, unsigned int num_rows, unsigned int num_columns, int dir_row, int dir_col);
+            CoreAnchor getAnchor( std::vector< unsigned char* >& binary_data_2d, std::vector< std::vector< Color > >& color_2d, 
+                    unsigned int num_rows, unsigned int num_columns, int dir_row, int dir_col);
             void spread( std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d );
             cv::Rect getEncompassingRect( int padding );
             unsigned int getArea();
+            Position getOrigin() { return this->origin; }
             unsigned int getEccentricity(); // Calculate eccentricity
 
             // Accessors
-            std::vector< Position >& getAnchors() { return this->anchors; }
             bool isInitialized() { return this->initialized; }
+            std::vector< CoreAnchor >& getAnchors() { return this->anchors; }
+            Color& getAverageColor() { return this->avg_color; }
+            bool isExploded() { return this->exploded; }
 
             // Mutators
+            bool explode() { this->exploded = true; }
     };
 };
 

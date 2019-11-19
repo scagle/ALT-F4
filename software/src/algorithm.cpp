@@ -9,6 +9,7 @@
 #include "globals.hpp"
 
 #include <stack>
+#include <csignal>
 
 namespace altf4
 {
@@ -233,6 +234,7 @@ namespace altf4
                     }
                 }
             }
+
             // Directly modify referenced blob
             blob = Blob( blob_pixels, { blob_min_row, blob_min_col, blob_max_row, blob_max_col } );
         }
@@ -338,6 +340,20 @@ namespace altf4
             return (unsigned char)normalized_diff;
         }
 
+        unsigned char scoreAverageCoreColor( const Color average_color, const Color expected_color, int multiplier )
+        {
+            // Get distance in pixels
+            unsigned int diff_c1 = std::abs( (int)average_color.b - (int)expected_color.b );
+            unsigned int diff_c2 = std::abs( (int)average_color.g - (int)expected_color.g );
+            unsigned int diff_c3 = std::abs( (int)average_color.r - (int)expected_color.r );
+
+            // Normalize (0 - 765) to (0 - 255)
+            unsigned int normalized_diff = ( (float)( diff_c1 + diff_c2 + diff_c3 ) / ( 255.0 * 3.0 ) * 255.0 );
+
+            // Invert, so that the lower number gives the higher score 
+            return ( 255 - normalized_diff );
+        }
+
         unsigned char scoreConvolutionAverage( unsigned char average, const unsigned int expected_average, int multiplier )
         {
             unsigned int diff_average = (int)expected_average - (int)average;
@@ -421,13 +437,36 @@ namespace altf4
             // Calculate score multiplier
             float multiplier = 1;
 
+            // Core expected average color
             if ( Tuner::scoring_rigorous_masks[0] )
+            {
+                Color& average_color = core->getAverageColor();
+                unsigned char score_average_core_color = scoreAverageCoreColor( average_color, Tuner::expected_core_colors[type], 2 );
+                printf("average_color: {%d, %d, %d}\n", average_color.b, average_color.g, average_color.r);
+                printf("score_average_core_color: %d\n", score_average_core_color);
+                multiplier *= (float)score_average_core_color;
+            }
+
+            // Core expected length
+            if ( Tuner::scoring_rigorous_masks[1] )
+            {
+            }
+
+            // Core exploded
+            if ( Tuner::scoring_rigorous_masks[2] )
+            {
+                bool exploded = blob.isExploded();
+                multiplier *= (exploded) ? 0.5 : 1;
+            }
+
+            if ( Tuner::scoring_rigorous_masks[3] )
             {
                 unsigned char conv_average = blob.getConvolutionAverage();
                 unsigned char score_conv_average = scoreConvolutionAverage( conv_average, Tuner::expected_conv_averages[type], 1 );
                 multiplier *= (float)score_conv_average / 255.0;
                 blob.setConvolutionAverageScore( score_conv_average );
             }
+
 
             //multiplier *= blob.getNormalizedEccentricity();
             // TODO: Broken and not well implemented
@@ -441,7 +480,7 @@ namespace altf4
         {
             std::vector< Pixel >* blob_pixels = blob.getPixels();       // Blob pixels (3 channels)
             std::vector< Pixel_1 >* conv_pixels = blob.getConvPixels(); // Normalized Convolution pixels (1 channel) ( 0 - 255 )
-            std::vector< int > product_values(blob_pixels->size(), 0);   // Convolution before normalization ( + / - )
+            std::vector< int > product_values;   // Convolution before normalization ( + / - )
 
             int dot_product_min = 0;
             int dot_product_max = 0;
@@ -476,6 +515,10 @@ namespace altf4
                 product_values.push_back( dot_product_sum );
             }
 
+            if ( (*blob_pixels).size() != product_values.size() )
+            {
+                printf("*** WARNING: blob_pixels size: %d | product_values size: %d\n", (*blob_pixels).size(), product_values.size());
+            }
             // Normalize
             int total_dot_product_sum = 0;
             int dot_product_range = dot_product_max - dot_product_min;
@@ -567,7 +610,7 @@ namespace altf4
             average_col /= brightest_pixels.size();
             //printf ("Average Pixel = %d, %d\n", average_row, average_col);
 
-            Position core_origin = {average_row, average_col};
+            Position core_origin = {average_row, average_col, PositionType::ROW_COL};
 
             return Core( core_origin, blob.getBoundary() );
         }
