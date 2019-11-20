@@ -32,12 +32,12 @@ namespace altf4
             // Methods
             bool initialize( int number_of_cameras );
             void renderMats( std::vector< DataFrame >* frames, std::vector< cv::Mat3b >* original_images );
-            void annotateMat( int index, cv::Mat* mat, std::vector< Blob >& best_blobs );
+            void drawBlobBoundaries( cv::Mat* mat, std::vector< Blob >& best_blobs );
+            void drawAttributes( cv::Mat* mat, std::vector< Blob >& best_blobs );
 
             /* Used for debugging blob and core calculations */
             void blobAndCoreToImage( int window_index, std::vector< unsigned char* >& binary_data_2d, 
                                      Blob& blob ); 
-            void writeScores( std::unordered_map< std::string, int >& scores );
 
             void togglePause() { this->pause ^= 1; }
             // Accessors

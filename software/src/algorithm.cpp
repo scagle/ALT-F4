@@ -463,8 +463,6 @@ namespace altf4
             {
                 Color& average_color = core->getAverageColor();
                 unsigned char score_average_core_color = scoreAverageCoreColor( average_color, Tuner::expected_core_colors[type], 2 );
-                printf("average_color: {%d, %d, %d}\n", average_color.b, average_color.g, average_color.r);
-                printf("score_average_core_color: %d\n", score_average_core_color);
                 multiplier *= (float)score_average_core_color;
                 blob.addAttribute( "average_core_color", score_average_core_color, average_color.str() );
             }
@@ -474,7 +472,6 @@ namespace altf4
             {
                 int average_core_length = core->getAverageLength();
                 unsigned char score_average_core_length = scoreAverageCoreLength( average_core_length, Tuner::expected_core_length[type], 10 );
-                printf("average_core_length: %d\n", average_core_length );
                 multiplier *= (float)score_average_core_length;
                 blob.addAttribute( "average_core_length", score_average_core_length, std::to_string( average_core_length ) );
             }

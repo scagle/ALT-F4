@@ -8,7 +8,9 @@
 
 #include <opencv2/videoio.hpp>
 #include <opencv2/imgproc.hpp>
+
 #include <csignal>
+#include <set>
 
 namespace altf4
 {
@@ -47,12 +49,14 @@ namespace altf4
 
             if (display_type == 0)
             {
-                annotateMat( i, &( (*original_images)[i] ), (*frames)[i].getBestBlobs() );
+                drawBlobBoundaries( &( (*original_images)[i] ), (*frames)[i].getBestBlobs() );
+                drawAttributes( &( (*original_images)[i] ), (*frames)[i].getBestBlobs() );
                 window.render( i, &( (*original_images)[i] ) );
             }
             else if (display_type == 1)
             {
-                annotateMat( i, &( mats[i] ), (*frames)[i].getBestBlobs() );
+                drawBlobBoundaries( &( mats[i] ), (*frames)[i].getBestBlobs() );
+                drawAttributes( &( mats[i] ), (*frames)[i].getBestBlobs() );
                 window.render( i, &( mats[i] ) );
             }
             else if (display_type == 2)
@@ -60,7 +64,7 @@ namespace altf4
                 // Draw Detailed Blob / Core picture ( debugging )
                 blobAndCoreToImage( i, (*frames)[i].getBinaryDatas2D()[0], (*frames)[i].getBestBlobs()[0] );
 
-                //annotateMat( i, &( conv_mats[i] ), (*frames)[i].getBestBlobs() );
+                //drawBlobBoundaries( &( conv_mats[i] ), (*frames)[i].getBestBlobs() );
                 ////drawConvolutionSpots( i, (*frames)[i].getBestBlobs() );
                 //window.render( i, &( conv_mats[i] ) );
             }
@@ -68,7 +72,7 @@ namespace altf4
             {
                 if ( all_binary_mats.size() > 0 && display_type - 3 < (int)all_binary_mats[0].size()  )
                 {
-                    annotateMat(i, &( all_binary_mats[i][display_type-3] ), (*frames)[i].getBestBlobs() );
+                    drawBlobBoundaries( &( all_binary_mats[i][display_type-3] ), (*frames)[i].getBestBlobs() );
                     window.render( i, &( all_binary_mats[i][display_type-3] ) );
                 }
                 else
@@ -80,26 +84,13 @@ namespace altf4
         }
     }
     
-    void Renderer::annotateMat( int index, cv::Mat* mat, std::vector< Blob >& best_blobs )
+    void Renderer::drawBlobBoundaries( cv::Mat* mat, std::vector< Blob >& best_blobs )
     {
         for ( unsigned int type = 0; type < best_blobs.size(); type++ )
         {
             if ( best_blobs[type].isInitialized() )
             {
                 cv::rectangle( *mat, best_blobs[type].getEncompassingRect(10), Tuner::associated_color[type], 2 );
-                if ( best_blobs[type].hasCore() )
-                {
-                    //cv::rectangle( *mat, best_blobs[type].getCore()->getEncompassingRect(1), {150, 200, 255}, 5 );
-                    //cv::rectangle( *mat, best_blobs[type].getEncompassingRect(15), {255, 255, 0}, 5 ); // make the cores a little more visible
-                }
-                std::ostringstream ss;
-                //ss << best_blobs[type].getScore() << ", " << (int)best_blobs[type].getConvolutionAverage() << ", " << best_blobs[type].getArea() << ", " << best_blobs[type].getSize();
-                //ss << best_blobs[type].getScore() << ", " 
-                //   << (int)best_blobs[type].getAverageColorScore() << ", " 
-                //   << (int)best_blobs[type].getAreaScore() << ", " 
-                //   << (int)best_blobs[type].getSizeScore() << ", "
-                //   << (int)best_blobs[type].getConvolutionAverageScore();
-                //cv::putText( *mat, ss.str(), cv::Point(10, 470 - (type * 20)), cv::FONT_HERSHEY_SIMPLEX, 0.5, Tuner::associated_color[type], 2);
             }
 
             //if ( blob.isInitialized() )
@@ -109,6 +100,40 @@ namespace altf4
             //        cv::rectangle( *mat, blob.getEncompassingRect(2), Tuner::associated_color[type], 2 );
             //    }
             //}
+        }
+    }
+
+    void Renderer::drawAttributes( cv::Mat* mat, std::vector< Blob >& best_blobs )
+    {
+        std::set< std::string > shown_attributes = 
+        {
+            "percent_score", 
+            "score_average_color",
+            "score_area", 
+            "score_size", 
+        };
+        int type = 0;
+        for ( auto&& blob : best_blobs )
+        {
+            if ( blob.isInitialized() )
+            {
+                std::vector< Attribute >& attributes = blob.getAttributes();
+                std::ostringstream ss;
+                for ( unsigned int i = 0; i < attributes.size(); i++ )
+                {
+                    if ( shown_attributes.find(attributes[i].name) != shown_attributes.end() )
+                    {
+                        ss << attributes[i].text;
+                        if ( i != attributes.size() - 1 )
+                        {
+                            ss << ", ";
+                        }
+                    }
+                }
+                cv::putText( *mat, ss.str(), cv::Point(10, 470 - (type * 20)), 
+                             cv::FONT_HERSHEY_SIMPLEX, 0.5, Tuner::associated_color[type], 2);
+            }
+            type++;
         }
     }
 
