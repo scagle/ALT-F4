@@ -1,9 +1,15 @@
 #pragma once
+
+#include "core.hpp"
+
 #include "datatypes/pixel.hpp"
 #include "datatypes/pixel_1.hpp"
 #include "datatypes/color.hpp"
-#include "core.hpp"
+#include "datatypes/attribute.hpp"
+
 #include <vector>
+#include <unordered_map>
+
 #include <opencv2/videoio.hpp>
 
 namespace altf4
@@ -15,14 +21,12 @@ namespace altf4
             std::vector< Pixel > pixels;
             std::vector< Pixel_1 > conv_pixels;
             std::vector< Pixel > core_pixels;
+            std::vector< Attribute > attributes; 
             Core core;
             Boundary boundary; // Boundary of blob
-            unsigned char score_average_color = 0;
-            unsigned char score_area = 0;
-            unsigned char score_size = 0;
-            unsigned char score_conv_average = 0;
-            float percent_score;
             bool initialized = false; // If blob is created but not initialized
+
+            // Rigorous variable storage
             unsigned int conv_sum = 0;
             unsigned char conv_average = 0;
 
@@ -37,7 +41,6 @@ namespace altf4
             unsigned int getArea();
             unsigned int getSize() { return this->pixels.size(); }
             Position getCenterPosition();
-            void setScore( float percent_score ) { this->percent_score = percent_score; }
             float getNormalizedEccentricity();
             float getNormalizedCoreArea();
 
@@ -50,28 +53,20 @@ namespace altf4
             bool hasCore() { return core.isInitialized(); }
             Boundary* getBoundary() { return &(this->boundary); }
             Core* getCore() { return &(this->core); }
-            float getScore() { return this->percent_score; }
-            unsigned int getConvolutionSum() { return conv_sum; }
-            unsigned char getConvolutionAverage() { return conv_average; }
-
-            // Scoring Accessors
-            unsigned char getAverageColorScore() { return this->score_average_color; }
-            unsigned char getAreaScore() { return this->score_area; }
-            unsigned char getSizeScore() { return this->score_size; }
-            unsigned char getConvolutionAverageScore() { return this->score_conv_average; }
+            std::vector< Attribute >& getAttributes() { return this->attributes; }
 
             // Mutators
             void explode() { this->core.explode(); }  // Max-size exceeded. Blob exploded... ( blob_detection )
             void setCorePixels( std::vector< Pixel > core_pixels ) { this->core_pixels = core_pixels; }
             void setCore( Core core ) { this->core = core; }
+            void addAttribute( std::string name, float score, std::string text ) { this->attributes.push_back( { name, score, text } ); }
+
+            // Rigorous Accessors/Mutators
             void setConvolutionSum( unsigned int conv_sum ) { this->conv_sum = conv_sum; }
             void setConvolutionAverage( unsigned char conv_average ) { this->conv_average = conv_average; }
+            unsigned int getConvolutionSum() { return conv_sum; }
+            unsigned char getConvolutionAverage() { return conv_average; }
 
-            // Scoring Mutators
-            void setAverageColorScore( unsigned char score_average_color ) { this->score_average_color = score_average_color; }
-            void setAreaScore( unsigned char score_area ) { this->score_area = score_area; }
-            void setSizeScore( unsigned char score_size ) { this->score_size = score_size; }
-            void setConvolutionAverageScore( unsigned char score_conv_average ) { this->score_conv_average = score_conv_average; }
     };
 };
 

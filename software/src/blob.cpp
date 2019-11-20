@@ -1,5 +1,8 @@
 #include "blob.hpp"
 
+#include "datatypes/pixel.hpp"
+#include "datatypes/color.hpp"
+
 namespace altf4
 {
     // Static Declarations

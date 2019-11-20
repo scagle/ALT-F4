@@ -9,6 +9,7 @@
 #include "globals.hpp"
 
 #include <stack>
+#include <string>
 #include <csignal>
 
 namespace altf4
@@ -354,9 +355,9 @@ namespace altf4
             return ( 255 - normalized_diff );
         }
 
-        unsigned char scoreAverageCoreLength( const int average_length, const int expected_length, int multiplier )
+        unsigned char scoreAverageCoreLength( const int average_core_length, const int expected_length, int multiplier )
         {
-            unsigned int diff_length = (int)expected_length - (int)average_length;
+            unsigned int diff_length = (int)expected_length - (int)average_core_length;
 
             int normalized_diff = 255 - diff_length * multiplier;
             if ( normalized_diff > 255 )
@@ -392,36 +393,43 @@ namespace altf4
                 unsigned int area = blob.getArea();
                 unsigned int size = blob.getSize();
 
-                float score = 0;
-                float maximum_score = 0;
+                unsigned char score_average_color = 0;
+                unsigned char score_area = 0;
+                unsigned char score_size = 0;
+
+                float score_sum = 0;
+                float score_max = 0;
                 
                 if ( Tuner::scoring_masks[0] )
                 {
-                    unsigned char score_average_color = scoreAverageColor( color, Tuner::hsv_expected_values[type], 1 );
-                    score += score_average_color;
-                    blob.setAverageColorScore( score_average_color );
-                    maximum_score += 255;
-                }
-                if ( Tuner::scoring_masks[1] )
-                {
-                    unsigned char score_area = scoreArea( area, Tuner::expected_areas[type], 2 );
-                    score += score_area;
-                    blob.setAreaScore( score_area );
-                    maximum_score += 255;
-                }
-                if ( Tuner::scoring_masks[2] )
-                {
-                    unsigned char score_size = scoreSize( size, Tuner::expected_sizes[type], 1 );
-                    score += score_size;
-                    blob.setSizeScore( score_size );
-                    maximum_score += 255;
+                    score_average_color = scoreAverageColor( color, Tuner::hsv_expected_values[type], 1 );
+                    score_sum += score_average_color;
+                    score_max += 255;
                 }
 
-                float percent_score = ( score / maximum_score ); // Get percentage score
-                blob.setScore( percent_score );
-            
+                if ( Tuner::scoring_masks[1] )
+                {
+                    score_area = scoreArea( area, Tuner::expected_areas[type], 2 );
+                    score_sum += score_area;
+                    score_max += 255;
+                }
+
+                if ( Tuner::scoring_masks[2] )
+                {
+                    score_size = scoreSize( size, Tuner::expected_sizes[type], 1 );
+                    score_sum += score_size;
+                    score_max += 255;
+                }
+
+                float percent_score = ( score_sum / score_max ); // Get percentage score
                 if ( percent_score >= Tuner::percentage_score_cutoff )
                 {
+                    // Save scores, since they matter more now ( and so we can view them later
+                    blob.addAttribute( "score_average_color", score_average_color, color.str() );
+                    blob.addAttribute( "score_area", score_area, std::to_string( area ) );
+                    blob.addAttribute( "score_size", score_size, std::to_string( size ) );
+                    blob.addAttribute( "percent_score", percent_score, std::to_string( percent_score ) );
+
                     // Apply more rigorous testing on the higher scoring blobs to save resources
                     float multiplier = rigorouslyScoreBlob( blob, color_2d, binary_data_2d, type );
                     percent_score *= multiplier;
@@ -458,15 +466,17 @@ namespace altf4
                 printf("average_color: {%d, %d, %d}\n", average_color.b, average_color.g, average_color.r);
                 printf("score_average_core_color: %d\n", score_average_core_color);
                 multiplier *= (float)score_average_core_color;
+                blob.addAttribute( "average_core_color", score_average_core_color, average_color.str() );
             }
 
             // Core expected average length
             if ( Tuner::scoring_rigorous_masks[1] )
             {
-                int average_length = core->getAverageLength();
-                unsigned char score_average_core_length = scoreAverageCoreLength( average_length, Tuner::expected_core_length[type], 10 );
-                printf("average_length: %d\n", average_length );
+                int average_core_length = core->getAverageLength();
+                unsigned char score_average_core_length = scoreAverageCoreLength( average_core_length, Tuner::expected_core_length[type], 10 );
+                printf("average_core_length: %d\n", average_core_length );
                 multiplier *= (float)score_average_core_length;
+                blob.addAttribute( "average_core_length", score_average_core_length, std::to_string( average_core_length ) );
             }
 
             // Core exploded
@@ -474,14 +484,17 @@ namespace altf4
             {
                 bool exploded = blob.isExploded();
                 multiplier *= (exploded) ? 0.5 : 1;
+                blob.addAttribute( "exploded", (float)exploded, std::to_string( (exploded) ? 0.5 : 1 ) );
             }
 
+            // Convolution Average
             if ( Tuner::scoring_rigorous_masks[3] )
             {
                 unsigned char conv_average = blob.getConvolutionAverage();
                 unsigned char score_conv_average = scoreConvolutionAverage( conv_average, Tuner::expected_conv_averages[type], 1 );
-                multiplier *= (float)score_conv_average / 255.0;
-                blob.setConvolutionAverageScore( score_conv_average );
+                float normalized_score = (float)score_conv_average / 255.0;
+                multiplier *= normalized_score;
+                blob.addAttribute( "score_conv_average", normalized_score, std::to_string( conv_average ) );
             }
 
 

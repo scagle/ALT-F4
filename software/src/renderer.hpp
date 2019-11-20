@@ -2,7 +2,10 @@
 #include "data_frame.hpp"
 #include "window.hpp"
 
+#include <unordered_map>
+
 #include <opencv2/highgui.hpp>
+#include <opencv2/plot.hpp>
 
 namespace altf4
 {
@@ -31,8 +34,10 @@ namespace altf4
             void renderMats( std::vector< DataFrame >* frames, std::vector< cv::Mat3b >* original_images );
             void annotateMat( int index, cv::Mat* mat, std::vector< Blob >& best_blobs );
 
+            /* Used for debugging blob and core calculations */
             void blobAndCoreToImage( int window_index, std::vector< unsigned char* >& binary_data_2d, 
-                    Blob& blob ); // Used for debugging blob and core calculations
+                                     Blob& blob ); 
+            void writeScores( std::unordered_map< std::string, int >& scores );
 
             void togglePause() { this->pause ^= 1; }
             // Accessors

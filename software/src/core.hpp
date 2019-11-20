@@ -45,7 +45,7 @@ namespace altf4
             bool isExploded() { return this->exploded; }
 
             // Mutators
-            bool explode() { this->exploded = true; }
+            void explode() { this->exploded = true; }
     };
 };
 

@@ -94,12 +94,12 @@ namespace altf4
                 }
                 std::ostringstream ss;
                 //ss << best_blobs[type].getScore() << ", " << (int)best_blobs[type].getConvolutionAverage() << ", " << best_blobs[type].getArea() << ", " << best_blobs[type].getSize();
-                ss << best_blobs[type].getScore() << ", " 
-                   << (int)best_blobs[type].getAverageColorScore() << ", " 
-                   << (int)best_blobs[type].getAreaScore() << ", " 
-                   << (int)best_blobs[type].getSizeScore() << ", "
-                   << (int)best_blobs[type].getConvolutionAverageScore();
-                cv::putText( *mat, ss.str(), cv::Point(10, 470 - (type * 20)), cv::FONT_HERSHEY_SIMPLEX, 0.5, Tuner::associated_color[type], 2);
+                //ss << best_blobs[type].getScore() << ", " 
+                //   << (int)best_blobs[type].getAverageColorScore() << ", " 
+                //   << (int)best_blobs[type].getAreaScore() << ", " 
+                //   << (int)best_blobs[type].getSizeScore() << ", "
+                //   << (int)best_blobs[type].getConvolutionAverageScore();
+                //cv::putText( *mat, ss.str(), cv::Point(10, 470 - (type * 20)), cv::FONT_HERSHEY_SIMPLEX, 0.5, Tuner::associated_color[type], 2);
             }
 
             //if ( blob.isInitialized() )

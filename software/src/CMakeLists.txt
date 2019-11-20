@@ -49,7 +49,10 @@ set(BASE_SOURCES
     window.hpp
 )
 
+# Include basic datatypes
 add_subdirectory(datatypes)
+# Include external libraries
+add_subdirectory(external) 
 
 add_executable(camera ${BASE_SOURCES} ${DATATYPE_SOURCES})
 target_link_libraries(camera ${OpenCV_LIBS})

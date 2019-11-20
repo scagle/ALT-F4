@@ -12,13 +12,14 @@ namespace altf4
         private:
             // Private Members
             Image* image = nullptr;                                 // Pointer to original image in main.cpp
-            std::vector< std::vector< unsigned char > > conv_data;            // Convolution data
-            std::vector< unsigned char > conv_data_1d;                        // Convolution data in 1 dimension
+            std::vector< std::vector< unsigned char > > conv_data;  // Convolution data
+            std::vector< unsigned char > conv_data_1d;              // Convolution data in 1 dimension
             std::vector< Image > binary_images;                     // Array of binary_images representing each color ( IE: green / red in our case )
             std::vector< std::vector< Color > > color_2d;           // Array of image colors represented in 2 dimensions
             std::vector< std::vector< unsigned char* > > binary_datas_2d;  // Array of binary_image data represented in 2 dimensions
             std::vector< std::vector< Blob > > all_blobs;           // Array of all blobs found in colored binary_images
             std::vector< Blob > best_blobs;                         // Array of single best blob found in colored binary_image
+
             int camera_index;
             bool initialized = false;
 
