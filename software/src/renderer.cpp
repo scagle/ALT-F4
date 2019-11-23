@@ -10,7 +10,12 @@
 #include <opencv2/imgproc.hpp>
 
 #include <csignal>
+#include <vector>
+#include <string>
 #include <set>
+#include <fstream>
+
+template class std::vector<Attribute>;
 
 namespace altf4
 {
@@ -63,6 +68,7 @@ namespace altf4
             {
                 // Draw Detailed Blob / Core picture ( debugging )
                 blobAndCoreToImage( i, (*frames)[i].getBinaryDatas2D()[0], (*frames)[i].getBestBlobs()[0] );
+                writeAttributesToFile( &( mats[i] ), (*frames)[i].getBestBlobs() );
 
                 //drawBlobBoundaries( &( conv_mats[i] ), (*frames)[i].getBestBlobs() );
                 ////drawConvolutionSpots( i, (*frames)[i].getBestBlobs() );
@@ -103,14 +109,92 @@ namespace altf4
         }
     }
 
-    void Renderer::drawAttributes( cv::Mat* mat, std::vector< Blob >& best_blobs )
+    void Renderer::writeAttributesToFile( cv::Mat* mat, std::vector< Blob >& best_blobs )
     {
+        // Check if out file is open, if not try opening it
+        if ( this->out_file.is_open() == false ) 
+        {
+            this->out_file.open("attributes.csv");
+            if ( this->out_file.is_open() == false )
+            {
+                printf("*** WARNING: Can't open attribute output file (renderer.cpp)\n");
+                return;
+            }
+            printf("Successfully opened attributes file");
+        }
+
         std::set< std::string > shown_attributes = 
         {
             "percent_score", 
             "score_average_color",
             "score_area", 
             "score_size", 
+            "average_core_color",
+            "average_core_length",
+            "exploded",
+            "score_conv_average",
+        };
+
+        // Grab red blobs
+        Blob& blob = best_blobs[0]; 
+
+        // Output attribute names
+        if ( out_file_started == false )
+        {
+            if ( blob.isInitialized() )
+            {
+                std::vector< Attribute >& attributes = blob.getAttributes();
+                std::ostringstream ss;
+                for ( unsigned int i = 0; i < attributes.size(); i++ )
+                {
+                    if ( shown_attributes.find(attributes[i].name) != shown_attributes.end() )
+                    {
+                        ss << attributes[i].name;
+                        printf("%s\n", attributes[i].name.c_str());
+                        if ( i != attributes.size() - 1 )
+                        {
+                            ss << ",";
+                        }
+                    }
+                }
+                out_file << ss.str() << "\n";
+                out_file_started = true;
+            }
+        }
+
+        // Output attribute values
+        if ( blob.isInitialized() )
+        {
+            std::vector< Attribute >& attributes = blob.getAttributes();
+            std::ostringstream ss;
+            for ( unsigned int i = 0; i < attributes.size(); i++ )
+            {
+                if ( shown_attributes.find(attributes[i].name) != shown_attributes.end() )
+                {
+                    ss << attributes[i].score;
+                    printf("%f\n", attributes[i].score);
+                    if ( i != attributes.size() - 1 )
+                    {
+                        ss << ",";
+                    }
+                }
+            }
+            out_file << ss.str() << "\n";
+        }
+    }
+
+    void Renderer::drawAttributes( cv::Mat* mat, std::vector< Blob >& best_blobs )
+    {
+        std::set< std::string > shown_attributes = 
+        {
+            //"percent_score", 
+            //"score_average_color",
+            "score_area", 
+            "score_size", 
+            //"average_core_color",
+            "average_core_length",
+            //"exploded",
+            "score_conv_average",
         };
         int type = 0;
         for ( auto&& blob : best_blobs )
@@ -123,7 +207,20 @@ namespace altf4
                 {
                     if ( shown_attributes.find(attributes[i].name) != shown_attributes.end() )
                     {
-                        ss << attributes[i].text;
+                        switch ( attribute_type )
+                        {
+                            case 0:
+                                ss << attributes[i].score;
+                                break;
+                            case 1:
+                                ss << attributes[i].text;
+                                break;
+                            case 2:
+                                ss << attributes[i].name;
+                                break;
+                            default:
+                                break;
+                        }
                         if ( i != attributes.size() - 1 )
                         {
                             ss << ", ";

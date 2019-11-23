@@ -42,6 +42,9 @@ namespace altf4
     // List of expected core color values for scoring ( Average color of core of blob )
     static const std::vector< Color > expected_core_colors;
 
+    // Apply masks to specific core channel values (IE: Value might be more important than hue)
+    static const std::vector< bool > core_colors_masks;
+
     // List of expected core anchor length for scoring (average CoreAnchor lengths)
     static const std::vector< unsigned int > expected_core_length;
 

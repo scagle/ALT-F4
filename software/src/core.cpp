@@ -102,7 +102,7 @@ namespace altf4
         int channel_a_sum = 0;
         int channel_b_sum = 0;
         int channel_c_sum = 0;
-        int length_sum = 0;
+        float length_sum = 0;
         int valid_count = 0;
 
         for ( auto&& anchor : anchors )

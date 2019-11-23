@@ -341,23 +341,39 @@ namespace altf4
             return (unsigned char)normalized_diff;
         }
 
-        unsigned char scoreAverageCoreColor( const Color average_color, const Color expected_color, int multiplier )
+        unsigned char scoreAverageCoreColor( const Color average_color, const Color expected_color, 
+                                             const std::vector< bool > channel_masks, int multiplier )
         {
             // Get distance in pixels
             unsigned int diff_c1 = std::abs( (int)average_color.b - (int)expected_color.b );
             unsigned int diff_c2 = std::abs( (int)average_color.g - (int)expected_color.g );
             unsigned int diff_c3 = std::abs( (int)average_color.r - (int)expected_color.r );
 
-            // Normalize (0 - 765) to (0 - 255)
-            unsigned int normalized_diff = ( (float)( diff_c1 + diff_c2 + diff_c3 ) / ( 255.0 * 3.0 ) * 255.0 );
+            unsigned int total_score = 0;
+            unsigned int num_scores = 0;
+            if ( channel_masks[0] )
+            {
+                total_score += 255 - (float)( diff_c1 );
+                num_scores++;
+            }
+            if ( channel_masks[1] )
+            {
+                total_score += 255 - (float)( diff_c2 );
+                num_scores++;
+            }
+            if ( channel_masks[2] )
+            {
+                total_score += 255 - (float)( diff_c3 );
+                num_scores++;
+            }
 
             // Invert, so that the lower number gives the higher score 
-            return ( 255 - normalized_diff );
+            return total_score / num_scores;
         }
 
-        unsigned char scoreAverageCoreLength( const int average_core_length, const int expected_length, int multiplier )
+        unsigned char scoreAverageCoreLength( const float average_core_length, const int expected_length, int multiplier )
         {
-            unsigned int diff_length = (int)expected_length - (int)average_core_length;
+            float diff_length = expected_length - average_core_length;
 
             int normalized_diff = 255 - diff_length * multiplier;
             if ( normalized_diff > 255 )
@@ -425,7 +441,7 @@ namespace altf4
                 if ( percent_score >= Tuner::percentage_score_cutoff )
                 {
                     // Save scores, since they matter more now ( and so we can view them later
-                    blob.addAttribute( "score_average_color", score_average_color, color.str() );
+                    blob.addAttribute( "score_average_color", score_average_color, color.getStructuredString() );
                     blob.addAttribute( "score_area", score_area, std::to_string( area ) );
                     blob.addAttribute( "score_size", score_size, std::to_string( size ) );
                     blob.addAttribute( "percent_score", percent_score, std::to_string( percent_score ) );
@@ -462,16 +478,17 @@ namespace altf4
             if ( Tuner::scoring_rigorous_masks[0] )
             {
                 Color& average_color = core->getAverageColor();
-                unsigned char score_average_core_color = scoreAverageCoreColor( average_color, Tuner::expected_core_colors[type], 2 );
+                unsigned char score_average_core_color = scoreAverageCoreColor( average_color, Tuner::expected_core_colors[type], 
+                    Tuner::core_colors_masks, 2 );
                 multiplier *= (float)score_average_core_color;
-                blob.addAttribute( "average_core_color", score_average_core_color, average_color.str() );
+                blob.addAttribute( "average_core_color", score_average_core_color, average_color.getStructuredString() );
             }
 
             // Core expected average length
             if ( Tuner::scoring_rigorous_masks[1] )
             {
-                int average_core_length = core->getAverageLength();
-                unsigned char score_average_core_length = scoreAverageCoreLength( average_core_length, Tuner::expected_core_length[type], 10 );
+                float average_core_length = core->getAverageLength();
+                unsigned char score_average_core_length = scoreAverageCoreLength( average_core_length, Tuner::expected_core_length[type], 50 );
                 multiplier *= (float)score_average_core_length;
                 blob.addAttribute( "average_core_length", score_average_core_length, std::to_string( average_core_length ) );
             }

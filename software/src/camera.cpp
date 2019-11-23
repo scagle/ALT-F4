@@ -37,6 +37,7 @@ namespace altf4
             std::unique_lock< std::mutex> ul( capture_mutex );
             readOS();
             if ( os == "Ubuntu" )
+            {
                 switch ( camera_number )
                 {
                     case 0: // Front Camera
@@ -52,8 +53,16 @@ namespace altf4
                         cap = cv::VideoCapture("/dev/v4l/by-path/pci-0000:00:14.0-usb-0:5:1.0-video-index0");
                         break;
                 }
+            }
             else if ( os == "Arch Linux" )
+            {
                 cap = cv::VideoCapture(camera_number * 2);    // open the camera located at /dev/videoX
+            }
+            else
+            {
+                printf("*** WARNING: Unknown operating system, trying to open any camera (camera.cpp)\n");
+                cap = cv::VideoCapture(camera_number);    // try to open a camera
+            }
 
             if (!cap.isOpened()) // check if we succeeded
             {
@@ -89,14 +98,15 @@ namespace altf4
     void Camera::printStats()
     {
         printf("Camera Settings:\n");
-        printf("\tcamera width  / cols: %lf\n", cap.get(cv::CAP_PROP_FRAME_WIDTH) );
+        printf("\tcamera width  / cols: %lf\n", cap.get(cv::CAP_PROP_FRAME_WIDTH));
         printf("\tcamera height / rows: %lf\n", cap.get(cv::CAP_PROP_FRAME_HEIGHT));
-        printf("\tcamera framerate    : %lf\n", cap.get(cv::CAP_PROP_FPS)         );
-        //printf("\tcamera auto-whitebal: %lf\n", cap.get(cv::CAP_PROP_AUTO_WB)     );
-        //printf("\tvideo buffer size   : %lf\n", cap.get(cv::CAP_PROP_BUFFERSIZE)  );
-        printf("\tvideo width  / cols : %d\n", cols                             );
-        printf("\tvideo height / rows : %d\n", rows                            );
-        printf("\tvideo channels      : %d\n", channels                          );
+        printf("\tcamera framerate    : %lf\n", cap.get(cv::CAP_PROP_FPS));
+        printf("\tcamera brightness   : %lf\n", cap.get(cv::CAP_PROP_BRIGHTNESS));
+        //printf("\tcamera auto-whitebal: %lf\n", cap.get(cv::CAP_PROP_AUTO_WB));
+        //printf("\tvideo buffer size   : %lf\n", cap.get(cv::CAP_PROP_BUFFERSIZE));
+        printf("\tvideo width  / cols : %d\n", cols);
+        printf("\tvideo height / rows : %d\n", rows);
+        printf("\tvideo channels      : %d\n", channels);
     }
     
     void Camera::readOS()

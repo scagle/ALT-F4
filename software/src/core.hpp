@@ -17,7 +17,7 @@ namespace altf4
             bool initialized = false;
             Position origin;
             Color avg_color;
-            int avg_length;
+            float avg_length;
             std::vector< CoreAnchor > anchors;
             Boundary* blob_boundary;
             Boundary core_boundary;
@@ -41,7 +41,7 @@ namespace altf4
             bool isInitialized() { return this->initialized; }
             std::vector< CoreAnchor >& getAnchors() { return this->anchors; }
             Color& getAverageColor() { return this->avg_color; }
-            int getAverageLength() { return this->avg_length; }
+            float getAverageLength() { return this->avg_length; }
             bool isExploded() { return this->exploded; }
 
             // Mutators

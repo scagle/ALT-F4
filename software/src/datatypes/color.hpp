@@ -8,10 +8,19 @@ struct Color
     int g;
     int r;
 
-    std::string str()
+    // Return a pretty presentable version of color (human readable)
+    std::string getPrettyString()
     {
         std::ostringstream ss;
         ss << "{ " << b << ", " << g << ", " << r << " }";
+        return ss.str();
+    }
+
+    // Return a comma separated version of color (to file)
+    std::string getStructuredString()
+    {
+        std::ostringstream ss;
+        ss << b << "," << g << "," << r;
         return ss.str();
     }
 };

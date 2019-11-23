@@ -19,8 +19,8 @@ namespace altf4
         // Green Laser:
         {
             
-            Color{  30,  60, 100 },   // Min Threshold
-            Color{  90, 200, 245 }    // Max Threshold
+            Color{  55, 100, 100 },   // Min Threshold
+            Color{  85, 245, 245 }    // Max Threshold
         },
 
         // Red Laser:
@@ -46,7 +46,7 @@ namespace altf4
     {
         // Green Laser:
         {
-            Color{ 40, 75, 170 },  
+            Color{ 75, 135, 180 },  
         },
 
         // Red Laser:
@@ -80,13 +80,21 @@ namespace altf4
     {
         // Green Laser:
         {
-            Color{ 255, 80, 90 },  
+            Color{ 0, 0, 255 },  
         },
 
         // Red Laser:
         {
-            Color{ 255, 80, 90 },   
+            Color{ 0, 0, 255 },   
         },
+    };
+
+    // Apply masks to specific core channel values (IE: Value might be more important than hue)
+    const std::vector< bool > Tuner::core_colors_masks = 
+    {
+        false,  // Channel 1 (Usually Hue)
+        false,  // Channel 2 (Usually Saturation)
+        true,   // Channel 3 (Usually Value)
     };
 
     // List of expected core anchor length for scoring (average CoreAnchor lengths)
@@ -103,10 +111,10 @@ namespace altf4
     const std::vector< unsigned char > Tuner::expected_conv_averages = 
     {
         // Green Laser:
-        180,
+        100,
 
         // Red Laser:
-        180,
+        100,
     };
 
     // Scoring features to use 
@@ -121,13 +129,13 @@ namespace altf4
     const std::vector< bool > Tuner::scoring_rigorous_masks = 
     {
         true,   // Closeness to expected Anchor Color ( closer -> higher score )
-        true,  // Expected Core Anchor length ( closer -> higher score )
+        false,   // Expected Core Anchor length ( closer -> higher score )
         true,   // Exploded Core Anchor ( exploded -> bad score )
         true,   // Closeness to expected Convolution Average ( closer -> higher score )
     };
 
     // Score percentage cutoff. If above this percentage of max score, then it qualifies
-    const float Tuner::percentage_score_cutoff = 0.7;
+    const float Tuner::percentage_score_cutoff = 0.8;
 
 /***************************************************************************************/
 /**                                      Outputs                                      **/

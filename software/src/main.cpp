@@ -124,6 +124,12 @@ void handleInputsThread( std::deque< unsigned char >& events, bool& done, bool& 
                     break;
                 }
 
+                case 'a':
+                {
+                    renderer.cycleAttribute();
+                    break;
+                }
+
                 case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
                 {
                     update_display = true; // update flag handled in main
