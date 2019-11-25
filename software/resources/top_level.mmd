@@ -1,0 +1,48 @@
+graph TD
+
+    algorithm( algorithm )
+	blob( blob )
+	camera( camera )
+	camera_handler( camera_handler )
+	core( core )
+	data_frame( data_frame )
+	image( image )
+	input_handler( input_handler )
+	main( main )
+	process( process )
+	process_handler( process_handler )
+	renderer( renderer )
+	serial_handler( serial_handler )
+	tuner( tuner )
+	uart( uart )
+	uart_handler( uart_handler )
+	uart_logic( uart_logic )
+	window( window )
+
+    style algorithm       fill:#ccf,stroke:#333
+    style blob            fill:#ccf,stroke:#333
+    style camera          fill:#ccf,stroke:#333
+    style camera_handler  fill:#ccf,stroke:#333
+    style core            fill:#ccf,stroke:#333
+    style data_frame      fill:#ccf,stroke:#333
+    style image           fill:#ccf,stroke:#333 
+    style input_handler   fill:#ccf,stroke:#333
+    style main            fill:#ccf,stroke:#333
+    style process         fill:#ccf,stroke:#333
+    style process_handler fill:#ccf,stroke:#333
+    style renderer        fill:#ccf,stroke:#333
+    style serial_handler  fill:#ccf,stroke:#333
+    style tuner           fill:#ccf,stroke:#333
+    style uart            fill:#ccf,stroke:#333
+    style uart_handler    fill:#ccf,stroke:#333
+    style uart_logic      fill:#ccf,stroke:#333
+    style window          fill:#ccf,stroke:#333
+
+    main --> camera_handler
+    main --> process_handler
+    main --> renderer
+    main --> uart_handler
+    main -.- input_handler
+    camera_handler --> camera
+    process_handler --> process
+

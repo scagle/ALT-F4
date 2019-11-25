@@ -81,7 +81,7 @@ namespace altf4
     std::string SerialHandler::numberToString(unsigned long number)
     {
         std::ostringstream oss;
-        oss << number << "\r";
+        oss << number << "\r\n";
         return oss.str();
     }
 
@@ -93,8 +93,9 @@ namespace altf4
 
     void SerialHandler::writeString( std::string str )
     {
-        const char *char_string = str.c_str();
-        write( fd, char_string, strlen(char_string) );
+        std::ostringstream oss;
+        oss << str << "\r\n";
+        write( fd, oss.str().c_str(), strlen( oss.str().c_str() ) );
     }
 
     void SerialHandler::set_blocking (int should_block)
