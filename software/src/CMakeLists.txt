@@ -35,8 +35,6 @@ set(BASE_SOURCES
     process.hpp
     renderer.cpp
     renderer.hpp
-    serial_handler.cpp
-    serial_handler.hpp
     tuner.cpp
     tuner.hpp
     uart.cpp

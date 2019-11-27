@@ -47,7 +47,7 @@ bool update_display = false;  // Synchronized flag to update display
 int update_display_type = 0;  // Value of display_type to be updated to
 
 std::string serial_path = "/dev/ttyACM0";
-std::string debug_serial_path = "/dev/pts/13";
+std::string debug_serial_path = "/dev/pts/5";
 int serial_baud = 115200;
 int serial_parity = 0;
 

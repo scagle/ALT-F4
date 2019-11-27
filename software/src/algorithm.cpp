@@ -290,7 +290,7 @@ namespace altf4
                     }
                 }
             }
-            printf("Found %d blobs!\n", blob_count);
+            //printf("Found %d blobs!\n", blob_count);
 
             // Reset changed pixels back to what they were
             while ( !edited_pixels.empty() )

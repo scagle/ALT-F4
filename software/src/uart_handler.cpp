@@ -108,7 +108,7 @@ namespace altf4
             // Update Buffers if necessary
             if ( green_found )
             {
-                printf("CAMERA INDEX %d FOUND GREEN LASER!\n", camera_index);
+                //printf("CAMERA INDEX %d FOUND GREEN LASER!\n", camera_index);
                 if ( camera_index == 0)
                 {
                     green_pos_buffer = green_blob.getCenterPosition();
