@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <mutex>
+#include <termios.h>
 
 namespace altf4
 {
@@ -30,7 +31,7 @@ namespace altf4
             // Private Members
             std::string path = "";
             int fd = -1;
-            int baud = 115200;
+            speed_t baud = B115200;
             int parity = 0;
             bool opened = false;
             bool new_data_flag = false;
@@ -41,11 +42,11 @@ namespace altf4
 
             // Private Methods
             bool openUART();
-            int set_interface_attribs (int speed, int parity);
+            int set_interface_attribs (speed_t speed, int parity);
             void set_blocking( int should_block );
 
         public:
-            UART( std::string path, int baud, int parity, std::mutex* dm ) : path(path), baud(baud), parity(parity), data_mutex(dm) { }
+            UART( std::string path, speed_t baud, int parity, std::mutex* dm ) : path(path), baud(baud), parity(parity), data_mutex(dm) { }
             virtual ~UART() { }
 
             // Methods

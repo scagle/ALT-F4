@@ -12,6 +12,7 @@
 #include <signal.h>
 #include <chrono>
 #include <mutex>
+#include <termios.h>
 #include <vector>
 #include <deque>
 #include <opencv2/highgui.hpp>
@@ -48,7 +49,7 @@ int update_display_type = 0;  // Value of display_type to be updated to
 
 std::string serial_path = "/dev/ttyACM0";
 std::string debug_serial_path = "/dev/pts/5";
-int serial_baud = 115200;
+speed_t serial_baud = B115200; // enum from termios
 int serial_parity = 0;
 
 unsigned int number_of_cameras = 4;

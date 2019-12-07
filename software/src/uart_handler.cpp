@@ -9,6 +9,7 @@
 
 #include <chrono>
 #include <thread>
+#include <termios.h>
 
 namespace altf4
 {
@@ -44,7 +45,7 @@ namespace altf4
         printf("UART Thread '%s' exited\n", uarts[uart_index].getPath().c_str());
     }
 
-    bool UARTHandler::startUART( std::string path, int baud, int parity )
+    bool UARTHandler::startUART( std::string path, speed_t baud, int parity )
     {
         uarts.push_back(UART( path, baud, parity, &data_mutex ));
         uart_threads.push_back( std::thread( &UARTHandler::UARTThread, uarts.size()-1 ) );

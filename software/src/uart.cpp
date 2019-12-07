@@ -34,7 +34,7 @@ namespace altf4
         return true;
     }
 
-    int UART::set_interface_attribs( int speed, int parity )
+    int UART::set_interface_attribs( speed_t speed, int parity )
     {
         struct termios tty;
         memset (&tty, 0, sizeof tty);
@@ -44,9 +44,6 @@ namespace altf4
             return -1;
         }
 
-        cfsetospeed (&tty, speed);
-        cfsetispeed (&tty, speed);
-
         tty.c_cflag = (tty.c_cflag & ~CSIZE) | CS8;     // 8-bit chars
         // disable IGNBRK for mismatched speed tests; otherwise receive break
         // as \000 chars
@@ -55,7 +52,7 @@ namespace altf4
         // no canonical processing
         tty.c_oflag = 0;                // no remapping, no delays
         tty.c_cc[VMIN]  = 0;            // read doesn't block
-        tty.c_cc[VTIME] = 5;            // 0.5 seconds read timeout
+        tty.c_cc[VTIME] = 0;            // 0.5 seconds read timeout
 
         tty.c_iflag &= ~(IXON | IXOFF | IXANY); // shut off xon/xoff ctrl
 
@@ -65,6 +62,13 @@ namespace altf4
         tty.c_cflag |= parity;
         tty.c_cflag &= ~CSTOPB;
         tty.c_cflag &= ~CRTSCTS;
+
+        tty.c_cflag &= ~ICRNL;  // 
+        tty.c_cflag &= ~IXOFF;  // 
+        tty.c_cflag &= ~ICANON; // Disable canonical mode (we want raw mode)
+
+        cfsetospeed (&tty, speed);
+        cfsetispeed (&tty, speed);
 
         if (tcsetattr (fd, TCSANOW, &tty) != 0)
         {
@@ -94,7 +98,7 @@ namespace altf4
     std::string UART::numberToString( unsigned long number )
     {
         std::ostringstream oss;
-        oss << number << "\r\n";
+        oss << number << "\r";
         return oss.str();
     }
     
@@ -154,20 +158,20 @@ namespace altf4
             case UART::State::GREEN_LASER : 
             case UART::State::BOTH_LASER : 
             {
-                writeString("strt\r\n");
+                writeString("strt\r");
                 writeNumber( data.coords[0].a );
                 writeNumber( data.coords[0].b );
                 writeNumber( data.coords[1].a );
                 writeNumber( data.coords[1].b );
-                writeString("stop\r\n");
+                writeString("stop\r");
                 break;
             }
             case UART::State::NO_LASER : 
             case UART::State::RED_LASER : 
             {
-                writeString("strt\r\n");
-                writeString("none\r\n");
-                writeString("stop\r\n");
+                writeString("strt\r");
+                writeString("none\r");
+                writeString("stop\r");
                 break;
             }
             default:

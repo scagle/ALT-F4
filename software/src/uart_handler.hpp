@@ -6,6 +6,7 @@
 
 #include <vector>
 #include <thread>
+#include <termios.h>
 
 namespace altf4
 {
@@ -27,7 +28,7 @@ namespace altf4
 
             // Methods
             static void UARTThread( int uart_index );
-            bool startUART( std::string path, int baud, int parity );
+            bool startUART( std::string path, speed_t baud, int parity );
             void resolveThreads();
             void prepareData( std::vector< DataFrame >& frames );
             void updateUARTData( UART::Data& data );
