@@ -50,7 +50,9 @@ namespace altf4
             virtual ~UART() { }
 
             // Methods
+            std::string headerNumberToString( std::string header, unsigned long number );
             std::string numberToString( unsigned long number );
+            void writeHeaderNumber( std::string header, unsigned long number );
             void writeNumber( unsigned long number );
             void writeString( std::string str );
 

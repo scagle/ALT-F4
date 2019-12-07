@@ -95,6 +95,13 @@ namespace altf4
             printf("Error setting term attributes\n");
     }
 
+    std::string UART::headerNumberToString( std::string header, unsigned long number )
+    {
+        std::ostringstream oss;
+        oss << header << number << "\r";
+        return oss.str();
+    }
+
     std::string UART::numberToString( unsigned long number )
     {
         std::ostringstream oss;
@@ -102,6 +109,12 @@ namespace altf4
         return oss.str();
     }
     
+    void UART::writeHeaderNumber( std::string header, unsigned long number )
+    {
+        const char *num_string = headerNumberToString(header, number).c_str();
+        write( fd, num_string, strlen(num_string));
+    }
+
     void UART::writeNumber( unsigned long number )
     {
         const char *num_string = numberToString(number).c_str();
@@ -113,7 +126,7 @@ namespace altf4
         const char *char_string = str.c_str();
         write( fd, char_string, strlen(char_string) );
     }
-
+    
     // Public Methods
     bool UART::initialize()
     {
@@ -158,20 +171,20 @@ namespace altf4
             case UART::State::GREEN_LASER : 
             case UART::State::BOTH_LASER : 
             {
-                writeString("strt\r");
-                writeNumber( data.coords[0].a );
-                writeNumber( data.coords[0].b );
-                writeNumber( data.coords[1].a );
-                writeNumber( data.coords[1].b );
-                writeString("stop\r");
+                //writeString("strt\r");
+                writeHeaderNumber( "gx:", data.coords[0].a );
+                writeHeaderNumber( "gy:", data.coords[0].b );
+                writeHeaderNumber( "rx:", data.coords[1].a );
+                writeHeaderNumber( "ry:", data.coords[1].b );
+                //writeString("stop\r");
                 break;
             }
             case UART::State::NO_LASER : 
             case UART::State::RED_LASER : 
             {
-                writeString("strt\r");
+                //writeString("strt\r");
                 writeString("none\r");
-                writeString("stop\r");
+                //writeString("stop\r");
                 break;
             }
             default:
