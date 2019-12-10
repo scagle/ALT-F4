@@ -25,7 +25,7 @@ elif [[ "$camera_type" == "m" ]]; then
     for ((i = 2; i <= $#; i++ )); do
         if [[ -e "${!i}" ]]; then
             v4l2-ctl -d ${!i} -c brightness=-64                   # (int)    : min=-64 max=64 step=1 default=0 value=0
-            v4l2-ctl -d ${!i} -c contrast=95                      # (int)    : min=0 max=95 step=1 default=32 value=32
+            v4l2-ctl -d ${!i} -c contrast=32                      # (int)    : min=0 max=95 step=1 default=32 value=32
             v4l2-ctl -d ${!i} -c saturation=55                    # (int)    : min=0 max=100 step=1 default=55 value=55
             v4l2-ctl -d ${!i} -c hue=0                            # (int)    : min=-2000 max=2000 step=1 default=0 value=0
             v4l2-ctl -d ${!i} -c white_balance_temperature_auto=1 # (bool)   : default=1 value=1

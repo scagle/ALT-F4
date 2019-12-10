@@ -188,7 +188,7 @@ namespace altf4
         std::set< std::string > shown_attributes = 
         {
             //"percent_score", 
-            //"score_average_color",
+            "score_average_color",
             "score_area", 
             "score_size", 
             //"average_core_color",

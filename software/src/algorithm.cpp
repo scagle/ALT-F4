@@ -393,6 +393,7 @@ namespace altf4
                 normalized_diff = 255;
             if ( normalized_diff < 0 )
                 normalized_diff = 0;
+            printf("ConvolutionAverage diff = %d\n", normalized_diff);
 
             return (unsigned char)normalized_diff;
         }

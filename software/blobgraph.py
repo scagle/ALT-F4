@@ -4,7 +4,7 @@ import numpy as np
 keys = []
 values = dict()
 
-with open("build/attributes.csv", "r") as f:
+with open("attributes.csv", "r") as f:
     lines = f.readlines()
 
     # initialize the dictionary

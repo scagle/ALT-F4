@@ -19,8 +19,8 @@ namespace altf4
         // Green Laser:
         {
             
-            Color{  55, 100, 100 },   // Min Threshold
-            Color{  85, 245, 245 }    // Max Threshold
+            Color{  23, 0, 16 },   // Min Threshold
+            Color{  100, 245, 163 }    // Max Threshold
         },
 
         // Red Laser:
@@ -46,7 +46,7 @@ namespace altf4
     {
         // Green Laser:
         {
-            Color{ 75, 135, 180 },  
+            Color{ 35, 180, 100 },  
         },
 
         // Red Laser:
@@ -80,7 +80,7 @@ namespace altf4
     {
         // Green Laser:
         {
-            Color{ 0, 0, 255 },  
+            Color{ 52, 0, 142 },  
         },
 
         // Red Laser:
@@ -92,7 +92,7 @@ namespace altf4
     // Apply masks to specific core channel values (IE: Value might be more important than hue)
     const std::vector< bool > Tuner::core_colors_masks = 
     {
-        false,  // Channel 1 (Usually Hue)
+        true,  // Channel 1 (Usually Hue)
         false,  // Channel 2 (Usually Saturation)
         true,   // Channel 3 (Usually Value)
     };
@@ -111,7 +111,7 @@ namespace altf4
     const std::vector< unsigned char > Tuner::expected_conv_averages = 
     {
         // Green Laser:
-        100,
+        120,
 
         // Red Laser:
         100,
@@ -130,7 +130,7 @@ namespace altf4
     {
         true,   // Closeness to expected Anchor Color ( closer -> higher score )
         false,   // Expected Core Anchor length ( closer -> higher score )
-        true,   // Exploded Core Anchor ( exploded -> bad score )
+        false,   // Exploded Core Anchor ( exploded -> bad score )
         true,   // Closeness to expected Convolution Average ( closer -> higher score )
     };
 
