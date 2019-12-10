@@ -42,26 +42,32 @@ namespace altf4
                 {
                     case 0: // Front Camera
                         cap = cv::VideoCapture("/dev/v4l/by-path/pci-0000:00:14.0-usb-0:6:1.0-video-index0");
+                        system("../src/camera_modify.sh m /dev/v4l/by-path/pci-0000:00:14.0-usb-0:6:1.0-video-index0");
                         break;
                     case 1: // Right Camera
                         cap = cv::VideoCapture("/dev/v4l/by-path/pci-0000:00:14.0-usb-0:2:1.0-video-index0");
+                        system("../src/camera_modify.sh m /dev/v4l/by-path/pci-0000:00:14.0-usb-0:2:1.0-video-index0");
                         break;
                     case 2: // Left Camera
                         cap = cv::VideoCapture("/dev/v4l/by-path/pci-0000:00:14.0-usb-0:1:1.0-video-index0");
+                        system("../src/camera_modify.sh m /dev/v4l/by-path/pci-0000:00:14.0-usb-0:1:1.0-video-index0");
                         break;
                     case 3: // Back Camera
                         cap = cv::VideoCapture("/dev/v4l/by-path/pci-0000:00:14.0-usb-0:5:1.0-video-index0");
+                        system("../src/camera_modify.sh m /dev/v4l/by-path/pci-0000:00:14.0-usb-0:5:1.0-video-index0");
                         break;
                 }
             }
             else if ( os == "Arch Linux" )
             {
                 cap = cv::VideoCapture(camera_number * 2);    // open the camera located at /dev/videoX
+                system("../src/camera_modify.sh m /dev/video0 /dev/video2");
             }
             else
             {
                 printf("*** WARNING: Unknown operating system, trying to open any camera (camera.cpp)\n");
                 cap = cv::VideoCapture(camera_number);    // try to open a camera
+                system("../src/camera_modify.sh m /dev/video0");
             }
 
             if (!cap.isOpened()) // check if we succeeded
