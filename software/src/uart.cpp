@@ -171,20 +171,20 @@ namespace altf4
             case UART::State::GREEN_LASER : 
             case UART::State::BOTH_LASER : 
             {
-                //writeString("strt\r");
-                writeHeaderNumber( "gx:", data.coords[0].a );
-                writeHeaderNumber( "gy:", data.coords[0].b );
-                writeHeaderNumber( "rx:", data.coords[1].a );
-                writeHeaderNumber( "ry:", data.coords[1].b );
-                //writeString("stop\r");
+                writeString("strt\r");
+                writeNumber( data.coords[0].a );
+                writeNumber( data.coords[0].b );
+                writeNumber( data.coords[1].a );
+                writeNumber( data.coords[1].b );
+                writeString("stop\r");
                 break;
             }
             case UART::State::NO_LASER : 
             case UART::State::RED_LASER : 
             {
-                //writeString("strt\r");
+                writeString("strt\r");
                 writeString("none\r");
-                //writeString("stop\r");
+                writeString("stop\r");
                 break;
             }
             default:
