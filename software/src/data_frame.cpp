@@ -23,10 +23,10 @@ namespace altf4
     {
         this->initialized = true;
         this->camera_index = camera_index;
-        this->binary_images.resize( Tuner::hsv_thresholds.size() );
-        this->binary_datas_2d.resize( Tuner::hsv_thresholds.size() );
-        this->all_blobs.resize( Tuner::hsv_thresholds.size() );
-        this->best_blobs.resize( Tuner::hsv_thresholds.size() );
+        this->binary_images.resize( Tuner::hsv_thresholds[0].size() );
+        this->binary_datas_2d.resize( Tuner::hsv_thresholds[0].size() );
+        this->all_blobs.resize( Tuner::hsv_thresholds[0].size() );
+        this->best_blobs.resize( Tuner::hsv_thresholds[0].size() );
     }
 };
 

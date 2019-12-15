@@ -20,7 +20,7 @@ namespace altf4
         void formulateBlob( Blob& blob, std::vector< unsigned char* >& binary_data_2d, std::vector< std::vector< Color > >& color_2d, 
                 std::stack< Position >& edited_pixels, int row, int col, unsigned char check_value, int min_neighbors, int max_size );
         float rigorouslyScoreBlob( Blob& blob, std::vector< std::vector< Color > >& color_2d, 
-                std::vector< unsigned char* >& binary_data_2d, int type );
+                std::vector< unsigned char* >& binary_data_2d, int type, int camera_index );
         Core calculateCore( Blob& blob, 
                 std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d );
 
@@ -398,7 +398,7 @@ namespace altf4
         }
 
         void scoreBlobs( std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d, 
-            std::vector< Blob >& blobs, Blob& best_blob, int type )
+            std::vector< Blob >& blobs, Blob& best_blob, int type, int camera_index )
         {
             int blob_count = 0;
             float best_score = 0;
@@ -418,7 +418,7 @@ namespace altf4
                 
                 if ( Tuner::scoring_masks[0] )
                 {
-                    score_average_color = scoreAverageColor( color, Tuner::hsv_expected_values[type], 1 );
+                    score_average_color = scoreAverageColor( color, Tuner::hsv_expected_values[camera_index][type], 1 );
                     score_sum += score_average_color;
                     score_max += 255;
                 }
@@ -438,7 +438,7 @@ namespace altf4
                 }
 
                 float percent_score = ( score_sum / score_max ); // Get percentage score
-                if ( percent_score >= Tuner::percentage_score_cutoff )
+                if ( percent_score >= Tuner::percentage_score_cutoff[camera_index] )
                 {
                     // Save scores, since they matter more now ( and so we can view them later
                     blob.addAttribute( "score_average_color", score_average_color, color.getStructuredString() );
@@ -447,7 +447,7 @@ namespace altf4
                     blob.addAttribute( "percent_score", percent_score, std::to_string( percent_score ) );
 
                     // Apply more rigorous testing on the higher scoring blobs to save resources
-                    float multiplier = rigorouslyScoreBlob( blob, color_2d, binary_data_2d, type );
+                    float multiplier = rigorouslyScoreBlob( blob, color_2d, binary_data_2d, type, camera_index );
                     percent_score *= multiplier;
 
                     if ( percent_score > best_score )
@@ -461,7 +461,7 @@ namespace altf4
         }
 
         float rigorouslyScoreBlob( Blob& blob, std::vector< std::vector< Color > >& color_2d, 
-                std::vector< unsigned char* >& binary_data_2d, int type )
+                std::vector< unsigned char* >& binary_data_2d, int type, int camera_index )
         {
             // Do intensive things that only the best of blobs need here:
             // Get Convolution Score

@@ -13,22 +13,73 @@ namespace altf4
         {-1, -1, -1},
     };
 
-    // List of all pixel value Minimums / Maximums for Binary Images
-    std::vector< std::pair< Color, Color > > Tuner::hsv_thresholds = 
-    {
-        // Green Laser:
-        {
-            
-            Color{  23, 0, 16 },   // Min Threshold
-            Color{  100, 245, 163 }    // Max Threshold
-        },
+    // List of all pixel value Minimums / Maximums for Binary Images ( Camera specific )
+    std::array< std::array< std::pair< Color, Color >, 2 >, 4 > Tuner::hsv_thresholds = 
+    {{ // std::array[4]
+        // Camera Front
+        {{ // std::array[2]
+            // Green Laser:
+            { // std::pair
+                
+                Color{  33, 43, 100 },   // Min Threshold
+                Color{  90, 245, 177 }    // Max Threshold
+            },
 
-        // Red Laser:
-        {
-            Color{ 157, 119, 128 },   // Min Threshold
-            Color{ 194, 255, 255 }    // Max Threshold
-        },
-    };
+            // Red Laser:
+            { // std::pair
+                Color{ 157, 119, 128 },   // Min Threshold
+                Color{ 194, 255, 255 }    // Max Threshold
+            },
+        }},
+
+        // Camera Right
+        {{ // std::array[2]
+            // Green Laser:
+            { // std::pair
+                
+                Color{  50, 74, 106 },   // Min Threshold
+                Color{  126, 245, 163 }    // Max Threshold
+            },
+
+            // Red Laser:
+            { // std::pair
+                Color{ 157, 119, 128 },   // Min Threshold
+                Color{ 194, 255, 255 }    // Max Threshold
+            },
+        }},
+
+        // Camera Left
+        {{ // std::array[2]
+            // Green Laser:
+            { // std::pair
+                
+                Color{  32, 49, 87 },   // Min Threshold
+                Color{  98, 245, 163 }    // Max Threshold
+            },
+
+            // Red Laser:
+            { // std::pair
+                Color{ 157, 119, 128 },   // Min Threshold
+                Color{ 194, 255, 255 }    // Max Threshold
+            },
+        }},
+
+        // Camera Back
+        {{ // std::array[2]
+            // Green Laser:
+            { // std::pair
+                
+                Color{  52, 50,  75  },   // Min Threshold
+                Color{  98, 245, 179 }    // Max Threshold
+            },
+
+            // Red Laser:
+            { // std::pair
+                Color{ 157, 119, 128 },   // Min Threshold
+                Color{ 194, 255, 255 }    // Max Threshold
+            },
+        }},
+    }};
 
     // Recursive Approach
     //const int Tuner::core_max_neighbors = 3; // Max number of neighbors until not blob anymore
@@ -42,34 +93,69 @@ namespace altf4
 /**                                      Scoring                                      **/
 /***************************************************************************************/
     // List of expected values for scoring ( What the average pixel color should be for the blob )
-    const std::vector< Color > Tuner::hsv_expected_values = 
-    {
-        // Green Laser:
-        {
-            Color{ 35, 180, 100 },  
-        },
+    const std::array< std::array< Color, 2 >, 4 > Tuner::hsv_expected_values = 
+    {{      // std::array[4] 
+        {{  // Camera Front
+            // Green Laser:
+            {
+                Color{ 63, 180, 130 },  
+            },
 
-        // Red Laser:
-        {
-            Color{ 156, 42, 222 },   
-        },
-    };
+            // Red Laser:
+            {
+                Color{ 156, 42, 222 },   
+            },
+        }},
+        {{  // Camera Right
+            // Green Laser:
+            {
+                Color{ 63, 180, 130 },  
+            },
+
+            // Red Laser:
+            {
+                Color{ 156, 42, 222 },   
+            },
+        }},
+        {{  // Camera Left 
+            // Green Laser:
+            {
+                Color{ 63, 180, 130 },  
+            },
+
+            // Red Laser:
+            {
+                Color{ 156, 42, 222 },   
+            },
+        }},
+        {{  // Camera Back
+            // Green Laser:
+            {
+                Color{ 63, 180, 130 },  
+            },
+
+            // Red Laser:
+            {
+                Color{ 156, 42, 222 },   
+            },
+        }},
+    }};
 
     // List of expected areas for scoring ( How big the blob should be )
     const std::vector< unsigned int > Tuner::expected_areas = 
     {
         // Green Laser:
-        90,
+        60,
 
         // Red Laser:
-        70,
+        35,
     };
 
     // List of expected areas for scoring ( How big the blob should be )
     const std::vector< unsigned int > Tuner::expected_sizes = 
     {
         // Green Laser:
-        100,
+        60,
 
         // Red Laser:
         30,
@@ -80,7 +166,7 @@ namespace altf4
     {
         // Green Laser:
         {
-            Color{ 52, 0, 142 },  
+            Color{ 52, 25, 160 },  
         },
 
         // Red Laser:
@@ -135,7 +221,8 @@ namespace altf4
     };
 
     // Score percentage cutoff. If above this percentage of max score, then it qualifies
-    const float Tuner::percentage_score_cutoff = 0.8;
+    //                                                          FRO  RIG  LEF  BAC
+    std::array< float, 4 > Tuner::percentage_score_cutoff = { { 0.7, 0.7, 0.7, 0.7 } };
 
 /***************************************************************************************/
 /**                                      Outputs                                      **/

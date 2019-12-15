@@ -75,23 +75,32 @@ namespace altf4
             handle_tune = false;
             if ( update_tune )
             {
-                cv::destroyWindow("tuning");
+                for ( int i = 0; i < names.size(); i++ )
+                {
+                    cv::destroyWindow("tune " + names[i]);
+                }
             }
             if ( tune || update_tune )
             {
                 update_tune = false;
-                namedWindow( "tuning", cv::WINDOW_AUTOSIZE );
-                cv::createTrackbar( "hue_l:", "tuning", &Tuner::hsv_thresholds[tune_type].first.b , 255, nullptr );
-                cv::createTrackbar( "sat_l:", "tuning", &Tuner::hsv_thresholds[tune_type].first.g , 255, nullptr );
-                cv::createTrackbar( "val_l:", "tuning", &Tuner::hsv_thresholds[tune_type].first.r , 255, nullptr );
-                cv::createTrackbar( "hue_h:", "tuning", &Tuner::hsv_thresholds[tune_type].second.b, 255, nullptr );
-                cv::createTrackbar( "sat_h:", "tuning", &Tuner::hsv_thresholds[tune_type].second.g, 255, nullptr );
-                cv::createTrackbar( "val_h:", "tuning", &Tuner::hsv_thresholds[tune_type].second.r, 255, nullptr );
+                for ( int i = names.size() - 1; i >= 0; i-- )
+                {
+                    namedWindow( "tune " + names[i], cv::WINDOW_AUTOSIZE );
+                    cv::createTrackbar( "hue_l:", "tune " + names[i], &Tuner::hsv_thresholds[i][tune_type].first.b , 255, nullptr );
+                    cv::createTrackbar( "sat_l:", "tune " + names[i], &Tuner::hsv_thresholds[i][tune_type].first.g , 255, nullptr );
+                    cv::createTrackbar( "val_l:", "tune " + names[i], &Tuner::hsv_thresholds[i][tune_type].first.r , 255, nullptr );
+                    cv::createTrackbar( "hue_h:", "tune " + names[i], &Tuner::hsv_thresholds[i][tune_type].second.b, 255, nullptr );
+                    cv::createTrackbar( "sat_h:", "tune " + names[i], &Tuner::hsv_thresholds[i][tune_type].second.g, 255, nullptr );
+                    cv::createTrackbar( "val_h:", "tune " + names[i], &Tuner::hsv_thresholds[i][tune_type].second.r, 255, nullptr );
+                }
                 cv::waitKey(1);
             }
             else
             {
-                cv::destroyWindow("tuning");
+                for ( int i = 0; i < names.size(); i++ )
+                {
+                    cv::destroyWindow("tune " + names[i]);
+                }
             }
         }
         
@@ -106,7 +115,6 @@ namespace altf4
 
     void Window::toggleTune( int display_type )
     {
-        printf("Previous hue_l = %d\nTune type: %d\n", Tuner::hsv_thresholds[tune_type].first.b, tune_type);
         this->tune = !tune;
         this->tune_type = displayToTuneType( display_type );
         this->handle_tune = true;
@@ -129,7 +137,7 @@ namespace altf4
 
     int displayToTuneType( int display_type )
     {
-        if ( display_type >= 3 && (int)Tuner::hsv_thresholds.size() > ( display_type - 3 ) )
+        if ( display_type >= 3 && (int)Tuner::hsv_thresholds[0].size() > ( display_type - 3 ) )
         {
             return ( display_type - 3 );
         }

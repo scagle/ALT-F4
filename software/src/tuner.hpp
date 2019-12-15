@@ -1,6 +1,7 @@
 // Header file for anything that needs manual tuning.
 #pragma once
 #include <vector>
+#include <array>
 #include <opencv2/videoio.hpp>
 #include "datatypes/color.hpp"
 
@@ -16,8 +17,8 @@ namespace altf4
     // Kernel used in edge detection
     static const std::vector< std::vector< int > > convolution_kernel; 
 
-    // List of all pixel value Minimums / Maximums for Binary Images
-    static std::vector< std::pair< Color, Color > > hsv_thresholds;
+    // List of all pixel value Minimums / Maximums for Binary Images ( Camera specific )
+    static std::array< std::array< std::pair< Color, Color >, 2 >, 4 > hsv_thresholds;
 
     // Recursive Approach
     //static const int core_max_neighbors; // Max number of neighbors until not blob anymore
@@ -31,7 +32,7 @@ namespace altf4
 /**                                      Scoring                                      **/
 /***************************************************************************************/
     // List of expected values for scoring ( What the average pixel color should be for the blob )
-    static const std::vector< Color > hsv_expected_values;
+    static const std::array< std::array< Color, 2 >, 4 > hsv_expected_values;
 
     // List of expected areas for scoring ( How big the blob should be )
     static const std::vector< unsigned int > expected_areas;
@@ -58,7 +59,7 @@ namespace altf4
     static const std::vector< bool > scoring_rigorous_masks;
 
     // Score percentage cutoff. If above this percentage of max score, then it qualifies
-    static const float percentage_score_cutoff;
+    static std::array< float, 4 > percentage_score_cutoff;
 
 /***************************************************************************************/
 /**                                      Outputs                                      **/

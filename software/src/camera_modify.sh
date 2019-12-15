@@ -14,8 +14,8 @@ if [[ "$camera_type" == "d" ]]; then
             #v4l2-ctl -d ${!i} -c white_balance_temperature=4600   # (int)    : min=2800 max=6500 step=10 default=4600 value=4600 flags=inactive
             v4l2-ctl -d ${!i} -c sharpness=2                      # (int)    : min=1 max=7 step=1 default=2 value=2
             v4l2-ctl -d ${!i} -c backlight_compensation=0         # (int)    : min=0 max=1 step=1 default=0 value=0
+            v4l2-ctl -d ${!i} -c exposure_absolute=166            # (int)    : min=50 max=10000 step=1 default=166 value=166 flags=inactive
             v4l2-ctl -d ${!i} -c exposure_auto=3                  # (menu)   : min=0 max=3 default=3 value=3
-            #v4l2-ctl -d ${!i} -c exposure_absolute=166            # (int)    : min=50 max=10000 step=1 default=166 value=166 flags=inactive
             echo "Successfully set '${!i}' to 'default'"
         else
             echo "Could not find '${!i}'!"
@@ -34,8 +34,8 @@ elif [[ "$camera_type" == "m" ]]; then
             #v4l2-ctl -d ${!i} -c white_balance_temperature=4600   # (int)    : min=2800 max=6500 step=10 default=4600 value=4600 flags=inactive
             v4l2-ctl -d ${!i} -c sharpness=0                      # (int)    : min=1 max=7 step=1 default=2 value=2
             v4l2-ctl -d ${!i} -c backlight_compensation=0         # (int)    : min=0 max=1 step=1 default=0 value=0
-            v4l2-ctl -d ${!i} -c exposure_auto=3                  # (menu)   : min=0 max=3 default=3 value=3
-            #v4l2-ctl -d ${!i} -c exposure_absolute=166            # (int)    : min=50 max=10000 step=1 default=166 value=166 flags=inactive
+            v4l2-ctl -d ${!i} -c exposure_auto=1                  # (menu)   : min=0 max=3 default=3 value=3
+            v4l2-ctl -d ${!i} -c exposure_absolute=50             # (int)    : min=50 max=10000 step=1 default=166 value=166 flags=inactive
             echo "Successfully set '${!i}' to 'modified'"
         else
             echo "Could not find '${!i}'!"
