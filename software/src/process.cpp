@@ -15,14 +15,14 @@ namespace altf4
         : camera_index(camera_index), image(image), frame(frame)
     {
         // Initialize DataFrame to hold appropriate number of tests (defined in tuning.hpp)
-        frame.initialize( camera_index, Tuner::hsv_thresholds.size() ); 
+        frame.initialize( camera_index, Tuner::hsv_thresholds[0].size() ); 
     }
 
     // Methods
     void Process::performAlgorithms()
     {
         // Get Binary Image
-        for (unsigned int i = 0; i < Tuner::hsv_thresholds.size(); i++)
+        for (unsigned int i = 0; i < Tuner::hsv_thresholds[0].size(); i++)
         {
             algorithm::transDimensiateImage(  // Create 2D representations of 1D arrays ( without copying )
                 frame.getImage(),             // <- reference to image to be read from
@@ -39,7 +39,7 @@ namespace altf4
             algorithm::writeBinaryData(      // Write binary image to dataframe directly:
                 frame.getImage(),            // <- reference to original image that binary image reads from
                 frame.getBinaryImages()[i],  // <- reference to binary_image to be written to
-                Tuner::hsv_thresholds[i]     // <- thresholds for min/max boundaries of binary_image
+                Tuner::hsv_thresholds[camera_index][i]     // <- thresholds for min/max boundaries of binary_image
             );
 
             algorithm::transDimensiateBinaryImage(  // Create 2D representations of 1D arrays ( without copying )
@@ -59,7 +59,8 @@ namespace altf4
                 frame.getBinaryDatas2D()[i],    // <- reference to binary_data_2d to be written to
                 frame.getAllBlobs()[i],         // <- reference to blobs the read from
                 frame.getBestBlobs()[i],        // <- reference to best blob to write to
-                i                               // <- index of type
+                i,                              // <- index of type
+                camera_index                    // <- camera index
             );
         }
     }
