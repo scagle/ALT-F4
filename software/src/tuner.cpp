@@ -21,8 +21,8 @@ namespace altf4
             // Green Laser:
             { // std::pair
                 
-                Color{  23, 0, 16 },   // Min Threshold
-                Color{  100, 245, 163 }    // Max Threshold
+                Color{  33, 43, 100 },   // Min Threshold
+                Color{  90, 245, 177 }    // Max Threshold
             },
 
             // Red Laser:
@@ -37,8 +37,8 @@ namespace altf4
             // Green Laser:
             { // std::pair
                 
-                Color{  23, 0, 16 },   // Min Threshold
-                Color{  100, 245, 163 }    // Max Threshold
+                Color{  50, 74, 106 },   // Min Threshold
+                Color{  126, 245, 163 }    // Max Threshold
             },
 
             // Red Laser:
@@ -53,8 +53,8 @@ namespace altf4
             // Green Laser:
             { // std::pair
                 
-                Color{  23, 0, 16 },   // Min Threshold
-                Color{  100, 245, 163 }    // Max Threshold
+                Color{  32, 49, 87 },   // Min Threshold
+                Color{  98, 245, 163 }    // Max Threshold
             },
 
             // Red Laser:
@@ -69,8 +69,8 @@ namespace altf4
             // Green Laser:
             { // std::pair
                 
-                Color{  23, 0, 16 },   // Min Threshold
-                Color{  100, 245, 163 }    // Max Threshold
+                Color{  52, 50,  75  },   // Min Threshold
+                Color{  98, 245, 179 }    // Max Threshold
             },
 
             // Red Laser:
@@ -98,7 +98,7 @@ namespace altf4
         {{  // Camera Front
             // Green Laser:
             {
-                Color{ 35, 180, 100 },  
+                Color{ 63, 180, 130 },  
             },
 
             // Red Laser:
@@ -109,7 +109,7 @@ namespace altf4
         {{  // Camera Right
             // Green Laser:
             {
-                Color{ 35, 180, 100 },  
+                Color{ 63, 180, 130 },  
             },
 
             // Red Laser:
@@ -120,7 +120,7 @@ namespace altf4
         {{  // Camera Left 
             // Green Laser:
             {
-                Color{ 35, 180, 100 },  
+                Color{ 63, 180, 130 },  
             },
 
             // Red Laser:
@@ -131,7 +131,7 @@ namespace altf4
         {{  // Camera Back
             // Green Laser:
             {
-                Color{ 35, 180, 100 },  
+                Color{ 63, 180, 130 },  
             },
 
             // Red Laser:
@@ -166,7 +166,7 @@ namespace altf4
     {
         // Green Laser:
         {
-            Color{ 52, 0, 142 },  
+            Color{ 52, 25, 160 },  
         },
 
         // Red Laser:
