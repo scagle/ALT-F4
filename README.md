@@ -13,6 +13,8 @@ See [Embedded ALTF4](https://github.com/jelucian/altf4), by [jelucian](https://g
 * However, we were allowed to use OpenCV for VideoCapture, and its GUI, which are designated in the above diagram
 
 *Legend: (Note: For sake of brevity, I chose not to include everything in diagram)*
+
+
 |Symbol|Meaning|
 |----|-------|
 |Light Grey Rectangle|Class Implementation||
@@ -29,10 +31,10 @@ See [Embedded ALTF4](https://github.com/jelucian/altf4), by [jelucian](https://g
     * Continuously grab both RGB and HSV representation, and store/overwrite them in an array of images
     * Wait for main program to request access, then copy off the images array. (Could've used double-buffered approach but ran into weird bugs, and decided against premature optimizations)
 2. Processing 
-    * Data Extraction (As seen in [algorithm.hpp](software/src/algorithm.hpp))
-    * Blob Scoring (As seen in [algorithm.hpp](software/src/algorithm.hpp))
+    * Data Extraction (As seen in [algorithm.cpp](software/src/algorithm.cpp))
+    * Blob Scoring (As seen in [algorithm.cpp](software/src/algorithm.cpp))
 
-    [algorithm.hpp](software/src/algorithm.hpp) Overview:
+    [algorithm.cpp](software/src/algorithm.cpp) Overview:
 ```c++
 /* Basic Data Extraction Functions */
 // Extract meaningful data from image data
