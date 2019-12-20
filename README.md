@@ -117,6 +117,24 @@ See [Embedded ALTF4](https://github.com/jelucian/altf4), by [jelucian](https://g
         |-----|-------|-------|-----|-----|----|
         |start|  123  |  321  | 456 | 234 |stop|
 4. [Compute Error, and spin stepper / servo motors to compensate + much more (Turret + Glove code)](https://github.com/jelucian/ALTF4)
+## ALT-F4 Usage
+```bash
+git clone https://github.com/scagle/alt-f4
+cd alt-f4/software/build/
+cmake ..
+make
+./camera
+```
+* Once in program, keyboard inputs include: 
+    * ‘q’ to quit
+    * ‘0’ for original image view
+    * ‘1’ for HSV view
+    * ‘2’ for Blob/Core Feature zoom view
+    * ‘3’ for Green Laser binary matrix view
+    * ‘4’ for Red Laser binary matrix view
+    * ‘t’ to toggle tuning window(s)
+    * ‘p’ to pause the window output ( to view snapshot and save if need be )
+    * ‘a’ cycle between shown attribute properties in bottom left corner: score, value, name
 
 ## Inspirations
 [Polar Movie Machine Gun Shootout Scene (2019) (Youtube)](https://youtu.be/SokRWSncxTQ)
