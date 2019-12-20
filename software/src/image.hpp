@@ -14,8 +14,8 @@ namespace altf4
 
         protected:
             int rows, cols, channels;
-            bool initialized = true; // Assume this gets initialized correctly, unless Image() is called
-            
+            bool initialized = true; // Assume this gets initialized correctly, 
+                                     // unless Image() is called
 
         public:
             Image();

@@ -24,11 +24,13 @@ namespace altf4
     // Constructors
 
     // Methods
-    void Renderer::renderMats( std::vector< DataFrame >* frames, std::vector< cv::Mat3b >* original_images )
+    void Renderer::renderMats( std::vector< DataFrame >* frames, 
+        std::vector< cv::Mat3b >* original_images )
     {
         if ( pause )
         {
-            window.wait(10); // OpenCV needs waitKey to handle input ( otherwise it will freeze forever )
+            // OpenCV needs waitKey to handle input ( otherwise it will freeze forever )
+            window.wait(10); 
             return;
         }
         for ( unsigned int i = 0; i < frames->size(); i++ )
@@ -49,7 +51,8 @@ namespace altf4
             all_binary_mats[i].clear();
             for ( unsigned int type = 0; type < binary_images.size(); type++ )
             {
-                all_binary_mats[i].push_back(cv::Mat(rows, cols, CV_8UC1, binary_images[type].getData()->data()));
+                all_binary_mats[i].push_back(cv::Mat(rows, cols, CV_8UC1, 
+                    binary_images[type].getData()->data()));
             }
 
             if (display_type == 0)
@@ -67,7 +70,8 @@ namespace altf4
             else if (display_type == 2)
             {
                 // Draw Detailed Blob / Core picture ( debugging )
-                blobAndCoreToImage( i, (*frames)[i].getBinaryDatas2D()[0], (*frames)[i].getBestBlobs()[0] );
+                blobAndCoreToImage( i, (*frames)[i].getBinaryDatas2D()[0], 
+                    (*frames)[i].getBestBlobs()[0] );
                 writeAttributesToFile( &( mats[i] ), (*frames)[i].getBestBlobs() );
 
                 //drawBlobBoundaries( &( conv_mats[i] ), (*frames)[i].getBestBlobs() );
@@ -76,9 +80,11 @@ namespace altf4
             }
             else
             {
-                if ( all_binary_mats.size() > 0 && display_type - 3 < (int)all_binary_mats[0].size()  )
+                if ( all_binary_mats.size() > 0 && 
+                     display_type - 3 < (int)all_binary_mats[0].size()  )
                 {
-                    drawBlobBoundaries( &( all_binary_mats[i][display_type-3] ), (*frames)[i].getBestBlobs() );
+                    drawBlobBoundaries( &( all_binary_mats[i][display_type-3] ), 
+                        (*frames)[i].getBestBlobs() );
                     window.render( i, &( all_binary_mats[i][display_type-3] ) );
                 }
                 else
@@ -96,16 +102,9 @@ namespace altf4
         {
             if ( best_blobs[type].isInitialized() )
             {
-                cv::rectangle( *mat, best_blobs[type].getEncompassingRect(10), Tuner::associated_color[type], 2 );
+                cv::rectangle( *mat, best_blobs[type].getEncompassingRect(10), 
+                    Tuner::associated_color[type], 2 );
             }
-
-            //if ( blob.isInitialized() )
-            //{
-            //    for ( auto&& blob : blobs[type] )
-            //    {
-            //        cv::rectangle( *mat, blob.getEncompassingRect(2), Tuner::associated_color[type], 2 );
-            //    }
-            //}
         }
     }
 
@@ -279,7 +278,8 @@ namespace altf4
             return cv::Point( pos.a, pos.b );
     }
 
-    void Renderer::blobAndCoreToImage( int window_index, std::vector< unsigned char* >& binary_data_2d, Blob& blob )
+    void Renderer::blobAndCoreToImage( int window_index, 
+        std::vector< unsigned char* >& binary_data_2d, Blob& blob )
     {
         if (!blob.isInitialized())
         {

@@ -24,37 +24,38 @@ namespace altf4
         // Get Binary Image
         for (unsigned int i = 0; i < Tuner::hsv_thresholds[0].size(); i++)
         {
-            algorithm::transDimensiateImage(  // Create 2D representations of 1D arrays ( without copying )
+            // Create 2D representations of 1D arrays ( without copying )
+            algorithm::transDimensiateImage(  
                 frame.getImage(),             // <- reference to image to be read from
                 frame.getColor2D()            // <- reference to color_data_2d to be written to
             );
 
-            //algorithm::writeConvData(       // Write binary image to dataframe directly:
-            //    frame.getColor2D(),         // <- reference to original image that binary image reads from
-            //    frame.getConvData(),        // <- reference to conv_data to be written to
-            //    frame.getConvData1D(),      // <- reference to conv_data_1d to be written to
-            //    Tuner::convolution_kernel   // <- kernel used to perform edge detection
-            //);
 
-            algorithm::writeBinaryData(      // Write binary image to dataframe directly:
-                frame.getImage(),            // <- reference to original image that binary image reads from
+            // Write binary image to dataframe directly:
+            algorithm::writeBinaryData(      
+                frame.getImage(),            // <- reference to original image read from
                 frame.getBinaryImages()[i],  // <- reference to binary_image to be written to
-                Tuner::hsv_thresholds[camera_index][i]     // <- thresholds for min/max boundaries of binary_image
+                Tuner::hsv_thresholds[camera_index][i] // <- thresholds for min/max boundaries 
+                                                       //    of binary_image
             );
 
-            algorithm::transDimensiateBinaryImage(  // Create 2D representations of 1D arrays ( without copying )
-                frame.getBinaryImages()[i],         // <- reference to binary_image to be read from
-                frame.getBinaryDatas2D()[i]         // <- reference to binary_data_2d to be written to
+            // Create 2D representations of 1D arrays ( without copying )
+            algorithm::transDimensiateBinaryImage(  
+                frame.getBinaryImages()[i],         // <- reference to binary_image read from
+                frame.getBinaryDatas2D()[i]         // <- reference to binary_data_2d written to
             );
 
-            algorithm::getBlobs(             // Grab blobs from binary_images
-                frame.getImage(),            // <- reference to original image that we get information from (#rows, #cols, pixeldata)
+            // Grab blobs from binary_images
+            algorithm::getBlobs(             
+                frame.getImage(),            // <- reference to original image that we get 
+                                             //    information from (#rows, #cols, pixeldata)
                 frame.getColor2D(),          // <- reference to color_2d to be read from
                 frame.getBinaryDatas2D()[i], // <- reference to binary_data_2d to be read from
                 frame.getAllBlobs()[i]       // <- reference to all_blobs to written to
             );
 
-            algorithm::scoreBlobs(              // Score blobs based on attributes
+            // Score blobs based on attributes
+            algorithm::scoreBlobs(              
                 frame.getColor2D(),             // <- reference to color_data_2d to be written to
                 frame.getBinaryDatas2D()[i],    // <- reference to binary_data_2d to be written to
                 frame.getAllBlobs()[i],         // <- reference to blobs the read from

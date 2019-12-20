@@ -13,7 +13,8 @@ namespace altf4
         this->initialized = false;
     } 
 
-    DataFrame::DataFrame( int camera_index, Image* image ) : camera_index(camera_index), image(image)
+    DataFrame::DataFrame( int camera_index, Image* image ) : 
+        camera_index(camera_index), image(image)
     {
         this->initialized = true;
     }

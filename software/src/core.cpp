@@ -10,8 +10,9 @@ namespace altf4
     // Constructors
 
     // Methods
-    CoreAnchor Core::getAnchor( std::vector< unsigned char* >& binary_data_2d, std::vector< std::vector< Color > >& color_2d, 
-            unsigned int num_rows, unsigned int num_columns, int dir_row, int dir_col)
+    CoreAnchor Core::getAnchor( std::vector< unsigned char* >& binary_data_2d, 
+        std::vector< std::vector< Color > >& color_2d, unsigned int num_rows, 
+        unsigned int num_columns, int dir_row, int dir_col)
     {
         int current_row = origin.a;
         int current_col = origin.b;
@@ -78,7 +79,8 @@ namespace altf4
         return CoreAnchor{ { next_row, next_col }, avg_color, length, failed };
     }
 
-    void Core::spread( std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d )
+    void Core::spread( std::vector< std::vector< Color > >& color_2d, 
+        std::vector< unsigned char* >& binary_data_2d )
     {
         // TODO: Really make sure you check boundaries on this one. 
         //  - Spread out in up/down + left/right + diagonals until you see valid pixel
@@ -89,14 +91,16 @@ namespace altf4
         core_boundary = { origin.a, origin.b, origin.a, origin.b };
            
         // Grab Anchors in clockwise manner (upperleft -> upperright -> lowerright -> lowerleft)
-        anchors.push_back( getAnchor( binary_data_2d, color_2d, color_2d.size(), color_2d[0].size(), -1, -1 ) );
-        anchors.push_back( getAnchor( binary_data_2d, color_2d, color_2d.size(), color_2d[0].size(), -1,  0 ) );
-        anchors.push_back( getAnchor( binary_data_2d, color_2d, color_2d.size(), color_2d[0].size(), -1,  1 ) );
-        anchors.push_back( getAnchor( binary_data_2d, color_2d, color_2d.size(), color_2d[0].size(),  0,  1 ) );
-        anchors.push_back( getAnchor( binary_data_2d, color_2d, color_2d.size(), color_2d[0].size(),  1,  1 ) );
-        anchors.push_back( getAnchor( binary_data_2d, color_2d, color_2d.size(), color_2d[0].size(),  1,  0 ) );
-        anchors.push_back( getAnchor( binary_data_2d, color_2d, color_2d.size(), color_2d[0].size(),  1, -1 ) );
-        anchors.push_back( getAnchor( binary_data_2d, color_2d, color_2d.size(), color_2d[0].size(),  0, -1 ) );
+        const int height_2d = color_2d.size();      // needed to reduce size for code wrap
+        const int width_2d  = color_2d[0].size();   // needed to reduce size for code wrap
+        anchors.push_back( getAnchor( binary_data_2d, color_2d, height_2d, width_2d, -1, -1 ) );
+        anchors.push_back( getAnchor( binary_data_2d, color_2d, height_2d, width_2d, -1,  0 ) );
+        anchors.push_back( getAnchor( binary_data_2d, color_2d, height_2d, width_2d, -1,  1 ) );
+        anchors.push_back( getAnchor( binary_data_2d, color_2d, height_2d, width_2d,  0,  1 ) );
+        anchors.push_back( getAnchor( binary_data_2d, color_2d, height_2d, width_2d,  1,  1 ) );
+        anchors.push_back( getAnchor( binary_data_2d, color_2d, height_2d, width_2d,  1,  0 ) );
+        anchors.push_back( getAnchor( binary_data_2d, color_2d, height_2d, width_2d,  1, -1 ) );
+        anchors.push_back( getAnchor( binary_data_2d, color_2d, height_2d, width_2d,  0, -1 ) );
 
         // Update global avg_color of anchors
         int channel_a_sum = 0;
@@ -162,7 +166,8 @@ namespace altf4
         for ( int i = 0; i < anchors.size(); i++ )
         {
             int next_i = (i + 1) % anchors.size(); // Wraps around back to (i = 0) if (i = max)
-            sum += ( ( anchors[i].anchor.a * anchors[next_i].anchor.b ) - ( anchors[i].anchor.b * anchors[next_i].anchor.a ) );
+            sum += ( ( anchors[i].anchor.a * anchors[next_i].anchor.b ) - 
+                     ( anchors[i].anchor.b * anchors[next_i].anchor.a ) );
         }
         return (unsigned int)(std::abs(sum) / 2);
     }

@@ -11,14 +11,29 @@ namespace altf4
     {
         private:
             // Private Members
-            Image* image = nullptr;                                 // Pointer to original image in main.cpp
-            std::vector< std::vector< unsigned char > > conv_data;  // Convolution data
-            std::vector< unsigned char > conv_data_1d;              // Convolution data in 1 dimension
-            std::vector< Image > binary_images;                     // Array of binary_images representing each color ( IE: green / red in our case )
-            std::vector< std::vector< Color > > color_2d;           // Array of image colors represented in 2 dimensions
-            std::vector< std::vector< unsigned char* > > binary_datas_2d;  // Array of binary_image data represented in 2 dimensions
-            std::vector< std::vector< Blob > > all_blobs;           // Array of all blobs found in colored binary_images
-            std::vector< Blob > best_blobs;                         // Array of single best blob found in colored binary_image
+            // Pointer to original image in main.cpp
+            Image* image = nullptr;                                 
+
+            // Convolution data
+            std::vector< std::vector< unsigned char > > conv_data;  
+
+            // Convolution data in 1 dimension
+            std::vector< unsigned char > conv_data_1d;              
+
+            // Array of binary_images representing each color ( IE: green / red in our case )
+            std::vector< Image > binary_images;                     
+
+            // Array of image colors represented in 2 dimensions
+            std::vector< std::vector< Color > > color_2d;           
+
+            // Array of binary_image data represented in 2 dimensions
+            std::vector< std::vector< unsigned char* > > binary_datas_2d;  
+
+            // Array of all blobs found in colored binary_images
+            std::vector< std::vector< Blob > > all_blobs;           
+
+            // Array of single best blob found in colored binary_image
+            std::vector< Blob > best_blobs;                         
 
             int camera_index;
             bool initialized = false;
@@ -38,7 +53,8 @@ namespace altf4
             std::vector< std::vector< unsigned char > >& getConvData() { return this->conv_data; }
             std::vector< unsigned char >& getConvData1D() { return this->conv_data_1d; }
             std::vector< Image >& getBinaryImages() { return this->binary_images; }
-            std::vector< std::vector< unsigned char* > >& getBinaryDatas2D() { return this->binary_datas_2d; }
+            std::vector< std::vector< unsigned char* > >& getBinaryDatas2D() 
+                { return this->binary_datas_2d; }
             std::vector< std::vector< Blob > >& getAllBlobs() { return this->all_blobs; }
             std::vector< Blob >& getBestBlobs() { return this->best_blobs; }
             int getCameraIndex() { return this->camera_index; }

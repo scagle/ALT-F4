@@ -11,11 +11,20 @@ namespace altf4
     class ProcessHandler
     {
         public:
-            static std::vector< Process > processes;      // list of all Process objects
-            static std::vector< std::vector< DataFrame > > frames_copies; // DataFrame objects that contain results
-            static int current_copies_index;                              // Current index of frames_copies (alternates between 0 and 1)
-            static std::mutex frames_copies_lock;          // Locks frames_copies 
-            static std::mutex* print_lock;                 // Locks stdout
+            // list of all Process objects
+            static std::vector< Process > processes;      
+
+            // DataFrame objects that contain results
+            static std::vector< std::vector< DataFrame > > frames_copies; 
+
+            // Current index of frames_copies (alternates between 0 and 1)
+            static int current_copies_index;                              
+
+            // Locks frames_copies 
+            static std::mutex frames_copies_lock;          
+
+            // Locks stdout
+            static std::mutex* print_lock;                 
 
         private:
             // Private Members
@@ -24,9 +33,9 @@ namespace altf4
             std::vector< std::thread* > running_threads;   // list of running threads
             unsigned int number_of_processes = 0;          // Number of process_threads
             bool stop_threads = false;
-            bool image_size_mismatch_warned = false;       // A "one-time" warning that some cameras aren't working
-            
-
+            bool image_size_mismatch_warned = false;       // A "one-time" warning that some 
+                                                           // cameras aren't working
+                                                           
         public:
             ProcessHandler() { }
             virtual ~ProcessHandler() { }

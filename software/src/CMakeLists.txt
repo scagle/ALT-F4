@@ -41,8 +41,6 @@ set(BASE_SOURCES
     uart.hpp
     uart_handler.cpp
     uart_handler.hpp
-    uart_logic.cpp
-    uart_logic.hpp
     window.cpp
     window.hpp
 )

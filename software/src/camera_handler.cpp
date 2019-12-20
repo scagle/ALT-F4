@@ -7,13 +7,13 @@
 namespace altf4
 {
     // Static Declarations
-    std::vector< Camera > CameraHandler::cameras;                    // List of cameras
-    std::vector< std::thread > CameraHandler::camera_threads;        // Threads used to grab images from OpenCV
-    std::vector< cv::Mat3b > CameraHandler::original_images;         //  
-    std::vector< Image > CameraHandler::images;                      //  
-    std::mutex* CameraHandler::print_lock;                           //
-    std::mutex CameraHandler::image_lock;                            // To protect images
-    //std::mutex CameraHandler::fps_lock;                            // To protect FPS 
+    std::vector< Camera > CameraHandler::cameras;             // List of cameras
+    std::vector< std::thread > CameraHandler::camera_threads; // Threads used to grab images 
+    std::vector< cv::Mat3b > CameraHandler::original_images;  //  
+    std::vector< Image > CameraHandler::images;               //  
+    std::mutex* CameraHandler::print_lock;                    //
+    std::mutex CameraHandler::image_lock;                     // To protect images
+    //std::mutex CameraHandler::fps_lock;                     // To protect FPS 
     bool CameraHandler::stop_threads = false;  
     std::vector< bool > CameraHandler::updated_list;
     std::vector< bool > CameraHandler::working_list;
@@ -37,12 +37,6 @@ namespace altf4
             auto end = std::chrono::steady_clock::now();
             auto duration = std::chrono::duration_cast< std::chrono::milliseconds >( end - begin );
             std::this_thread::sleep_for( std::chrono::milliseconds( 50 ) - duration );
-
-            //fps_lock.lock();
-            //fps_timing[camera_index].push_front(duration.count());  // Keep track of time
-            //if ( fps_timing[camera_index].size() > 1000 )           // Don't keep track of too much time
-            //    fps_timing[camera_index].pop_back();
-            //fps_lock.unlock();
         }
         print_lock->lock();
         printf( "Camera Thread #%d exited\n", camera_index);
@@ -53,7 +47,8 @@ namespace altf4
     // Constructors
     
     // Methods
-    void CameraHandler::readImages( std::vector< cv::Mat3b >* original_images, std::vector< Image >* images )
+    void CameraHandler::readImages( std::vector< cv::Mat3b >* original_images, 
+        std::vector< Image >* images )
     {    
         std::unique_lock<std::mutex> ul( image_lock );
         // Check if all cameras have had a chance to write their capture to images
@@ -117,16 +112,6 @@ namespace altf4
         {
             printf("Attempting to join Camera %d Thread\n", i);
             camera_threads[i].join();
-            //unsigned long sum = 0;
-            //for ( unsigned int j = 0; j < fps_timing[i].size(); j++ )
-            //{
-            //    sum += fps_timing[i][j];
-            //}
-            // 
-            //if ( fps_timing[i].size() > 0 )
-            //    printf("Camera '%d' ended with an average fps of around '%ld'\n", i, sum / fps_timing[i].size());
-            //else
-            //    printf("Camera '%d' never ran\n", i);
         }
     }
 

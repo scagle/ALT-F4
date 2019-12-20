@@ -20,10 +20,6 @@ namespace altf4
     {
         this->fd = open( path.c_str(), O_RDWR | O_NOCTTY | O_SYNC );
 
-        if ( this->path == "" )
-        {
-            printf("BIG ANNOYING DEBUG MESSAGE THAT I WILL HOPEFULLY SEE IN THE TERMINAL WHEN THIS HAPPENS!\n");
-        }
         if ( fd < 0 )
         {
             opened = false;
@@ -136,8 +132,8 @@ namespace altf4
         }
         else
         {
-            set_interface_attribs( this->baud, this->parity );   // set speed to 115,200 bps, 8n1 (no parity)
-            set_blocking( 0 );                                   // set no blocking
+            set_interface_attribs( this->baud, this->parity ); // set speed to 115,200 bps, 8n1 np
+            set_blocking( 0 );                                 // set no blocking
         }
         return true;
     }
@@ -149,13 +145,13 @@ namespace altf4
 
     UART::Data UART::getData()
     {
-        std::lock_guard< std::mutex > guard( *data_mutex ); // Enter Critical Section (exception safe)
+        std::lock_guard< std::mutex > guard( *data_mutex ); // Enter Critical Section 
         return this->data; // return copy of data, and leave Critical Section
     }
 
     void UART::setData( UART::Data& data )
     {
-        std::lock_guard< std::mutex > guard( *data_mutex ); // Enter Critical Section (exception safe)
+        std::lock_guard< std::mutex > guard( *data_mutex ); // Enter Critical Section 
         if ( debug && new_data_flag )
         {
             printf("*** WARNING: Data Overwritten! (uart.cpp)\n");

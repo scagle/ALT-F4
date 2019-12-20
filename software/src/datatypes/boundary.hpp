@@ -15,7 +15,8 @@ namespace altf4
 
         void printPretty()
         {
-            printf("*********************\n\tArea: %d\n\tX/C: [%d - %d]\n\tY/R: [%d - %d]\n\n", (hb - lb) * (ha - la), lb, hb, la, lb);
+            printf("*********************\n\tArea: %d\n\tX/C: [%d - %d]\n\tY/R: [%d - %d]\n\n", 
+                (hb - lb) * (ha - la), lb, hb, la, lb);
         }
     };
 };

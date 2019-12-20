@@ -25,13 +25,16 @@ namespace altf4
 
         public:
             Core() { }
-            Core( Position origin, Boundary* blob_boundary ) : initialized(true), origin(origin), blob_boundary(blob_boundary) { }
+            Core( Position origin, Boundary* blob_boundary ) : 
+                initialized(true), origin(origin), blob_boundary(blob_boundary) { }
             virtual ~Core() { }
 
             // Methods
-            CoreAnchor getAnchor( std::vector< unsigned char* >& binary_data_2d, std::vector< std::vector< Color > >& color_2d, 
-                    unsigned int num_rows, unsigned int num_columns, int dir_row, int dir_col);
-            void spread( std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d );
+            CoreAnchor getAnchor( std::vector< unsigned char* >& binary_data_2d, 
+                std::vector< std::vector< Color > >& color_2d, unsigned int num_rows, 
+                unsigned int num_columns, int dir_row, int dir_col);
+            void spread( std::vector< std::vector< Color > >& color_2d, 
+                std::vector< unsigned char* >& binary_data_2d );
             cv::Rect getEncompassingRect( int padding );
             unsigned int getArea();
             Position getOrigin() { return this->origin; }

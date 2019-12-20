@@ -12,5 +12,7 @@
 #define BUFFERSIZE         1
 
 // Blob Detection
-#define MAX_RELATIVE_OFFSET    1    // How big the radius is for checking neighbor pixels ( 1 = check 8 neighbors, 2 = check 16 neighbors, ... )
-#define EDGE_NEIGHBOR_CUTOFF   8    // If pixel has less neighbors than this value, then it is an edge pixel ( otherwise it is core pixel )
+#define MAX_RELATIVE_OFFSET    1    // How big the radius is for checking neighbor pixels 
+                                    // ( 1 = check 8 neighbors, 2 = check 16 neighbors, ... )
+#define EDGE_NEIGHBOR_CUTOFF   8    // If pixel has less neighbors than this value, then it is 
+                                    // an edge pixel ( otherwise it is core pixel )

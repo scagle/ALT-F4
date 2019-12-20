@@ -60,13 +60,13 @@ namespace altf4
             }
             else if ( os == "Arch Linux" )
             {
-                cap = cv::VideoCapture(camera_number * 2);    // open the camera located at /dev/videoX
+                cap = cv::VideoCapture(camera_number * 2); // open the camera located at /dev/videoX
                 system("../src/camera_modify.sh m /dev/video0 /dev/video2");
             }
             else
             {
                 printf("*** WARNING: Unknown operating system, trying to open any camera (camera.cpp)\n");
-                cap = cv::VideoCapture(camera_number);    // try to open a camera
+                cap = cv::VideoCapture(camera_number);  // try to open a camera
                 system("../src/camera_modify.sh m /dev/video0");
             }
 
@@ -77,11 +77,9 @@ namespace altf4
             }
             ul.unlock();
             // Setup VideoCapture settings (if not supported)
-            cap.set(cv::CAP_PROP_FPS, FPS)              ; // 30 seems to be maximum. (may hang program depending on cam)
+            cap.set(cv::CAP_PROP_FPS, FPS)              ; // 30 seems to be maximum. 
             cap.set(cv::CAP_PROP_FRAME_WIDTH, MAX_COL)  ; // Lowest possible 4:3 aspect ratio
             cap.set(cv::CAP_PROP_FRAME_HEIGHT, MAX_ROW) ; // Lowest possible 4:3 aspect ratio
-            //cap.set(cv::CAP_PROP_AUTO_WB, 1)            ; // Enable auto white balance
-            //cap.set(cv::CAP_PROP_BUFFERSIZE, BUFFERSIZE); // Reduce internal frame buffer size (we have our own)
 
             cv::Mat temp_matrix;
             cap >> temp_matrix; // get a frame from camera, so we can grab size
@@ -93,7 +91,8 @@ namespace altf4
         }
         catch (const std::exception &e)
         {
-            printf("*** WARNING: Error encountered when trying to open Camera %d (camera.cpp)\n\t Error = %s\n", camera_number, e.what());
+            printf("*** WARNING: Error encountered when trying to open Camera %d (camera.cpp)\n\t Error = %s\n", 
+                camera_number, e.what());
 
         }
 

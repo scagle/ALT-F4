@@ -83,10 +83,12 @@ namespace altf4
 
     // Recursive Approach
     //const int Tuner::core_max_neighbors = 3; // Max number of neighbors until not blob anymore
-    //const int Tuner::core_size_cutoff = 150; // Bigger than this, and core blob explodes ( prevents blob leak )
+    //const int Tuner::core_size_cutoff = 150; // Bigger than this, and core blob explodes 
+    //                                         // ( prevents blob leak )
 
     // Sticky Ball Approach
-    const int Tuner::number_of_whitest_pixel_searches = 20; // How many "max" pixels we search for before averaging O(kn)
+    const int Tuner::number_of_whitest_pixel_searches = 20; // How many "max" pixels we search for 
+                                                            // before averaging O(kn)
 
 
 /***************************************************************************************/

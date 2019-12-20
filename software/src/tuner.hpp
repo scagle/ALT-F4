@@ -22,11 +22,12 @@ namespace altf4
 
     // Recursive Approach
     //static const int core_max_neighbors; // Max number of neighbors until not blob anymore
-    //static const int core_size_cutoff; // Bigger than this, and core blob explodes ( prevents blob leak )
+    //static const int core_size_cutoff;   // Bigger than this, and core blob explodes 
+    //                                     //( prevents blob leak )
 
     // Sticky Ball Approach
-    static const int number_of_whitest_pixel_searches; // How many "max" pixels we search for before averaging O(kn)
-
+    static const int number_of_whitest_pixel_searches; // How many "max" pixels we search for 
+                                                       // before averaging O(kn)
 
 /***************************************************************************************/
 /**                                      Scoring                                      **/

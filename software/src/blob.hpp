@@ -56,14 +56,17 @@ namespace altf4
             std::vector< Attribute >& getAttributes() { return this->attributes; }
 
             // Mutators
-            void explode() { this->core.explode(); }  // Max-size exceeded. Blob exploded... ( blob_detection )
-            void setCorePixels( std::vector< Pixel > core_pixels ) { this->core_pixels = core_pixels; }
+            void explode() { this->core.explode(); }  // Max-size exceeded. 
+            void setCorePixels( std::vector< Pixel > core_pixels ) 
+                { this->core_pixels = core_pixels; }
             void setCore( Core core ) { this->core = core; }
-            void addAttribute( std::string name, float score, std::string text ) { this->attributes.push_back( { name, score, text } ); }
+            void addAttribute( std::string name, float score, std::string text ) 
+                { this->attributes.push_back( { name, score, text } ); }
 
             // Rigorous Accessors/Mutators
             void setConvolutionSum( unsigned int conv_sum ) { this->conv_sum = conv_sum; }
-            void setConvolutionAverage( unsigned char conv_average ) { this->conv_average = conv_average; }
+            void setConvolutionAverage( unsigned char conv_average ) 
+                { this->conv_average = conv_average; }
             unsigned int getConvolutionSum() { return conv_sum; }
             unsigned char getConvolutionAverage() { return conv_average; }
 

@@ -13,12 +13,14 @@ namespace altf4
 
     }
 
-    Image::Image( int rows, int cols, int channels ) : rows(rows), cols(cols), channels(channels) 
+    Image::Image( int rows, int cols, int channels ) : 
+        rows(rows), cols(cols), channels(channels) 
     { 
         data.resize(rows * cols * channels);  
     }
 
-    Image::Image( cv::Mat* matrix, int rows, int cols, int channels ) : rows(rows), cols(cols), channels(channels) 
+    Image::Image( cv::Mat* matrix, int rows, int cols, int channels ) : 
+        rows(rows), cols(cols), channels(channels) 
     { 
         data.resize(rows * cols * channels);  
         convertToVector(matrix);
@@ -39,10 +41,6 @@ namespace altf4
         else 
         {
             printf("*** WARNING: Image is not continuous! (image.cpp)\n");
-            //for (int i = 0; i < matrix->rows; ++i) 
-            //{
-            //    data.insert(data.end(), matrix->ptr<uchar>(i), matrix->ptr<uchar>(i)+matrix->cols);
-            //}
         }
     }
 };

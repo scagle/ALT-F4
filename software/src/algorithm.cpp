@@ -17,12 +17,15 @@ namespace altf4
     namespace algorithm
     {
         // Function Prototypes
-        void formulateBlob( Blob& blob, std::vector< unsigned char* >& binary_data_2d, std::vector< std::vector< Color > >& color_2d, 
-                std::stack< Position >& edited_pixels, int row, int col, unsigned char check_value, int min_neighbors, int max_size );
-        float rigorouslyScoreBlob( Blob& blob, std::vector< std::vector< Color > >& color_2d, 
-                std::vector< unsigned char* >& binary_data_2d, int type, int camera_index );
-        Core calculateCore( Blob& blob, 
-                std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d );
+        void formulateBlob( Blob& blob, std::vector< unsigned char* >& binary_data_2d, 
+            std::vector< std::vector< Color > >& color_2d, 
+            std::stack< Position >& edited_pixels, int row, int col, unsigned char check_value, 
+            int min_neighbors, int max_size ); 
+        float rigorouslyScoreBlob( Blob& blob, 
+            std::vector< std::vector< Color > >& color_2d, 
+            std::vector< unsigned char* >& binary_data_2d, int type, int camera_index );
+        Core calculateCore( Blob& blob, std::vector< std::vector< Color > >& color_2d, 
+            std::vector< unsigned char* >& binary_data_2d );
 
         void transDimensiateImage( Image* image, std::vector< std::vector< Color > >& color_2d )
         {
@@ -55,8 +58,10 @@ namespace altf4
         }
 
         // Get Convolution of the image
-        void writeConvData( std::vector< std::vector< Color > >& color_2d, std::vector< std::vector< unsigned char > >& conv_data, 
-            std::vector< unsigned char >& conv_data_1d, const std::vector< std::vector< int > >& kernel )
+        void writeConvData( std::vector< std::vector< Color > >& color_2d, 
+            std::vector< std::vector< unsigned char > >& conv_data, 
+            std::vector< unsigned char >& conv_data_1d, 
+            const std::vector< std::vector< int > >& kernel )
         {
             int rows = color_2d.size();
             int cols = color_2d[0].size();
@@ -83,7 +88,8 @@ namespace altf4
                     {
                         for ( int ker_col = -1; ker_col <= 1; ker_col++ )
                         {
-                            dotproduct += color_2d[row - ker_row][col - ker_col].r * kernel[ker_row + 1][ker_col + 1];
+                            dotproduct += color_2d[row - ker_row][col - ker_col].r * 
+                                          kernel[ker_row + 1][ker_col + 1];
                         }
                     }
                     if ( dotproduct > dot_max )
@@ -101,7 +107,9 @@ namespace altf4
                 for ( int col = 1; col < cols - 1; col++ )
                 {
                     int value = temp[((cols - 2) * (row - 1)) + (col - 1)];
-                    unsigned char normalized_value = ( (float)( value - dot_min ) / (float)( dot_max - dot_min ) ) * 255;
+                    unsigned char normalized_value = ( 
+                            (float)( value - dot_min ) / (float)( dot_max - dot_min ) 
+                        ) * 255;
                     conv_data[row][col] = normalized_value;
                     conv_data_1d[(cols * row) + col] = normalized_value;
                 }
@@ -109,9 +117,10 @@ namespace altf4
         }
 
         // Read original image, apply pixel color thresholds, and extract binary image
-        void writeBinaryData( Image* image, Image& binary_image, const std::pair< Color, Color >& thresholds )
+        void writeBinaryData( Image* image, Image& binary_image, 
+            const std::pair< Color, Color >& thresholds )
         {
-            binary_image = Image( image->getRows(), image->getCols(), 1 ); // initialize binary_image
+            binary_image = Image( image->getRows(), image->getCols(), 1 ); 
 
             std::vector< unsigned char >* data = image->getData();
             std::vector< unsigned char >* binary_data = binary_image.getData();
@@ -126,16 +135,20 @@ namespace altf4
             for ( unsigned int i = 0; i < binary_data_size; i++ )
             {
                 bool pass = true;
-                pass &= ( (*data)[i * channels + 0] >= thresholds.first.b && (*data)[i * channels + 0] <= thresholds.second.b );
-                pass &= ( (*data)[i * channels + 1] >= thresholds.first.g && (*data)[i * channels + 1] <= thresholds.second.g );
-                pass &= ( (*data)[i * channels + 2] >= thresholds.first.r && (*data)[i * channels + 2] <= thresholds.second.r );
+                pass &= ( (*data)[i * channels + 0] >= thresholds.first.b && 
+                          (*data)[i * channels + 0] <= thresholds.second.b );
+                pass &= ( (*data)[i * channels + 1] >= thresholds.first.g && 
+                          (*data)[i * channels + 1] <= thresholds.second.g );
+                pass &= ( (*data)[i * channels + 2] >= thresholds.first.r && 
+                          (*data)[i * channels + 2] <= thresholds.second.r );
 
                 if ( pass )
                     (*binary_data)[i] = 255;
             }
         }
 
-        void transDimensiateBinaryImage( Image& binary_image, std::vector< unsigned char* >& binary_data_2d )
+        void transDimensiateBinaryImage( Image& binary_image, 
+            std::vector< unsigned char* >& binary_data_2d )
         {
             unsigned int rows = binary_image.getRows();
             unsigned int cols = binary_image.getCols();
@@ -158,8 +171,9 @@ namespace altf4
             //printf("DONE\n");
         }
 
-        void formulateBlob( Blob& blob, std::vector< unsigned char* >& binary_data_2d, std::vector< std::vector< Color > >& color_2d, 
-                std::stack< Position >& edited_pixels, int row, int col, unsigned char check_value, int min_neighbors, int max_size )
+        void formulateBlob( Blob& blob, std::vector< unsigned char* >& binary_data_2d, 
+            std::vector< std::vector< Color > >& color_2d, std::stack< Position >& edited_pixels, 
+            int row, int col, unsigned char check_value, int min_neighbors, int max_size )
         {
             // Initialize blobbing structures
             std::vector< Pixel > blob_pixels;    // vector of all pixels in blob
@@ -167,7 +181,7 @@ namespace altf4
 
             // Add found pixel
             blob_stack.push( {row, col} );       // push position to stack
-            blob_pixels.push_back( { { row, col }, color_2d[row][col] } ); // add pixel to collection
+            blob_pixels.push_back( { { row, col }, color_2d[row][col] } ); // add pixel to blob
 
             // Change found pixel
             binary_data_2d[row][col] = 128;      // prevent this blob from getting blobbed twice
@@ -189,10 +203,12 @@ namespace altf4
 
                 // Check all 8 neighbors
                 unsigned int neighbor_count = 0;
-                
-                for ( int ro = -MAX_RELATIVE_OFFSET; ro <= MAX_RELATIVE_OFFSET; ro++ ) // row offset
+
+                // row offset
+                for ( int ro = -MAX_RELATIVE_OFFSET; ro <= MAX_RELATIVE_OFFSET; ro++ ) 
                 {
-                    for ( int co = -MAX_RELATIVE_OFFSET; co <= MAX_RELATIVE_OFFSET; co++ ) // col offset
+                    // col offset
+                    for ( int co = -MAX_RELATIVE_OFFSET; co <= MAX_RELATIVE_OFFSET; co++ ) 
                     {
                         if ( !( ro == 0 && co == 0 ) &&        // if not in center
                               ( check_row + ro <  MAX_ROW ) && // if within screen
@@ -207,11 +223,15 @@ namespace altf4
                                     blob.explode();
                                     return;
                                 }
-                                blob_stack.push( { check_row + ro, check_col + co } );     // Add new position to stack
-                                blob_pixels.push_back( { { check_row + ro, check_col + co }, color_2d[check_row + ro][check_col + co] } );
+                                // Add new position to stack
+                                blob_stack.push( { check_row + ro, check_col + co } );     
+                                blob_pixels.push_back( { { check_row + ro, check_col + co }, 
+                                    color_2d[check_row + ro][check_col + co] } );
 
-                                binary_data_2d[check_row + ro][check_col + co] = 128;        // prevent this blob from getting blobbed twice
-                                edited_pixels.push( { check_row + ro, check_col + co } );  // record change, so we can change back later
+                                // prevent this blob from getting blobbed twice
+                                binary_data_2d[check_row + ro][check_col + co] = 128;      
+                                // record change, so we can change back later
+                                edited_pixels.push( { check_row + ro, check_col + co } );  
 
                                 // Update boundaries of blob
                                 if ( check_row + ro < blob_min_row )
@@ -226,7 +246,8 @@ namespace altf4
 
                             //else if (edited_matrix[p_row + ro][p_col + co] != 0)
                             //{
-                            //    if ( ( std::abs(ro) <= 1 ) && ( std::abs(co) <= 1 ) ) // make sure they're IMMEDIATE neighbors (Max of 8)
+                            //    // make sure they're IMMEDIATE neighbors (Max of 8)
+                            //    if ( ( std::abs(ro) <= 1 ) && ( std::abs(co) <= 1 ) ) 
                             //    {
                             //        neighbor_count++;
                             //    }
@@ -241,12 +262,12 @@ namespace altf4
         }
 
         void getBlobs( Image* image, std::vector< std::vector< Color > >& color_2d, 
-                       std::vector< unsigned char* >& binary_data_2d, std::vector< Blob >& all_blobs )
+            std::vector< unsigned char* >& binary_data_2d, std::vector< Blob >& all_blobs )
         {
             unsigned int rows = image->getRows();
             unsigned int cols = image->getCols();
 
-            std::stack< Position > edited_pixels; // stack of modified pixels, that allows us to change them back
+            std::stack< Position > edited_pixels; // stack of modified pixels, to be reverted later
             unsigned int blob_count = 0;
 
             for (int row = 0; row < (int)rows; row++)
@@ -258,33 +279,8 @@ namespace altf4
                     {
                         all_blobs.push_back( Blob() );
                         Blob& blob = all_blobs[all_blobs.size() - 1];
-                        formulateBlob( blob, binary_data_2d, color_2d, edited_pixels, row, col, 255, 8, -1 );
-
-                        // TODO: Try optimizing this if it's a problem ( It's very recursive at the moment )
-                        //      ( maybe get valid cross-hair and grab a circle of pixels based on that? )
-                        // Find inner "black-hole" ( over-exposed center of laser that doesn't pass filter )
-                        //Position center = blob.getCenterPosition();
-                        //if ( binary_data_2d[center.a][center.b] == 0 )
-                        //{
-                        //    std::stack< Position > edited_core_pixels; // stack of modified pixels, that allows us to change them back
-                        //    Blob core_blob;
-                        //    formulateBlob( 
-                        //        core_blob, binary_data_2d, color_2d, edited_core_pixels, center.a, center.b, 
-                        //        0, Tuner::core_max_neighbors, std::min( Tuner::core_size_cutoff, blob.getArea() ) 
-                        //    );
-                        //    if ( !core_blob.isExploded() ) // If inv_blob exceeded maximum size
-                        //    {
-                        //        // TODO: std::vector< Pixel >* blob.getCoreReference(), and directly resize/modify that instead
-                        //        blob.setCorePixels( *core_blob.getPixels() );
-                        //    }
-                        //    // Reset changed pixels back to what they were
-                        //    while ( !edited_core_pixels.empty() )
-                        //    {
-                        //        Position pos = edited_core_pixels.top();
-                        //        binary_data_2d[pos.a][pos.b] = 0;
-                        //        edited_core_pixels.pop();
-                        //    }
-                        //}
+                        formulateBlob( blob, binary_data_2d, color_2d, 
+                            edited_pixels, row, col, 255, 8, -1 );
 
                         blob_count++;
                     }
@@ -301,7 +297,8 @@ namespace altf4
             }
         }
 
-        unsigned char scoreAverageColor( Color& average_color, const Color& expected_color, int multiplier )
+        unsigned char scoreAverageColor( Color& average_color, const Color& expected_color, 
+            int multiplier )
         {
             // Get distance in pixels
             unsigned int diff_c1 = std::abs( (int)average_color.b - (int)expected_color.b );
@@ -309,13 +306,16 @@ namespace altf4
             unsigned int diff_c3 = std::abs( (int)average_color.r - (int)expected_color.r );
 
             // Normalize (0 - 765) to (0 - 255)
-            unsigned int normalized_diff = ( (float)( diff_c1 + diff_c2 + diff_c3 ) / ( 255.0 * 3.0 ) * 255.0 );
+            unsigned int normalized_diff = ( 
+                (float)( diff_c1 + diff_c2 + diff_c3 ) / ( 255.0 * 3.0 ) * 255.0 
+            );
 
             // Invert, so that the lower number gives the higher score 
             return ( 255 - normalized_diff );
         }
 
-        unsigned char scoreArea( unsigned int area, const unsigned int expected_area, int multiplier )
+        unsigned char scoreArea( unsigned int area, const unsigned int expected_area, 
+            int multiplier )
         {
             unsigned int diff_area = (int)expected_area - (int)area;
 
@@ -328,7 +328,8 @@ namespace altf4
             return (unsigned char)normalized_diff;
         }
 
-        unsigned char scoreSize( unsigned int size, const unsigned int expected_size, int multiplier )
+        unsigned char scoreSize( unsigned int size, const unsigned int expected_size, 
+            int multiplier )
         {
             unsigned int diff_size = (int)expected_size - (int)size;
 
@@ -342,7 +343,7 @@ namespace altf4
         }
 
         unsigned char scoreAverageCoreColor( const Color average_color, const Color expected_color, 
-                                             const std::vector< bool > channel_masks, int multiplier )
+            const std::vector< bool > channel_masks, int multiplier )
         {
             // Get distance in pixels
             unsigned int diff_c1 = std::abs( (int)average_color.b - (int)expected_color.b );
@@ -371,7 +372,8 @@ namespace altf4
             return total_score / num_scores;
         }
 
-        unsigned char scoreAverageCoreLength( const float average_core_length, const int expected_length, int multiplier )
+        unsigned char scoreAverageCoreLength( const float average_core_length, 
+            const int expected_length, int multiplier )
         {
             float diff_length = expected_length - average_core_length;
 
@@ -384,7 +386,8 @@ namespace altf4
             return (unsigned char)normalized_diff;
         }
 
-        unsigned char scoreConvolutionAverage( unsigned char average, const unsigned int expected_average, int multiplier )
+        unsigned char scoreConvolutionAverage( unsigned char average, 
+            const unsigned int expected_average, int multiplier )
         {
             unsigned int diff_average = (int)expected_average - (int)average;
 
@@ -397,7 +400,8 @@ namespace altf4
             return (unsigned char)normalized_diff;
         }
 
-        void scoreBlobs( std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d, 
+        void scoreBlobs( std::vector< std::vector< Color > >& color_2d, 
+            std::vector< unsigned char* >& binary_data_2d, 
             std::vector< Blob >& blobs, Blob& best_blob, int type, int camera_index )
         {
             int blob_count = 0;
@@ -418,7 +422,8 @@ namespace altf4
                 
                 if ( Tuner::scoring_masks[0] )
                 {
-                    score_average_color = scoreAverageColor( color, Tuner::hsv_expected_values[camera_index][type], 1 );
+                    score_average_color = scoreAverageColor( color, 
+                        Tuner::hsv_expected_values[camera_index][type], 1 );
                     score_sum += score_average_color;
                     score_max += 255;
                 }
@@ -441,13 +446,16 @@ namespace altf4
                 if ( percent_score >= Tuner::percentage_score_cutoff[camera_index] )
                 {
                     // Save scores, since they matter more now ( and so we can view them later
-                    blob.addAttribute( "score_average_color", score_average_color, color.getStructuredString() );
+                    blob.addAttribute( "score_average_color", score_average_color, 
+                        color.getStructuredString() );
                     blob.addAttribute( "score_area", score_area, std::to_string( area ) );
                     blob.addAttribute( "score_size", score_size, std::to_string( size ) );
-                    blob.addAttribute( "percent_score", percent_score, std::to_string( percent_score ) );
+                    blob.addAttribute( "percent_score", percent_score, 
+                        std::to_string( percent_score ) );
 
                     // Apply more rigorous testing on the higher scoring blobs to save resources
-                    float multiplier = rigorouslyScoreBlob( blob, color_2d, binary_data_2d, type, camera_index );
+                    float multiplier = rigorouslyScoreBlob( blob, color_2d, binary_data_2d, 
+                        type, camera_index );
                     percent_score *= multiplier;
 
                     if ( percent_score > best_score )
@@ -478,19 +486,23 @@ namespace altf4
             if ( Tuner::scoring_rigorous_masks[0] )
             {
                 Color& average_color = core->getAverageColor();
-                unsigned char score_average_core_color = scoreAverageCoreColor( average_color, Tuner::expected_core_colors[type], 
-                    Tuner::core_colors_masks, 2 );
+                unsigned char score_average_core_color = scoreAverageCoreColor( average_color, 
+                    Tuner::expected_core_colors[type], Tuner::core_colors_masks, 2 );
                 multiplier *= (float)score_average_core_color;
-                blob.addAttribute( "average_core_color", score_average_core_color, average_color.getStructuredString() );
+                blob.addAttribute( "average_core_color", score_average_core_color, 
+                    average_color.getStructuredString() );
             }
 
             // Core expected average length
             if ( Tuner::scoring_rigorous_masks[1] )
             {
                 float average_core_length = core->getAverageLength();
-                unsigned char score_average_core_length = scoreAverageCoreLength( average_core_length, Tuner::expected_core_length[type], 50 );
+                unsigned char score_average_core_length = scoreAverageCoreLength( 
+                    average_core_length, Tuner::expected_core_length[type], 50 
+                );
                 multiplier *= (float)score_average_core_length;
-                blob.addAttribute( "average_core_length", score_average_core_length, std::to_string( average_core_length ) );
+                blob.addAttribute( "average_core_length", score_average_core_length, 
+                    std::to_string( average_core_length ) );
             }
 
             // Core exploded
@@ -498,17 +510,20 @@ namespace altf4
             {
                 bool exploded = blob.isExploded();
                 multiplier *= (exploded) ? 0.5 : 1;
-                blob.addAttribute( "exploded", (float)exploded, std::to_string( (exploded) ? 0.5 : 1 ) );
+                blob.addAttribute( "exploded", (float)exploded, 
+                    std::to_string( (exploded) ? 0.5 : 1 ) );
             }
 
             // Convolution Average
             if ( Tuner::scoring_rigorous_masks[3] )
             {
                 unsigned char conv_average = blob.getConvolutionAverage();
-                unsigned char score_conv_average = scoreConvolutionAverage( conv_average, Tuner::expected_conv_averages[type], 1 );
+                unsigned char score_conv_average = scoreConvolutionAverage( conv_average, 
+                    Tuner::expected_conv_averages[type], 1 );
                 float normalized_score = (float)score_conv_average / 255.0;
                 multiplier *= normalized_score;
-                blob.addAttribute( "score_conv_average", normalized_score, std::to_string( conv_average ) );
+                blob.addAttribute( "score_conv_average", normalized_score, 
+                    std::to_string( conv_average ) );
             }
 
 
@@ -523,7 +538,9 @@ namespace altf4
                 const std::vector< std::vector< int > >& kernel )
         {
             std::vector< Pixel >* blob_pixels = blob.getPixels();       // Blob pixels (3 channels)
-            std::vector< Pixel_1 >* conv_pixels = blob.getConvPixels(); // Normalized Convolution pixels (1 channel) ( 0 - 255 )
+
+            // Normalized Convolution pixels (1 channel) ( 0 - 255 )
+            std::vector< Pixel_1 >* conv_pixels = blob.getConvPixels(); 
             std::vector< int > product_values;   // Convolution before normalization ( + / - )
 
             int dot_product_min = 0;
@@ -546,7 +563,8 @@ namespace altf4
                              ( col - kernel_col >= 0 )      &&
                              ( col - kernel_col < MAX_COL ) )
                         { 
-                            dot_product_sum += color_2d[row - kernel_row][col - kernel_col].r * kernel[kernel_row + 1][kernel_col + 1];
+                            dot_product_sum += color_2d[row - kernel_row][col - kernel_col].r 
+                                * kernel[kernel_row + 1][kernel_col + 1];
                         }
                     }
                 }
@@ -561,7 +579,8 @@ namespace altf4
 
             if ( (*blob_pixels).size() != product_values.size() )
             {
-                printf("*** WARNING: blob_pixels size: %d | product_values size: %d\n", (*blob_pixels).size(), product_values.size());
+                printf("*** WARNING: blob_pixels size: %d | product_values size: %d\n", 
+                    (*blob_pixels).size(), product_values.size());
             }
             // Normalize
             int total_dot_product_sum = 0;
@@ -571,7 +590,8 @@ namespace altf4
             {
                 int row = (*blob_pixels)[i].position.a;
                 int col = (*blob_pixels)[i].position.b; 
-                unsigned char normalized_value = ( (float)( conv_value - dot_product_min ) / (float)( dot_product_max - dot_product_min ) ) * 255;
+                unsigned char normalized_value = ( (float)( conv_value - dot_product_min ) 
+                    / (float)( dot_product_max - dot_product_min ) ) * 255;
                 conv_pixels->push_back( { { row, col }, normalized_value } );
                 total_dot_product_sum += normalized_value;
                 i++;
@@ -584,14 +604,15 @@ namespace altf4
         }
 
         Core calculateCore( Blob& blob, 
-                std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d )
+                std::vector< std::vector< Color > >& color_2d, 
+                std::vector< unsigned char* >& binary_data_2d )
         {
             std::vector< Pixel >* blob_pixels = blob.getPixels(); // Blob pixels
-            //Position center = blob.getCenterPosition();           // Where to draw our general box from
             cv::Rect general_box = blob.getEncompassingRect(0);   // Get general box
 
             // Occupy General Box
-            std::vector< Pixel > potentially_bright_pixels; // General array that (hopefully) encompasses laser core     
+            std::vector< Pixel > potentially_bright_pixels; // General array that (hopefully) 
+                                                            // encompasses laser core     
             for ( int row = 0; row < general_box.height; row++ )
             {
                 for ( int col = 0; col < general_box.width; col++ )
@@ -648,7 +669,6 @@ namespace altf4
             {
                 average_row += bright_pixel.position.a;
                 average_col += bright_pixel.position.b;
-                //printf ("Individual Pixel = %d, %d\n", bright_pixel.position.a, bright_pixel.position.b );
             }
             average_row /= brightest_pixels.size();
             average_col /= brightest_pixels.size();

@@ -1,7 +1,6 @@
 #include "uart_handler.hpp"
 
 #include "uart.hpp"
-#include "uart_logic.hpp"
 #include "blob.hpp"
 
 #include "datatypes/position.hpp"
@@ -132,7 +131,7 @@ namespace altf4
                     // Find Green Y
                     green_y = green_blob.getCenterPosition().b;
 
-                    // Find Green X ( Will be either 0 or MAX_COL, since we want turret to rotate quickly )
+                    // Find Green X ( Will be either 0 or MAX_COL to hasten turret )
                     switch ( camera_index )
                     {
                         case 1:  // Right Camera
@@ -142,12 +141,15 @@ namespace altf4
                             green_x = 0;  // Turn Left as fast as possible
                             break;
                         case 3:  // Back Camera
-                            // Round to [0 - 1], to get which half of screen the green laser is on, and determine which way is quicker
-                            green_x = ( (int)((double)green_blob.getCenterPosition().a / MAX_COL + 0.5) ) ? MAX_COL : 0;
+                            // Round to [0 - 1], to get which half of screen the green laser is on, 
+                            // and determine which way is quicker
+                            green_x = ( 
+                                (int)((double)green_blob.getCenterPosition().a / MAX_COL + 0.5) 
+                            ) ? MAX_COL : 0;
                             printf("GREEN_X Decided %d!\n", green_x);
                             break;
                         default:
-                            printf("*** WARNING: Not well equipped to handle more than 4 cameras! (uart_handler.cpp)\n");
+                            printf("*** WARNING: Not well equipped to handle more than 4 cameras!  (uart_handler.cpp)\n");
                             break;
                     }
 
@@ -155,7 +157,8 @@ namespace altf4
                     green_pos_buffer = { green_x, green_y };
                 }
                 best_data = { { green_pos_buffer, red_pos_buffer }, state };
-                break; // Since highest priority starts at beginning, we now no longer have to continue with for-loop iterations
+                break; // Since highest priority starts at beginning, we now no longer have to 
+                       // continue with for-loop iterations
             }
             camera_index++;
         }
