@@ -31,50 +31,67 @@ See [Embedded ALTF4](https://github.com/jelucian/altf4), by [jelucian](https://g
     * Continuously grab both RGB and HSV representation, and store/overwrite them in an array of images
     * Wait for main program to request access, then copy off the images array. (Could've used double-buffered approach but ran into weird bugs, and decided against premature optimizations)
 2. Processing 
-    * Data Extraction (As seen in [algorithm.cpp](software/src/algorithm.cpp))
-    * Blob Scoring (As seen in [algorithm.cpp](software/src/algorithm.cpp))
+    * Once Raw Image data is retrieved from Stage 1, the "Process Handler" spawns a "Process" thread for each image.
+    * Threads perform various tasks:
+        * Data Extraction (As seen in [algorithm.cpp](software/src/algorithm.cpp))
+        * Blob Scoring (As seen in [algorithm.cpp](software/src/algorithm.cpp))
+    * After each and every task is performed, and their outputs are stored in "Dataframes", the threads 
+      are joined, and the program moves onto Stage 3.
 
     [algorithm.cpp](software/src/algorithm.cpp) Overview:
 ```c++
 /* Basic Data Extraction Functions */
 // Extract meaningful data from image data
     // Read original image, apply pixel color thresholds, and extract binary image
-    void writeBinaryData( Image* image, Image& binary_image, const std::pair< Color, Color >& thresholds );
+    void writeBinaryData( Image* image, Image& binary_image, 
+        const std::pair< Color, Color >& thresholds );
 
     // Read Binary Matrices and try to extrapolate blobs from it
     void getBlobs( Image* image, std::vector< std::vector< Color > >& color_2d, 
-                   std::vector< unsigned char* >& binary_data_2d, std::vector< Blob >& all_blobs );
+        std::vector< unsigned char* >& binary_data_2d, std::vector< Blob >& all_blobs );
 
 /* Basic Scoring Algorithms */
 // Scoring metrics applied to every single blob
 // Scores on scale int( 0 - 255 )
     // Calculate Score
-    void scoreBlobs( std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d, std::vector< Blob >& blobs, Blob& best_blob, int type, int camera_index )
+    void scoreBlobs( std::vector< std::vector< Color > >& color_2d, 
+        std::vector< unsigned char* >& binary_data_2d, std::vector< Blob >& blobs, 
+            Blob& best_blob, int type, int camera_index )
 
         // Score by closeness to expected color (hsv)
-        unsigned char scoreAverageColor( Color& average_color, const Color& expected_color, int multiplier )
+        unsigned char scoreAverageColor( Color& average_color, const Color& expected_color, 
+            int multiplier )
 
         // Score by closeness to expected area (width * height)
-        unsigned char scoreArea( unsigned int area, const unsigned int expected_area, int multiplier )
+        unsigned char scoreArea( unsigned int area, const unsigned int expected_area, 
+            int multiplier )
 
         // Score by closeness to expected size (#pixels)
-        unsigned char scoreSize( unsigned int size, const unsigned int expected_size, int multiplier )
+        unsigned char scoreSize( unsigned int size, const unsigned int expected_size, 
+            int multiplier )
 
         // Score by closeness to expected core color (hsv)
-        unsigned char scoreAverageCoreColor( const Color average_color, const Color expected_color, const std::vector< bool > channel_masks, int multiplier )
+        unsigned char scoreAverageCoreColor( const Color average_color, 
+            const Color expected_color, const std::vector< bool > channel_masks, 
+            int multiplier )
 
         // Score by closeness to expected core length (length of each anchor) 
-        unsigned char scoreAverageCoreLength( const float average_core_length, const int expected_length, int multiplier )
+        unsigned char scoreAverageCoreLength( const float average_core_length, 
+            const int expected_length, int multiplier )
 
-        // Score by closeness to expected convolution average (https://en.wikipedia.org/wiki/Kernel_(image_processing))
-        unsigned char scoreConvolutionAverage( unsigned char average, const unsigned int expected_average, int multiplier )
+        // Score by closeness to expected convolution average 
+        // (https://en.wikipedia.org/wiki/Kernel_(image_processing))
+        unsigned char scoreConvolutionAverage( unsigned char average, 
+            const unsigned int expected_average, int multiplier )
 
 /* Rigorous Data Extraction Functions */
     // Get Convolution of Blob
-    void convoluteBlob( Blob& blob, std::vector< std::vector< Color > >& color_2d, const std::vector< std::vector< int > >& kernel )
+    void convoluteBlob( Blob& blob, std::vector< std::vector< Color > >& color_2d, 
+        const std::vector< std::vector< int > >& kernel )
 
     // Try to grab core of blob and any features that come out of that
-    Core calculateCore( Blob& blob, std::vector< std::vector< Color > >& color_2d, std::vector< unsigned char* >& binary_data_2d )
+    Core calculateCore( Blob& blob, std::vector< std::vector< Color > >& color_2d, 
+        std::vector< unsigned char* >& binary_data_2d )
 
 /* Rigourous Scoring Algorithms */
 // Scoring metrics applied to best scoring blobs 
